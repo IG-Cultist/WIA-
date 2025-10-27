@@ -27,7 +27,7 @@ public class AttentionText : MonoBehaviour
     [SerializeField]
     Color32 startColor = new Color32(29, 29, 29, 0);
 
-    [Header("エンドカラー")]
+    [Header("遷移フェードカラー")]
     [SerializeField]
     Color32 endColor = new Color32(29, 29, 29, 255);
 
