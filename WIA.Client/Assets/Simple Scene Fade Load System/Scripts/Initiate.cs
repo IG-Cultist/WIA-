@@ -17,10 +17,12 @@ public static class Initiate
         GameObject init = new GameObject();
         init.name = "Fader";
         Canvas myCanvas = init.AddComponent<Canvas>();
+        init.AddComponent<GraphicRaycaster>();
         myCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         init.AddComponent<Fader>();
         init.AddComponent<CanvasGroup>();
         init.AddComponent<Image>();
+        init.GetComponent<Canvas>().sortingOrder = (50);
 
         Fader scr = init.GetComponent<Fader>();
         scr.fadeDamp = multiplier;

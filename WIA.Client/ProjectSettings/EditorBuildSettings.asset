@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/99_Users/08_Nishiura/01_Scene/Main.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
     path: Assets/01_Scene/00_AttentionScene.unity
     guid: 866839854beb3fe4bb1168ca2df09766
   - enabled: 1
@@ -23,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scene/04_Result.unity
     guid: 0df5c10491f61e740b73cc7906190d84
+  - enabled: 1
+    path: Assets/99_Users/08_Nishiura/01_Scene/Main.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

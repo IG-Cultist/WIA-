@@ -25,7 +25,7 @@ public class AttentionText : MonoBehaviour
 
     [Header("スタートカラー")]
     [SerializeField]
-    Color32 startColor = new Color32(255, 255, 255, 0);
+    Color32 startColor = new Color32(29, 29, 29, 0);
 
     [Header("エンドカラー")]
     [SerializeField]
@@ -61,7 +61,7 @@ public class AttentionText : MonoBehaviour
                 if (text) textColor.color = Color.Lerp(textColor.color, new Color(0, 0, 0, -3), 2.0f * Time.deltaTime);
                 if (imgColor) imgColor.color = Color.Lerp(imgColor.color, new Color(0, 0, 0, -3), 2.0f * Time.deltaTime);
 
-                if (isChange) Invoke("StartTitleScene", 1.0f);
+                if (isChange) Invoke("StartTitleScene", 0.3f);
             }
         }
     }
@@ -69,7 +69,6 @@ public class AttentionText : MonoBehaviour
     public void StartTitleScene()
     {
         // シーン遷移
-        //SceneManager.LoadScene("TitleScene");
         Initiate.DoneFading();
         Initiate.Fade("01_TitleScene", endColor, 2.0f);
     }
