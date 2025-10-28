@@ -431,8 +431,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346079381}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 375495263}
   - component: {fileID: 375495262}
   - component: {fileID: 375495261}
+  - component: {fileID: 375495265}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Untagged
@@ -550,6 +551,20 @@ Transform:
   - {fileID: 927632892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
+--- !u!114 &375495265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375495260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e5d7d78d68f1541a89b00db25baadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveArm
+  craneArm: {fileID: 375495260}
+  moveSpeed: 4
 --- !u!1 &765598691
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,10 +706,10 @@ HingeJoint:
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
-    spring: 0
-    damper: 0
+    spring: 1
+    damper: 10
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -1255,7 +1270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1912074782}
   m_Layer: 0
-  m_Name: Arm
+  m_Name: CraneArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1597,7 +1612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &3957344892622830455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1660,6 +1675,6 @@ SceneRoots:
   - {fileID: 1712767515}
   - {fileID: 971833934}
   - {fileID: 4306582431997358532}
+  - {fileID: 375495264}
   - {fileID: 299304965}
   - {fileID: 346079384}
-  - {fileID: 375495264}
