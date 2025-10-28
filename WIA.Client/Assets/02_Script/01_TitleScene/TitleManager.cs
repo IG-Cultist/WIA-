@@ -6,8 +6,8 @@ using KanKikuchi.AudioManager;
 public class TitleManager : MonoBehaviour
 {
     [SerializeField] Text guideText;
-    [SerializeField] GameObject optionMenu;
-
+    [SerializeField] GameObject optionWindow;
+    [SerializeField] GameObject licenseWindow;
 
     [Header("遷移フェードカラー")]
     [SerializeField]
@@ -15,17 +15,14 @@ public class TitleManager : MonoBehaviour
 
     private void Awake()
     {
-        /*
-        SceneManager.LoadScene("20_OptionScene", LoadSceneMode.Additive);
-
-        GameObject obj = GameObject.Find("OptionCanvas");
-        Debug.Log(obj);*/
-        //obj.SetActive(false);
     }
 
     void Start()
     {
-        DontDestroyOnLoad(optionMenu);
+        optionWindow.SetActive(false);
+        licenseWindow.SetActive(false);
+
+        DontDestroyOnLoad(optionWindow);
 
         BGMManager.Instance.Play(
             audioPath: BGMPath.TITLE_MUKISHITU, //再生したいオーディオのパス
@@ -62,6 +59,16 @@ public class TitleManager : MonoBehaviour
 
     public void OpenOption()
     {
-        optionMenu.SetActive(true);
+        optionWindow.SetActive(true);
+    }
+
+    public void OpenLicense()
+    {
+        licenseWindow.SetActive(true);
+    }
+
+    public void CloseLicense()
+    {
+        licenseWindow.SetActive(false);
     }
 }
