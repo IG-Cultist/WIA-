@@ -25,12 +25,12 @@ public class TitleManager : MonoBehaviour
         DontDestroyOnLoad(optionWindow);
 
         BGMManager.Instance.Play(
-            audioPath: BGMPath.TITLE_MUKISHITU, //再生したいオーディオのパス
-            volumeRate: 0.5f,                   //音量の倍率
-            delay: 0,                           //再生されるまでの遅延時間
-            pitch: 1,                           //ピッチ
-            isLoop: true,                       //ループ再生するか
-            allowsDuplicate: false              //他のBGMと重複して再生させるか
+            audioPath: BGMPath.TITLE_CLAIR_DE_LUNE, //再生したいオーディオのパス
+            volumeRate: 0.5f,                       //音量の倍率
+            delay: 0,                               //再生されるまでの遅延時間
+            pitch: 1,                               //ピッチ
+            isLoop: true,                           //ループ再生するか
+            allowsDuplicate: false                  //他のBGMと重複して再生させるか
         );
     }
 
