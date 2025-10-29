@@ -3632,6 +3632,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  - {fileID: 2100000, guid: 6d3391d3f37469643b500a54403bc9d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5466,6 +5467,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  - {fileID: 2100000, guid: 6d3391d3f37469643b500a54403bc9d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5524,7 +5526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.522293, b: 0, a: 1}
+  outlineColor: {r: 1, g: 0.4509804, b: 0, a: 1}
   outlineWidth: 5.5
   precomputeOutline: 0
   bakeKeys: []
@@ -8297,6 +8299,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  - {fileID: 2100000, guid: 6d3391d3f37469643b500a54403bc9d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8355,7 +8358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.522293, b: 0, a: 1}
+  outlineColor: {r: 1, g: 0.4509804, b: 0, a: 1}
   outlineWidth: 5.5
   precomputeOutline: 0
   bakeKeys: []
@@ -15302,6 +15305,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  - {fileID: 2100000, guid: 6d3391d3f37469643b500a54403bc9d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15360,7 +15364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.522293, b: 0, a: 1}
+  outlineColor: {r: 1, g: 0.4509804, b: 0, a: 1}
   outlineWidth: 5.5
   precomputeOutline: 0
   bakeKeys: []
@@ -15898,6 +15902,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  - {fileID: 2100000, guid: 6d3391d3f37469643b500a54403bc9d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15956,7 +15961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.522293, b: 0, a: 1}
+  outlineColor: {r: 1, g: 0.4509804, b: 0, a: 1}
   outlineWidth: 5.5
   precomputeOutline: 0
   bakeKeys: []
@@ -37837,6 +37842,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  - {fileID: 2100000, guid: 6d3391d3f37469643b500a54403bc9d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37895,7 +37901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.522293, b: 0, a: 1}
+  outlineColor: {r: 1, g: 0.4509804, b: 0, a: 1}
   outlineWidth: 5.5
   precomputeOutline: 0
   bakeKeys: []
@@ -43010,6 +43016,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  - {fileID: 2100000, guid: 6d3391d3f37469643b500a54403bc9d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -43068,7 +43075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.522293, b: 0, a: 1}
+  outlineColor: {r: 1, g: 0.4509804, b: 0, a: 1}
   outlineWidth: 5.5
   precomputeOutline: 0
   bakeKeys: []
@@ -44085,6 +44092,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  - {fileID: 2100000, guid: 6d3391d3f37469643b500a54403bc9d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -44143,7 +44151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.522293, b: 0, a: 1}
+  outlineColor: {r: 1, g: 0.4509804, b: 0, a: 1}
   outlineWidth: 5.5
   precomputeOutline: 0
   bakeKeys: []
