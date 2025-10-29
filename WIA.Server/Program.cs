@@ -1,7 +1,10 @@
+using WIA.Server.Model.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMagicOnion();
+builder.Services.AddSingleton<RoomContextRepository>();
 
 var app = builder.Build();
 

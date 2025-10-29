@@ -9,7 +9,7 @@
 using MessagePack;
 using System;
 
-namespace NIGHTRAVEL.Shared.Interfaces.Model.Entity
+namespace WIA.Shared.Interfaces.Model.Entity
 {
     [MessagePackObject]
     /// <summary>

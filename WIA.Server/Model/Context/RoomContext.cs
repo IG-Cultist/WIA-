@@ -96,11 +96,10 @@ namespace WIA.Server.Model.Context
         #endregion
 
         //RoomContextの定義
-        public RoomContext(IMulticastGroupProvider groupProvider, string roomName , string pass)
+        public RoomContext(IMulticastGroupProvider groupProvider, string roomName)
         {
             Id = Guid.NewGuid();
             Name = roomName;
-            PassWord = pass;
             Group =
                 groupProvider.GetOrAddSynchronousGroup<Guid, IRoomHubReceiver>(roomName);
         }
