@@ -7,12 +7,12 @@
 ////////////////////////////////////////////////////////////////
 
 using MagicOnion;
-using NIGHTRAVEL.Shared.Interfaces.Model.Entity;
+using WIA.Shared.Interfaces.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NIGHTRAVEL.Shared.Interfaces.Services
+namespace WIA.Shared.Interfaces.Services
 {
     /// <summary>
     /// ユーザーのインターフェースの追加(Shared)

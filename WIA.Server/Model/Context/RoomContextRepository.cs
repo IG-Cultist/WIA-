@@ -9,9 +9,9 @@ namespace WIA.Server.Model.Context
 
         #region ゲームコンテキストを使用するための関数一覧
         //ゲームコンテキストの作成
-        public RoomContext CreateContext(string roomName , string pass)
+        public RoomContext CreateContext(string roomName)
         {
-            var context = new RoomContext(groupProvider, roomName,pass);
+            var context = new RoomContext(groupProvider, roomName);
             contexts[roomName] = context;
             return context;
         }

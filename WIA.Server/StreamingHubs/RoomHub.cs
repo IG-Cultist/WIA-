@@ -20,6 +20,7 @@ using System.Xml;
 using UnityEngine;
 using static Shared.Interfaces.StreamingHubs.IRoomHubReceiver;
 using static System.Net.Mime.MediaTypeNames;
+using WIA.Shared.Interfaces.Model.Entity;
 #endregion
 
 namespace WIA.Server.StreamingHubs
@@ -72,7 +73,7 @@ namespace WIA.Server.StreamingHubs
         /// <param name="roomName"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<Dictionary<Guid, JoinedUser>> JoinedAsync(string roomName, int userId, string userName, string pass, int gameMode)
+        public async Task<Dictionary<Guid, JoinedUser>> JoinedAsync(int userId)
         {
             lock (roomContextRepository)
             { //同時に生成しないように排他制御
@@ -82,17 +83,16 @@ namespace WIA.Server.StreamingHubs
                 //DBからユーザー情報取得
                 //var user = dbContext.Users.Where(user => user.Id == userId).First();
 
-                ////ユーザーデータを設定(Steam対応デバッグ用)
-                //User userSteam = new User();
-                //userSteam.Id = userId;
-                //userSteam.Name = userName;
+                //ユーザーデータを設定(Steam対応デバッグ用)
+                User userSteam = new User();
+                userSteam.Id = userId;
 
 
                 // ルームに参加＆ルームを保持
-                this.roomContext = roomContextRepository.GetContext(roomName);
+                this.roomContext = roomContextRepository.GetContext("Sample");
                 if (this.roomContext == null)
                 { //無かったら生成
-                    this.roomContext = roomContextRepository.CreateContext(roomName, pass);
+                    this.roomContext = roomContextRepository.CreateContext("Sample");
 
                     //if(gameMode != 0)
                     //{
@@ -103,81 +103,35 @@ namespace WIA.Server.StreamingHubs
                     //    room.is_started = false;
                     //    roomService.RegistRoom(room.roomName, room.userName, room.password, gameMode);
                     //}
-                    this.roomContext.IsStartGame = false;
-                }
-                else if (this.roomContext.JoinedUserList.Count == 0)
-                { //ルーム情報が入ってかつ参加人数が0人の場合
-                    roomContextRepository.RemoveContext(roomName);                          //ルーム情報を削除
-                    this.roomContext = roomContextRepository.CreateContext(roomName, pass);  //ルームを生成
-
-                    //if(gameMode != 0)
-                    //{
-                    //    //DBに生成
-                    //    room.roomName = roomName;
-                    //    room.userName = userName;
-                    //    room.password = pass;
-                    //    room.is_started = false;
-                    //    roomService.RegistRoom(room.roomName, room.userName, room.password, gameMode);
-                    //}
-
                     this.roomContext.IsStartGame = false;
                 }
                 this.roomContext.Group.Add(this.ConnectionId, Client);
 
-                if (this.roomContext.JoinedUserList.Count >= MAX_JOINABLE_PLAYERS || this.roomContext.IsStartGame)
-                {//参加人数が満員の場合 or 既にゲーム開始している場合 は参加できないようにする
-                    this.roomContext.Group.Only([this.ConnectionId]).OnFailedJoin(0);
-                    this.roomContext.Group.Remove(this.ConnectionId);
-                    return JoinedUsers;
+                // グループストレージにユーザーデータを格納
+                var joinedUser = new JoinedUser() { ConnectionId = this.ConnectionId, UserData = userSteam };
+
+                if (roomContext.JoinedUserList.Count == 0)
+                {//roomContext内の参加人数が0である場合
+
+                    //参加順番の初期化
+                    joinedUser.JoinOrder = 1;
+
+                    //1人目をマスタークライアントにする
+                    joinedUser.IsMaster = true;
                 }
-                if (this.roomContext.PassWord != "")
-                {//パスワードが設定されている場合
-                    if (this.roomContext.PassWord != pass)
-                    {
-                        //パスワードが違うという通知
-                        this.roomContext.Group.Only([this.ConnectionId]).OnFailedJoin(1);
-                        this.roomContext.Group.Remove(this.ConnectionId);
-                        return JoinedUsers;
-                    }
+                else
+                {
+                    //参加順番の設定
+                    joinedUser.JoinOrder = roomContext.JoinedUserList.Count + 1;
                 }
 
-
-
-                //// グループストレージにユーザーデータを格納
-                //var joinedUser = new JoinedUser() { ConnectionId = this.ConnectionId, UserData = userSteam };
-
-                //if (roomContext.JoinedUserList.Count == 0)
-                //{//roomContext内の参加人数が0である場合
-
-                //    //参加順番の初期化
-                //    joinedUser.JoinOrder = 1;
-
-                //    //1人目をマスタークライアントにする
-                //    joinedUser.IsMaster = true;
-                //}
-                //else
-                //{
-                //    //参加順番の設定
-                //    joinedUser.JoinOrder = roomContext.JoinedUserList.Count + 1;
-                //}
-
-                //// ルームコンテキストに参加ユーザーを保存
-                //this.roomContext.JoinedUserList[this.ConnectionId] = joinedUser;
-                //this.roomContext.resultDataList.Add(this.ConnectionId, new ResultData());
-                //this.roomContext.relicDataList.Add(this.ConnectionId, new List<Relic>());
+                // ルームコンテキストに参加ユーザーを保存
+                this.roomContext.JoinedUserList[this.ConnectionId] = joinedUser;
 
                 //this.roomContext.Group.Only([this.ConnectionId]).OnRoom();
 
-                ////　ルームに参加
-                //this.roomContext.Group.Except([this.ConnectionId]).Onjoin(roomContext.JoinedUserList[this.ConnectionId]);
-
-                //this.roomContext.NowStage = EnumManager.STAGE_TYPE.Rust;
-
-                //// マスタデータを取得
-                //if (!this.roomContext.IsLoadMasterDatas)
-                //{
-                //    this.roomContext.LoadMasterDataLists(dbContext);
-                //}
+                //　ルームに参加
+                this.roomContext.Group.Except([this.ConnectionId]).Onjoin(roomContext.JoinedUserList[this.ConnectionId]);
 
                 // 参加中のユーザー情報を返す
                 return this.roomContext.JoinedUserList;

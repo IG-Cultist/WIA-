@@ -5,7 +5,7 @@
 
 using System;
 using MessagePack;
-using NIGHTRAVEL.Shared.Interfaces.Model.Entity;
+using WIA.Shared.Interfaces.Model.Entity;
 
 namespace Shared.Interfaces.StreamingHubs
 {

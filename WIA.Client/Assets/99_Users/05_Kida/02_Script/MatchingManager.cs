@@ -1,0 +1,268 @@
+////////////////////////////////////////////////////////////////
+///
+/// マッチング画面の処理を管理するスクリプト
+/// 
+/// Aughter:木田晃輔
+///
+////////////////////////////////////////////////////////////////
+
+#region using一覧
+using Cysharp.Net.Http;
+//using Cysharp.Threading.Tasks.Triggers;
+using Grpc.Net.Client;
+using MagicOnion.Client;
+using NIGHTRAVEL.Shared.Interfaces.Services;
+using Shared.Interfaces.StreamingHubs;
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+#endregion
+
+public class MatchingManager : MonoBehaviour
+{
+    #region [SerializeField]：木田晃輔
+    //[SerializeField] GameObject userPrefab; //ユーザーの情報
+    [SerializeField] Text inputFieldRoomName; //ルームの名前入力フィールド
+    [SerializeField] Text inputFieldSerchRoomName; //ルームの名前入力フィールド
+    [SerializeField] Text inputFieldCreatePassWord; //パスワードの作成フィールド
+    [SerializeField] Text inputFieldPassWord; //パスワードの入力フィールド
+    [SerializeField] Text roomSerchField;   //ルームの名前検索
+    [SerializeField] GameObject roomPrefab; //ルームのプレハブ
+    [SerializeField] GameObject Content;
+    [SerializeField] Transform rooms;
+    //[SerializeField] SceneConducter conducter;
+    [SerializeField] GameObject CreateButton; //生成ボタン
+    [SerializeField] GameObject PrivateUI;
+    [SerializeField] GameObject[] ErrorUI;
+    [SerializeField] GameObject fade;
+    [SerializeField] GameObject roomModelPrefab;
+    #endregion
+    public List<GameObject> createdRoomList; //作られたルーム
+    EventSystem eventSystem;
+    JoinedUser joinedUser;                  //このクライアントユーザーの情報
+    Text text;
+    BaseModel model;
+    Text roomNameText; //ルームの名前
+    Text userNameText; //ユーザーの名前
+    Text passText;      //パスワード
+    string joinRoomName;
+    string roomSerchName;
+    int errorId;
+
+    //入室か生成の判別用
+    private static string joinMode;
+
+    public static string JoinMode
+    {
+        get { return joinMode; }
+    }
+
+    //新マッチング用のユーザーID
+    private static int userId;
+    public static int UserID
+    {
+        get { return userId; }
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    async void Start()
+    {
+        //実装時にはこの変数でユーザーを判断する
+        //userModel = GameObject.Find("UserModel").GetComponent<UserModel>();
+
+        ////安全動作のための初回ローディング
+        //conducter.Loading();
+
+        #region RoomModel定義
+        //ルームモデルがあるなら削除
+        //Destroy(GameObject.Find("RoomModel"));
+        //Destroy(GameObject.Find("RoomModel(Clone)"));
+        //Invoke("NewRoomModel", 0.3f);
+        #endregion
+
+        await RoomModel.Instance.ConnectAsync();
+        RoomModel.Instance.OnCreatedRoom += this.OnCreatedRoom;
+        RoomModel.Instance.OnFailedJoinSyn += this.OnFailedJoinSyn;
+        //ユーザーが入室した時にOnJoinedUserメソッドを実行するよう、モデルに登録
+        RoomModel.Instance.OnJoinedUser += this.OnJoinedUser;
+        RoomModel.Instance.OnLeavedUser += this.OnLeavedUser;
+
+    }
+
+    private void OnDisable()
+    {
+        //シーン遷移した場合に通知関数をモデルから解除
+        RoomModel.Instance.OnCreatedRoom -= this.OnCreatedRoom;
+        RoomModel.Instance.OnFailedJoinSyn -= this.OnFailedJoinSyn;
+        RoomModel.Instance.OnJoinedUser -= this.OnJoinedUser;
+        RoomModel.Instance.OnLeavedUser -= this.OnLeavedUser;
+    }
+
+    //void NewRoomModel()
+    //{
+    //    if (GameObject.Find("RoomModel") != null) return;
+    //    //ルームモデルをもう一度作成
+    //    Instantiate(roomModelPrefab);
+    //    Invoke("Connecting", 0.3f);
+
+    //}
+
+    async void Connecting()
+    {
+
+    }
+
+    //void SarchRoom()
+    //{
+
+    //    //ルーム検索
+    //    SerchRoom();
+
+    //    //ローディング停止
+    //    Invoke("Loaded", 2.0f);
+
+    //}
+
+    public void ReturnTitle()
+    {
+        Initiate.DoneFading();
+        Initiate.Fade("1_TitleScene", Color.black, 1.0f);   // フェード時間1秒
+    }
+
+    public void ErrorClose()
+    {
+        ErrorUI[errorId].SetActive(false);
+    }
+
+
+    private void Loaded()
+    {
+        //conducter.Loaded();
+    }
+
+    #region 同期処理一覧：木田晃輔
+
+    /// <summary>
+    /// ルーム作成
+    /// </summary>
+    public async void CreateRoom()
+    {
+        //conducter.Loading();
+
+        if (Re_RoomManager.IsCreater == true)
+        {//ルーム作成の場合
+            passText = inputFieldCreatePassWord;
+            roomNameText = inputFieldRoomName;
+            if (roomNameText.text == "")
+            {
+                errorId = 2;
+                OnFailedJoinSyn(errorId);
+                Invoke("Loaded", 1.0f);
+            }
+            else
+            {
+                joinMode = "create";
+                //await RoomModel.Instance.JoinedAsync(roomNameText.text, userId, TitleManagerk.SteamUserName, passText.text,TitleManagerk.GameMode);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 入室処理
+    /// Aughter:木田晃輔
+    /// </summary>
+    public async void JoinRoom()
+    {
+      await RoomModel.Instance.JoinedAsync(1);
+    }
+
+    /// <summary>
+    /// 退室処理
+    /// Aughter:木田晃輔
+    /// </summary>
+    public async void LeaveRoom()
+    {
+      await RoomModel.Instance.LeavedAsync();
+    }
+
+    /// <summary>
+    /// プライベートルーム入室
+    /// Aughter:木田晃輔
+    /// </summary>
+    public async void PrivateRoomJoin()
+    {
+        joinMode = "join";
+        //conducter.Loading();
+        string pass = inputFieldPassWord.text;
+        //await RoomModel.Instance.JoinedAsync(joinRoomName, userId,TitleManagerk.SteamUserName, pass,TitleManagerk.GameMode);
+    }
+
+    #endregion
+
+    #region 通知一覧：木田晃輔
+
+    /// <summary>
+    /// 入室失敗通知
+    /// </summary>
+    /// <param name="errorId"></param>
+    public void OnFailedJoinSyn(int errorId)
+    {
+        this.errorId = errorId;
+        if(this.errorId == 0) 
+        {//参加可能人数超過
+            ErrorUI[this.errorId].SetActive(true);
+            //conducter.Loaded();
+        }
+        if(this.errorId == 1)
+        {//パスワードが違う場合
+            PrivateUI.SetActive(false);
+            ErrorUI[this.errorId].SetActive(true);
+            //conducter.Loaded();
+        }
+        if(this.errorId == 2)
+        {//部屋名未入力
+            PrivateUI.SetActive(false);
+            ErrorUI[this.errorId].SetActive(true);
+            //conducter.Loaded();
+        }
+        if(this.errorId == 3)
+        {//部屋が存在しない
+            PrivateUI.SetActive(false);
+            ErrorUI[this.errorId].SetActive(true);
+            //conducter.Loaded();
+        }
+    }
+
+    public void OnCreatedRoom()
+    {
+        SceneManager.LoadScene("3_StandbyRoom");
+    }
+
+    /// <summary>
+    /// 入室完了通知
+    /// Aughter:木田晃輔
+    /// </summary>
+    public void OnJoinedUser(JoinedUser joinedUser)
+    {
+        foreach (var data in RoomModel.Instance.joinedUserList.Values)
+        {
+            //入室したときの処理を書く
+            Debug.Log(data.ConnectionId + "が入室しました。");
+
+        }     
+    }
+
+    /// <summary>
+    /// 退室通知
+    /// </summary>
+    public void OnLeavedUser(JoinedUser joinedUser)
+    {
+            //入室したときの処理を書く
+            Debug.Log(joinedUser.ConnectionId + "が退室しました。");
+    }
+    #endregion
+}
