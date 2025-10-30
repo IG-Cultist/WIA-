@@ -1,8 +1,10 @@
 using UnityEngine;
 
+
 public class FlowerPotManager : MonoBehaviour
 {
     [SerializeField] GameObject potObj;
+    [SerializeField] float moveSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,7 +15,11 @@ public class FlowerPotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Return))
+        float moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime; //水平方向の移動
+
+        transform.position += new Vector3(moveX, 0, 0); //オブジェクトの位置を更新
+
+        if (Input.GetKeyUp(KeyCode.Return))
         {
             GeneratePot();
         }
