@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using WIA.Shared.Interfaces.StreamingHubs;
 using static Shared.Interfaces.StreamingHubs.EnumManager;
 using static Shared.Interfaces.StreamingHubs.IRoomHubReceiver;
 //using static Unity.Cinemachine.CinemachineSplineRoll;
@@ -743,21 +744,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
 
     #endregion
 
-    #region レリック関連
-
-    /// <summary>
-    /// レリック生成同期
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <param name="pos"></param>
-    /// <param name="includeBossRarity">ボス用のレリックも抽選対象にするかどうか</param>
-    /// <returns></returns>
-    public async UniTask DropRelicAsync(Stack<Vector2> pos, bool includeBossRarity)
-    {
-        await roomHub.DropRelicAsync(pos, includeBossRarity);
-    }
-    #endregion
-
     #region ゲーム内UI、仕様関連
     /// <summary>
     /// ギミックの起動同期
@@ -770,14 +756,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         await roomHub.BootGimmickAsync(uniqueID, triggerOnce);
     }
 
-    /// <summary>
-    /// 難易度上昇の同期
-    /// </summary>
-    /// <returns></returns>
-    public async UniTask AscendDifficultyAsync()
-    {
-        await roomHub.AscendDifficultyAsync();
-    }
 
     /// <summary>
     /// ステージクリア
@@ -807,6 +785,11 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //{
     //    await roomHub.SpawnObjectAsync(type, spawnPos);
     //}
+
+    public async Task GameEndAsync()
+    {
+        await roomHub.GameEndAsync();
+    }
 
     #endregion
 
