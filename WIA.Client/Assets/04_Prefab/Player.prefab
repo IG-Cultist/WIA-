@@ -1617,6 +1617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 609431529418986072}
   - component: {fileID: 7068851185525723304}
+  - component: {fileID: 9034671850153564270}
   m_Layer: 0
   m_Name: Helmet
   m_TagString: Untagged
@@ -1763,6 +1764,24 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00016778708, y: 1.7340008, z: 0.028698951}
     m_Extent: {x: 0.3310948, y: 0.42025912, z: 0.39716962}
   m_DirtyAABB: 0
+--- !u!114 &9034671850153564270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220782277616749058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 4.4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4226398806279148135
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,6 +3523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2234028315870304358}
   - component: {fileID: 8985779811048576021}
+  - component: {fileID: 1539358369849900551}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3650,6 +3670,24 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0003992319, y: -0.023062944, z: 0.051378682}
     m_Extent: {x: 1.8127879, y: 1.4655969, z: 0.3513236}
   m_DirtyAABB: 0
+--- !u!114 &1539358369849900551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256490834087499023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 4.4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7361036140232769568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4004,8 +4042,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.99991053, z: 0, w: -0.013377553}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7564010411602463446}
   - {fileID: 2234028315870304358}
@@ -4026,7 +4064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   hitPoint: {fileID: 4703014791869529353}
   animator: {fileID: 5097505856616022616}
-  state: 1
+  player_State: 0
 --- !u!95 &5097505856616022616
 Animator:
   serializedVersion: 7

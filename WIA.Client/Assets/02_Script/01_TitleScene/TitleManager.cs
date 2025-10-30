@@ -26,7 +26,7 @@ public class TitleManager : MonoBehaviour
 
         BGMManager.Instance.Play(
             audioPath: BGMPath.TITLE_CLAIR_DE_LUNE, //再生したいオーディオのパス
-            volumeRate: 0.5f,                       //音量の倍率
+            volumeRate: 1f,                       //音量の倍率
             delay: 0,                               //再生されるまでの遅延時間
             pitch: 1,                               //ピッチ
             isLoop: true,                           //ループ再生するか

@@ -2,86 +2,54 @@ Shader "Custom/ObjectOutLine"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-        _BaseColor("BaseColor", Color) = (1, 1, 1, 1)
-        _OutlineColor("Color", Color) = (1, 1, 1, 1)
-        _OutlineWidth("Width", float) = 1
+        _Color( "Color", Color ) = ( 1,1,1,1 )
+        _OutlineColor( "Outline Color", Color ) = ( 0, 0, 0, 0 )
+        _OutlineWidth( "Outline Width", Float ) = 1
     }
+ 
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
-
-        Pass // 1
+        Tags { "RenderType" = "Opaque" }
+ 
+        Pass
         {
-            cull Front
+            Cull Front//描画面を裏側にする
+ 
             CGPROGRAM
+ 
             #pragma vertex vert
             #pragma fragment frag
+ 
             #include "UnityCG.cginc"
-
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-            };
-
+ 
+            float4 _OutlineColor;
+            float _OutlineWidth;
+ 
             struct v2f
             {
-                float4 vertex : SV_POSITION;
+                float4 position : SV_POSITION;
             };
-
-            half _OutlineWidth;
-            half4 _OutlineColor;
-            
-            v2f vert (appdata v)
+ 
+            v2f vert( float4 position : POSITION, float3 normal : NORMAL, float4 color : COLOR )
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex +  v.normal * _OutlineWidth / 100);
+                float3 normalWS = UnityObjectToWorldNormal( color.rgb );//頂点カラーを使う
+                float3 positionWS = mul( unity_ObjectToWorld, position );
+                o.position = UnityWorldToClipPos( positionWS + normalWS * _OutlineWidth );//法線方向に押し出す
                 return o;
             }
-
-            fixed4 frag (v2f i) : SV_Target
+ 
+            float4 frag( v2f IN ) : SV_Target
             {
                 return _OutlineColor;
             }
+ 
             ENDCG
         }
-        
-        Pass // 2
+ 
+        Pass
         {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-
-            #include "UnityCG.cginc"
-
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
-            struct v2f
-            {
-                float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
-            };
-
-            half4 _BaseColor;
-
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                return o;
-            }
-
-            fixed4 frag (v2f i) : SV_Target
-            {
-                return _BaseColor;
-            }
-            ENDCG
+            //実際の描画パス
         }
     }
 }
