@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NIGHTRAVEL.Shared.Interfaces.StreamingHubs
+namespace WIA.Shared.Interfaces.StreamingHubs
 {
     [MessagePackObject]
     public class ResultData
@@ -73,5 +73,11 @@ namespace NIGHTRAVEL.Shared.Interfaces.StreamingHubs
         /// 合計スコア
         /// </summary>
         public int TotalScore { get; set; }
+
+        [Key(10)]
+        /// <summary>
+        /// ユーザーID
+        /// </summary>
+        public int UserId { get; set; }
     }
 }

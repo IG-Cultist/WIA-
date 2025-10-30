@@ -151,41 +151,6 @@ namespace Shared.Interfaces.StreamingHubs
         /// <returns></returns>
         //Task ChooseUpgrade(Guid optionsKey, STAT_UPGRADE_OPTION upgradeOpt);
         #endregion
-        #region レリック関連
-
-        /// <summary>
-        /// レリック生成
-        /// </summary>
-        /// <param name="pos">生成座標</param>
-        /// <param name="includeBossRarity">ボス用のレリックも含めるかどうか</param>
-        /// <returns></returns>
-        Task DropRelicAsync(Stack<Vector2> pos, bool includeBossRarity);
-
-        #endregion
-        #region 端末関連
-        /// <summary>
-        /// 端末起動
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="termID">端末種別ID</param>
-        /// <returns></returns>
-        //Task BootTerminalAsync(int termID);
-
-        /// <summary>
-        /// 端末成功処理
-        /// </summary>
-        /// <param name="termID"></param>
-        /// <returns></returns>
-        //Task TerminalSuccessAsync(int termID);
-
-        /// <summary>
-        /// 端末失敗処理
-        /// </summary>
-        /// <param name="termID"></param>
-        /// <returns></returns>
-        //Task TerminalFailureAsync(int termID);
-
-        #endregion
         #region ゲーム内UI、仕様関連
 
         /// <summary>
@@ -196,13 +161,6 @@ namespace Shared.Interfaces.StreamingHubs
         /// <param name="triggerOnce">一度しか起動できないかどうか</param>
         /// <returns></returns>
         Task BootGimmickAsync(string uniqueID, bool triggerOnce);
-
-        /// <summary>
-        /// 難易度上昇
-        /// Author:Nishiura
-        /// </summary>
-        /// <returns></returns>
-        Task AscendDifficultyAsync();
 
         /// <summary>
         /// ステージクリア
@@ -224,6 +182,12 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         /// <returns></returns>
         //Task SpawnObjectAsync(OBJECT_TYPE type, Vector2 spawnPos);
+
+        /// <summary>
+        /// ゲーム終了同期
+        /// </summary>
+        /// <returns></returns>
+        Task GameEndAsync();
 
         #endregion
         #endregion
