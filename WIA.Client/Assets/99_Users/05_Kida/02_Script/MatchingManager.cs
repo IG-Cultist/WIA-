@@ -40,8 +40,12 @@ public class MatchingManager : MonoBehaviour
     [SerializeField] GameObject[] ErrorUI;
     [SerializeField] GameObject fade;
     [SerializeField] GameObject roomModelPrefab;
+    [Header("遷移フェードカラー")]
+    [SerializeField]
+    Color32 endColor = new Color32(29, 29, 29, 255);
     #endregion
     public List<GameObject> createdRoomList; //作られたルーム
+    public int userID;
     EventSystem eventSystem;
     JoinedUser joinedUser;                  //このクライアントユーザーの情報
     Text text;
@@ -85,21 +89,23 @@ public class MatchingManager : MonoBehaviour
         #endregion
 
         await RoomModel.Instance.ConnectAsync();
-        RoomModel.Instance.OnCreatedRoom += this.OnCreatedRoom;
         RoomModel.Instance.OnFailedJoinSyn += this.OnFailedJoinSyn;
         //ユーザーが入室した時にOnJoinedUserメソッドを実行するよう、モデルに登録
         RoomModel.Instance.OnJoinedUser += this.OnJoinedUser;
         RoomModel.Instance.OnLeavedUser += this.OnLeavedUser;
+        RoomModel.Instance.OnReadySyn += this.OnReadySyn;
+        RoomModel.Instance.OnStartedGame += this.OnStartedGame;
 
     }
 
     private void OnDisable()
     {
         //シーン遷移した場合に通知関数をモデルから解除
-        RoomModel.Instance.OnCreatedRoom -= this.OnCreatedRoom;
         RoomModel.Instance.OnFailedJoinSyn -= this.OnFailedJoinSyn;
         RoomModel.Instance.OnJoinedUser -= this.OnJoinedUser;
         RoomModel.Instance.OnLeavedUser -= this.OnLeavedUser;
+        RoomModel.Instance.OnReadySyn += this.OnReadySyn;
+        RoomModel.Instance.OnStartedGame += this.OnStartedGame;
     }
 
     //void NewRoomModel()
@@ -111,10 +117,6 @@ public class MatchingManager : MonoBehaviour
 
     //}
 
-    async void Connecting()
-    {
-
-    }
 
     //void SarchRoom()
     //{
@@ -126,6 +128,11 @@ public class MatchingManager : MonoBehaviour
     //    Invoke("Loaded", 2.0f);
 
     //}
+
+    public async void Ready()
+    {
+        await RoomModel.Instance.ReadyAsync(1);
+    }
 
     public void ReturnTitle()
     {
@@ -177,7 +184,8 @@ public class MatchingManager : MonoBehaviour
     /// </summary>
     public async void JoinRoom()
     {
-      await RoomModel.Instance.JoinedAsync(1);
+        userId = userID;
+        await RoomModel.Instance.JoinedAsync(userId);
     }
 
     /// <summary>
@@ -237,10 +245,10 @@ public class MatchingManager : MonoBehaviour
         }
     }
 
-    public void OnCreatedRoom()
-    {
-        SceneManager.LoadScene("3_StandbyRoom");
-    }
+    //public void OnCreatedRoom()
+    //{
+    //    SceneManager.LoadScene("3_StandbyRoom");
+    //}
 
     /// <summary>
     /// 入室完了通知
@@ -261,8 +269,23 @@ public class MatchingManager : MonoBehaviour
     /// </summary>
     public void OnLeavedUser(JoinedUser joinedUser)
     {
-            //入室したときの処理を書く
-            Debug.Log(joinedUser.ConnectionId + "が退室しました。");
+        //退室したときの処理を書く
+        Debug.Log(joinedUser.ConnectionId + "が退室しました。");
+    }
+
+    public void OnReadySyn(Guid guid)
+    {
+        //準備完了したときの処理を書く
+        Debug.Log(guid + "が準備完了！！");
+    }
+
+    public void OnStartedGame()
+    {
+        //ゲーム開始時の処理をする
+        // シーン遷移
+        Initiate.DoneFading();
+        Initiate.Fade("03_GameScene", endColor, 2.0f);
+
     }
     #endregion
 }

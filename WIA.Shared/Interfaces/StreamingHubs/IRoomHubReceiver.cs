@@ -16,6 +16,7 @@ using System.Collections.Concurrent;
 using static Shared.Interfaces.StreamingHubs.EnumManager;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using WIA.Shared.Interfaces.StreamingHubs;
 
 namespace Shared.Interfaces.StreamingHubs
 {
@@ -225,7 +226,11 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         void OnChangeMasterClient();
 
-        //void OnGameEnd(ResultData result);
+        /// <summary>
+        /// ゲーム終了通知
+        /// </summary>
+        /// <param name="result"></param>
+        void OnGameEnd(ResultData result);
 
         /// <summary>
         /// アイテム獲得通知

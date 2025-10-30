@@ -8,6 +8,7 @@ using Shared.Interfaces.StreamingHubs;
 using System.Diagnostics;
 using System.Numerics;
 using UnityEngine;
+using WIA.Shared.Interfaces.StreamingHubs;
 
 namespace WIA.Server.Model.Context
 {
@@ -87,11 +88,21 @@ namespace WIA.Server.Model.Context
         public Dictionary<Guid, JoinedUser> JoinedUserList { get; } = new Dictionary<Guid, JoinedUser>();
 
         /// <summary>
+        /// キャラクターデータリスト
+        /// Author:Nishiura
+        /// </summary>
+        public Dictionary<Guid, PlayerData> characterDataList = new Dictionary<Guid, PlayerData>();
+
+        /// <summary>
         /// 取得アイテムリスト
         /// Author:Nishiura
         /// </summary>
         public List<string> gottenItemList { get; } = new List<string>();
 
+        /// <summary>
+        /// リザルトデータリスト
+        /// </summary>
+        public Dictionary<Guid, ResultData> resultDataList { get; } = new Dictionary<Guid, ResultData>();
 
         #endregion
 

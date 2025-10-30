@@ -58,6 +58,12 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         [Key(7)]
         public int CharacterID {  get; set; }
+
+        /// <summary>
+        /// 終了判定
+        /// </summary>
+        [Key(8)]
+        public bool isEnd {  get; set; }
     }
 
 }

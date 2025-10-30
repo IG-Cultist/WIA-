@@ -9,7 +9,17 @@ public class ResultManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        int playerId = MatchingManager.UserID + 1;
+        if (GameManager.Result != null)
+        {
+            Debug.Log("リザルトを取得できます");
+        }
+        else
+        {
+            Debug.LogError("リザルトを取得できません！！");
+        }
 
+            Debug.Log("プレイヤー"+playerId+"のリザルト："+GameManager.Result.TotalScore.ToString());
     }
 
     // Update is called once per frame
