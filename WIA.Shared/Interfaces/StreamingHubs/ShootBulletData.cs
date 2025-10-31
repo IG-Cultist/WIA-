@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MessagePack;
-using NIGHTRAVEL.Shared.Interfaces.Model.Entity;
+using WIA.Shared.Interfaces.Model.Entity;
 using UnityEngine;
 
 namespace Shared.Interfaces.StreamingHubs
