@@ -3,7 +3,7 @@
 // Author:木田晃輔 Data:07/29
 //=============================
 using MessagePack;
-using NIGHTRAVEL.Shared.Interfaces.Model.Entity;
+using WIA.Shared.Interfaces.Model.Entity;
 using Shared.Interfaces.StreamingHubs;
 using System;
 using System.Collections.Generic;
