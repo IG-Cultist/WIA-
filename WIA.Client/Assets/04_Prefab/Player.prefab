@@ -1617,7 +1617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 609431529418986072}
   - component: {fileID: 7068851185525723304}
-  - component: {fileID: 9034671850153564270}
+  - component: {fileID: 936202066643116068}
   m_Layer: 0
   m_Name: Helmet
   m_TagString: Untagged
@@ -1665,8 +1665,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f0f0e8d365237c3468c5c5f8f417ee65, type: 2}
-  - {fileID: 2100000, guid: 816c5a68d0f85114cb142341567e219c, type: 2}
+  - {fileID: 2100000, guid: 7f662f018e9d56842adad06d21ebdaed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1764,7 +1763,7 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00016778708, y: 1.7340008, z: 0.028698951}
     m_Extent: {x: 0.3310948, y: 0.42025912, z: 0.39716962}
   m_DirtyAABB: 0
---- !u!114 &9034671850153564270
+--- !u!114 &936202066643116068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1778,7 +1777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 4.4
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -3523,7 +3522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2234028315870304358}
   - component: {fileID: 8985779811048576021}
-  - component: {fileID: 1539358369849900551}
+  - component: {fileID: 7505138509544895807}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3571,8 +3570,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f0f0e8d365237c3468c5c5f8f417ee65, type: 2}
-  - {fileID: 2100000, guid: 816c5a68d0f85114cb142341567e219c, type: 2}
+  - {fileID: 2100000, guid: 7f662f018e9d56842adad06d21ebdaed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3670,7 +3668,7 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0003992319, y: -0.023062944, z: 0.051378682}
     m_Extent: {x: 1.8127879, y: 1.4655969, z: 0.3513236}
   m_DirtyAABB: 0
---- !u!114 &1539358369849900551
+--- !u!114 &7505138509544895807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3684,7 +3682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 4.4
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -4095,7 +4093,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8857547444998029799}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
