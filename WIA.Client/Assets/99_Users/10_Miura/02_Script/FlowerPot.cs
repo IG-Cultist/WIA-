@@ -22,27 +22,26 @@ public class FlowerPot : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        GameObject fragment;
+        fragment = Instantiate(potFragmentObj, potObj.transform.position, potObj.transform.rotation);
+
         //A–Ø”«‚ğÁ‚·
         Destroy(potObj);
 
-
-        for (int i = 0; i < potFragmentObj.transform.childCount; i++)
+        for (int i = 0; i < fragment.transform.childCount; i++)
         {//potFragmentObj‚Ìq‚Ì”‚¾‚¯ƒ‹[ƒv
+         //A–Ø”«‚Ì”j•Ğ‚ğ¶¬‚·‚é
+            fragment.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(new Vector2(50, 50));
 
-            potFragmentObj.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(new Vector2(1000, 200)); //‰E‘¤‚É”j•Ğ‚ğ”ò‚Î‚·
-
-            FadeFragment(potFragmentObj.transform.GetChild(i));
+            FadeFragment(fragment.transform.GetChild(i));
         }
-
-        //A–Ø”«‚Ì”j•Ğ‚ğ¶¬‚·‚é
-        Instantiate(potFragmentObj, this.transform.position, this.transform.rotation);
     }
 
     public void FadeFragment(Transform fragment)
     {
         fragment.GetComponent<Renderer>().material.DOFade(0, 6);
 
-        //DestroyFragment(fragment);
+        DestroyFragment(fragment);
     }
 
     public async void DestroyFragment(Transform fragment)
