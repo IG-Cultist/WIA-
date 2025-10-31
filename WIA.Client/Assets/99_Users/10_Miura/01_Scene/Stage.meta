@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:WIA.Client/Assets/99_Users/10_Miura/01_Scene/Stage.meta
 guid: ee4e4efcea2569d4dafdfd9f325e244d
+========
+guid: dea5cb4c47b99974281a56729b248a1b
+>>>>>>>> 64fdd7889ba821b55fbc7ae6582daf2004003265:WIA.Client/Assets/99_Users/08_Nishiura/08_Asset/Sayantan/Misc.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
