@@ -486,20 +486,20 @@ namespace WIA.Server.StreamingHubs
         /// オブジェクト生成処理
         /// </summary>
         /// <returns></returns>
-        //public async Task SpawnObjectAsync(OBJECT_TYPE type, Vector2 spawnPos)
-        //{
-        //    lock (roomContextRepository)
-        //    {
-        //        string uniqueId = Guid.NewGuid().ToString();
-        //        GimmickData gimmickData = new GimmickData()
-        //        {
-        //            UniqueID = uniqueId,
-        //            Position = spawnPos,
-        //        };
-        //        this.roomContext.gimmickList.Add(uniqueId, gimmickData);
-        //        this.roomContext.Group.All.OnSpawnObject(type, spawnPos, uniqueId);
-        //    }
-        //}
+        public async Task SpawnObjectAsync(Vector2 spawnPos)
+        {
+            lock (roomContextRepository)
+            {
+                string uniqueId = Guid.NewGuid().ToString();
+                GimmickData gimmickData = new GimmickData()
+                {
+                    UniqueID = uniqueId,
+                    Position = spawnPos,
+                };
+                //this.roomContext.gimmickList.Add(uniqueId, gimmickData);
+                this.roomContext.Group.All.OnSpawnObject(spawnPos, uniqueId);
+            }
+        }
 
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace WIA.Server.StreamingHubs
         //{
         //    lock (roomContextRepository) // 排他制御
         //    {
-        //        PlayerDeathResult resultData = new PlayerDeathResult() 
+        //        PlayerDeathResult resultData = new PlayerDeathResult()
         //        {
         //            BuckupHDMICnt = 0,
         //            IsDead = true

@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NIGHTRAVEL.Shared.Interfaces.Model.Entity
+namespace WIA.Shared.Interfaces.Model.Entity
 {
     /// <summary>
     /// 実績のカラム設定(public)
