@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+
 
 public class MenuManager : MonoBehaviour
 {
@@ -6,6 +8,10 @@ public class MenuManager : MonoBehaviour
     [Header("遷移フェードカラー")]
     [SerializeField]
     Color32 endColor = new Color32(29, 29, 29, 255);
+
+    [SerializeField] GameObject guideText;
+    [SerializeField] GameObject textPrefab;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +23,12 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SelectPlayGame()
+    {
+
+
     }
 
     public void StartGame()
