@@ -5559,6 +5559,7 @@ GameObject:
   - component: {fileID: 231221698}
   - component: {fileID: 231221697}
   - component: {fileID: 231221696}
+  - component: {fileID: 231221701}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Cube
@@ -5591,7 +5592,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &231221697
 BoxCollider:
@@ -5685,6 +5686,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553563470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231221701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231221695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 473942637}
+  minPoint: {fileID: 1628411706}
+  maxPoint: {fileID: 330063265}
 --- !u!1 &240056921
 GameObject:
   m_ObjectHideFlags: 0
@@ -7958,6 +7974,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326904120}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &330063264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330063265}
+  m_Layer: 0
+  m_Name: maxBoxSpawnPoint
+  m_TagString: Respawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &330063265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330063264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.17, y: 1.68, z: 4.34}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1772925725}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -8674,6 +8721,7 @@ GameObject:
   - component: {fileID: 349914227}
   - component: {fileID: 349914226}
   - component: {fileID: 349914225}
+  - component: {fileID: 349914230}
   m_Layer: 0
   m_Name: Cube_4
   m_TagString: Cube
@@ -8706,7 +8754,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &349914226
 BoxCollider:
@@ -8800,6 +8848,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553563470}
   m_LocalEulerAnglesHint: {x: 0, y: 47.7, z: 0}
+--- !u!114 &349914230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349914224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 473942637}
+  minPoint: {fileID: 1628411706}
+  maxPoint: {fileID: 330063265}
 --- !u!1 &352392413
 GameObject:
   m_ObjectHideFlags: 0
@@ -15728,6 +15791,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467130373}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &473942636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 473942637}
+  m_Layer: 0
+  m_Name: BoxSpawnPoint
+  m_TagString: Respawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &473942637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473942636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.35, y: 1.68, z: 4.34}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1772925725}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475298008
 GameObject:
   m_ObjectHideFlags: 0
@@ -19660,6 +19754,7 @@ GameObject:
   - component: {fileID: 623350941}
   - component: {fileID: 623350940}
   - component: {fileID: 623350939}
+  - component: {fileID: 623350944}
   m_Layer: 0
   m_Name: Cube_1
   m_TagString: Cube
@@ -19692,7 +19787,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &623350940
 BoxCollider:
@@ -19786,6 +19881,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553563470}
   m_LocalEulerAnglesHint: {x: 0, y: -19.76, z: 0}
+--- !u!114 &623350944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623350938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 473942637}
+  minPoint: {fileID: 1628411706}
+  maxPoint: {fileID: 330063265}
 --- !u!1 &623921629
 GameObject:
   m_ObjectHideFlags: 0
@@ -20237,6 +20347,7 @@ GameObject:
   - component: {fileID: 642658060}
   - component: {fileID: 642658059}
   - component: {fileID: 642658058}
+  - component: {fileID: 642658063}
   m_Layer: 0
   m_Name: Cube_6
   m_TagString: Cube
@@ -20269,7 +20380,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &642658059
 BoxCollider:
@@ -20363,6 +20474,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553563470}
   m_LocalEulerAnglesHint: {x: 0, y: -102.57, z: 0}
+--- !u!114 &642658063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642658057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 473942637}
+  minPoint: {fileID: 1628411706}
+  maxPoint: {fileID: 330063265}
 --- !u!1 &647097578
 GameObject:
   m_ObjectHideFlags: 0
@@ -20503,8 +20629,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 34.26046, y: 1.6628218, z: 23.133469}
-  m_Center: {x: 4.4522514, y: -12.913603, z: 0.6384697}
+  m_Size: {x: 34.26046, y: 1.6628227, z: 90.737854}
+  m_Center: {x: 4.4522514, y: -12.913603, z: 1.0780697}
 --- !u!1 &648800593
 GameObject:
   m_ObjectHideFlags: 0
@@ -37380,6 +37506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076701856}
   - component: {fileID: 1076701857}
+  - component: {fileID: 1076701858}
   m_Layer: 0
   m_Name: GoalPoint
   m_TagString: Goal
@@ -37396,7 +37523,7 @@ Transform:
   m_GameObject: {fileID: 1076701855}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.205, y: -0.937, z: 1.553}
+  m_LocalPosition: {x: 16.205, y: -1.037, z: 1.553}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37421,8 +37548,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.007245, y: 0.028585374, z: 2.960863}
-  m_Center: {x: 0.22502661, y: -0.4857073, z: -0.56495523}
+  m_Size: {x: 2.9103765, y: 0.028585374, z: 2.977902}
+  m_Center: {x: 0.27346087, y: -0.4857073, z: -0.5564358}
+--- !u!114 &1076701858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076701855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7a950ece81aa54d93675bc35b6ac0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskCheck
+  cubeList: 
 --- !u!1 &1076832742
 GameObject:
   m_ObjectHideFlags: 0
@@ -61809,6 +61949,161 @@ Transform:
   - {fileID: 95797057}
   m_Father: {fileID: 1663809935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1603168394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1603168399}
+  - component: {fileID: 1603168398}
+  - component: {fileID: 1603168397}
+  - component: {fileID: 1603168396}
+  - component: {fileID: 1603168395}
+  - component: {fileID: 1603168400}
+  m_Layer: 0
+  m_Name: Cube_7
+  m_TagString: Cube
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!54 &1603168395
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603168394}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &1603168396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603168394}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1603168397
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603168394}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7b208990b9d248f47b92ed781a2b88a6, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1603168398
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603168394}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1603168399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603168394}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.40434358, z: -0, w: 0.91460717}
+  m_LocalPosition: {x: 16.6, y: -0.09, z: 0.16}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 47.7, z: 0}
+--- !u!114 &1603168400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603168394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 473942637}
+  minPoint: {fileID: 1628411706}
+  maxPoint: {fileID: 330063265}
 --- !u!1 &1608242558
 GameObject:
   m_ObjectHideFlags: 0
@@ -62296,7 +62591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1628411706}
   m_Layer: 0
-  m_Name: BoxSpawnPoint
+  m_Name: minBoxSpawnPoint
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62311,9 +62606,9 @@ Transform:
   m_GameObject: {fileID: 1628411705}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.06, y: 1.92, z: 4.34}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.54, y: 1.68, z: 4.34}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1772925725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62330,6 +62625,7 @@ GameObject:
   - component: {fileID: 1636433958}
   - component: {fileID: 1636433957}
   - component: {fileID: 1636433956}
+  - component: {fileID: 1636433961}
   m_Layer: 0
   m_Name: Cube_2
   m_TagString: Cube
@@ -62362,7 +62658,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1636433957
 BoxCollider:
@@ -62456,6 +62752,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553563470}
   m_LocalEulerAnglesHint: {x: 0, y: 47.7, z: 0}
+--- !u!114 &1636433961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636433955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 473942637}
+  minPoint: {fileID: 1628411706}
+  maxPoint: {fileID: 330063265}
 --- !u!1 &1638068657
 GameObject:
   m_ObjectHideFlags: 0
@@ -72358,9 +72669,10 @@ Transform:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1557371691}
+  - {fileID: 473942637}
   - {fileID: 1628411706}
+  - {fileID: 330063265}
   - {fileID: 648632932}
-  - {fileID: 1852210354}
   - {fileID: 1076701856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73653,6 +73965,7 @@ GameObject:
   - component: {fileID: 1834461181}
   - component: {fileID: 1834461180}
   - component: {fileID: 1834461179}
+  - component: {fileID: 1834461184}
   m_Layer: 0
   m_Name: Cube_3
   m_TagString: Cube
@@ -73685,7 +73998,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1834461180
 BoxCollider:
@@ -73779,6 +74092,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553563470}
   m_LocalEulerAnglesHint: {x: 0, y: -102.57, z: 0}
+--- !u!114 &1834461184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834461178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 473942637}
+  minPoint: {fileID: 1628411706}
+  maxPoint: {fileID: 330063265}
 --- !u!1 &1836751754
 GameObject:
   m_ObjectHideFlags: 0
@@ -74328,59 +74656,6 @@ Transform:
   - {fileID: 1863588538}
   m_Father: {fileID: 1858780673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1852210353
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1852210354}
-  - component: {fileID: 1852210355}
-  m_Layer: 0
-  m_Name: GoalCheckPoint
-  m_TagString: CheckPoint
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1852210354
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852210353}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.65, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1772925725}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1852210355
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852210353}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.039031, y: 2.1298661, z: 3.1254659}
-  m_Center: {x: 0.9091191, y: -0.56493306, z: 0.917157}
 --- !u!1 &1858780672
 GameObject:
   m_ObjectHideFlags: 0
@@ -74762,6 +75037,7 @@ GameObject:
   - component: {fileID: 1881678871}
   - component: {fileID: 1881678870}
   - component: {fileID: 1881678869}
+  - component: {fileID: 1881678874}
   m_Layer: 0
   m_Name: Cube_5
   m_TagString: Cube
@@ -74794,7 +75070,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1881678870
 BoxCollider:
@@ -74888,6 +75164,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553563470}
   m_LocalEulerAnglesHint: {x: 0, y: -19.76, z: 0}
+--- !u!114 &1881678874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881678868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 473942637}
+  minPoint: {fileID: 1628411706}
+  maxPoint: {fileID: 330063265}
 --- !u!1 &1886856341
 GameObject:
   m_ObjectHideFlags: 0
@@ -84559,7 +84850,7 @@ Transform:
   m_GameObject: {fileID: 690010720707842068}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99999964, z: -0, w: -0.00089911686}
-  m_LocalPosition: {x: -2.49, y: 0.35, z: 1.84}
+  m_LocalPosition: {x: -2.49, y: -1.286, z: 1.84}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -87260,10 +87551,10 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 1
+    spring: 5
     damper: 1
     targetPosition: 0
-  m_UseMotor: 1
+  m_UseMotor: 0
   m_Motor:
     targetVelocity: 0
     force: 0
@@ -112223,3 +112514,4 @@ SceneRoots:
   - {fileID: 1274047959}
   - {fileID: 459453646}
   - {fileID: 205117968503327406}
+  - {fileID: 1603168399}
