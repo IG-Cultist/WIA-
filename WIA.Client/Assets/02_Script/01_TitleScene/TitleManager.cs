@@ -6,12 +6,12 @@ using KanKikuchi.AudioManager;
 public class TitleManager : MonoBehaviour
 {
     [SerializeField] Text guideText;
-    [SerializeField] GameObject optionWindow;
+    //[SerializeField] GameObject optionWindow;
     [SerializeField] GameObject licenseWindow;
 
     [Header("遷移フェードカラー")]
     [SerializeField]
-    Color32 endColor = new Color32(29, 29, 29, 255);
+    Color32 endColor = new Color32(255, 255, 255, 255);
 
     private void Awake()
     {
@@ -19,10 +19,10 @@ public class TitleManager : MonoBehaviour
 
     void Start()
     {
-        optionWindow.SetActive(false);
+        //optionWindow.SetActive(false);
         licenseWindow.SetActive(false);
 
-        DontDestroyOnLoad(optionWindow);
+        
 
         BGMManager.Instance.Play(
             audioPath: BGMPath.TITLE_CLAIR_DE_LUNE, //再生したいオーディオのパス
@@ -55,11 +55,6 @@ public class TitleManager : MonoBehaviour
         // シーン遷移
         Initiate.DoneFading();
         Initiate.Fade("02_MenuScene", endColor, 2.0f);
-    }
-
-    public void OpenOption()
-    {
-        optionWindow.SetActive(true);
     }
 
     public void OpenLicense()

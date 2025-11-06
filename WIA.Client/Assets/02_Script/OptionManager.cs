@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 
 public class OptionManager : MonoBehaviour
 {
+    [SerializeField] GameObject window;
     [SerializeField] Slider BGMSlider;
     [SerializeField] Slider SESlider;
 
@@ -15,8 +16,11 @@ public class OptionManager : MonoBehaviour
 
     void Start()
     {
-        this.gameObject.SetActive(false);
+        DontDestroyOnLoad(this.gameObject);
 
+        window.SetActive(false);
+
+        //設定をローカルで保存するならここで取得先を変える
         BGMSlider.value = 100.0f;
         SESlider.value = 100.0f;
     }
@@ -36,10 +40,18 @@ public class OptionManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 設定開始関数
+    /// </summary>
+    public void OpenOption()
+    {
+        window.SetActive(true);
+    }
+
+    /// <summary>
     /// 設定終了関数
     /// </summary>
     public void CloseOption()
     {
-        this.gameObject.SetActive(false);
+        window.SetActive(false);
     }
 }
