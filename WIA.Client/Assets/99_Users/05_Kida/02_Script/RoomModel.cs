@@ -12,8 +12,7 @@ using Cysharp.Threading.Tasks;
 using Grpc.Net.Client;
 using MagicOnion;
 using MagicOnion.Client;
-using NIGHTRAVEL.Shared.Interfaces.Model.Entity;
-using NIGHTRAVEL.Shared.Interfaces.Services;
+using WIA.Shared.Interfaces.Model.Entity;
 using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
 using Shared.Interfaces.StreamingHubs;
 using System;
@@ -144,7 +143,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action<string, bool> OnBootedGimmick { get; set; }
 
     // オブジェクト生成通知
-    public Action<OBJECT_TYPE, Vector2, string> OnSpawnedObjectSyn { get; set; }
+    public Action< Vector2, string> OnSpawnedObjectSyn { get; set; }
 
     #endregion
 
@@ -571,9 +570,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnAdvancedStageSyn();
     }
 
-    public void OnSpawnObject(OBJECT_TYPE type, Vector2 spawnPos, string uniqueId)
+    public void OnSpawnObject(Vector2 spawnPos, string uniqueId)
     {
-        OnSpawnedObjectSyn(type, spawnPos, uniqueId);
+        OnSpawnedObjectSyn(spawnPos, uniqueId);
     }
 
     #endregion
@@ -657,14 +656,14 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// </summary>
     /// <param name="hostName"></param>
     /// <returns></returns>
-    public async Task StartRoomAsync(string hostName)
-    {
-        var handler = new YetAnotherHttpHandler() { Http2Only = true };
-        var channel = GrpcChannel.ForAddress(ServerURL, new GrpcChannelOptions() { HttpHandler = handler });
-        var client = MagicOnionClient.Create<IRoomService>(channel);
+    //public async Task StartRoomAsync(string hostName)
+    //{
+    //    var handler = new YetAnotherHttpHandler() { Http2Only = true };
+    //    var channel = GrpcChannel.ForAddress(ServerURL, new GrpcChannelOptions() { HttpHandler = handler });
+    //    var client = MagicOnionClient.Create<IRoomService>(channel);
 
-        await client.StartRoom(hostName);
-    }
+    //    await client.StartRoom(hostName);
+    //}
     #endregion
 
     #region ゲーム内

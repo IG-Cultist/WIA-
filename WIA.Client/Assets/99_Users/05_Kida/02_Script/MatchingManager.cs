@@ -11,7 +11,6 @@ using Cysharp.Net.Http;
 //using Cysharp.Threading.Tasks.Triggers;
 using Grpc.Net.Client;
 using MagicOnion.Client;
-using NIGHTRAVEL.Shared.Interfaces.Services;
 using Shared.Interfaces.StreamingHubs;
 using System;
 using System.Collections.Generic;
