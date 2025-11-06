@@ -12,6 +12,16 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject guideText;
     [SerializeField] GameObject textPrefab;
 
+    private enum NEXTSCENE_STATE
+    {
+        MENU = 0,                  //メニュー(初期)
+        GAME,                      //生存中
+        DICTIONARY,                //死亡中
+        PROFILE,                   //プロフィール
+        ERROR,                     //エラー(切断)
+    }
+
+    NEXTSCENE_STATE scene_State = NEXTSCENE_STATE.MENU;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +37,7 @@ public class MenuManager : MonoBehaviour
 
     public void SelectPlayGame()
     {
-
+        scene_State = NEXTSCENE_STATE.GAME;
 
     }
 
