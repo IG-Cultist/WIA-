@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Cube
   - CheckPoint
   - Goal
   - Abyss
+  - Item
   layers:
   - Default
   - TransparentFX
