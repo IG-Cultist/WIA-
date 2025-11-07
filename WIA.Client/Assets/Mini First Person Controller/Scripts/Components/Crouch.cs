@@ -18,7 +18,7 @@ public class Crouch : MonoBehaviour
     public float crouchYHeadPosition = 1;
     
     [Tooltip("Collider to lower when crouched.")]
-    public CapsuleCollider colliderToLower;
+    public BoxCollider colliderToLower;
     [HideInInspector]
     public float? defaultColliderHeight;
 
@@ -31,7 +31,7 @@ public class Crouch : MonoBehaviour
         // Try to get components.
         movement = GetComponentInParent<FirstPersonMovement>();
         headToLower = movement.GetComponentInChildren<Camera>().transform;
-        colliderToLower = movement.GetComponentInChildren<CapsuleCollider>();
+        colliderToLower = movement.GetComponentInChildren<BoxCollider>();
     }
 
     void LateUpdate()
@@ -57,7 +57,7 @@ public class Crouch : MonoBehaviour
                 // If we don't have the defaultColliderHeight, get it now.
                 if (!defaultColliderHeight.HasValue)
                 {
-                    defaultColliderHeight = colliderToLower.height;
+                    //defaultColliderHeight = colliderToLower.height;
                 }
 
                 // Get lowering amount.
@@ -72,8 +72,8 @@ public class Crouch : MonoBehaviour
                 }
 
                 // Lower the colliderToLower.
-                colliderToLower.height = Mathf.Max(defaultColliderHeight.Value - loweringAmount, 0);
-                colliderToLower.center = Vector3.up * colliderToLower.height * .5f;
+                //colliderToLower.height = Mathf.Max(defaultColliderHeight.Value - loweringAmount, 0);
+                //colliderToLower.center = Vector3.up * colliderToLower.height * .5f;
             }
 
             // Set IsCrouched state.
@@ -97,8 +97,8 @@ public class Crouch : MonoBehaviour
                 // Reset the colliderToLower's height.
                 if (colliderToLower)
                 {
-                    colliderToLower.height = defaultColliderHeight.Value;
-                    colliderToLower.center = Vector3.up * colliderToLower.height * .5f;
+                    //colliderToLower.height = defaultColliderHeight.Value;
+                    //olliderToLower.center = Vector3.up * colliderToLower.height * .5f;
                 }
 
                 // Reset IsCrouched.

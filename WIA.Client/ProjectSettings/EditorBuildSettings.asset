@@ -13,11 +13,11 @@ EditorBuildSettings:
     guid: b3dee645f75d7a641933d8a247955216
   - enabled: 1
     path: Assets/01_Scene/02_MenuScene.unity
-    guid: 4640d4f1d1df221499119d4c179bedfd
+    guid: f85a2b6dde9f3ce47ab40f21f50fd73d
   - enabled: 1
     path: Assets/01_Scene/03_GameScene.unity
     guid: 660ed6c9575e8ab48963848fc9c9b712
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scene/04_Result.unity
     guid: 0df5c10491f61e740b73cc7906190d84
   - enabled: 1
