@@ -912,6 +912,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7f662f018e9d56842adad06d21ebdaed, type: 2}
+  - {fileID: 2100000, guid: 816c5a68d0f85114cb142341567e219c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4455,7 +4456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.15
-  isGrounded: 1
+  isGrounded: 0
 --- !u!1 &7238086746792637187
 GameObject:
   m_ObjectHideFlags: 0
@@ -5254,6 +5255,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7f662f018e9d56842adad06d21ebdaed, type: 2}
+  - {fileID: 2100000, guid: 816c5a68d0f85114cb142341567e219c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
