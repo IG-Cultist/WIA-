@@ -24,10 +24,14 @@ public class Cube : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// オブジェクトに触れた時の処理
+    /// </summary>
+    /// <param name="other">触れたオブジェクト</param>
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Abyss"))
-        {
+        {//Abyssタグのオブジェクトに触れたら
             // rangeAとrangeBのx座標の範囲内でランダムな数値を作成
             float x = Random.Range(minPoint.position.x, maxPoint.position.x);
             float z= Random.Range(minPoint.position.z, maxPoint.position.z);
