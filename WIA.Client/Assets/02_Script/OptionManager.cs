@@ -37,6 +37,13 @@ public class OptionManager : MonoBehaviour
         BGMManager.Instance.ChangeBaseVolume(BGMSlider.value);
         //SE全体のボリュームを変更
         SEManager.Instance.ChangeBaseVolume(SESlider.value);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // エスケープキーが押された時の処理をここに記述する
+            Debug.Log("Escapeキーが押されました！");
+            // 例：ゲームを一時停止する、メニュー画面を開くなど
+        }
     }
 
     /// <summary>
