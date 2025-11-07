@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Player : MonoBehaviour
 {
+    [SerializeField] GameObject child;
+
     [SerializeField] GameObject hitPoint;    //Player‚Ì“–‚½‚è”»’è
     [SerializeField] Animator animator;
 
@@ -45,8 +47,14 @@ public class Player : MonoBehaviour
             //¶‘¶’†‚Ìê‡
             case PLAYER_STATE.ALIVE:
 
+                // a) Šp“xw’è(v3Angle ¨ trQ)
+                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z²‚ğ10‹‚Éİ’è parent
+
                 ChangeBodyGravity(false);
-                hitPoint.SetActive(true);
+
+                Debug.Log("‚¢‚«‚Ä‚é");
+
+                hitPoint.SetActive(false);
                 animator.enabled = true;
 
                 //‚±‚Ì‰º‚É¶‘¶’†‚Ìˆ—‚ğ‘‚­

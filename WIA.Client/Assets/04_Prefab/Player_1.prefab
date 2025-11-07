@@ -41,12 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6926587854077396242}
-  - component: {fileID: 5586759763169462973}
   - component: {fileID: 8691807516541674486}
   - component: {fileID: 2003726285601339158}
   - component: {fileID: 5511674118253521602}
-  - component: {fileID: 9134583854019808919}
-  - component: {fileID: 1889226382739745244}
   m_Layer: 7
   m_Name: Human
   m_TagString: Player
@@ -72,23 +69,6 @@ Transform:
   - {fileID: 3729429711137038995}
   m_Father: {fileID: 2466425465446766625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5586759763169462973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145696669151962853}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89276dfe997f2ba4abe21845b34c70b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  hitPoint: {fileID: 7574342444582365648}
-  animator: {fileID: 8691807516541674486}
-  hip: {fileID: 0}
-  leftLeg: {fileID: 0}
-  player_State: 1
 --- !u!95 &8691807516541674486
 Animator:
   serializedVersion: 7
@@ -134,10 +114,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!65 &5511674118253521602
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -159,36 +139,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.049133822, z: 1}
   m_Center: {x: 0, y: -0.15855819, z: 0}
---- !u!114 &9134583854019808919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145696669151962853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97fca36bd81de7c4cafce7bbf02ca611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonMovement
-  speed: 5
-  canRun: 1
-  runSpeed: 9
-  runningKey: 304
---- !u!114 &1889226382739745244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145696669151962853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f977f53412d81140ab13b3fca57cca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Jump
-  jumpStrength: 2
-  groundCheck: {fileID: 0}
 --- !u!1 &155062798879865713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3153,6 +3103,7 @@ GameObject:
   - component: {fileID: 4966055313147709518}
   - component: {fileID: 7946039442247167184}
   - component: {fileID: 5034061118278728999}
+  - component: {fileID: 7534841442416822557}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Untagged
@@ -3228,7 +3179,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &4966055313147709518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3241,7 +3192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fca36bd81de7c4cafce7bbf02ca611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2.5
   canRun: 1
   runSpeed: 9
   runningKey: 304
@@ -3257,7 +3208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f977f53412d81140ab13b3fca57cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpStrength: 3
+  jumpStrength: 1
   groundCheck: {fileID: 8291308493662655051}
 --- !u!114 &5034061118278728999
 MonoBehaviour:
@@ -3277,6 +3228,24 @@ MonoBehaviour:
   headToLower: {fileID: 4084871048874522775}
   crouchYHeadPosition: 1
   colliderToLower: {fileID: 7671307733060223308}
+--- !u!114 &7534841442416822557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255917015044651565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89276dfe997f2ba4abe21845b34c70b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  child: {fileID: 145696669151962853}
+  hitPoint: {fileID: 7574342444582365648}
+  animator: {fileID: 8691807516541674486}
+  hip: {fileID: 0}
+  leftLeg: {fileID: 0}
+  player_State: 1
 --- !u!1 &5264057758234078295
 GameObject:
   m_ObjectHideFlags: 0
