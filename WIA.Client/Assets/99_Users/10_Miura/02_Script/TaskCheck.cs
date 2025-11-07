@@ -12,58 +12,41 @@ using UnityEngine.SceneManagement;
 public class TaskCheck : MonoBehaviour
 {
     int cubeCnt; //要素の変数
-    int checkCnt=7; //目標の要素数
+    int checkCnt = 7; //目標の要素数
     [SerializeField] List<int> cubeList = new List<int>(); //int型のList
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-  　/// <summary>
-   /// エリアに触れた時の処理
-   /// </summary>
-   /// <param name="other">触れたオブジェクト</param>
+    /// <summary>
+    /// エリアに触れた時の処理
+    /// </summary>
+    /// <param name="other">触れたオブジェクト</param>
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Cube"))
+        if (other.CompareTag("Item"))
         {
             //リストに要素を追加する
             cubeList.Add(cubeCnt);
 
             //キューブのタグを書き換える
             //これにより、キューブが積み重なってもチェックできるようになる
-            other.tag = "Goal";
+            Destroy(other.gameObject);
 
             if (cubeList.Count == checkCnt)
             {//要素数が目標数と同じになったら
-             //Debug.Log("クリア");
-             //SceneManager.LoadScene("01_TitleScene");
+             //フェードアウトしてシーン遷移
                 Initiate.Fade("01_TitleScene", Color.black, 1.0f);
             }
-        }
-    }
-
-    /// <summary>
-    /// エリアから離れた時の処理
-    /// </summary>
-    /// <param name="other">離れたオブジェクト</param>
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Goal"))
-        {//オブジェクトがエリアから離れたら
-            //リストから要素を削除する
-            cubeList.Remove(cubeCnt); 
-
-            //キューブのタグを書き換える
-            other.tag = "Cube";
         }
     }
 }
