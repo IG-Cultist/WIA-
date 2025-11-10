@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using KanKikuchi.AudioManager;
 
 namespace FancyScrollView.Example09
 {
@@ -24,6 +25,8 @@ namespace FancyScrollView.Example09
 
         public void UpdateData(IList<ItemData> items)
         {
+            
+
             UpdateContents(items);
             scroller.SetTotalCount(items.Count);
         }
