@@ -25,6 +25,8 @@ namespace FancyScrollView.Example09
         [SerializeField] Image background = default;
         [SerializeField] CanvasGroup canvasGroup = default;
 
+        [SerializeField] Texture titleTex = default;
+
         ItemData data;
 
         public override void UpdateContent(ItemData itemData)
@@ -39,7 +41,10 @@ namespace FancyScrollView.Example09
                     return;
                 }
 
-                image.texture = result.Texture;
+                if (itemData.Number != 0) image.texture = result.Texture;
+
+                else image.texture = titleTex;
+
             });
 
             //初期化
