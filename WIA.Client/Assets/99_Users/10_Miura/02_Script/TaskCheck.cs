@@ -38,8 +38,7 @@ public class TaskCheck : MonoBehaviour
             //リストに要素を追加する
             cubeList.Add(cubeCnt);
 
-            //キューブのタグを書き換える
-            //これにより、キューブが積み重なってもチェックできるようになる
+            //箱を消す
             Destroy(other.gameObject);
 
             if (cubeList.Count == checkCnt)
