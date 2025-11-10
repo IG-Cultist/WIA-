@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2c9c6c811d0343d4a87b60d04a71878b
+=======
+guid: 0ecdca46c35631045a59e0886c2d620a
+>>>>>>> feature/k-kawaguchi
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
