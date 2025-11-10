@@ -22,6 +22,7 @@
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.7",
     "com.veriorpies.parrelsync": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
+    "jp.setchi.fancyscrollview": "1.9.0",
     "wia.shared.unity": "file:../../WIA.Shared",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
@@ -58,10 +59,10 @@
   },
   "scopedRegistries": [
     {
-      "name": "Arvtesh",
-      "url": "https://registry.npmjs.org",
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
       "scopes": [
-        "com.unityfx"
+        "jp.setchi.fancyscrollview"
       ]
     }
   ]

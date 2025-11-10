@@ -326,6 +326,13 @@
         "com.unity.collections": "1.0.0"
       }
     },
+    "jp.setchi.fancyscrollview": {
+      "version": "1.9.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "wia.shared.unity": {
       "version": "file:../../WIA.Shared",
       "depth": 0,
