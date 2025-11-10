@@ -8,6 +8,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using EasingCore;
+using KanKikuchi.AudioManager;
 
 namespace FancyScrollView.Example09
 {
@@ -40,6 +41,7 @@ namespace FancyScrollView.Example09
 
                 image.texture = result.Texture;
             });
+
             //初期化
             title.text = "";
             number.text = "労働災害事案";
@@ -70,8 +72,20 @@ namespace FancyScrollView.Example09
 
             if (Index == cells.Max(x => x.Index))
             {
+
                 transform.SetAsFirstSibling();
             }
+
+            //ページ送りSE
+            SEManager.Instance.Play(
+                audioPath: SEPath.NEXT_PAGE,   //再生したいオーディオのパス
+                volumeRate: 1,                 //音量の倍率
+                delay: 0,                      //再生されるまでの遅延時間
+                pitch: 1,                      //ピッチ
+                isLoop: false,                 //ループ再生するか
+                callback: null                 //再生終了後の処理
+            );
+
         }
 
         public override void UpdatePosition(float t)
@@ -96,6 +110,8 @@ namespace FancyScrollView.Example09
             canvasGroup.alpha = alphaEasing(1f - slide);
 
             background.color = Color.Lerp(Color.gray, Color.white, pop);
+
+            
         }
     }
 }

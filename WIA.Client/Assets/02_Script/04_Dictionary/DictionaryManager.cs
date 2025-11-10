@@ -4,6 +4,10 @@ namespace FancyScrollView.Example09
 {
     class DictionaryManager : MonoBehaviour
     {
+        [Header("遷移フェードカラー")]
+        [SerializeField]
+        Color32 endColor = new Color32(255, 255, 255, 255);
+
         /// <summary>
         /// ページ作成(DBから取得予定)
         /// </summary>
@@ -96,6 +100,13 @@ namespace FancyScrollView.Example09
         void Start()
         {
             scrollView.UpdateData(itemData);
+        }
+
+        public void BackMenu()
+        {
+            // シーン遷移
+            Initiate.DoneFading();
+            Initiate.Fade("02_MenuScene", endColor, 2.0f);
         }
     }
 }

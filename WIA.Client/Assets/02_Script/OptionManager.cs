@@ -40,9 +40,19 @@ public class OptionManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // エスケープキーが押された時の処理をここに記述する
-            Debug.Log("Escapeキーが押されました！");
-            // 例：ゲームを一時停止する、メニュー画面を開くなど
+            SEManager.Instance.Play(
+                audioPath: SEPath.PUSH_BUTTON,   //再生したいオーディオのパス
+                volumeRate: 1,                 //音量の倍率
+                delay: 0,                      //再生されるまでの遅延時間
+                pitch: 1,                      //ピッチ
+                isLoop: false,                 //ループ再生するか
+                callback: null                 //再生終了後の処理
+            );
+
+            if (window.gameObject.activeSelf == false) window.SetActive(true);
+
+            else window.SetActive(false);
+
         }
     }
 
