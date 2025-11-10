@@ -104,6 +104,7 @@ public class MenuManager : MonoBehaviour
             case NEXTSCENE_STATE.DICTIONARY:   //–¼ŠÓ‘I‘ğó‘Ô
 
                 //–¼ŠÓƒV[ƒ“‚É‘JˆÚ
+                Initiate.Fade("04_DictionaryScene", endColor, 1.0f);
 
                 break;
 
