@@ -111,6 +111,7 @@ public class MenuManager : MonoBehaviour
             case NEXTSCENE_STATE.PROFILE:   //登録情報選択状態
 
                 //プロフィールシーンに遷移
+                Initiate.Fade("05_ProfileScene", endColor, 1.0f);
 
                 break;
 
