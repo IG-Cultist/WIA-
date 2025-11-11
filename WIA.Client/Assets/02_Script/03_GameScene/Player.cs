@@ -36,11 +36,11 @@ public class Player : MonoBehaviour
     List<Transform> allChildren;
 
     void Start()
-    { 
+    {
         thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 1;
         this.gameObject.transform.GetChild(1).GetComponent<CinemachineCamera>().Priority = 10;
-        
-        this.gameObject.transform.GetChild(1).gameObject.SetActive(false); 
+
+        this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
         this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
     }
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
             //生成前の状態
             case PLAYER_STATE.STOP:
 
-            break;
+                break;
 
             //生存中の場合
             case PLAYER_STATE.ALIVE:
@@ -82,17 +82,17 @@ public class Player : MonoBehaviour
             //死亡中の場合
             case PLAYER_STATE.DEATH:
                 Death();
-            break;
+                break;
 
             //エモート再生中の場合
             case PLAYER_STATE.EMOTE:
                 Emote(1);
-            break;
+                break;
 
             //エラーの場合
             case PLAYER_STATE.ERROR:
 
-            break;
+                break;
 
         }
     }
@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
         ChangeBodyGravity(true);
 
         this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-          
+
         hitPoint.SetActive(true);
         animator.enabled = false;
     }
@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
         ChangeBodyGravity(false);
         //当たり判定を一時的に削除
         hitPoint.SetActive(false);
-        
+
         //引数で取得したアニメーションIDでアニメーション再生(組み込むときに書き換えてね)
     }
 
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        
+
     }
 
 
@@ -201,10 +201,19 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Abyss"))
+        if (other.CompareTag("Abyss"))
         {
-            // ワープポイントに移動する
-            transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+            //プレイヤーの状態をD死亡状態にする
+            player_State = PLAYER_STATE.DEATH;
+            //2秒後に復活する
+            Invoke("RespawnPlayer", 2);
         }
+    }
+    void RespawnPlayer()
+    {
+        //プレイヤーの状態を生存状態にする
+        player_State = PLAYER_STATE.ALIVE;
+        // ワープポイントに移動する
+        transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
     }
 }
