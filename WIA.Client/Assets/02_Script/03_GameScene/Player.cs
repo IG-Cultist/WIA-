@@ -201,10 +201,19 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Abyss"))
+        if (other.CompareTag("Abyss"))
         {
-            // ワープポイントに移動する
-            transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+            //プレイヤーの状態をD死亡状態にする
+            player_State = PLAYER_STATE.DEATH;
+            //2秒後に復活する
+            Invoke("RespawnPlayer", 2);
         }
+    }
+    void RespawnPlayer()
+    {
+        //プレイヤーの状態を生存状態にする
+        player_State = PLAYER_STATE.ALIVE;
+        // ワープポイントに移動する
+        transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
     }
 }
