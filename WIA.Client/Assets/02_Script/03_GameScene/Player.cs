@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
+        if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
+
         switch (player_State)
         {
             //生成前の状態
@@ -87,7 +90,6 @@ public class Player : MonoBehaviour
             break;
 
         }
-
     }
 
     /// <summary>
@@ -197,8 +199,6 @@ public class Player : MonoBehaviour
     {
         if(other.CompareTag("Abyss"))
         {
-
-
             // ワープポイントに移動する
             transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
         }
