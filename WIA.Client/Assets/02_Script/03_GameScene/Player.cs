@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] Transform warpPoint;
 
+    // 三人称視点カメラ
+    [SerializeField] GameObject thirdPersonCamera;
+
     //プレイヤー状態
     private enum PLAYER_STATE
     {
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+        thirdPersonCamera.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,6 +51,8 @@ public class Player : MonoBehaviour
 
             //生存中の場合
             case PLAYER_STATE.ALIVE:
+                this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                thirdPersonCamera.SetActive(false);
 
                 // a) 角度指定(v3Angle → trQ)
                 child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z軸を10°に設定 parent
@@ -91,6 +96,9 @@ public class Player : MonoBehaviour
     private void Death()
     {
         ChangeBodyGravity(true);
+
+        this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        thirdPersonCamera.SetActive(true);
           
         hitPoint.SetActive(true);
         animator.enabled = false;
