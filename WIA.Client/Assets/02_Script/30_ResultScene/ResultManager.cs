@@ -4,11 +4,21 @@ public class ResultManager : MonoBehaviour
 {
     [Header("遷移フェードカラー")]
     [SerializeField]
-    Color32 endColor = new Color32(29, 29, 29, 255);
+    Color32 endColor = new Color32(255, 255, 255, 255);
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] PieChart pie;      //円グラフ
+    [SerializeField] RadarChart radar;      //五角形グラフ
+
+    [SerializeField] public int successNum = 4;
+    [SerializeField] public int failureNum = 1;
+    
     void Start()
     {
+        //------{成功数,失敗数}-----//
+        float[] list = { successNum, failureNum };        //ここで労災成功数・失敗数を代入
+        pie.SetPieChartAnimation(list);
+
+        /*
         int playerId = MatchingManager.UserID + 1;
         if (GameManager.Result != null)
         {
@@ -19,7 +29,8 @@ public class ResultManager : MonoBehaviour
             Debug.LogError("リザルトを取得できません！！");
         }
 
-            Debug.Log("プレイヤー"+playerId+"のリザルト："+GameManager.Result.TotalScore.ToString());
+        Debug.Log("プレイヤー"+playerId+"のリザルト："+GameManager.Result.TotalScore.ToString());*/
+
     }
 
     // Update is called once per frame
@@ -28,10 +39,10 @@ public class ResultManager : MonoBehaviour
 
     }
 
-    public void StartTitle()
+    public void StartMenu()
     {
         // シーン遷移
         Initiate.DoneFading();
-        Initiate.Fade("01_TitleScene", endColor, 1.0f);
+        Initiate.Fade("02_MenuScene", endColor, 1.0f);
     }
 }
