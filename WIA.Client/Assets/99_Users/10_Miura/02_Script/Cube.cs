@@ -1,5 +1,5 @@
 //=================================
-// ステージ1のキューブのスクリプト
+// ステージ1の箱のスクリプト
 // Aouther:y-miura
 // Date:2025/11/06
 //=================================
@@ -9,8 +9,8 @@ using UnityEngine;
 public class Cube : MonoBehaviour
 {
     public Transform warpPoint; // ワープポイントの位置
-    public Transform minPoint;
-    public Transform maxPoint;
+    public Transform minPoint; //ランダム位置の最小ポイント
+    public Transform maxPoint; //ランダム位置の最大ポイント
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,12 +32,12 @@ public class Cube : MonoBehaviour
     {
         if(other.CompareTag("Abyss"))
         {//Abyssタグのオブジェクトに触れたら
-            // rangeAとrangeBのx座標の範囲内でランダムな数値を作成
+            //maxPointとminPointのx座標の範囲内でランダムな数値を作成
             float x = Random.Range(minPoint.position.x, maxPoint.position.x);
             float z= Random.Range(minPoint.position.z, maxPoint.position.z);
 
             // ワープポイントに移動する
-            transform.position = new Vector3(x,warpPoint.position.y,z);
+            transform.position = new Vector3(x,warpPoint.position.y,z); //y座標はwarpPointがある位置に固定
         }
     }
 }
