@@ -59,7 +59,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         /// <param name="playerData"></param>
         /// <returns></returns>
-        //Task UpdatePlayerAsync(PlayerData playerData);
+        Task UpdatePlayerAsync(Vector3 pos,Quaternion rot);
 
         /// <summary>
         /// マスタークライアントの更新
@@ -181,7 +181,14 @@ namespace Shared.Interfaces.StreamingHubs
         /// オブジェクト生成リクエスト
         /// </summary>
         /// <returns></returns>
-        //Task SpawnObjectAsync(OBJECT_TYPE type, Vector2 spawnPos);
+        Task SpawnObjectAsync(Vector3 spawnPos);
+
+        /// <summary>
+        /// オブジェクト更新
+        /// </summary>
+        /// <param name="spawnPos"></param>
+        /// <returns></returns>
+        Task UpdateObjectAsync(Vector3 spawnPos,string uniqueId);
 
         /// <summary>
         /// ゲーム終了同期

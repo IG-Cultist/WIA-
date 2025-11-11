@@ -278,26 +278,15 @@ namespace WIA.Server.StreamingHubs
         /// </summary>
         /// <param name="playerData"></param>
         /// <returns></returns>
-        //public async Task UpdatePlayerAsync(PlayerData playerData)
-        //{
-        //    lock (roomContextRepository) // 排他制御
-        //    {
-        //        // キャラクターデータリストに自身のデータがない場合
-        //        if (!this.roomContext.characterDataList.ContainsKey(this.ConnectionId))
-        //        {
-        //            // 新たなキャラクターデータを追加
-        //            this.roomContext.AddCharacterData(this.ConnectionId, playerData);
-        //        }
-        //        else // 既に存在している場合
-        //        {
-        //            // キャラクターデータを更新
-        //            this.roomContext.characterDataList[this.ConnectionId] = playerData;
-        //        }
+        public async Task UpdatePlayerAsync(Vector3 pos,Quaternion rot)
+        {
+            lock (roomContextRepository) // 排他制御
+            {
 
-        //        // ルームの自分以外に、ユーザ情報通知を送信
-        //        this.roomContext.Group.Except([this.ConnectionId]).OnUpdatePlayer(playerData);
-        //    }
-        //}
+                // ルームの自分以外に、ユーザ情報通知を送信
+                this.roomContext.Group.Except([this.ConnectionId]).OnUpdatePlayer(pos,rot);
+            }
+        }
 
         /// <summary>
         /// マスタークライアントの更新
@@ -486,18 +475,23 @@ namespace WIA.Server.StreamingHubs
         /// オブジェクト生成処理
         /// </summary>
         /// <returns></returns>
-        public async Task SpawnObjectAsync(Vector2 spawnPos)
+        public async Task SpawnObjectAsync(Vector3 spawnPos)
         {
             lock (roomContextRepository)
             {
                 string uniqueId = Guid.NewGuid().ToString();
-                GimmickData gimmickData = new GimmickData()
-                {
-                    UniqueID = uniqueId,
-                    Position = spawnPos,
-                };
-                //this.roomContext.gimmickList.Add(uniqueId, gimmickData);
                 this.roomContext.Group.All.OnSpawnObject(spawnPos, uniqueId);
+            }
+        }
+        /// <summary>
+        /// オブジェクト更新処理
+        /// </summary>
+        /// <returns></returns>
+        public async Task UpdateObjectAsync(Vector3 spawnPos, string uniqueId)
+        {
+            lock (roomContextRepository)
+            {
+                this.roomContext.Group.All.OnUpdateObject(spawnPos, uniqueId);
             }
         }
 

@@ -101,7 +101,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action<MasterClientData> OnUpdateMasterClientSyn { get; set; }
 
     //プレイヤー位置回転通知
-    public Action<PlayerData> OnUpdatePlayerSyn { get; set; }
+    public Action<Vector3,Quaternion> OnUpdatePlayerSyn { get; set; }
 
     // プレイヤーのステータス更新通知
     public Action<CharacterStatusData, PlayerRelicStatusData> OnUpdateStatusSyn { get; set; }
@@ -143,7 +143,10 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action<string, bool> OnBootedGimmick { get; set; }
 
     // オブジェクト生成通知
-    public Action< Vector2, string> OnSpawnedObjectSyn { get; set; }
+    public Action< Vector3, string> OnSpawnedObjectSyn { get; set; }
+
+    // オブジェクト生成通知
+    public Action< Vector3, string> OnUpdatedObject { get; set; }
 
     #endregion
 
@@ -351,9 +354,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// <param name="pos"></param>
     /// <param name="rot"></param>
     /// <param name="animID"></param>
-    public void OnUpdatePlayer(PlayerData playerData)
+    public void OnUpdatePlayer(Vector3 pos, Quaternion rot)
     {
-        OnUpdatePlayerSyn(playerData);
+        OnUpdatePlayerSyn(pos,rot);
     }
 
     /// <summary>
@@ -570,9 +573,14 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnAdvancedStageSyn();
     }
 
-    public void OnSpawnObject(Vector2 spawnPos, string uniqueId)
+    public void OnSpawnObject(Vector3 spawnPos, string uniqueId)
     {
         OnSpawnedObjectSyn(spawnPos, uniqueId);
+    }
+
+    public void OnUpdateObject(Vector3 spawnPos, string uniqueId)
+    {
+        OnUpdatedObject(spawnPos, uniqueId);
     }
 
     #endregion
@@ -674,9 +682,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// </summary>
     /// <param name="playerData"></param>
     /// <returns></returns>
-    public async UniTask UpdatePlayerAsync(PlayerData playerData)
+    public async UniTask UpdatePlayerAsync(Vector3 pos,Quaternion rot)
     {
-        //await roomHub.UpdatePlayerAsync(playerData);
+        await roomHub.UpdatePlayerAsync(pos,rot);
     }
 
     /// <summary>
@@ -780,10 +788,19 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// オブジェクト生成リクエスト
     /// </summary>
     /// <returns></returns>
-    //public async UniTask SpawnObjectAsync(OBJECT_TYPE type, Vector2 spawnPos)
-    //{
-    //    await roomHub.SpawnObjectAsync(type, spawnPos);
-    //}
+    public async UniTask SpawnObjectAsync(Vector3 spawnPos)
+    {
+        await roomHub.SpawnObjectAsync(spawnPos);
+    }
+
+    /// <summary>
+    /// オブジェクト更新リクエスト
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask UpdateObjectAsync(Vector3 spawnPos,string uniqueId)
+    {
+        await roomHub.UpdateObjectAsync(spawnPos,uniqueId);
+    }
 
     public async Task GameEndAsync()
     {

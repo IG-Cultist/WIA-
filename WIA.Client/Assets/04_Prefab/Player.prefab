@@ -4060,8 +4060,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89276dfe997f2ba4abe21845b34c70b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  child: {fileID: 0}
   hitPoint: {fileID: 4703014791869529353}
   animator: {fileID: 5097505856616022616}
+  hip: {fileID: 0}
+  leftLeg: {fileID: 0}
   player_State: 0
 --- !u!95 &5097505856616022616
 Animator:
@@ -4107,7 +4110,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112

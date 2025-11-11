@@ -22,11 +22,18 @@ namespace Shared.Interfaces.StreamingHubs
 
         [Key(9)]
         /// <summary>
+        /// 位置
+        /// </summary>
+        public Vector3 pos { get; set; }
+
+        [Key(10)]
+        /// <summary>
         /// 死亡判定
         /// </summary>
         public bool IsDead { get; set; } = false;
 
-        [Key(10)]
+
+        [Key(11)]
         /// <summary>
         /// キャラクターのクラス
         /// </summary>
