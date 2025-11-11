@@ -3247,6 +3247,7 @@ MonoBehaviour:
   hip: {fileID: 0}
   leftLeg: {fileID: 0}
   warpPoint: {fileID: 0}
+  thirdPersonCamera: {fileID: 0}
   player_State: 1
 --- !u!1 &5264057758234078295
 GameObject:
@@ -4132,6 +4133,7 @@ GameObject:
   - component: {fileID: 7791059134214579617}
   - component: {fileID: 5612460502565260284}
   - component: {fileID: 6656393855517500913}
+  - component: {fileID: 9103856221176519898}
   - component: {fileID: 2106321571952975871}
   - component: {fileID: 636810864484244957}
   - component: {fileID: 3642420427539897245}
@@ -4226,6 +4228,49 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6270911981488510612}
   m_Enabled: 1
+--- !u!114 &9103856221176519898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6270911981488510612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
+  Priority:
+    Enabled: 1
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 0}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 40
+    OrthographicSize: 10
+    NearClipPlane: 0.1
+    FarClipPlane: 5000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
 --- !u!114 &2106321571952975871
 MonoBehaviour:
   m_ObjectHideFlags: 0

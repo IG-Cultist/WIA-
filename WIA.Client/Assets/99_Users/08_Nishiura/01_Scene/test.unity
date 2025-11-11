@@ -498,6 +498,14 @@ PrefabInstance:
       propertyPath: isGrounded
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9103856221176519898, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103856221176519898, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+      propertyPath: Priority.m_Value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -783,7 +791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
     Enabled: 1
-    m_Value: -1
+    m_Value: 0
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -837,5 +845,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 172385687}
   - {fileID: 1251930393}
-  - {fileID: 8142953940571802819}
   - {fileID: 2083924518}
+  - {fileID: 8142953940571802819}

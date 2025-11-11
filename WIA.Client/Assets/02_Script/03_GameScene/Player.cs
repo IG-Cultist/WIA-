@@ -1,5 +1,6 @@
 using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 /// <summary>
@@ -35,8 +36,13 @@ public class Player : MonoBehaviour
     List<Transform> allChildren;
 
     void Start()
-    {
-        thirdPersonCamera.SetActive(false);
+    { 
+        thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 1;
+        this.gameObject.transform.GetChild(1).GetComponent<CinemachineCamera>().Priority = 10;
+        
+        this.gameObject.transform.GetChild(1).gameObject.SetActive(false); 
+        this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -55,7 +61,6 @@ public class Player : MonoBehaviour
             //ê∂ë∂íÜÇÃèÍçá
             case PLAYER_STATE.ALIVE:
                 this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
-                thirdPersonCamera.SetActive(false);
 
                 // a) äpìxéwíË(v3Angle Å® trQ)
                 child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Zé≤Ç10ÅãÇ…ê›íË parent
@@ -100,7 +105,6 @@ public class Player : MonoBehaviour
         ChangeBodyGravity(true);
 
         this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        thirdPersonCamera.SetActive(true);
           
         hitPoint.SetActive(true);
         animator.enabled = false;
