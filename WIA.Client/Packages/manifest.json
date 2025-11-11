@@ -64,6 +64,13 @@
       "scopes": [
         "jp.setchi.fancyscrollview"
       ]
+    },
+    {
+      "name": "RadarGraph",
+      "url": "https://github.com/Zhuangdum/RadarChart",
+      "scopes": [
+        "RadarChart"
+      ]
     }
   ]
 }
