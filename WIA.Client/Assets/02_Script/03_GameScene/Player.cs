@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     [SerializeField] Rigidbody hip;
     [SerializeField] Rigidbody leftLeg;
 
+    [SerializeField] Transform warpPoint;
+
     //プレイヤー状態
     private enum PLAYER_STATE
     {
@@ -181,5 +183,16 @@ public class Player : MonoBehaviour
         var gos = new List<GameObject>(transforms.Count);
         foreach (var t in transforms) gos.Add(t.gameObject);
         return gos;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Abyss"))
+        {
+
+
+            // ワープポイントに移動する
+            transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+        }
     }
 }
