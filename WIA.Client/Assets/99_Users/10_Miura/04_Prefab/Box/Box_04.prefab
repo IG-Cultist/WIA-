@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2903319435583011376}
   - component: {fileID: 8133583941163337549}
   - component: {fileID: 8203941020279916271}
+  - component: {fileID: 4353734154460540215}
   m_Layer: 0
   m_Name: Box_04
   m_TagString: Item
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 298335041520325924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.7210097, y: -0.379, z: 4.208}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -69,7 +70,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &8203941020279916271
 BoxCollider:
@@ -92,6 +93,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.049624, y: 0.77164924, z: 1.0572803}
   m_Center: {x: -0.50384533, y: 0.11327727, z: 0.02864013}
+--- !u!114 &4353734154460540215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298335041520325924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc08bad2b8e17f4781a9ccf158c2419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cube
+  warpPoint: {fileID: 0}
+  minPoint: {fileID: 0}
+  maxPoint: {fileID: 0}
 --- !u!1 &802455233604136400
 GameObject:
   m_ObjectHideFlags: 0
