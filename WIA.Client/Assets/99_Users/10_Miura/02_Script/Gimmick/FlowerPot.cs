@@ -22,21 +22,30 @@ public class FlowerPot : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject fragment;
+        GameObject fragment; //破片オブジェクト
         fragment = Instantiate(potFragmentObj, potObj.transform.position, potObj.transform.rotation);
 
-        //植木鉢を消す
-        Destroy(potObj);
+        if(collision.gameObject.CompareTag("Base"))
+        {//Baseタグのオブジェクトに触れたら
 
-        for (int i = 0; i < fragment.transform.childCount; i++)
-        {//potFragmentObjの子の数だけループ
-         //植木鉢の破片を生成する
-            fragment.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(new Vector2(50, 50));
+            //植木鉢を消す
+            Destroy(potObj);
 
-            FadeFragment(fragment.transform.GetChild(i));
+            for (int i = 0; i < fragment.transform.childCount; i++)
+            {//potFragmentObjの子の数だけループ
+             //植木鉢の破片を生成する
+                fragment.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(new Vector2(50, 50)); //子を取得　
+
+                FadeFragment(fragment.transform.GetChild(i)); //破片をフェードアウトさせる
+            }
+
         }
     }
 
+    /// <summary>
+    /// 破片をフェードアウトさせる処理
+    /// </summary>
+    /// <param name="fragment"></param>
     public void FadeFragment(Transform fragment)
     {
         fragment.GetComponent<Renderer>().material.DOFade(0, 6);
@@ -44,9 +53,13 @@ public class FlowerPot : MonoBehaviour
         DestroyFragment(fragment);
     }
 
+    /// <summary>
+    /// 破片を消す処理
+    /// </summary>
+    /// <param name="fragment"></param>
     public async void DestroyFragment(Transform fragment)
     {
-        await Task.Delay(6000);
-        Destroy(fragment.gameObject);
+        await Task.Delay(6000); //6秒待つ　
+        Destroy(fragment.gameObject);　//破片を消す
     }
 }
