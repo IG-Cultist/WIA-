@@ -4,8 +4,7 @@ using UnityEngine;
 public class MoveArm : MonoBehaviour
 {
     [SerializeField] GameObject crane;
-    //[SerializeField] GameObject hingePoint;
-    //[SerializeField] GameObject hook;
+    Transform updateRot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,17 +16,14 @@ public class MoveArm : MonoBehaviour
     void Update()
     {
         Transform armTransform = crane.transform;
-        //Transform hingeTransform = hingePoint.transform;
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.R))
         {
             armTransform.Rotate(0, 0.3f, 0); //回転を更新
-            //hingeTransform.Rotate(0, 3f, 0);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.L))
         {
             armTransform.Rotate(0, -0.3f, 0); //回転を更新
-            //hingeTransform.Rotate(0, -3f, 0);
         }
     }
 }
