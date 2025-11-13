@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     [SerializeField] PLAYER_STATE player_State;
     List<Transform> allChildren;
 
+    int deathCnt = 0; //死亡回数の変数
+
     void Start()
     {
         thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 1;
@@ -203,12 +205,30 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Abyss"))
         {
-            //プレイヤーの状態をD死亡状態にする
+            //プレイヤーの状態を死亡状態にする
             player_State = PLAYER_STATE.DEATH;
+
+            deathCnt++;
+
             //2秒後に復活する
             Invoke("RespawnPlayer", 2);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Container"))
+        {
+            //プレイヤーの状態を死亡状態にする
+            player_State = PLAYER_STATE.DEATH;
+
+            deathCnt ++;
+
+            //2秒後に復活する
+            Invoke("RespawnPlayer", 2);
+        }
+    }
+
     void RespawnPlayer()
     {
         //プレイヤーの状態を生存状態にする
