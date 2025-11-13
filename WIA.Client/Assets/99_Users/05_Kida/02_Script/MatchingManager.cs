@@ -283,7 +283,7 @@ public class MatchingManager : MonoBehaviour
         //ゲーム開始時の処理をする
         // シーン遷移
         Initiate.DoneFading();
-        Initiate.Fade("03_GameScene", endColor, 2.0f);
+        Initiate.Fade("PreGameScene", endColor, 2.0f);
 
     }
     #endregion

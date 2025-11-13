@@ -81,7 +81,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// プレイヤー動作通知
         /// Author:Nishiura
         /// </summary>
-        void OnUpdatePlayer(PlayerData playerData);
+        void OnUpdatePlayer(Vector3 pos,Quaternion rot);
 
         /// <summary>
         /// マスタークライアントの更新通知
@@ -216,7 +216,13 @@ namespace Shared.Interfaces.StreamingHubs
         /// オブジェクト生成通知
         /// </summary>
         /// <returns></returns>
-        void OnSpawnObject(Vector2 spawnPos, string uniqueId);
+        void OnSpawnObject(Vector3 spawnPos, string uniqueId);
+
+        /// <summary>
+        /// オブジェクト更新通知
+        /// </summary>
+        /// <returns></returns>
+        void OnUpdateObject(Vector3 spawnPos, string uniqueId);
 
         #endregion
         #endregion
