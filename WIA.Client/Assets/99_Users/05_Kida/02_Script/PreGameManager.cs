@@ -37,29 +37,30 @@ public class PreGameManager : MonoBehaviour
         if (RoomModel.Instance)
         RoomModel.Instance.OnUpdatePlayerSyn += OnUpdatePlayerSyn;
         RoomModel.Instance.OnSpawnedObjectSyn += OnSpawnedObjectSyn;
-        RoomModel.Instance.OnUpdatedObject += OnUpdatedObject;
         RoomModel.Instance.OnLeavedUser += OnLeavedUser;
+        RoomModel.Instance.OnUpdatedObject += OnUpdatedObject;
+
         foreach (var user in RoomModel.Instance.joinedUserList)
             {
                 if (user.Key == RoomModel.Instance.ConnectionId)
                 {
                     player=Instantiate(mainPlayerPrefab);
-                    InvokeRepeating("UpDatePlayer",0.2f,0.2f);
+                    InvokeRepeating("UpDatePlayer",0.1f,0.1f);
                 }
                 else
                 {
                     subplayer=Instantiate(subPlayerPrefab);
                 }
             }
-        InvokeRepeating("UpdateObj", 0.2f, 0.2f);
+        InvokeRepeating("UpdateObj", 0.1f, 0.1f);
     }
 
     private void OnDisable()
     {
         RoomModel.Instance.OnUpdatePlayerSyn -= OnUpdatePlayerSyn;
         RoomModel.Instance.OnSpawnedObjectSyn -= OnSpawnedObjectSyn;
-        RoomModel.Instance.OnUpdatedObject -= OnUpdatedObject;
         RoomModel.Instance.OnLeavedUser -= OnLeavedUser;
+        RoomModel.Instance.OnUpdatedObject -= OnUpdatedObject;
     }
 
     private void Update()
