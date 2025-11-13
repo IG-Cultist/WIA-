@@ -11,12 +11,23 @@ public class ResultManager : MonoBehaviour
 
     [SerializeField] public int successNum = 4;
     [SerializeField] public int failureNum = 1;
-    
+
+    [Header("ƒŒ[ƒ_[ƒOƒ‰ƒt•Ï”(1.0f‚ªãŒÀ’l)")]
+    [SerializeField] public float cruelNum = 0.2f;
+    [SerializeField] public float judgeNum = 0.2f;
+    [SerializeField] public float carelesslyNum = 0.2f;
+    [SerializeField] public float planNum = 0.2f;
+    [SerializeField] public float coolNum = 0.2f;
+
+
     void Start()
     {
         //------{¬Œ÷”,¸”s”}-----//
-        float[] list = { successNum, failureNum };        //‚±‚±‚Å˜JĞ¬Œ÷”E¸”s”‚ğ‘ã“ü
-        pie.SetPieChartAnimation(list);
+        float[] pieList = { successNum, failureNum };        //‚±‚±‚Å˜JĞ¬Œ÷”E¸”s”‚ğ‘ã“ü
+        pie.SetPieChartAnimation(pieList);
+
+        
+
 
         /*
         int playerId = MatchingManager.UserID + 1;
@@ -36,7 +47,8 @@ public class ResultManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        float[] radarList = { cruelNum, judgeNum, carelesslyNum, planNum, coolNum };        //‚±‚±‚Å˜JĞ¬Œ÷”E¸”s”‚ğ‘ã“ü
+        radar.SetRadarChart(radarList);
     }
 
     public void StartMenu()

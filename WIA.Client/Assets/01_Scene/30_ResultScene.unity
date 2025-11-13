@@ -246,21 +246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed0a533079604345a4781532555221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EvaluationView
-  texts:
-  - {fileID: 2034487341}
-  - {fileID: 604230981}
-  - {fileID: 447981163}
-  bg: {fileID: 1491252705}
-  startTime: 3
-  textColor: {fileID: 0}
-  imgColor: {fileID: 0}
-  finishTime: 3
-  timer: 0
-  isChange: 0
-  startColor:
-    rgba: 4294967295
-  endColor:
-    rgba: 1907997
 --- !u!1 &59716340
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +401,11 @@ MonoBehaviour:
   radar: {fileID: 472702899}
   successNum: 4
   failureNum: 1
+  cruelNum: 0.2
+  judgeNum: 0.2
+  carelesslyNum: 0.2
+  planNum: 0.2
+  coolNum: 0.2
 --- !u!1 &335054827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,19 +1638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed0a533079604345a4781532555221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EvaluationView
-  texts:
-  - {fileID: 943763729}
-  bg: {fileID: 0}
-  startTime: 0
-  textColor: {fileID: 0}
-  imgColor: {fileID: 0}
-  finishTime: 3
-  timer: 0
-  isChange: 0
-  startColor:
-    rgba: 4280098077
-  endColor:
-    rgba: 1907997
 --- !u!1 &1140414695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,7 +1799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1166225268
 RectTransform:
   m_ObjectHideFlags: 0
