@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 public class TaskCheck : MonoBehaviour
 {
     int cubeCnt; //要素の変数
-    int checkCnt = 1; //目標の要素数
+    int checkCnt = 2; //目標の要素数
     [SerializeField] List<int> cubeList = new List<int>(); //int型のList
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +44,7 @@ public class TaskCheck : MonoBehaviour
             if (cubeList.Count == checkCnt)
             {//要素数が目標数と同じになったら
              //フェードアウトしてシーン遷移
-                Initiate.Fade("30_ResultScene", Color.black, 1.0f);
+                Initiate.Fade("01_TitleScene", Color.black, 1.0f);
             }
         }
     }

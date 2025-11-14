@@ -4,7 +4,6 @@ using UnityEngine;
 public class MoveArm : MonoBehaviour
 {
     [SerializeField] GameObject crane;
-    Transform updateRot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,11 +18,11 @@ public class MoveArm : MonoBehaviour
 
         if (Input.GetKey(KeyCode.R))
         {
-            armTransform.Rotate(0, 0.3f, 0); //回転を更新
+            armTransform.DORotate(new Vector3(0, 35, 0), 8);
         }
         if (Input.GetKey(KeyCode.L))
         {
-            armTransform.Rotate(0, -0.3f, 0); //回転を更新
+            armTransform.DORotate(new Vector3(0, -35, 0), 8);
         }
     }
 }

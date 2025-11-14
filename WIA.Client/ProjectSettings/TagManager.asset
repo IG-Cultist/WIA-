@@ -10,6 +10,7 @@ TagManager:
   - Item
   - Object
   - Ground
+  - Container
   layers:
   - Default
   - TransparentFX
