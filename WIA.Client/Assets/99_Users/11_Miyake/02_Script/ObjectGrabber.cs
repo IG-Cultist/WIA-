@@ -119,7 +119,11 @@ public class ObjectGrabber : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
         {
-            if (hit.collider.CompareTag("Item"))
+            if (hit.collider.CompareTag("Pot"))
+            {
+                GameObject.Find("LookDownCamera").GetComponent<PotDrop>().GetPotObject(hit.collider.gameObject);
+            }
+            else if (hit.collider.CompareTag("Item"))
             {
                 grabbedRb = hit.collider.attachedRigidbody;
                 if (grabbedRb != null)

@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Container
   - Base
+  - Pot
   layers:
   - Default
   - TransparentFX
