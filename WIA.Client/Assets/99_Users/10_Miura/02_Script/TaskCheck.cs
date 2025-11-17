@@ -44,7 +44,7 @@ public class TaskCheck : MonoBehaviour
             if (cubeList.Count == checkCnt)
             {//要素数が目標数と同じになったら
              //フェードアウトしてシーン遷移
-                Initiate.Fade("01_TitleScene", Color.black, 1.0f);
+                Initiate.Fade("30_ResultScene", Color.black, 1.0f);
             }
         }
     }

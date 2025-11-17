@@ -5,7 +5,6 @@ public class Lever : MonoBehaviour
 {
     [SerializeField] GameObject leverObj;
     [SerializeField] GameObject craneObj;
-    public Camera CraneCam;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -142,6 +142,11 @@ public class Player : MonoBehaviour
 
         hitPoint.SetActive(true);
         animator.enabled = false;
+
+        if(deathCnt>=3)
+        {
+            Initiate.Fade("30_ResultScene",Color.black ,3);
+        }
     }
 
     /// <summary>
