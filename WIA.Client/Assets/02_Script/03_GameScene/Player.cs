@@ -17,7 +17,10 @@ public class Player : MonoBehaviour
     [SerializeField] Rigidbody hip;
     [SerializeField] Rigidbody leftLeg;
 
-    [SerializeField] Transform warpPoint;
+    [SerializeField] Transform warpPoint; //プレイヤーのワープポイント
+
+    [SerializeField] GameObject image; //フェードに使用するイメージオブジェクト
+    [SerializeField] FadeImage fadeImage;
 
     // 三人称視点カメラ
     [SerializeField] GameObject thirdPersonCamera;
@@ -45,6 +48,8 @@ public class Player : MonoBehaviour
         this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
         this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
+        image = GameObject.Find("Image");
+        image.SetActive(false);
     }
 
     // Update is called once per frame
@@ -205,10 +210,26 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Abyss"))
         {
+            if(player_State==PLAYER_STATE.DEATH)
+            {//既に死亡状態だったら
+                //以降の処理を実行しない
+                return;
+            }
+
+
+            if(image !=null)
+            {
+                fadeImage = GetComponent<FadeImage>();
+                image.SetActive(true);
+                fadeImage.FadeOut();
+            }
+
             //プレイヤーの状態を死亡状態にする
             player_State = PLAYER_STATE.DEATH;
 
             deathCnt++;
+
+            //image.SetActive(true);
 
             //2秒後に復活する
             Invoke("RespawnPlayer", 2);
