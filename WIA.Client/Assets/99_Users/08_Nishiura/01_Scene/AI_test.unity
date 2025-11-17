@@ -466,8 +466,6 @@ MonoBehaviour:
   deployId: AKfycbyxWrtaB3lg7yRcLLVDPuPr6fRYAkY4rruxPHzuIbtOucyGJpUeCB3lmEJbNaM84gmo
   questionText: 
   inputField: {fileID: 348127557}
-  sendButton: {fileID: 55960154}
-  send60Button: {fileID: 0}
 --- !u!1 &348127555
 GameObject:
   m_ObjectHideFlags: 0
