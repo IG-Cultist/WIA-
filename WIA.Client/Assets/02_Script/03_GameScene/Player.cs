@@ -24,9 +24,13 @@ public class Player : MonoBehaviour
     // 三人称視点カメラ
     [SerializeField] GameObject thirdPersonCamera;
 
+    // 見下ろし視点カメラ
+    [SerializeField] GameObject lookDownCamera;
+
     // フェードイメージスクリプト
     FadeImage fadeImageScript;
 
+    // 死亡判定
     bool isDead = false;
 
     //プレイヤー状態
@@ -37,6 +41,7 @@ public class Player : MonoBehaviour
         DEATH,                //死亡中
         EMOTE,                //エモート中
         ERROR,                //エラー(切断)
+        LOOKDOWN,             //見下ろし中
     }
 
     [SerializeField] PLAYER_STATE player_State;
@@ -51,12 +56,17 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 1;
+        // カメラの優先順位調整
+        thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 0;
+        lookDownCamera.GetComponent<CinemachineCamera>().Priority = 1;
         this.gameObject.transform.GetChild(1).GetComponent<CinemachineCamera>().Priority = 10;
 
         this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
         this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
+        lookDownCamera.SetActive(false);
+
+        // フェードイメージからスクリプトを取得
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
 
     }
@@ -66,6 +76,15 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
         if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (player_State == PLAYER_STATE.ALIVE) player_State = PLAYER_STATE.LOOKDOWN;
+            else
+            {
+                lookDownCamera.SetActive(false);
+                player_State = PLAYER_STATE.ALIVE; 
+            }
+        }
 
         switch (player_State)
         {
@@ -111,6 +130,12 @@ public class Player : MonoBehaviour
 
                 break;
 
+            //エラーの場合
+            case PLAYER_STATE.LOOKDOWN:
+                lookDownCamera.SetActive(true);
+                this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                break;
+
         }
     }
 
@@ -150,7 +175,6 @@ public class Player : MonoBehaviour
     /// <param name="isChange"></param>
     private void ChangeBodyGravity(bool isChange)
     {
-
         // trueを渡すと非アクティブなオブジェクトもすべて取得します
         allChildren = GetAllChildTransforms(this.gameObject.transform, true);
 
@@ -270,4 +294,5 @@ public class Player : MonoBehaviour
     {
         fadeImageScript.FadeOut();
     }
+
 }
