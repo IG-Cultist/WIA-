@@ -21,11 +21,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] Transform warpPoint; //プレイヤーのワープポイント
 
-    // 三人称視点カメラ
-    [SerializeField] GameObject thirdPersonCamera;
-
-    // 見下ろし視点カメラ
-    [SerializeField] GameObject lookDownCamera;
+    // カメラマネージャースクリプト
+    CameraManager cameraManager;
 
     // フェードイメージスクリプト
     FadeImage fadeImageScript;
@@ -56,19 +53,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        // カメラの優先順位調整
-        thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 0;
-        lookDownCamera.GetComponent<CinemachineCamera>().Priority = 1;
-        this.gameObject.transform.GetChild(1).GetComponent<CinemachineCamera>().Priority = 10;
-
-        this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
-
-        lookDownCamera.SetActive(false);
-
+        cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
         // フェードイメージからスクリプトを取得
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
-
     }
 
     // Update is called once per frame
@@ -81,7 +68,7 @@ public class Player : MonoBehaviour
             if (player_State == PLAYER_STATE.ALIVE) player_State = PLAYER_STATE.LOOKDOWN;
             else
             {
-                lookDownCamera.SetActive(false);
+                cameraManager.TurnOffLookDownCam();
                 player_State = PLAYER_STATE.ALIVE; 
             }
         }
@@ -96,7 +83,7 @@ public class Player : MonoBehaviour
             //生存中の場合
             case PLAYER_STATE.ALIVE:
                 isDead = false;
-                this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                cameraManager.TurnOnPlayerCam();
 
                 // a) 角度指定(v3Angle → trQ)
                 child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z軸を10°に設定 parent
@@ -130,10 +117,10 @@ public class Player : MonoBehaviour
 
                 break;
 
-            //エラーの場合
+            //見下ろしの場合
             case PLAYER_STATE.LOOKDOWN:
-                lookDownCamera.SetActive(true);
-                this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                cameraManager.TurnOnLookDownCam();
+                cameraManager.TurnOffPlayerCam();
                 break;
 
         }
@@ -149,7 +136,7 @@ public class Player : MonoBehaviour
 
         ChangeBodyGravity(true);
 
-        this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        cameraManager.TurnOffPlayerCam();
 
         Invoke("FadeOut", 0.5f);
 
