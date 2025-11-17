@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
         // ƒV[ƒ“‘JˆÚ
         Initiate.DoneFading();
-        Initiate.Fade("04_ResultScene", endColor, 1.0f);
+        Initiate.Fade("30_ResultScene", endColor, 1.0f);
     }
 
     public void OnGameEndSyn(ResultData resultData)
