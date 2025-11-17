@@ -67,6 +67,7 @@ public class FlowerPot : MonoBehaviour
              //植木鉢の破片を生成する
                 fragment.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(new Vector2(50, 50)); //子を取得　
 
+                DestroyFragment(fragment);
                 FadeFragment(fragment.transform.GetChild(i)); //破片をフェードアウトさせる
             }
         }
@@ -79,15 +80,13 @@ public class FlowerPot : MonoBehaviour
     public void FadeFragment(Transform fragment)
     {
         fragment.GetComponent<Renderer>().material.DOFade(0, 6);
-
-        DestroyFragment(fragment);
     }
 
     /// <summary>
     /// 破片を消す処理
     /// </summary>
     /// <param name="fragment"></param>
-    public async void DestroyFragment(Transform fragment)
+    public async void DestroyFragment(GameObject fragment)
     {
         await Task.Delay(6000); //6秒待つ　
         Destroy(fragment.gameObject);　//破片を消す
