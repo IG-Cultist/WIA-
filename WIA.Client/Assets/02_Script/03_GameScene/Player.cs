@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
         DEATH,                //死亡中
         EMOTE,                //エモート中
         ERROR,                //エラー(切断)
-        LOOKDOWN,             //見下ろし中
     }
 
     [SerializeField] PLAYER_STATE player_State;
@@ -63,15 +62,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
         if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (player_State == PLAYER_STATE.ALIVE) player_State = PLAYER_STATE.LOOKDOWN;
-            else
-            {
-                cameraManager.TurnOffLookDownCam();
-                player_State = PLAYER_STATE.ALIVE; 
-            }
-        }
 
         switch (player_State)
         {
@@ -83,7 +73,7 @@ public class Player : MonoBehaviour
             //生存中の場合
             case PLAYER_STATE.ALIVE:
                 isDead = false;
-                cameraManager.TurnOnPlayerCam();
+                //cameraManager.TurnOnPlayerCam();
 
                 // a) 角度指定(v3Angle → trQ)
                 child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z軸を10°に設定 parent
@@ -115,12 +105,6 @@ public class Player : MonoBehaviour
             //エラーの場合
             case PLAYER_STATE.ERROR:
 
-                break;
-
-            //見下ろしの場合
-            case PLAYER_STATE.LOOKDOWN:
-                cameraManager.TurnOnLookDownCam();
-                cameraManager.TurnOffPlayerCam();
                 break;
 
         }

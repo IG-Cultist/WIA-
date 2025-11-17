@@ -20,7 +20,7 @@ public class CameraManager : MonoBehaviour
         // ƒJƒƒ‰‚Ì—Dæ‡ˆÊ’²®
         thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 0;
         lookDownCamera.GetComponent<CinemachineCamera>().Priority = 1;
-        playerCamera.transform.GetChild(1).GetComponent<CinemachineCamera>().Priority = 10;
+        playerCamera.GetComponent<CinemachineCamera>().Priority = 10;
 
         TurnOffLookDownCam();
         TurnOffPlayerCam();
