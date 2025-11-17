@@ -25,7 +25,6 @@ namespace Shared.Interfaces.StreamingHubs
         //ここにサーバー～クライアントの定義
 
         #region 入室からゲーム開始まで
-
         /// <summary>
         /// ルーム作成通知
         /// Author:Kida
@@ -222,7 +221,14 @@ namespace Shared.Interfaces.StreamingHubs
         /// オブジェクト更新通知
         /// </summary>
         /// <returns></returns>
-        void OnUpdateObject(Vector3 spawnPos, string uniqueId);
+        void OnUpdateObject(Vector3 pos,Quaternion rot, string uniqueId);
+
+        /// <summary>
+        /// オブジェクト所有権変更通知
+        /// </summary>
+        /// <param name="uniqueId"></param>
+        /// <param name="joinOrder"></param>
+        void OnOwnershipSwapObject(int uniqueId,int joinOrder);
 
         #endregion
         #endregion

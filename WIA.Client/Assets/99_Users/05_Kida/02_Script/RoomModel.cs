@@ -25,6 +25,7 @@ using static Shared.Interfaces.StreamingHubs.EnumManager;
 using static Shared.Interfaces.StreamingHubs.IRoomHubReceiver;
 //using static Unity.Cinemachine.CinemachineSplineRoll;
 using Vector2 = UnityEngine.Vector2;
+using NUnit.Framework;
 #endregion
 
 public class RoomModel : BaseModel, IRoomHubReceiver
@@ -40,6 +41,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
 
     // 現在の参加者情報
     public Dictionary<Guid, JoinedUser> joinedUserList { get; private set; } = new Dictionary<Guid, JoinedUser>();
+
 
     //現在のルーム情報
     //public RoomData[] roomDataList { get; set; }
@@ -146,7 +148,10 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action< Vector3, string> OnSpawnedObjectSyn { get; set; }
 
     // オブジェクト生成通知
-    public Action< Vector3, string> OnUpdatedObject { get; set; }
+    public Action< Vector3,Quaternion, string> OnUpdatedObject { get; set; }
+
+    //オブジェクト所有権変更通知
+    public Action<int,int> OnOwnershipSwapObjectSyn {  get; set; }
 
     #endregion
 
@@ -578,9 +583,14 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnSpawnedObjectSyn(spawnPos, uniqueId);
     }
 
-    public void OnUpdateObject(Vector3 spawnPos, string uniqueId)
+    public void OnUpdateObject(Vector3 pos,Quaternion rot, string uniqueId)
     {
-        OnUpdatedObject(spawnPos, uniqueId);
+        OnUpdatedObject(pos,rot, uniqueId);
+    }
+
+    public void OnOwnershipSwapObject(int uniqueId, int joinOrder)
+    {
+        OnOwnershipSwapObjectSyn(uniqueId, joinOrder);
     }
 
     #endregion
@@ -612,14 +622,13 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         //    }
 
         //}
-
+        this.ConnectionId = await roomHub.GetConnectionIdAsync();
         joinedUserList = await roomHub.JoinedAsync(userId);
         if (joinedUserList == null) return;
         foreach (var user in joinedUserList)
         {
-            if (user.Value.UserData.Id == userId)
+            if (user.Key == this.ConnectionId)
             {
-                this.ConnectionId = user.Value.ConnectionId;
                 this.IsMaster = user.Value.IsMaster;
                 Debug.Log("モデル：" + RoomModel.Instance.ConnectionId);
             }
@@ -797,9 +806,18 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// オブジェクト更新リクエスト
     /// </summary>
     /// <returns></returns>
-    public async UniTask UpdateObjectAsync(Vector3 spawnPos,string uniqueId)
+    public async UniTask UpdateObjectAsync(Vector3 pos,Quaternion rot,string uniqueId)
     {
-        await roomHub.UpdateObjectAsync(spawnPos,uniqueId);
+        await roomHub.UpdateObjectAsync(pos,rot,uniqueId);
+    }
+
+    /// <summary>
+    /// オブジェクト所有権変更
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask ObjectOwnershipSwapAsync(int uniqueId, int joinOrder)
+    {
+        await roomHub.OwnershipSwapObjectAsync(uniqueId,joinOrder);
     }
 
     public async Task GameEndAsync()
