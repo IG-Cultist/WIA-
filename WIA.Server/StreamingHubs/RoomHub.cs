@@ -68,6 +68,18 @@ namespace WIA.Server.StreamingHubs
 
         #region マッチングしてからゲーム開始までの処理
         /// <summary>
+        /// 接続ID取得
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Guid> GetConnectionIdAsync()
+        {
+            lock (roomContextRepository)
+            {
+                return this.ConnectionId;
+            }
+        }
+
+        /// <summary>
         /// 入室処理
         /// Author:Kida
         /// </summary>
@@ -487,11 +499,19 @@ namespace WIA.Server.StreamingHubs
         /// オブジェクト更新処理
         /// </summary>
         /// <returns></returns>
-        public async Task UpdateObjectAsync(Vector3 spawnPos, string uniqueId)
+        public async Task UpdateObjectAsync(Vector3 pos,Quaternion rot, string uniqueId)
         {
             lock (roomContextRepository)
             {
-                this.roomContext.Group.All.OnUpdateObject(spawnPos, uniqueId);
+                this.roomContext.Group.Except([this.ConnectionId]).OnUpdateObject(pos,rot, uniqueId);
+            }
+        }
+
+        public async Task OwnershipSwapObjectAsync(int uniqueId, int joinOrder)
+        {
+            lock (roomContextRepository)
+            {
+                this.roomContext.Group.All.OnOwnershipSwapObject(uniqueId,joinOrder);
             }
         }
 

@@ -1,7 +1,9 @@
 using DG.Tweening;
+using NUnit;
 using Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
 using System.Xml;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Scripting;
@@ -10,69 +12,91 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PreGameManager : MonoBehaviour
 {
-    #region ‰Šúİ’è
-    [Header("‰Šúİ’è")]
+    #region åŸºæœ¬
+    [Header("åŸºæœ¬è¨­å®š")]
     PlayerData playerData;
-    int tasks = 0;      // ˜JĞAƒ^ƒXƒN‚Ì’B¬ó‹µ
+    int tasks = 0;      //ã‚¿ã‚¹ã‚¯ã®æ•°
     public Vector3 spawnPos;
-    [SerializeField] GameObject mainPlayerPrefab; //ƒƒCƒ“ƒvƒŒƒCƒ„[‚ÌƒvƒŒƒnƒu
-    [SerializeField] GameObject subPlayerPrefab; //‘¼ƒvƒŒƒCƒ„[‚ÌƒvƒŒƒnƒu
-    [SerializeField] GameObject objPrefab; //ƒIƒuƒWƒFƒNƒg‚ÌƒvƒŒƒnƒu
-    GameObject player; //©•ª‚ÌƒvƒŒƒCƒ„[
-    GameObject subplayer; //‘¼l‚ÌƒvƒŒƒCƒ„[
-    Dictionary<string,GameObject> objList = new Dictionary<string, GameObject>(); //‚·‚×‚Ä‚ÌƒIƒuƒWƒFƒNƒg
-    #endregion
-
-    #region ‚»‚Ì‘¼
-    [Header("‚»‚Ì‘¼")]
-    [SerializeField] float xRadius;            // ¶¬”ÍˆÍ‚Ìx”¼Œa
-    [SerializeField] float yRadius;            // ¶¬”ÍˆÍ‚Ìy”¼Œa
-    [SerializeField] float distMinSpawnPos;    // ¶¬‚µ‚È‚¢”ÍˆÍ
-    [SerializeField] AudioResource normalBGM;
+    [SerializeField] GameObject mainPlayerPrefab; //æ“ä½œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+    [SerializeField] GameObject subPlayerPrefab; //éæ“ä½œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+    [SerializeField] GameObject objPrefab; //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    [SerializeField]List<GameObject> syncGameObjectList;//åŒæœŸç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸè¨­å®š
+    GameObject player; //æ“ä½œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+    GameObject subplayer; //éæ“ä½œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+    Dictionary<string,GameObject> objList = new Dictionary<string, GameObject>(); //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (RoomModel.Instance)
-        RoomModel.Instance.OnUpdatePlayerSyn += OnUpdatePlayerSyn;
-        RoomModel.Instance.OnSpawnedObjectSyn += OnSpawnedObjectSyn;
-        RoomModel.Instance.OnLeavedUser += OnLeavedUser;
-        RoomModel.Instance.OnUpdatedObject += OnUpdatedObject;
 
-        foreach (var user in RoomModel.Instance.joinedUserList)
+        if (RoomModel.Instance)
+        {//ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ã ã£ãŸã‚‰
+
+            //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°ã‚’è¡Œã†
+            InvokeRepeating("UpdateObj", 0.1f, 0.1f);
+
+            if (RoomModel.Instance.IsMaster == false) 
+            {
+                //ã™ã¹ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰Rigidbodyã‚’å¤–ã™
+                foreach (var obj in syncGameObjectList)
+                {
+                    Destroy(obj.GetComponent<Rigidbody>());
+                }
+            }
+
+            //é€šçŸ¥ã®è¨­å®š
+            RoomModel.Instance.OnUpdatePlayerSyn += OnUpdatePlayerSyn;
+            RoomModel.Instance.OnSpawnedObjectSyn += OnSpawnedObjectSyn;
+            RoomModel.Instance.OnLeavedUser += OnLeavedUser;
+            RoomModel.Instance.OnUpdatedObject += OnUpdatedObject;
+            RoomModel.Instance.OnOwnershipSwapObjectSyn += OnOwnershipSwapObjectSyn;
+
+            //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¨­å®š
+            foreach (var user in RoomModel.Instance.joinedUserList)
             {
                 if (user.Key == RoomModel.Instance.ConnectionId)
                 {
-                    player=Instantiate(mainPlayerPrefab);
-                    InvokeRepeating("UpDatePlayer",0.1f,0.1f);
+                    player = Instantiate(mainPlayerPrefab);
+                    InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
                 }
                 else
                 {
-                    subplayer=Instantiate(subPlayerPrefab);
+                    subplayer = Instantiate(subPlayerPrefab);
                 }
             }
-        InvokeRepeating("UpdateObj", 0.1f, 0.1f);
+        }
     }
 
     private void OnDisable()
     {
+        //é€šçŸ¥ã®å‰Šé™¤
         RoomModel.Instance.OnUpdatePlayerSyn -= OnUpdatePlayerSyn;
         RoomModel.Instance.OnSpawnedObjectSyn -= OnSpawnedObjectSyn;
         RoomModel.Instance.OnLeavedUser -= OnLeavedUser;
         RoomModel.Instance.OnUpdatedObject -= OnUpdatedObject;
+        RoomModel.Instance.OnOwnershipSwapObjectSyn -= OnOwnershipSwapObjectSyn;
     }
 
     private void Update()
     {
+        /*ä»¥ä¸‹ã¯ãƒ‡ãƒãƒƒã‚°ç”¨ã‚³ãƒãƒ³ãƒ‰*/
+#if DEBUG
+        //Oãƒœã‚¿ãƒ³ã§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
         if(Input.GetKeyDown("o"))
         {
             SpawnObj();
         }
+        //Sãƒœã‚¿ãƒ³ã§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ1ã®æ¨©é™å–å¾—
+        if(Input.GetKeyDown("p"))
+        {
+            ObjectOwnershipSwap(0, RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
+        }
+#endif
     }
 
     /// <summary>
-    /// ƒIƒuƒWƒFƒNƒg¶¬
+    /// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
     /// </summary>
     public async void SpawnObj()
     {
@@ -80,19 +104,37 @@ public class PreGameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒIƒuƒWƒFƒNƒgXV
+    /// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°
     /// </summary>
     public async void UpdateObj()
     {
-        if (objList == null) return;
-        foreach (var obj in objList) 
+        if (objList != null)
         {
-            await RoomModel.Instance.UpdateObjectAsync(obj.Value.transform.position, obj.Key);
+            foreach (var obj in objList)
+            {
+                if (obj.Value.GetComponent<Rigidbody>() == null) continue;
+                await RoomModel.Instance.UpdateObjectAsync(obj.Value.transform.position, obj.Value.transform.rotation, obj.Key);
+            }
+        }
+
+        for (int i=0;i<syncGameObjectList.Count;i++)
+        {
+            if (syncGameObjectList[i].GetComponent<Rigidbody>() == null) continue;
+            await RoomModel.Instance.UpdateObjectAsync(syncGameObjectList[i].transform.position,
+                syncGameObjectList[i].transform.rotation, i.ToString());
         }
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÌˆÊ’u“¯Šú
+    /// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ‰€æœ‰æ¨©å¤‰æ›´
+    /// </summary>
+    public async void ObjectOwnershipSwap(int uniqueId,int joinOrder)
+    {
+        await RoomModel.Instance.ObjectOwnershipSwapAsync(uniqueId, joinOrder);
+    }
+
+    /// <summary>
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ›´æ–°
     /// </summary>
     public async void UpDatePlayer()
     {
@@ -100,18 +142,54 @@ public class PreGameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÌXV’Ê’m
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ›´æ–°é€šçŸ¥
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="rot"></param>
     void OnUpdatePlayerSyn(Vector3 pos,Quaternion rot)
     {
-        subplayer.transform.DOLocalMove(pos, 0.1f).SetEase(Ease.Linear);
+        //subplayer.transform.DOLocalMove(pos, 0.1f).SetEase(Ease.Linear).OnUpdate(() =>
+        //{
+        //    Rigidbody rb = subplayer.GetComponent<Rigidbody>();
+        //});
+        Rigidbody rb = subplayer.GetComponent<Rigidbody>();
+
+        rb.DOMove(pos, 0.1f).SetEase(Ease.Linear).OnUpdate(() =>
+        {
+        });
+        //Vector3 prevPos = subplayer.transform.position;
+        //DOTween.To(
+        //    () => 0f,
+        //    t =>
+        //    {
+        //        Vector3 newPos = Vector3.Lerp(subplayer.transform.position, pos, t);
+        //        subplayer.GetComponent<Rigidbody>().MovePosition(newPos);
+        //        subplayer.GetComponent<Rigidbody>().linearVelocity = (newPos - prevPos) / Time.fixedDeltaTime;
+        //        prevPos = newPos;
+        //    }, 1f, 0.1f)
+        //    .SetEase(Ease.OutQuad);
+
+        //Vector3 startPos = subplayer.GetComponent<Rigidbody>().position;
+        //Vector3 targetPos = pos;
+        //float duration = 0.1f;
+        //float forceMultiplier = 500f;
+        //DOTween.To(() => 0f, t =>
+        //{
+        //    Vector3 remaining = targetPos - subplayer.GetComponent<Rigidbody>().position;
+        //    subplayer.GetComponent<Rigidbody>().AddForce(remaining * forceMultiplier * Time.fixedDeltaTime, ForceMode.Force);
+        //}, 1f, duration)
+        //.SetEase(Ease.OutQuad)
+        //.OnComplete(() =>
+        //{
+        //    subplayer.GetComponent<Rigidbody>().MovePosition(targetPos);
+        //    subplayer.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //});
+
         subplayer.transform.DORotate(rot.eulerAngles, 0.1f);
     }
 
     /// <summary>
-    /// ƒIƒuƒWƒFƒNƒg¶¬’Ê’m
+    /// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆé€šçŸ¥
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="id"></param>
@@ -123,27 +201,61 @@ public class PreGameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒIƒuƒWƒFƒNƒgXV’Ê’m
+    /// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°é€šçŸ¥
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="id"></param>
-    void OnUpdatedObject(Vector3 pos,string id)
+    void OnUpdatedObject(Vector3 pos,Quaternion rot,string id)
     {
         foreach (var obj in objList)
         {
             if(obj.Key == id)
             {
-                obj.Value.transform.position = pos;
+                obj.Value.transform.DOLocalMove(pos, 0.1f).SetEase(Ease.Linear);
+                obj.Value.transform.DORotate(rot.eulerAngles, 0.1f);
+            }
+        }
+        for (int i = 0;i<syncGameObjectList.Count;i++)
+        {
+            if (i.ToString() == id)
+            {
+                syncGameObjectList[i].transform.DOLocalMove(pos, 0.1f).SetEase(Ease.Linear);
+                syncGameObjectList[i].transform.DORotate(rot.eulerAngles, 0.1f);
             }
         }
     }
 
     /// <summary>
-    /// ‘Şº’Ê’m
+    /// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ‰€æœ‰æ¨©å¤‰æ›´é€šçŸ¥
+    /// </summary>
+    /// <param name="uniqueId"></param>
+    /// <param name="joinOrder"></param>
+    void OnOwnershipSwapObjectSyn(int uniqueId,int joinOrder)
+    {
+        for (int i = 0; i < syncGameObjectList.Count; i++)
+        {
+            if (i == uniqueId)
+            {
+                if (joinOrder == RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
+                {
+                    syncGameObjectList[i].AddComponent<Rigidbody>();
+                    Debug.Log("ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ¨©é™ã‚’å¾—ã¾ã—ãŸ");
+                }
+                else
+                {
+                    Destroy(syncGameObjectList[i].GetComponent<Rigidbody>());
+                    Debug.Log("ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ¨©é™ã‚’å¤±ã„ã¾ã—ãŸ");
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// é€€å®¤é€šçŸ¥
     /// </summary>
     /// <param name="joinedUser"></param>
     void OnLeavedUser(JoinedUser joinedUser)
     {
-        Debug.Log(joinedUser.UserData.Name+"‚Ì‘Şº‚ğŠm”F");
+        Debug.Log(joinedUser.UserData.Name+"ãŒé€€å®¤ã—ã¾ã—ãŸã€‚");
     }
 }

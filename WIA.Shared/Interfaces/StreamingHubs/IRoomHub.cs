@@ -20,6 +20,13 @@ namespace Shared.Interfaces.StreamingHubs
         //ここにクライアント～サーバー定義
 
         #region 入室からゲーム開始まで
+
+        /// <summary>
+        /// 接続ID取得
+        /// </summary>
+        /// <returns></returns>
+        Task<Guid> GetConnectionIdAsync();
+
         /// <summary>
         /// ユーザー入室
         /// Author:Kida
@@ -188,7 +195,13 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         /// <param name="spawnPos"></param>
         /// <returns></returns>
-        Task UpdateObjectAsync(Vector3 spawnPos,string uniqueId);
+        Task UpdateObjectAsync(Vector3 pos,Quaternion rot,string uniqueId);
+
+        /// <summary>
+        /// オブジェクト所有権変更
+        /// </summary>
+        /// <returns></returns>
+        Task OwnershipSwapObjectAsync(int uniqueId,int joinOrder);
 
         /// <summary>
         /// ゲーム終了同期
