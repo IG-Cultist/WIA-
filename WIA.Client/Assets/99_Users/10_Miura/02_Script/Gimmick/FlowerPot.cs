@@ -22,14 +22,13 @@ public class FlowerPot : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject fragment; //破片オブジェクト
-        fragment = Instantiate(potFragmentObj, potObj.transform.position, potObj.transform.rotation);
-
-        if(collision.gameObject.CompareTag("Base"))
+        if(collision.gameObject.tag=="Base")
         {//Baseタグのオブジェクトに触れたら
+            GameObject fragment; //破片オブジェクト
+            fragment = Instantiate(potFragmentObj, potObj.transform.position, potObj.transform.rotation);
 
             //植木鉢を消す
-            Destroy(potObj);
+            Destroy(this.gameObject);
 
             for (int i = 0; i < fragment.transform.childCount; i++)
             {//potFragmentObjの子の数だけループ
@@ -38,7 +37,6 @@ public class FlowerPot : MonoBehaviour
 
                 FadeFragment(fragment.transform.GetChild(i)); //破片をフェードアウトさせる
             }
-
         }
     }
 
