@@ -3102,8 +3102,6 @@ GameObject:
   - component: {fileID: 7671307733060223308}
   - component: {fileID: 5875113872636456304}
   - component: {fileID: 4966055313147709518}
-  - component: {fileID: 7946039442247167184}
-  - component: {fileID: 5034061118278728999}
   - component: {fileID: 7534841442416822557}
   m_Layer: 0
   m_Name: Player_1
@@ -3194,41 +3192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
-  canRun: 1
-  runSpeed: 9
-  runningKey: 304
---- !u!114 &7946039442247167184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5255917015044651565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f977f53412d81140ab13b3fca57cca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpStrength: 1
-  groundCheck: {fileID: 8291308493662655051}
---- !u!114 &5034061118278728999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5255917015044651565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b67ddb3d23b8340b125aede56d7e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 306
-  movement: {fileID: 4966055313147709518}
-  movementSpeed: 2
-  headToLower: {fileID: 4084871048874522775}
-  crouchYHeadPosition: 1
-  colliderToLower: {fileID: 7671307733060223308}
+  canRun: 0
+  runSpeed: 2.5
+  runningKey: 0
 --- !u!114 &7534841442416822557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3976,13 +3942,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9fcb6dc763cd0354da305b5de2091287, type: 3}
   - {fileID: 8300000, guid: ab9637a2491abbf4ca9c9601321cbb88, type: 3}
   - {fileID: 8300000, guid: 50b288ce0d5ac1e439827c5365c74c31, type: 3}
-  jump: {fileID: 7946039442247167184}
+  jump: {fileID: 0}
   jumpAudio: {fileID: 2667840076099066728}
   jumpSFX:
   - {fileID: 8300000, guid: 3888a1e1c52793144a6d07b8c508772e, type: 3}
   - {fileID: 8300000, guid: 5b26cf3cd5f6b914a80e6d3476caaf86, type: 3}
   - {fileID: 8300000, guid: b16dc74b7376aca46bd0c6be96c940fa, type: 3}
-  crouch: {fileID: 5034061118278728999}
+  crouch: {fileID: 0}
   crouchStartAudio: {fileID: 3951304581945921719}
   crouchedAudio: {fileID: 8697401379935420526}
   crouchEndAudio: {fileID: 3525566517183675207}
@@ -4358,10 +4324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c830b868836ea641af248240b8946ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectGrabber
-  grabDistance: 3
   holdPoint: {fileID: 6843155771246853463}
+  grabDistance: 3
   moveForce: 250
   maxDistance: 4
+  crosshairImage: {fileID: 0}
+  leftClickImage: {fileID: 0}
 --- !u!1 &6311764926508323957
 GameObject:
   m_ObjectHideFlags: 0
