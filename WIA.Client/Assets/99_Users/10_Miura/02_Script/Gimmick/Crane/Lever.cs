@@ -5,7 +5,7 @@ public class Lever : MonoBehaviour
 {
     [SerializeField] GameObject leverObj;
     [SerializeField] GameObject craneObj;
-    //MoveArm moveArm;
+    public Camera CraneCam;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,12 +25,12 @@ public class Lever : MonoBehaviour
         Transform armTransform = craneObj.transform;
 
         if (Input.GetKeyDown(KeyCode.L))
-        {
-            leverTransform.DORotate(new Vector3(-20, armTransform.rotation.y, 0), 3);
+        {//Lキーを押したら
+            leverTransform.DORotate(new Vector3(-20, armTransform.rotation.y, 0), 3); //レバーが左に傾く
         }
         if(Input.GetKeyDown(KeyCode.R))
-        {
-            leverTransform.DORotate(new Vector3(20, armTransform.rotation.y, 0), 3);
+        {//Rキーを押したら
+            leverTransform.DORotate(new Vector3(20, armTransform.rotation.y, 0), 3); //レバーが右に傾く
         }
     }
 }
