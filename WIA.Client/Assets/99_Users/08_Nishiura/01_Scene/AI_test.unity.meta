@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:WIA.Client/Assets/99_Users/08_Nishiura/01_Scene/AI_test.unity.meta
 guid: b0bd930fc8ffbc34db018263c8d22a85
 DefaultImporter:
+========
+guid: 51cd3bd12728a2c408d5cb66bc8101c7
+NativeFormatImporter:
+>>>>>>>> feature/y-miura:WIA.Client/Assets/99_Users/10_Miura/06_Animetion/FadeAnim.anim.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

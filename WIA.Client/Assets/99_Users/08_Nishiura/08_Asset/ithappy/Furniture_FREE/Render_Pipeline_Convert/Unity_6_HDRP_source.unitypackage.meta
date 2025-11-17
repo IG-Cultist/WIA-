@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:WIA.Client/Assets/99_Users/08_Nishiura/08_Asset/ithappy/Furniture_FREE/Render_Pipeline_Convert/Unity_6_HDRP_source.unitypackage.meta
 guid: 32a5116d150dabb4bb8bb3ee40ae4eaa
 DefaultImporter:
+========
+guid: 960fcbc9a3249484d87f25104b5d3b31
+NativeFormatImporter:
+>>>>>>>> feature/y-miura:WIA.Client/Assets/99_Users/10_Miura/06_Animetion/Image.controller.meta
   externalObjects: {}
+  mainObjectFileID: 9100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
