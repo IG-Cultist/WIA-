@@ -9,7 +9,8 @@ public class FadeImage : MonoBehaviour
 {
     void Start()
     {
-        this.GetComponent<Image>().color = new Color(0,0,0,0);
+        this.GetComponent<Image>().color = new Color(0,0,0,255);
+        this.GetComponent<Image>().DOFade(0f, 1.5f);
     }
 
     /// <summary>
