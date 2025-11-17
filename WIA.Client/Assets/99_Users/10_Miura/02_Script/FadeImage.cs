@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,21 +7,24 @@ using static Player;
 
 public class FadeImage : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-
+        this.GetComponent<Image>().color = new Color(0,0,0,0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    // フェードアウト終了後の処理
+    /// <summary>
+    /// フェードアウト処理
+    /// </summary>
     public void FadeOut()
     {
-        this .gameObject.SetActive(true);
+        this.GetComponent<Image>().DOFade(1f,1f);
+    }
+
+    /// <summary>
+    /// フェードイン処理
+    /// </summary>
+    public void FadeIn()
+    {
+        this.GetComponent<Image>().DOFade(0f, 3f);
     }
 }

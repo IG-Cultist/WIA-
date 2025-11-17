@@ -2,6 +2,7 @@ using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// プレイヤー処理クラス
@@ -19,11 +20,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] Transform warpPoint; //プレイヤーのワープポイント
 
-    [SerializeField] GameObject image; //フェードに使用するイメージオブジェクト
-    [SerializeField] FadeImage fadeImage;
-
     // 三人称視点カメラ
     [SerializeField] GameObject thirdPersonCamera;
+
+    // フェードイメージスクリプト
+    FadeImage fadeImageScript;
+
+    bool isDead = false;
 
     //プレイヤー状態
     private enum PLAYER_STATE
@@ -48,8 +51,7 @@ public class Player : MonoBehaviour
         this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
         this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
-        image = GameObject.Find("Image");
-        image.SetActive(false);
+        fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
     }
 
     // Update is called once per frame
@@ -67,6 +69,7 @@ public class Player : MonoBehaviour
 
             //生存中の場合
             case PLAYER_STATE.ALIVE:
+                isDead = false;
                 this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
                 // a) 角度指定(v3Angle → trQ)
@@ -109,9 +112,14 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Death()
     {
+        if (isDead) return;
+        isDead = true;
+
         ChangeBodyGravity(true);
 
         this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+
+        Invoke("FadeOut", 0.5f);
 
         hitPoint.SetActive(true);
         animator.enabled = false;
@@ -216,20 +224,10 @@ public class Player : MonoBehaviour
                 return;
             }
 
-
-            if(image !=null)
-            {
-                fadeImage = GetComponent<FadeImage>();
-                image.SetActive(true);
-                fadeImage.FadeOut();
-            }
-
             //プレイヤーの状態を死亡状態にする
             player_State = PLAYER_STATE.DEATH;
 
             deathCnt++;
-
-            //image.SetActive(true);
 
             //2秒後に復活する
             Invoke("RespawnPlayer", 2);
@@ -243,7 +241,7 @@ public class Player : MonoBehaviour
             //プレイヤーの状態を死亡状態にする
             player_State = PLAYER_STATE.DEATH;
 
-            deathCnt ++;
+            deathCnt++;
 
             //2秒後に復活する
             Invoke("RespawnPlayer", 2);
@@ -254,7 +252,15 @@ public class Player : MonoBehaviour
     {
         //プレイヤーの状態を生存状態にする
         player_State = PLAYER_STATE.ALIVE;
+
         // ワープポイントに移動する
         transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+
+        fadeImageScript.FadeIn();
+    }
+
+    void FadeOut()
+    {
+        fadeImageScript.FadeOut();
     }
 }
