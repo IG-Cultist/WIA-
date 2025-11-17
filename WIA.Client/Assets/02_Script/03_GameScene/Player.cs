@@ -2,6 +2,7 @@ using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -43,6 +44,11 @@ public class Player : MonoBehaviour
 
     int deathCnt = 0; //€–S‰ñ”‚Ì•Ï”
 
+    private void Awake()
+    {
+        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
+    }
+
     void Start()
     {
         thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 1;
@@ -52,6 +58,7 @@ public class Player : MonoBehaviour
         this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
+
     }
 
     // Update is called once per frame

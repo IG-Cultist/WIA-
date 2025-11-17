@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/05_Kida/01_Scene/PreGameScene.unity
     guid: 69ef6a3ab0ff04745b943b26f8656215
+  - enabled: 1
+    path: Assets/99_Users/10_Miura/01_Scene/UIScene.unity
+    guid: baea5ee5378ded148853eb38aecb4981
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -7,7 +7,7 @@ public class SceneLoader : MonoBehaviour
 
     private void Awake()
     {
-        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
