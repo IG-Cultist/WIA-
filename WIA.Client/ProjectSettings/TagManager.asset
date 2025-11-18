@@ -13,6 +13,7 @@ TagManager:
   - Container
   - Base
   - Pot
+  - CheckableObject
   layers:
   - Default
   - TransparentFX

@@ -133,6 +133,11 @@ public class ObjectGrabber : MonoBehaviour
                     if (leftClickImage != null) leftClickImage.enabled = false;
                 }
             }
+            else if (hit.collider.CompareTag("CheckableObject")) //調査可能オブジェクトに触れた場合
+            {
+                // 調査を開始する
+                GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckObject(hit.transform.gameObject);
+            }
         }
     }
 
