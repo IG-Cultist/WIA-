@@ -9143,8 +9143,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.28234148, y: -0.000000014901161, z: 0, w: 0.95931405}
-  m_LocalPosition: {x: -3.45, y: 0.553, z: -1.97}
+  m_LocalRotation: {x: 0.36740977, y: -0.44786966, z: 0.20884502, w: 0.7879128}
+  m_LocalPosition: {x: 25.853586, y: 10.1, z: 7.0797105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31249,7 +31249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.035
+      value: 5.929
       objectReference: {fileID: 0}
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -87832,7 +87832,6 @@ MonoBehaviour:
   playerCamera: {fileID: 578081062}
   thirdPersonCamera: {fileID: 1423609425}
   lookDownCamera: {fileID: 0}
-  craneCamera: {fileID: 1526925251}
 --- !u!4 &2096882526
 Transform:
   m_ObjectHideFlags: 0
