@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
 
                 ChangeBodyGravity(false);
 
-                Debug.Log("‚¢‚«‚Ä‚é");
+           
 
                 hitPoint.SetActive(false);
                 animator.enabled = true;
@@ -170,12 +170,12 @@ public class Player : MonoBehaviour
                     {
                         case true:
                             rb.useGravity = true;       //d—Í‚ğON‚É‚·‚é
-                            Debug.Log("ON");
+                     
                             break;
 
                         case false:
                             rb.useGravity = false;      //d—Í‚ğOFF‚É‚·‚é
-                            Debug.Log("OFF");
+ 
                             break;
                     }
 
