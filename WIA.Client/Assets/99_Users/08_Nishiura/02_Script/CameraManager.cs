@@ -14,6 +14,11 @@ public class CameraManager : MonoBehaviour
     // Œ©‰º‚ë‚µ‹“_ƒJƒƒ‰
     [SerializeField] GameObject lookDownCamera;
 
+    void Awake()
+    {
+        //Application.targetFrameRate = 60; //60FPS‚Éİ’è
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

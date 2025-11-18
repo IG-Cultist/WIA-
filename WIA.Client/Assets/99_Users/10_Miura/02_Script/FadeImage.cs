@@ -7,9 +7,11 @@ using static Player;
 
 public class FadeImage : MonoBehaviour
 {
+    CameraManager cameraManager;
     void Start()
     {
         this.GetComponent<Image>().color = new Color(0,0,0,0);
+        cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
     }
 
     /// <summary>
@@ -26,5 +28,7 @@ public class FadeImage : MonoBehaviour
     public void FadeIn()
     {
         this.GetComponent<Image>().DOFade(0f, 3f);
+
+        cameraManager.TurnOnPlayerCam();
     }
 }

@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+
         ChangeBodyGravity(true);
 
         cameraManager.TurnOffPlayerCam();
@@ -269,6 +270,8 @@ public class Player : MonoBehaviour
     void FadeOut()
     {
         fadeImageScript.FadeOut();
+
+        //cameraManager.TurnOnPlayerCam();
     }
 
 }
