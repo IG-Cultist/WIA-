@@ -24,7 +24,7 @@ public class DeliveryManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-         
+
     }
 
     // Update is called once per frame
@@ -42,6 +42,8 @@ public class DeliveryManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && !isCreated)
         {
+            deskList[Random.Range(0, deskList.Count)].transform.GetChild(1).gameObject.SetActive(true);
+
             isCreated = true;
             coffeeObj = Instantiate(coffeePrefabs);
             coffeeObj.transform.position = new Vector3 (-17f, 0.44f, 2.5f);
