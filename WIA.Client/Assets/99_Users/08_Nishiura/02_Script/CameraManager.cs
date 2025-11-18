@@ -18,11 +18,12 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         // ÉJÉÅÉâÇÃóDêÊèáà í≤êÆ
-        thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 0;
-        lookDownCamera.GetComponent<CinemachineCamera>().Priority = 1;
-        playerCamera.GetComponent<CinemachineCamera>().Priority = 10;
+        if(thirdPersonCamera != null) thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 0;
+        if (lookDownCamera != null) lookDownCamera.GetComponent<CinemachineCamera>().Priority = 1;
+        if (playerCamera != null) playerCamera.GetComponent<CinemachineCamera>().Priority = 10;
 
-        TurnOffLookDownCam();
+        if (lookDownCamera != null) TurnOffLookDownCam();
+
         TurnOffPlayerCam();
         TurnOnPlayerCam();
     }
