@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: aecde447066d66646bb0466b4ef9ae8d
-=======
-guid: 293ec72a6c508cf4ea3111e80d10f0ae
->>>>>>> feature/k-kawaguchi
+guid: 64c6ebff200c57d47a4777251903aad8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,8 +93,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< HEAD
-=======
   - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
@@ -112,7 +106,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
->>>>>>> feature/k-kawaguchi
   spriteSheet:
     serializedVersion: 2
     sprites: []
