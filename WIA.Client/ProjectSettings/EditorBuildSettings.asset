@@ -30,5 +30,8 @@ EditorBuildSettings:
     path: Assets/99_Users/05_Kida/01_Scene/PreGameScene.unity
     guid: 69ef6a3ab0ff04745b943b26f8656215
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 18892b957a7b3b24fad4ae87fc9a7aaa, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 897006237833418429acc2a14727e1ed, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: f386682c153a281469f456ac936e2ead, type: 2}
   m_UseUCBPForAssetBundles: 0
