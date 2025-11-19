@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] Transform warpPoint; //リスポーン地点
 
+    [SerializeField] ObjectGrabber grabber;
     //カメラ切り替え用変数
     CameraManager cameraManager;
 
@@ -144,8 +145,17 @@ public class Player : MonoBehaviour
     {
         if (isDead) return;
 
-        
+        /*
+        SEManager.Instance.Play(
+            audioPath: SEPath.DEATH_VOICE, //再生したいオーディオのパス
+            volumeRate: 1,                 //音量の倍率
+            delay: 0,                      //再生されるまでの遅延時間
+            pitch: 1,                      //ピッチ
+            isLoop: false,                 //ループ再生するか
+            callback: null                 //再生終了後の処理
+        );*/
 
+        grabber.Release();
         isDead = true;
 
         isRespawn = false;
