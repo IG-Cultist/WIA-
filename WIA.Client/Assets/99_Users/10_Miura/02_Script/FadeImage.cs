@@ -27,8 +27,10 @@ public class FadeImage : MonoBehaviour
     /// </summary>
     public void FadeIn()
     {
+        cameraManager.TurnOnPlayerCam();
+
         this.GetComponent<Image>().DOFade(0f, 3f);
 
-        cameraManager.TurnOnPlayerCam();
+       
     }
 }

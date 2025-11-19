@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 77958dc19c74bac40a2fb85e0e90b6c6
+=======
+guid: 6ef03477e110ffa4bbc9a3dcc54d9e6c
+>>>>>>> feature/k-kawaguchi
 PrefabImporter:
   externalObjects: {}
   userData: 

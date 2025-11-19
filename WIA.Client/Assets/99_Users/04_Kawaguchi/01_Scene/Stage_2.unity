@@ -8654,7 +8654,7 @@ Transform:
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
   m_LocalRotation: {x: -0.16172893, y: -0.8373193, z: 0.3904484, w: -0.34682885}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: -28.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40908,7 +40908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
   playerCamera: {fileID: 1336583905}
-  thirdPersonCamera: {fileID: 1629177476}
+  thirdPersonCamera: {fileID: 0}
   lookDownCamera: {fileID: 1074032073}
 --- !u!1 &1442842534
 GameObject:
@@ -49013,11 +49013,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628989285}
   m_Mesh: {fileID: -355255188425379839, guid: fa80f29fe098e7349bad09b60a204cb8, type: 3}
---- !u!1 &1629177476 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6943975258449713337, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
-  m_PrefabInstance: {fileID: 617051187}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1632949338
 GameObject:
   m_ObjectHideFlags: 0

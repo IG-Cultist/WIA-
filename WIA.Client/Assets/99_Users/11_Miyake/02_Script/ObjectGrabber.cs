@@ -149,7 +149,7 @@ public class ObjectGrabber : MonoBehaviour
     //==============================================
     // 離す処理
     //==============================================
-    void Release()
+    public void Release()
     {
         if (grabbedRb == null) return;
 
