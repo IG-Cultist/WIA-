@@ -1,26 +1,26 @@
 /// ------------------------------
-/// コーヒースクリプト
-/// Author:Nishiura Date:25/11/10
+/// デスクスクリプト
+/// Author:Nishiura Date:25/11/19
 /// ------------------------------
 using UnityEngine;
 
-public class Coffee : MonoBehaviour
+public class Desk : MonoBehaviour
 {
     // デリバリーマネージャ
     DeliveryManager deliveryManager;
 
-    private void Start()
+    void Start()
     {
         // デリバリーマネージャをシーン内から取得
         deliveryManager = GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.transform.tag == "Ground")
+        if(other.transform.tag == "Item")
         {
-            // コーヒー紛失処理を呼ぶ
-            deliveryManager.LostCoffee();
+            // コーヒー受け渡し処理を呼ぶ
+            deliveryManager.ServeCoffee();
         }
     }
 }

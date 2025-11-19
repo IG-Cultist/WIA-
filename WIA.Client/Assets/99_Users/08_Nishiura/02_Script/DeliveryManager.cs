@@ -21,33 +21,55 @@ public class DeliveryManager : MonoBehaviour
     // コーヒー生存判定
     public bool isCreated = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
+    int deskNum;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            deskList[0].transform.GetChild(0).gameObject.SetActive(true);
-
-            // 配達完了数が5未満の場合完了数を加算
-            if(deliveredCount < 4) deliveredCount++;
-            else GoNextStage(); // 5の場合、次のシーンへ移動
-        }
-
-
         if (Input.GetKeyDown(KeyCode.F) && !isCreated)
         {
-            deskList[Random.Range(0, deskList.Count)].transform.GetChild(1).gameObject.SetActive(true);
+            // ランダムな数値を生成
+            deskNum = Random.Range(0, deskList.Count);
+            // 生成した数値のデスクを指定し、コーヒー要求アイコンを表示
+            deskList[deskNum].transform.GetChild(1).gameObject.SetActive(true);
 
+            // 生成済みとする
             isCreated = true;
+            // コーヒーを生成する
             coffeeObj = Instantiate(coffeePrefabs);
             coffeeObj.transform.position = new Vector3 (-17f, 0.44f, 2.5f);
         }
+    }
+
+    /// <summary>
+    /// コーヒー受け渡し処理
+    /// </summary>
+    public void ServeCoffee()
+    {
+        if (!isCreated) return; // コーヒーがない場合、処理しない
+        isCreated = false;  // 未生成とする
+
+        // デスクにコーヒーを表示し、コーヒー要求アイコンを消去
+        deskList[deskNum].transform.GetChild(0).gameObject.SetActive(true);
+        deskList[deskNum].transform.GetChild(1).gameObject.SetActive(false);
+
+        // 手元のコーヒーオブジェクトを破棄
+        Destroy(coffeeObj);
+
+        // 配達完了数が5未満の場合完了数を加算
+        if (deliveredCount < 4) deliveredCount++;
+        else GoNextStage(); // 5の場合、次のシーンへ移動
+    }
+
+    /// <summary>
+    /// コーヒー紛失処理
+    /// </summary>
+    public void LostCoffee()
+    {
+        // 未生成とする
+        isCreated = false;  
+        // コーヒー要求アイコンを消去
+        deskList[deskNum].transform.GetChild(1).gameObject.SetActive(false);
     }
 
     void GoNextStage()
