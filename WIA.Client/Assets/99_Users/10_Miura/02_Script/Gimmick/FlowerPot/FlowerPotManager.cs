@@ -6,6 +6,7 @@ public class FlowerPotManager : MonoBehaviour
     [SerializeField] GameObject potObj; //植木鉢オブジェクト
 
     public GameObject[] randomSpawnPoint; //植木鉢がスポーンする場所のリスト
+    private GameObject[] useSpawnList; //既に使用しているスポーン場所のリスト
     bool isPot = false; //植木鉢が存在するかどうかの変数
     int potCnt; //植木鉢がいくつあるかの変数
 
@@ -36,7 +37,7 @@ public class FlowerPotManager : MonoBehaviour
                 }
                 if(potCnt<=2)
                 {
-                    isPot= false;
+                    isPot= false; //植木鉢が三個存在しない状態
                 }
             }
         }
@@ -47,9 +48,22 @@ public class FlowerPotManager : MonoBehaviour
     /// </summary>
     private void GeneratePot()
     {
-        //生成位置を決める
-        int genetNumber = Random.Range(0, randomSpawnPoint.Length); //生成位置をrandomSpawnPointの中から決める
-        Instantiate(potObj, randomSpawnPoint[genetNumber].transform.position, randomSpawnPoint[genetNumber].transform.rotation); //植木鉢を生成する
+        if(potCnt<=2)
+        {//potCntが2以下だったら新しく生成する
+         //生成位置を決める
+
+            int generatNumber = Random.Range(0, randomSpawnPoint.Length); //生成位置をrandomSpawnPointの中から決める
+            int useNumber=useSpawnList.Length;
+
+            for(int i = 0; i< generatNumber;i++)
+            {//randomSpawnPointの要素数分繰り返し
+
+
+                //Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //植木鉢を生成する
+            }
+
+            //Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //植木鉢を生成する
+        }
 
         //Vector3 genetratePos = new Vector3(0, 5.5f, 0);
         //Instantiate(potObj, genetratePos, Quaternion.identity);

@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
 
         cameraManager.TurnOffPlayerCam();
 
-        Invoke("FadeOut", 0.5f);
+        Invoke("FadeOut", 0.8f);
 
         hitPoint.SetActive(true);
         animator.enabled = false;
