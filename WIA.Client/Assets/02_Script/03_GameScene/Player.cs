@@ -1,49 +1,54 @@
+using KanKikuchi.AudioManager;
 using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 /// <summary>
-/// ƒvƒŒƒCƒ„[ˆ—ƒNƒ‰ƒX
+/// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 /// </summary>
 public class Player : MonoBehaviour
 {
     [SerializeField] GameObject child;
 
-    [SerializeField] GameObject hitPoint;    //Player‚Ì“–‚½‚è”»’è
+    [SerializeField] GameObject hitPoint;    //Player(lagdoll)å½“ãŸã‚Šåˆ¤å®š
     [SerializeField] Animator animator;
 
     //
     [SerializeField] Rigidbody hip;
     [SerializeField] Rigidbody leftLeg;
 
-    [SerializeField] Transform warpPoint; //ƒvƒŒƒCƒ„[‚Ìƒ[ƒvƒ|ƒCƒ“ƒg
+    [SerializeField] Transform warpPoint; //ãƒªã‚¹ãƒãƒ¼ãƒ³åœ°ç‚¹
 
-    // ƒJƒƒ‰ƒ}ƒl[ƒWƒƒ[ƒXƒNƒŠƒvƒg
+    //ã‚«ãƒ¡ãƒ©åˆ‡ã‚Šæ›¿ãˆç”¨å¤‰æ•°
     CameraManager cameraManager;
 
-    // ƒtƒF[ƒhƒCƒ[ƒWƒXƒNƒŠƒvƒg
+    //ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨å¤‰æ•°
     FadeImage fadeImageScript;
 
-    // €–S”»’è
-    bool isDead = false;
+    //æ­»äº¡åˆ¤å®š
+    public bool isDead = false;
+    //ãƒªã‚¹ãƒãƒ¼ãƒ³åˆ¤å®š
+    public bool isRespawn = true;
 
-    //ƒvƒŒƒCƒ„[ó‘Ô
-    private enum PLAYER_STATE
+    //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½
+    public enum PLAYER_STATE
     {
-        STOP = 0,             //’â~’†(¶¬‘O)
-        ALIVE,                //¶‘¶’†
-        DEATH,                //€–S’†
-        EMOTE,                //ƒGƒ‚[ƒg’†
-        ERROR,                //ƒGƒ‰[(Ø’f)
+        STOP = 0,             //ï¿½ï¿½~ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½O)
+        ALIVE,                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        DEATH,                //ï¿½ï¿½ï¿½Sï¿½ï¿½
+        EMOTE,                //ï¿½Gï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½
+        STRICKER,             //ï¿½ï¿½Ğï¿½
+        ERROR,                //ï¿½Gï¿½ï¿½ï¿½[(ï¿½Ø’f)
     }
 
-    [SerializeField] PLAYER_STATE player_State;
+    [SerializeField] public PLAYER_STATE player_State;
     List<Transform> allChildren;
 
-    int deathCnt = 0; //€–S‰ñ”‚Ì•Ï”
+    int deathCnt = 0; //ï¿½ï¿½ï¿½Sï¿½ñ”‚Ì•Ïï¿½
 
     private void Awake()
     {
@@ -53,7 +58,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
-        // ƒtƒF[ƒhƒCƒ[ƒW‚©‚çƒXƒNƒŠƒvƒg‚ğæ“¾
+        // ï¿½tï¿½Fï¿½[ï¿½hï¿½Cï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½Xï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½ï¿½ï¿½æ“¾
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
     }
 
@@ -65,18 +70,21 @@ public class Player : MonoBehaviour
 
         switch (player_State)
         {
-            //¶¬‘O‚Ìó‘Ô
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Ìï¿½ï¿½
             case PLAYER_STATE.STOP:
 
                 break;
 
-            //¶‘¶’†‚Ìê‡
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìê‡
             case PLAYER_STATE.ALIVE:
+
+                this.gameObject.GetComponent<CapsuleCollider>().enabled = true;
+
                 isDead = false;
                 //cameraManager.TurnOnPlayerCam();
 
-                // a) Šp“xw’è(v3Angle ¨ trQ)
-                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z²‚ğ10‹‚Éİ’è parent
+                //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§’åº¦ã‚’åŒæœŸ
+                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Zï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½Éİ’ï¿½ parent
 
                 ChangeBodyGravity(false);
 
@@ -85,24 +93,43 @@ public class Player : MonoBehaviour
                 hitPoint.SetActive(false);
                 animator.enabled = true;
 
-                //‚±‚Ì‰º‚É¶‘¶’†‚Ìˆ—‚ğ‘‚­
+                //ä»¥ä¸‹ã«ç”Ÿå­˜ä¸­ã®å‡¦ç†ã‚’è¨˜å…¥
+                //----------------------------------------------------
 
+                if(!isRespawn)
+                {
+                    if (player_State == PLAYER_STATE.STRICKER) return;
 
+                    
+                    //åŠ é€Ÿåº¦ã‚’ãƒªã‚»ãƒƒãƒˆ
+                    Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
+
+                    rb.linearVelocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
+
+                    child.transform.position = this.gameObject.transform.position;
+                    this.gameObject.transform.position = child.transform.position;
+
+                    isRespawn = true;
+                    Debug.Log("ãƒªã‚»ãƒƒãƒˆå®Œäº†");
+                }
 
 
                 break;
 
-            //€–S’†‚Ìê‡
+            //ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½Ìê‡
             case PLAYER_STATE.DEATH:
+               
+
                 Death();
                 break;
 
-            //ƒGƒ‚[ƒgÄ¶’†‚Ìê‡
+            //ï¿½Gï¿½ï¿½ï¿½[ï¿½gï¿½Äï¿½ï¿½ï¿½ï¿½Ìê‡
             case PLAYER_STATE.EMOTE:
                 Emote(1);
                 break;
 
-            //ƒGƒ‰[‚Ìê‡
+            //ï¿½Gï¿½ï¿½ï¿½[ï¿½Ìê‡
             case PLAYER_STATE.ERROR:
 
                 break;
@@ -111,13 +138,17 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// €–SŠÖ”
+    /// ï¿½ï¿½ï¿½Sï¿½Öï¿½
     /// </summary>
     private void Death()
     {
         if (isDead) return;
+
+        
+
         isDead = true;
 
+        isRespawn = false;
 
         ChangeBodyGravity(true);
 
@@ -127,59 +158,59 @@ public class Player : MonoBehaviour
 
         hitPoint.SetActive(true);
         animator.enabled = false;
-
+        /*
         if(deathCnt>=3)
         {
             Initiate.Fade("30_ResultScene",Color.black ,3);
-        }
+        }*/
     }
 
     /// <summary>
-    /// ƒGƒ‚[ƒgŠÖ”
+    /// ï¿½Gï¿½ï¿½ï¿½[ï¿½gï¿½Öï¿½
     /// </summary>
     private void Emote(int animationID)
     {
         ChangeBodyGravity(false);
-        //“–‚½‚è”»’è‚ğˆê“I‚Éíœ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½ï¿½ï¿½êï¿½Iï¿½Éíœ
         hitPoint.SetActive(false);
 
-        //ˆø”‚Åæ“¾‚µ‚½ƒAƒjƒ[ƒVƒ‡ƒ“ID‚ÅƒAƒjƒ[ƒVƒ‡ƒ“Ä¶(‘g‚İ‚Ş‚Æ‚«‚É‘‚«Š·‚¦‚Ä‚Ë)
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Åæ“¾ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½IDï¿½ÅƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Äï¿½(ï¿½gï¿½İï¿½ï¿½Ş‚Æ‚ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½)
     }
 
     /// <summary>
-    /// d—ÍØ‚è‘Ö‚¦ŠÖ”(ƒRƒŒ–³‚¢‚Æ‰Á‘¬“xŒÀŠE“Ë”j‚·‚é)
+    /// ï¿½dï¿½ÍØ‚ï¿½Ö‚ï¿½ï¿½Öï¿½(ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‰ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Eï¿½Ë”jï¿½ï¿½ï¿½ï¿½)
     /// </summary>
     /// <param name="isChange"></param>
     private void ChangeBodyGravity(bool isChange)
     {
-        // true‚ğ“n‚·‚Æ”ñƒAƒNƒeƒBƒu‚ÈƒIƒuƒWƒFƒNƒg‚à‚·‚×‚Äæ“¾‚µ‚Ü‚·
+        // trueï¿½ï¿½nï¿½ï¿½ï¿½Æ”ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½ÈƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½×‚Äæ“¾ï¿½ï¿½ï¿½Ü‚ï¿½
         allChildren = GetAllChildTransforms(this.gameObject.transform, true);
 
-        // æ“¾‚µ‚½ƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg‚ğ•\¦‚·‚é—á
+        // ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ìƒï¿½ï¿½Xï¿½gï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         foreach (Transform child in allChildren)
         {
-            // q‘·ƒIƒuƒWƒFƒNƒg©g‚àŠÜ‚Ü‚ê‚é‚½‚ßA©g‚ğœŠO‚·‚éê‡‚Íif•¶‚Å”»’è‚µ‚Ü‚·
+            // ï¿½qï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ü‚Ü‚ï¿½é‚½ï¿½ßAï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½ifï¿½ï¿½ï¿½Å”ï¿½ï¿½è‚µï¿½Ü‚ï¿½
             if (child != this.transform)
             {
                 Rigidbody rb = child.GetComponent<Rigidbody>();
 
-                //Rigidbody‚ª•t‚¢‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Äd—ÍØ‘Ö
+                //Rigidbodyï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½É‘Î‚ï¿½ï¿½Ädï¿½ÍØ‘ï¿½
                 if (rb != null)
                 {
                     switch (isChange)
                     {
                         case true:
-                            rb.useGravity = true;       //d—Í‚ğON‚É‚·‚é
+                            rb.useGravity = true;       //ï¿½dï¿½Í‚ï¿½ONï¿½É‚ï¿½ï¿½ï¿½
                      
                             break;
 
                         case false:
-                            rb.useGravity = false;      //d—Í‚ğOFF‚É‚·‚é
+                            rb.useGravity = false;      //ï¿½dï¿½Í‚ï¿½OFFï¿½É‚ï¿½ï¿½ï¿½
  
                             break;
                     }
 
-                    //Debug.Log("q‘·ƒIƒuƒWƒFƒNƒg–¼: " + child.gameObject.name);
+                    //Debug.Log("ï¿½qï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½: " + child.gameObject.name);
                 }
             }
         }
@@ -193,7 +224,7 @@ public class Player : MonoBehaviour
         var results = new List<Transform>();
         if (parent == null) return results;
 
-        // ƒXƒ^ƒbƒN‚ğg‚Á‚½”½•œi[‚³—Dæj
+        // ï¿½Xï¿½^ï¿½bï¿½Nï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½Dï¿½ï¿½j
         var stack = new Stack<Transform>();
         for (int i = 0; i < parent.childCount; i++)
             stack.Push(parent.GetChild(i));
@@ -206,7 +237,7 @@ public class Player : MonoBehaviour
             {
                 results.Add(t);
 
-                // q‚ğƒXƒ^ƒbƒN‚É’Ç‰Ái‘·ˆÈ‰º‚ğŠÜ‚ß‚éj
+                // ï¿½qï¿½ï¿½ï¿½Xï¿½^ï¿½bï¿½Nï¿½É’Ç‰ï¿½ï¿½iï¿½ï¿½ï¿½È‰ï¿½ï¿½ï¿½ï¿½Ü‚ß‚ï¿½j
                 for (int i = 0; i < t.childCount; i++)
                     stack.Push(t.GetChild(i));
             }
@@ -227,17 +258,25 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Abyss"))
         {
             if(player_State==PLAYER_STATE.DEATH)
-            {//Šù‚É€–Só‘Ô‚¾‚Á‚½‚ç
-                //ˆÈ~‚Ìˆ—‚ğÀs‚µ‚È‚¢
+            {//ï¿½ï¿½ï¿½Éï¿½ï¿½Sï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                //ï¿½È~ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½
                 return;
             }
 
-            //ƒvƒŒƒCƒ„[‚Ìó‘Ô‚ğ€–Só‘Ô‚É‚·‚é
+            //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½Ô‚ï¿½ï¿½ï¿½ï¿½Sï¿½ï¿½Ô‚É‚ï¿½ï¿½ï¿½
             player_State = PLAYER_STATE.DEATH;
 
+            SEManager.Instance.Play(
+            audioPath: SEPath.FALL, //å†ç”Ÿã—ãŸã„ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã®ãƒ‘ã‚¹
+                volumeRate: 1,                 //éŸ³é‡ã®å€ç‡
+                delay: 0,                      //å†ç”Ÿã•ã‚Œã‚‹ã¾ã§ã®é…å»¶æ™‚é–“
+                pitch: 1,                      //ãƒ”ãƒƒãƒ
+                isLoop: false,                 //ãƒ«ãƒ¼ãƒ—å†ç”Ÿã™ã‚‹ã‹
+                callback: null                 //å†ç”Ÿçµ‚äº†å¾Œã®å‡¦ç†
+            );
             deathCnt++;
 
-            //2•bŒã‚É•œŠˆ‚·‚é
+            //2ï¿½bï¿½ï¿½É•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Invoke("RespawnPlayer", 2);
         }
     }
@@ -246,23 +285,34 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Container"))
         {
-            //ƒvƒŒƒCƒ„[‚Ìó‘Ô‚ğ€–Só‘Ô‚É‚·‚é
+            SEManager.Instance.Play(
+            audioPath: SEPath.DEATH, //å†ç”Ÿã—ãŸã„ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã®ãƒ‘ã‚¹
+             volumeRate: 1,                 //éŸ³é‡ã®å€ç‡
+             delay: 0,                      //å†ç”Ÿã•ã‚Œã‚‹ã¾ã§ã®é…å»¶æ™‚é–“
+             pitch: 1,                      //ãƒ”ãƒƒãƒ
+             isLoop: false,                 //ãƒ«ãƒ¼ãƒ—å†ç”Ÿã™ã‚‹ã‹
+             callback: null                 //å†ç”Ÿçµ‚äº†å¾Œã®å‡¦ç†
+        );
+
+            //æ­»äº¡çŠ¶æ…‹ã«å¤‰æ›´
             player_State = PLAYER_STATE.DEATH;
 
             deathCnt++;
 
-            //2•bŒã‚É•œŠˆ‚·‚é
+            //äºŒç§’å¾Œã«ãƒªã‚¹ãƒãƒ¼ãƒ³
             Invoke("RespawnPlayer", 2);
         }
     }
 
     void RespawnPlayer()
     {
-        //ƒvƒŒƒCƒ„[‚Ìó‘Ô‚ğ¶‘¶ó‘Ô‚É‚·‚é
-        player_State = PLAYER_STATE.ALIVE;
 
-        // ƒ[ƒvƒ|ƒCƒ“ƒg‚ÉˆÚ“®‚·‚é
-        transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+        // ï¿½ï¿½ï¿½[ï¿½vï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+        //transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+        this.gameObject.transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+
+        //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½Ô‚ğ¶‘ï¿½ï¿½ï¿½Ô‚É‚ï¿½ï¿½ï¿½
+        player_State = PLAYER_STATE.ALIVE;
 
         fadeImageScript.FadeIn();
     }

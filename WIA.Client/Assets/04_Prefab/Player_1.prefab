@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5511674118253521602}
   m_Layer: 7
   m_Name: Human
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,7 +232,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &3073836126651313508
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -835,7 +835,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &6803285493648035393
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -996,7 +996,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &1285562085186750502
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 1118508841441069538}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1332,7 +1332,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &2441009399368658534
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1463,7 +1463,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &3759677896667213379
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1817,7 +1817,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &4098257373602451915
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2042,7 +2042,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &8765273050834676150
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2238,7 +2238,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &7786345022508146928
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2497,7 +2497,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &5991527629734970360
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -3425,6 +3425,8 @@ MonoBehaviour:
   hip: {fileID: 0}
   leftLeg: {fileID: 0}
   warpPoint: {fileID: 0}
+  isDead: 0
+  isFly: 0
   player_State: 1
 --- !u!1 &5264057758234078295
 GameObject:
@@ -3730,7 +3732,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &7587263583418449683
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -3893,7 +3895,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &1725549833959886913
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -4024,7 +4026,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &7923987727477790838
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -4743,7 +4745,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &5864302414844954480
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -5978,7 +5980,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!144 &919804288625867247
 CharacterJoint:
   m_ObjectHideFlags: 0
