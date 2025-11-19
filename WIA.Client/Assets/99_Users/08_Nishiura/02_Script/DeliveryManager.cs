@@ -55,6 +55,7 @@ public class DeliveryManager : MonoBehaviour
         coffeeMachine.GetComponent<BoxCollider>().enabled = false;
         // 生成した数値のデスクを指定し、コーヒー要求アイコンを表示
         deskList[deskNum].transform.GetChild(1).gameObject.SetActive(true);
+        deskList[deskNum].transform.GetComponent<BoxCollider>().enabled = true;
         // コーヒーを生成する
         coffeeObj = Instantiate(coffeePrefabs);
         coffeeObj.transform.position = new Vector3(-17f, 0.44f, 2.5f);
@@ -77,6 +78,7 @@ public class DeliveryManager : MonoBehaviour
         // デスクにコーヒーを表示し、コーヒー要求アイコンを消去
         deskList[deskNum].transform.GetChild(0).gameObject.SetActive(true);
         deskList[deskNum].transform.GetChild(1).gameObject.SetActive(false);
+        deskList[deskNum].transform.GetComponent<BoxCollider>().enabled = false;
 
         // 手元のコーヒーオブジェクトを破棄
         Destroy(coffeeObj);
@@ -102,6 +104,7 @@ public class DeliveryManager : MonoBehaviour
         isCreated = false;  
         // コーヒー要求アイコンを消去
         deskList[deskNum].transform.GetChild(1).gameObject.SetActive(false);
+        deskList[deskNum].transform.GetComponent<BoxCollider>().enabled = false;
     }
 
     void GoNextStage()
