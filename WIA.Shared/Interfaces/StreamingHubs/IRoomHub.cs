@@ -201,7 +201,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// オブジェクト所有権変更
         /// </summary>
         /// <returns></returns>
-        Task OwnershipSwapObjectAsync(int uniqueId,int joinOrder);
+        Task OwnershipSwapObjectAsync(string uniqueId,int joinOrder);
 
         /// <summary>
         /// ゲーム終了同期
