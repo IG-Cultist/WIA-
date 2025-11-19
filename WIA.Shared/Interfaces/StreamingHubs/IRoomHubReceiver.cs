@@ -228,7 +228,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         /// <param name="uniqueId"></param>
         /// <param name="joinOrder"></param>
-        void OnOwnershipSwapObject(int uniqueId,int joinOrder);
+        void OnOwnershipSwapObject(string uniqueId,int joinOrder);
 
         #endregion
         #endregion

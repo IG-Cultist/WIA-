@@ -3105,7 +3105,7 @@ GameObject:
   - component: {fileID: 7534841442416822557}
   m_Layer: 0
   m_Name: Player_1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3118,8 +3118,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5255917015044651565}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.63, y: -1.56, z: 0}
+  m_LocalRotation: {x: 0, y: 0.9477684, z: 0, w: -0.31895933}
+  m_LocalPosition: {x: 1, y: 2, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3128,7 +3128,7 @@ Transform:
   - {fileID: 991482655927426898}
   - {fileID: 5392870606925689701}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -142.8, z: 0}
 --- !u!136 &7671307733060223308
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3213,7 +3213,6 @@ MonoBehaviour:
   hip: {fileID: 0}
   leftLeg: {fileID: 0}
   warpPoint: {fileID: 0}
-  thirdPersonCamera: {fileID: 0}
   player_State: 1
 --- !u!1 &5264057758234078295
 GameObject:
@@ -4470,7 +4469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.15
-  isGrounded: 0
+  isGrounded: 1
 --- !u!1 &7238086746792637187
 GameObject:
   m_ObjectHideFlags: 0

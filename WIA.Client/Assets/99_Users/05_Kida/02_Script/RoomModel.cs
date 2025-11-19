@@ -151,7 +151,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action< Vector3,Quaternion, string> OnUpdatedObject { get; set; }
 
     //オブジェクト所有権変更通知
-    public Action<int,int> OnOwnershipSwapObjectSyn {  get; set; }
+    public Action<string,int> OnOwnershipSwapObjectSyn {  get; set; }
 
     #endregion
 
@@ -588,7 +588,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnUpdatedObject(pos,rot, uniqueId);
     }
 
-    public void OnOwnershipSwapObject(int uniqueId, int joinOrder)
+    public void OnOwnershipSwapObject(string uniqueId, int joinOrder)
     {
         OnOwnershipSwapObjectSyn(uniqueId, joinOrder);
     }
@@ -815,7 +815,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// オブジェクト所有権変更
     /// </summary>
     /// <returns></returns>
-    public async UniTask ObjectOwnershipSwapAsync(int uniqueId, int joinOrder)
+    public async UniTask ObjectOwnershipSwapAsync(string uniqueId, int joinOrder)
     {
         await roomHub.OwnershipSwapObjectAsync(uniqueId,joinOrder);
     }

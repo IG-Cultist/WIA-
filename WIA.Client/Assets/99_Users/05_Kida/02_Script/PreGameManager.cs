@@ -3,6 +3,7 @@ using NUnit;
 using Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
 using System.Xml;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -20,10 +21,24 @@ public class PreGameManager : MonoBehaviour
     [SerializeField] GameObject mainPlayerPrefab; //操作プレイヤー
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
-    [SerializeField]List<GameObject> syncGameObjectList;//同期用オブジェクト初期設定
+    [SerializeField] List<GameObject> syncObjList;//同期用オブジェクト初期設定
+    public static List<GameObject> syncGameObjectList;//同期用オブジェクト
+    public static List<GameObject> SyncGameObjectList
+    {
+        get { return syncGameObjectList; }
+    }
     GameObject player; //操作プレイヤー
     GameObject subplayer; //非操作プレイヤー
-    Dictionary<string,GameObject> objList = new Dictionary<string, GameObject>(); //オブジェクトリスト
+    private static Dictionary<string,GameObject> objList = new Dictionary<string, GameObject>(); //生成オブジェクトリスト
+    public static Dictionary<string,GameObject> ObjList 
+    {
+        get { return objList; } 
+    }
+    private static string spawnObjId;//生成オブジェクトID
+    public static string SpawnObjId
+    {
+        get { return spawnObjId; }
+    }
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,6 +47,9 @@ public class PreGameManager : MonoBehaviour
 
         if (RoomModel.Instance)
         {//オンラインだったら
+
+            //既存オブジェクト初期設定
+            syncGameObjectList = syncObjList;
 
             //オブジェクト更新を行う
             InvokeRepeating("UpdateObj", 0.1f, 0.1f);
@@ -57,12 +75,21 @@ public class PreGameManager : MonoBehaviour
             {
                 if (user.Key == RoomModel.Instance.ConnectionId)
                 {
-                    player = Instantiate(mainPlayerPrefab);
+                    player = mainPlayerPrefab;
+                    player.name = "Main";
+                    Instantiate(player);
+                    player.transform.position = Vector3.zero;
                     InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
                 }
                 else
                 {
-                    subplayer = Instantiate(subPlayerPrefab);
+                    subplayer = subPlayerPrefab;
+                    subplayer.name = "Sub";
+                    //subplayer.transform.GetComponent<Player>().enabled = false;
+                    //subplayer.transform.Find("First Person Camera").GetComponent<Camera>().enabled = false;
+                    //subplayer.transform.Find("First Person Camera").GetComponent<CinemachineCamera>().enabled = false;
+                    subplayer.transform.position = new Vector3(1,2,0);
+                    Instantiate(subplayer);
                 }
             }
         }
@@ -90,7 +117,7 @@ public class PreGameManager : MonoBehaviour
         //Sボタンでオブジェクト1の権限取得
         if(Input.GetKeyDown("p"))
         {
-            ObjectOwnershipSwap(0, RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
+            ObjectOwnershipSwap("0", RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
         }
 #endif
     }
@@ -128,7 +155,7 @@ public class PreGameManager : MonoBehaviour
     /// <summary>
     /// オブジェクトの所有権変更
     /// </summary>
-    public async void ObjectOwnershipSwap(int uniqueId,int joinOrder)
+    public async void ObjectOwnershipSwap(string uniqueId,int joinOrder)
     {
         await RoomModel.Instance.ObjectOwnershipSwapAsync(uniqueId, joinOrder);
     }
@@ -195,6 +222,7 @@ public class PreGameManager : MonoBehaviour
     /// <param name="id"></param>
     void OnSpawnedObjectSyn(Vector3 pos,string id)
     {
+        spawnObjId = id;
         GameObject gameObject = Instantiate(objPrefab);
         gameObject.transform.position = pos;
         objList.Add(id, gameObject);
@@ -230,23 +258,40 @@ public class PreGameManager : MonoBehaviour
     /// </summary>
     /// <param name="uniqueId"></param>
     /// <param name="joinOrder"></param>
-    void OnOwnershipSwapObjectSyn(int uniqueId,int joinOrder)
+    void OnOwnershipSwapObjectSyn(string uniqueId,int joinOrder)
     {
+        //既存オブジェクトの場合
         for (int i = 0; i < syncGameObjectList.Count; i++)
         {
-            if (i == uniqueId)
+            if (i.ToString() == uniqueId)
             {
                 if (joinOrder == RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
                     syncGameObjectList[i].AddComponent<Rigidbody>();
                     Debug.Log("オブジェクトの権限を得ました");
+                    return;
                 }
                 else
                 {
                     Destroy(syncGameObjectList[i].GetComponent<Rigidbody>());
                     Debug.Log("オブジェクトの権限を失いました");
+                    return;
                 }
             }
+        }
+
+        //生成オブジェクトの場合
+        if (joinOrder == RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
+        {
+            ObjList[uniqueId].AddComponent<Rigidbody>();
+            Debug.Log("オブジェクトの権限を得ました");
+            return;
+        }
+        else
+        {
+            Destroy(ObjList[uniqueId].GetComponent<Rigidbody>());
+            Debug.Log("オブジェクトの権限を失いました");
+            return;
         }
     }
 

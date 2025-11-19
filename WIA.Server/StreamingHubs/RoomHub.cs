@@ -507,7 +507,7 @@ namespace WIA.Server.StreamingHubs
             }
         }
 
-        public async Task OwnershipSwapObjectAsync(int uniqueId, int joinOrder)
+        public async Task OwnershipSwapObjectAsync(string uniqueId, int joinOrder)
         {
             lock (roomContextRepository)
             {
