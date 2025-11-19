@@ -58,11 +58,6 @@ public class FlowerPotManager : MonoBehaviour
             for(int i = 0; i< generatNumber;i++)
             {//randomSpawnPoint‚Ì—v‘f”•ªŒJ‚è•Ô‚µ
 
-                if (isPot==false)
-                {
-
-                    Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ð¶¬‚·‚é
-                }
 
                 //Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ð¶¬‚·‚é
             }
