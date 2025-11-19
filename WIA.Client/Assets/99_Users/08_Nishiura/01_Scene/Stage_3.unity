@@ -28812,7 +28812,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6528301, g: 0.6528301, b: 0.6528301, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -36163,9 +36163,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_1
       objectReference: {fileID: 0}
+    - target: {fileID: 6656393855517500913, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7534841442416822557, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: thirdPersonCamera
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791059134214579617, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+      propertyPath: m_Depth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8291308493662655051, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: isGrounded

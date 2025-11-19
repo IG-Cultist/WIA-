@@ -4,6 +4,7 @@
 /// ------------------------------
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeliveryManager : MonoBehaviour
 {
@@ -80,9 +81,11 @@ public class DeliveryManager : MonoBehaviour
         // 手元のコーヒーオブジェクトを破棄
         Destroy(coffeeObj);
 
-        // 配達完了数が5未満の場合完了数を加算
-        if (deliveredCount < 4) deliveredCount++;
-        else GoNextStage(); // 5の場合、次のシーンへ移動
+        // 配達完了数を加算
+        deliveredCount++;
+        GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deliveredCount + "/5";
+
+        if (deliveredCount >=5) GoNextStage(); // 5の場合、次のシーンへ移動
     }
 
     /// <summary>

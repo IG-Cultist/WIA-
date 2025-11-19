@@ -44869,7 +44869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlowerPotManager
   potObj: {fileID: 1876497399}
-  moveSpeed: 0
+  randomSpawnPoint: []
 --- !u!1 &1497480201
 GameObject:
   m_ObjectHideFlags: 0
