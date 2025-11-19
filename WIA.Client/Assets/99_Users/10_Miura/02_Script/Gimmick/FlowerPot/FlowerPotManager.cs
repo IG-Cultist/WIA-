@@ -53,13 +53,21 @@ public class FlowerPotManager : MonoBehaviour
          //¶¬ˆÊ’u‚ğŒˆ‚ß‚é
 
             int generatNumber = Random.Range(0, randomSpawnPoint.Length); //¶¬ˆÊ’u‚ğrandomSpawnPoint‚Ì’†‚©‚çŒˆ‚ß‚é
-            
-            for(int i = 0; i< generatNumber;i++)
-            {
+            int useNumber=useSpawnList.Length;
 
+            for(int i = 0; i< generatNumber;i++)
+            {//randomSpawnPoint‚Ì—v‘f”•ªŒJ‚è•Ô‚µ
+
+                if (isPot==false)
+                {
+
+                    Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ğ¶¬‚·‚é
+                }
+
+                //Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ğ¶¬‚·‚é
             }
 
-            Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ğ¶¬‚·‚é
+            //Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ğ¶¬‚·‚é
         }
 
         //Vector3 genetratePos = new Vector3(0, 5.5f, 0);
