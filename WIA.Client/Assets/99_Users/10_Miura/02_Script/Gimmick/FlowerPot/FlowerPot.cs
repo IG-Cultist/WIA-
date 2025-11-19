@@ -1,14 +1,19 @@
 using DG.Tweening;
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class FlowerPot : MonoBehaviour
 {
-    [SerializeField] GameObject potObj;
+    [SerializeField] public GameObject potObj;
     [SerializeField] GameObject potFragmentObj;
     [SerializeField] float moveSpeed;
+
+    //public List<GameObject> potList = new List<GameObject>(); //A–Ø”«‚Ì¶¬ŒÂ”‚ğŠi”[‚·‚éƒŠƒXƒg
 
     Vector3 mouse;
     Vector3 target;
@@ -78,6 +83,7 @@ public class FlowerPot : MonoBehaviour
 
             //A–Ø”«‚ğÁ‚·
             Destroy(this.gameObject);
+            
 
             for (int i = 0; i < fragment.transform.childCount; i++)
             {//potFragmentObj‚Ìq‚Ì”‚¾‚¯ƒ‹[ƒv
@@ -115,6 +121,10 @@ public class FlowerPot : MonoBehaviour
 
         await Task.Delay(6000); //6•b‘Ò‚Â@
         Destroy(fragment.gameObject);@//”j•Ğ‚ğÁ‚·
+    }
+
+    public static void Craked()
+    {
     }
 
     private void ChangeFirstCamera()
