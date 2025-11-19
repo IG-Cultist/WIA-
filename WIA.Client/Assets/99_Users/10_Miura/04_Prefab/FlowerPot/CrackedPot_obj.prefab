@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2337633241158695673}
   - component: {fileID: 1814775260069787009}
   m_Layer: 0
-  m_Name: CrackedPot_onj
+  m_Name: CrackedPot_obj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

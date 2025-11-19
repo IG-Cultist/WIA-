@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 public class TaskCheck : MonoBehaviour
 {
     int cubeCnt; //—v‘f‚Ì•Ï”
-    int checkCnt = 2; //–Ú•W‚Ì—v‘f”
+    int checkCnt = 7; //–Ú•W‚Ì—v‘f”
     [SerializeField] List<int> cubeList = new List<int>(); //intŒ^‚ÌList
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
