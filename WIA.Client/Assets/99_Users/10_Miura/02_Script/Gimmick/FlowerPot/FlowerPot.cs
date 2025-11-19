@@ -27,20 +27,37 @@ public class FlowerPot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (isGrab) 
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+          
+        }
+        else 
+        {
+            Cursor.visible = false;
+           
+        } 
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             isGrab = true;
+            
             cameraManager.TurnOffPlayerCam();
             cameraManager.TurnOnLookDownCam();
+           
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
             isGrab = false;
+            Cursor.visible = false;
             this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            cameraManager.TurnOnPlayerCam();
-            cameraManager.TurnOffLookDownCam();
+
+            //接地してからn秒後に一人称に戻る
+            CancelInvoke();
+            Invoke("ChangeFirstCamera", 1.5f);
+
         }
 
         if (isGrab)
@@ -52,7 +69,7 @@ public class FlowerPot : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private async void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag=="Base")
         {//Baseタグのオブジェクトに触れたら
@@ -70,7 +87,13 @@ public class FlowerPot : MonoBehaviour
                 DestroyFragment(fragment);
                 FadeFragment(fragment.transform.GetChild(i)); //破片をフェードアウトさせる
             }
+
+           
         }
+
+        
+
+        
     }
 
     /// <summary>
@@ -88,7 +111,16 @@ public class FlowerPot : MonoBehaviour
     /// <param name="fragment"></param>
     public async void DestroyFragment(GameObject fragment)
     {
+       
+
         await Task.Delay(6000); //6秒待つ　
         Destroy(fragment.gameObject);　//破片を消す
+    }
+
+    private void ChangeFirstCamera()
+    {
+        Debug.Log("Invoke通ってきたy");
+        cameraManager.TurnOnPlayerCam();
+        cameraManager.TurnOffLookDownCam();
     }
 }
