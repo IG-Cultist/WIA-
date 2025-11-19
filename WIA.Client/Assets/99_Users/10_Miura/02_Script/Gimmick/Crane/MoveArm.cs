@@ -18,11 +18,11 @@ public class MoveArm : MonoBehaviour
 
         if (Input.GetKey(KeyCode.R))
         {
-            armTransform.DORotate(new Vector3(0, 35, 0), 8);
+            armTransform.DORotate(new Vector3(0, 45, 0), 30);
         }
         if (Input.GetKey(KeyCode.L))
         {
-            armTransform.DORotate(new Vector3(0, -35, 0), 8);
+            armTransform.DORotate(new Vector3(0, -45, 0), 30);
         }
     }
 }
