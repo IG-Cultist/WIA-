@@ -17,20 +17,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scene/03_GameScene.unity
     guid: 660ed6c9575e8ab48963848fc9c9b712
+  - enabled: 0
+    path: Assets/01_Scene/04_Result.unity
+    guid: 0df5c10491f61e740b73cc7906190d84
+  - enabled: 0
+    path: Assets/01_Scene/20_OptionScene.unity
+    guid: 658124f4dbf3c7f4fafe20b930bed7d0
   - enabled: 1
-    path: Assets/01_Scene/04_DictionaryScene.unity
-    guid: 7aa61c3276bf5554f8cbdcbe896dd410
-  - enabled: 1
-    path: Assets/01_Scene/05_ProfileScene.unity
-    guid: dbf73a7142747734db8b9ac7185996dc
-  - enabled: 1
-    path: Assets/01_Scene/30_ResultScene.unity
-    guid: b182221bb8027ac478fd54bd5dbf1f50
-  - enabled: 1
-    path: Assets/99_Users/10_Miura/01_Scene/UIScene.unity
-    guid: baea5ee5378ded148853eb38aecb4981
+    path: Assets/99_Users/08_Nishiura/01_Scene/Stage_1.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/99_Users/05_Kida/01_Scene/PreGameScene.unity
-    guid: 0550deca19749524d8946c53a1e004cd
-  m_configObjects: {}
+    guid: 69ef6a3ab0ff04745b943b26f8656215
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 18892b957a7b3b24fad4ae87fc9a7aaa, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 897006237833418429acc2a14727e1ed, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: f386682c153a281469f456ac936e2ead, type: 2}
   m_UseUCBPForAssetBundles: 0
