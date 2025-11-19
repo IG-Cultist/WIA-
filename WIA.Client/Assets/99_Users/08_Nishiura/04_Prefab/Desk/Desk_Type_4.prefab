@@ -1543,6 +1543,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8934017176366452413}
+  - component: {fileID: 9134859839799195835}
+  - component: {fileID: 20121298285155150}
   m_Layer: 0
   m_Name: Desk_Type_4
   m_TagString: Untagged
@@ -1578,6 +1580,39 @@ Transform:
   - {fileID: 2846493650285695858}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &9134859839799195835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5722158381923646740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.085878, y: 0.27051482, z: 1.834219}
+  m_Center: {x: -0.41825885, y: 0.09642852, z: -0.79969335}
+--- !u!114 &20121298285155150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5722158381923646740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471357e463ce6e4408a6f9059023fd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Desk
 --- !u!1 &5850871425163171598
 GameObject:
   m_ObjectHideFlags: 0
