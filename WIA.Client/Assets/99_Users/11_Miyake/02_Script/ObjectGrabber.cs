@@ -138,6 +138,11 @@ public class ObjectGrabber : MonoBehaviour
                 // 調査を開始する
                 GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckObject(hit.transform.gameObject);
             }
+            else if (hit.collider.CompareTag("CoffeeMachine")) //コーヒーマシンに触れた場合
+            {
+                // コーヒーを生成する
+                GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>().DripCoffee();
+            }
         }
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1000857365936934771}
   - component: {fileID: 1544636198667268021}
   - component: {fileID: 5415111087477699159}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cup_Coffee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 1185460174650863724}
   - component: {fileID: 6605129678222734560}
   - component: {fileID: 7595856806757766740}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 5333080684640911448}
   - component: {fileID: 7973398014715837952}
   - component: {fileID: 174385526260698275}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 7233239074857698622}
   - component: {fileID: 4414062444151703590}
   - component: {fileID: 3978172443022907332}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cup_Plate
   m_TagString: Item
   m_Icon: {fileID: 0}
