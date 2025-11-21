@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 539896565864643099}
   - component: {fileID: 340464997364834178}
   - component: {fileID: 5047128059480943114}
+  - component: {fileID: 732317389163124807}
   m_Layer: 0
   m_Name: Box_03
   m_TagString: Item
@@ -251,7 +252,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.240125, y: -1.454, z: 4.421}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.8000001, y: 0.8000001, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8883534792642704400}
@@ -338,6 +339,18 @@ MonoBehaviour:
   warpPoint: {fileID: 0}
   minPoint: {fileID: 0}
   maxPoint: {fileID: 0}
+--- !u!114 &732317389163124807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635350875230820492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1691916269855013035
 GameObject:
   m_ObjectHideFlags: 0

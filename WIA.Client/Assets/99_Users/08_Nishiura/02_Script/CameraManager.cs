@@ -22,6 +22,8 @@ public class CameraManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerCamera = GameObject.Find("Main(Clone)").transform.Find("First Person Camera").gameObject;
+
         // ƒJƒƒ‰‚Ì—Dæ‡ˆÊ’²®
         if(thirdPersonCamera != null) thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 0;
         if (lookDownCamera != null) lookDownCamera.GetComponent<CinemachineCamera>().Priority = 1;

@@ -3,24 +3,24 @@ using UnityEngine;
 public class SynchronizationObject : MonoBehaviour
 {
     string id;
-    PreGameManager gameManager = new PreGameManager();
+    OnlineGameManager gameManager = new OnlineGameManager();
 
     private void Start()
     {
         if (!RoomModel.Instance) return;
-        gameManager = GameObject.Find("PreGameManager").GetComponent<PreGameManager>();
-        for (int i = 0; i < PreGameManager.SyncGameObjectList.Count; i++)
+        gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
+        for (int i = 0; i < OnlineGameManager.SyncGameObjectList.Count; i++)
         {
-            if (PreGameManager.SyncGameObjectList[i].name == this.gameObject.name)
+            if (OnlineGameManager.SyncGameObjectList[i].name == this.gameObject.name)
             {
                 id = i.ToString(); break;
             }
 
-            if (PreGameManager.ObjList.Count == 0) continue;
+            if (OnlineGameManager.ObjList.Count == 0) continue;
 
-            if (PreGameManager.ObjList[PreGameManager.SpawnObjId].name == this.gameObject.name)
+            if (OnlineGameManager.ObjList[OnlineGameManager.SpawnObjId].name == this.gameObject.name)
             {
-                id = PreGameManager.SpawnObjId; break;
+                id = OnlineGameManager.SpawnObjId; break;
             }
         }
     }

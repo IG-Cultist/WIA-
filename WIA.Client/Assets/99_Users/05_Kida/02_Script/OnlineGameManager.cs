@@ -11,13 +11,20 @@ using UnityEngine.Scripting;
 using static Shared.Interfaces.StreamingHubs.EnumManager;
 using static UnityEngine.Rendering.DebugUI.Table;
 
-public class PreGameManager : MonoBehaviour
+public class OnlineGameManager : MonoBehaviour
 {
     #region 基本
     [Header("基本設定")]
     PlayerData playerData;
     int tasks = 0;      //タスクの数
-    public Vector3 spawnPos;
+    Vector3 spawnPos = Vector3.zero;
+    [SerializeField] Transform spawnPointP1; //プレイヤー1の初期配置場所
+    [SerializeField] Transform spawnPointP2; //プレイヤー2の初期配置場所
+    private static Transform mainSpawnPoint; //操作プレイヤーの初期配置
+    public static Transform MainSpawnPoint
+    {
+        get { return mainSpawnPoint; }
+    }
     [SerializeField] GameObject mainPlayerPrefab; //操作プレイヤー
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
@@ -39,6 +46,7 @@ public class PreGameManager : MonoBehaviour
     {
         get { return spawnObjId; }
     }
+
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,21 +83,31 @@ public class PreGameManager : MonoBehaviour
             {
                 if (user.Key == RoomModel.Instance.ConnectionId)
                 {
-                    player = mainPlayerPrefab;
+                    player = Instantiate(mainPlayerPrefab);
                     player.name = "Main";
-                    Instantiate(player);
-                    player.transform.position = Vector3.zero;
+                    if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+                    {
+                        player.transform.position = spawnPointP1.position;
+                    }
+                    else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+                    {
+                        player.transform.position = spawnPointP2.position;
+                    }
+                    mainSpawnPoint = player.transform;
                     InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
                 }
                 else
                 {
-                    subplayer = subPlayerPrefab;
+                    subplayer = Instantiate(subPlayerPrefab);
                     subplayer.name = "Sub";
-                    //subplayer.transform.GetComponent<Player>().enabled = false;
-                    //subplayer.transform.Find("First Person Camera").GetComponent<Camera>().enabled = false;
-                    //subplayer.transform.Find("First Person Camera").GetComponent<CinemachineCamera>().enabled = false;
-                    subplayer.transform.position = new Vector3(1,2,0);
-                    Instantiate(subplayer);
+                    if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+                    {
+                        subplayer.transform.position = spawnPointP2.position;
+                    }
+                    else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+                    {
+                        subplayer.transform.position = spawnPointP1.position;
+                    }
                 }
             }
         }
@@ -147,7 +165,7 @@ public class PreGameManager : MonoBehaviour
         for (int i=0;i<syncGameObjectList.Count;i++)
         {
             if (syncGameObjectList[i].GetComponent<Rigidbody>() == null) continue;
-            await RoomModel.Instance.UpdateObjectAsync(syncGameObjectList[i].transform.position,
+            await RoomModel.Instance.UpdateObjectAsync(syncGameObjectList[i].transform.localPosition,
                 syncGameObjectList[i].transform.rotation, i.ToString());
         }
     }
@@ -175,42 +193,9 @@ public class PreGameManager : MonoBehaviour
     /// <param name="rot"></param>
     void OnUpdatePlayerSyn(Vector3 pos,Quaternion rot)
     {
-        //subplayer.transform.DOLocalMove(pos, 0.1f).SetEase(Ease.Linear).OnUpdate(() =>
-        //{
-        //    Rigidbody rb = subplayer.GetComponent<Rigidbody>();
-        //});
         Rigidbody rb = subplayer.GetComponent<Rigidbody>();
 
-        rb.DOMove(pos, 0.1f).SetEase(Ease.Linear).OnUpdate(() =>
-        {
-        });
-        //Vector3 prevPos = subplayer.transform.position;
-        //DOTween.To(
-        //    () => 0f,
-        //    t =>
-        //    {
-        //        Vector3 newPos = Vector3.Lerp(subplayer.transform.position, pos, t);
-        //        subplayer.GetComponent<Rigidbody>().MovePosition(newPos);
-        //        subplayer.GetComponent<Rigidbody>().linearVelocity = (newPos - prevPos) / Time.fixedDeltaTime;
-        //        prevPos = newPos;
-        //    }, 1f, 0.1f)
-        //    .SetEase(Ease.OutQuad);
-
-        //Vector3 startPos = subplayer.GetComponent<Rigidbody>().position;
-        //Vector3 targetPos = pos;
-        //float duration = 0.1f;
-        //float forceMultiplier = 500f;
-        //DOTween.To(() => 0f, t =>
-        //{
-        //    Vector3 remaining = targetPos - subplayer.GetComponent<Rigidbody>().position;
-        //    subplayer.GetComponent<Rigidbody>().AddForce(remaining * forceMultiplier * Time.fixedDeltaTime, ForceMode.Force);
-        //}, 1f, duration)
-        //.SetEase(Ease.OutQuad)
-        //.OnComplete(() =>
-        //{
-        //    subplayer.GetComponent<Rigidbody>().MovePosition(targetPos);
-        //    subplayer.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        //});
+        rb.DOMove(pos, 0.1f).SetEase(Ease.Linear);
 
         subplayer.transform.DORotate(rot.eulerAngles, 0.1f);
     }

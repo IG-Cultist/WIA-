@@ -44,12 +44,6 @@ namespace Shared.Interfaces.StreamingHubs
         Task LeavedAsync(bool isEnd);
 
         /// <summary>
-        /// キャラクター変更
-        /// </summary>
-        /// <returns></returns>
-        Task ChangeCharacterAsync(int CharacterId);
-
-        /// <summary>
         /// 準備完了
         /// Author:Nishiura
         /// </summary>
@@ -68,95 +62,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// <returns></returns>
         Task UpdatePlayerAsync(Vector3 pos,Quaternion rot);
 
-        /// <summary>
-        /// マスタークライアントの更新
-        /// Author:木田晃輔
-        /// </summary>
-        /// <param name="masterClientData"></param>
-        /// <returns></returns>
-        Task UpdateMasterClientAsync(MasterClientData masterClientData);
 
-        /// <summary>
-        /// プレイヤー死亡
-        /// return : 消費した後の蘇生アイテムの残り所持数, 実際に死亡したかどうか
-        /// </summary>
-        /// <returns></returns>
-        //Task<PlayerDeathResult> PlayerDeadAsync();
-
-        /// <summary>
-        /// アイテム獲得
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="itemType">アイテムの種類</param>
-        /// <param name="itemID">識別ID(文字列)</param>
-        /// <returns></returns>
-        //Task GetItemAsync(EnumManager.ITEM_TYPE itemType, string itemID);
-
-        /// <summary>
-        /// 発射物生成
-        /// </summary>
-        /// <param name="type">発射物の種類</param>
-        /// <param name="spawnPos">生成位置</param>
-        /// <param name="shootVec">発射ベクトル</param>
-        /// <returns></returns>
-        //Task ShootBulletsAsync(params ShootBulletData[] shootBulletDatas);
-
-        /// <summary>
-        /// ビームエフェクトのアクティブ制御
-        /// </summary>
-        /// <param name="isActive"></param>
-        /// <returns></returns>
-        //Task BeamEffectActiveAsync(bool isActive);
-        #endregion
-        #region 敵関連
-        /// <summary>
-        /// 敵生成
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="enemyData">敵の情報</param>
-        /// <param name="pos">敵の生成位置</param>
-        /// <returns></returns>
-        //Task SpawnEnemyAsync(List<SpawnEnemyData> spawnEnemyDatas);
-
-        /// <summary>
-        /// 敵体力増減
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="enemID">敵識別ID</param>
-        /// <param name="giverATK">PLの攻撃力</param>
-        /// <param name="debuffType">デバフの種類</param>
-        /// <returns></returns>
-        //Task EnemyHealthAsync(string enemID, float giverATK, List<EnumManager.DEBUFF_TYPE> debuffType);
-
-        /// <summary>
-        /// 敵の被ダメージ同期処理   プレイヤーによるダメージ以外
-        /// </summary>
-        /// <param name="enemID">敵識別ID</param>
-        /// <param name="dmgAmount">適用させるダメージ量</param>
-        /// <returns></returns>
-        //Task ApplyDamageToEnemyAsync(string enemID, int dmgAmount);
-
-        /// <summary>
-        /// 指定した敵を削除する
-        /// </summary>
-        /// <param name="enemId"></param>
-        /// <returns></returns>
-        //Task DeleteEnemyAsync(string enemId);
-
-        /// <summary>
-        /// 未選択のステータス強化選択のリスト取得
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        //Task<Dictionary<Guid, List<StatusUpgrateOptionData>>> GetUpgradeGroupsAsync();
-
-        /// <summary>
-        /// ステータス強化選択
-        /// </summary>
-        /// <param name="conID">接続ID</param>
-        /// <param name="upgradeOpt">強化項目</param>
-        /// <returns></returns>
-        //Task ChooseUpgrade(Guid optionsKey, STAT_UPGRADE_OPTION upgradeOpt);
         #endregion
         #region ゲーム内UI、仕様関連
 
