@@ -35,21 +35,21 @@ public class Player : MonoBehaviour
     //リスポーン判定
     public bool isRespawn = true;
 
-    //�v���C���[���
+    //プレイヤーステート
     public enum PLAYER_STATE
     {
-        STOP = 0,             //��~��(�����O)
-        ALIVE,                //������
-        DEATH,                //���S��
-        EMOTE,                //�G���[�g��
-        STRICKER,             //��Ў�
-        ERROR,                //�G���[(�ؒf)
+        STOP = 0,             //停止中(生成前)
+        ALIVE,                //生存状態
+        DEATH,                //死亡状態
+        EMOTE,                //エモート状態
+        STRICKER,             //罹災者状態
+        ERROR,                //上記非該当状態
     }
 
     [SerializeField] public PLAYER_STATE player_State;
     List<Transform> allChildren;
 
-    int deathCnt = 0; //���S�񐔂̕ϐ�
+    int deathCnt = 0; //死亡回数
 
     private void Awake()
     {
