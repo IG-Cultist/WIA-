@@ -46390,15 +46390,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.41851
+      value: 5.26
       objectReference: {fileID: 0}
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.551
+      value: 15.22
       objectReference: {fileID: 0}
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.28
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -46434,7 +46434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7534841442416822557, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: warpPoint
