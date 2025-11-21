@@ -42,14 +42,14 @@ public class FlowerPot : MonoBehaviour
            
         } 
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            isGrab = true;
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    isGrab = true;
             
-            cameraManager.TurnOffPlayerCam();
-            cameraManager.TurnOnLookDownCam();
+        //    cameraManager.TurnOffPlayerCam();
+        //    cameraManager.TurnOnLookDownCam();
            
-        }
+        //}
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -99,6 +99,15 @@ public class FlowerPot : MonoBehaviour
         }
     }
 
+    public void GrabPot()
+    {
+        isGrab = true;
+
+        cameraManager.TurnOffPlayerCam();
+        cameraManager.TurnOnLookDownCam();
+
+    }
+
     /// <summary>
     /// 破片をフェードアウトさせる処理
     /// </summary>
@@ -114,8 +123,6 @@ public class FlowerPot : MonoBehaviour
     /// <param name="fragment"></param>
     public async void DestroyFragment(GameObject fragment)
     {
-       
-
         await Task.Delay(6000); //6秒待つ　
         Destroy(fragment.gameObject);　//破片を消す
     }

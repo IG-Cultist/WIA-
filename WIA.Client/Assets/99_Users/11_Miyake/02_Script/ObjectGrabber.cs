@@ -143,6 +143,10 @@ public class ObjectGrabber : MonoBehaviour
                 // コーヒーを生成する
                 GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>().DripCoffee();
             }
+            else if (hit.collider.CompareTag("Pot")) //植木鉢に触れた場合
+            {
+                GameObject.Find("FlowerPot_obj(Clone)").GetComponent<FlowerPot>().GrabPot();
+            }
         }
     }
 
