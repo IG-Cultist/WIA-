@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/05_Kida/01_Scene/PreGameScene.unity
     guid: 0550deca19749524d8946c53a1e004cd
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Stage_1_K.unity
+    guid: f0ad0c010618e6a49a6b4294a2a18bc6
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

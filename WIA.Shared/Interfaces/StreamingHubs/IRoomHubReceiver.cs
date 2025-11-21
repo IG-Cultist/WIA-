@@ -53,13 +53,6 @@ namespace Shared.Interfaces.StreamingHubs
 
         void OnLeave(Dictionary<Guid,JoinedUser> user,Guid targetUser);
 
-
-        /// <summary>
-        /// キャラクター変更通知
-        /// Author:Kida
-        /// </summary>
-        void OnChangeCharacter(Guid guid , int characterId);
-
         /// <summary>
         /// 準備完了通知
         /// </summary>
@@ -82,103 +75,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         void OnUpdatePlayer(Vector3 pos,Quaternion rot);
 
-        /// <summary>
-        /// マスタークライアントの更新通知
-        /// Author:木田晃輔
-        /// </summary>
-        /// <param name="masterClientData"></param>
-        void OnUpdateMasterClient(MasterClientData masterClientData);
 
-        /// <summary>
-        /// プレイヤー死亡通知
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name=")">プレイヤーID</param>
-        void OnPlayerDead(Guid conID);
-
-        /// <summary>
-        /// 発射物の生成通知
-        /// </summary>
-        /// <param name="type">発射物の種類</param>
-        /// <param name="spawnPos">生成位置</param>
-        /// <param name="shootVec">発射ベクトル</param>
-        void OnShootBullets(params ShootBulletData[] shootBulletDatas);
-
-        /// <summary>
-        /// ステータス更新通知
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="characterStatus"></param>
-        /// <param name="prsData"></param>
-        //void OnUpdateStatus(CharacterStatusData characterStatus, PlayerRelicStatusData prsData);
-
-        /// <summary>
-        /// ビームエフェクトのアクティブ通知
-        /// </summary>
-        /// <param name="conID"></param>
-        /// <param name="isActive"></param>
-        void OnBeamEffectActive(Guid conID, bool isActive);
-
-        #endregion
-        #region 敵関連
-
-        /// <summary>
-        /// 敵生成通知
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="enemyData">敵情報</param>
-        /// <param name="pos">敵のスポーン位置</param>
-        void OnSpawnEnemy(List<SpawnEnemyData> spawnEnemyDatas);
-
-        /// <summary>
-        /// 敵体力増減通知
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="enemDmgData">敵被弾データ</param>
-        void OnEnemyHealth(EnemyDamegeData enemDmgData);
-
-        /// <summary>
-        /// 指定した敵の情報削除通知
-        /// </summary>
-        /// <param name="enemId"></param>
-        void OnDeleteEnemy(string enemId);
-
-        #endregion
-        #region レリック関連
-
-        /// <summary>
-        /// レリック生成通知
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="relicDatas">レリックリスト</param>
-        void OnDropRelic(Dictionary<string, DropRelicData>relicDatas);
-        #endregion
-        #region 端末関連
-        /// <summary>
-        /// 端末起動通知
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="termID">端末識別ID</param>
-        void OnBootTerminal(int termID);
-
-        /// <summary>
-        /// ジャンブル結果通知
-        /// </summary>
-        /// <param name="relics"></param>
-        void OnTerminalJumble(List<DropRelicData> relics);
-
-        /// <summary>
-        /// 端末結果通知
-        /// </summary>
-        /// <param name="termID">端末識別ID</param>
-        /// <param name="result">端末結果</param>
-        void OnTerminalsSuccess(int termID);
-
-        /// <summary>
-        /// 端末失敗通知
-        /// </summary>
-        /// <param name="termID"></param>
-        void OnTerminalFailure(int termID);
         #endregion
         #region ゲーム内UI、仕様
 
@@ -234,11 +131,6 @@ namespace Shared.Interfaces.StreamingHubs
         #endregion
 
         /// <summary>
-        /// マスタークライアントの変更通知
-        /// </summary>
-        void OnChangeMasterClient();
-
-        /// <summary>
         /// ゲーム終了通知
         /// </summary>
         /// <param name="result"></param>
@@ -254,24 +146,5 @@ namespace Shared.Interfaces.StreamingHubs
         /// <param name="nextLevelExp">レベルアップに必要なEXP</param>
         void OnGetItem(Guid conId, string itemID, int nowLevel, int nowExp, int nextLevelExp);
 
-        #region 不要になりそうなAPI
-
-        #region ゲーム内
-        #region プレイヤー関連
-
-        /// <summary>
-        /// レベルアップ通知
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="level">レベル</param>
-        /// <param name="nowExp">現在の経験値</param>
-        /// <param name="characterStatusDataList">プレイヤーステータスリスト</param>
-        /// <param name="statusOptionList">強化選択肢リスト</param>
-        //void OnLevelUp(int level, int nowExp, int nextExp,CharacterStatusData updatedStatusData, Guid optionsKey, List<StatusUpgrateOptionData> statusOptionList);
-
-        #endregion
-        #endregion
-
-        #endregion
     }
 }

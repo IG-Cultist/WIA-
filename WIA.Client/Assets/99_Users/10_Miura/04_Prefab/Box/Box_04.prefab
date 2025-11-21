@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8133583941163337549}
   - component: {fileID: 8203941020279916271}
   - component: {fileID: 4353734154460540215}
+  - component: {fileID: 1344015685844457843}
   m_Layer: 0
   m_Name: Box_04
   m_TagString: Item
@@ -108,6 +109,18 @@ MonoBehaviour:
   warpPoint: {fileID: 0}
   minPoint: {fileID: 0}
   maxPoint: {fileID: 0}
+--- !u!114 &1344015685844457843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298335041520325924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &802455233604136400
 GameObject:
   m_ObjectHideFlags: 0

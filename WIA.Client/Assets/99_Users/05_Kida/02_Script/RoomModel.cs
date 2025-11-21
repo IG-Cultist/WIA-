@@ -375,90 +375,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         IsMaster = true;
     }
 
-    /// <summary>
-    /// マスタークライアントの更新通知
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <param name="masterClientData"></param>
-    public void OnUpdateMasterClient(MasterClientData masterClientData)
-    {
-        OnUpdateMasterClientSyn(masterClientData);
-    }
-
-    /// <summary>
-    /// プレイヤーのステータス更新通知
-    /// </summary>
-    public void OnUpdateStatus(CharacterStatusData characterStatus, PlayerRelicStatusData prsData)
-    {
-        OnUpdateStatusSyn(characterStatus, prsData);
-    }
-
-    /// <summary>
-    /// プレイヤーダウン通知
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <param name="playerID"></param>
-    public void OnPlayerDead(Guid playerID)
-    {
-        OnPlayerDeadSyn(playerID);
-    }
-
-    /// <summary>
-    /// プレイヤーのレベルアップ通知
-    /// Aughter:木田晃輔
-    /// </summary>
-    public void OnLevelUp(int level, int nowExp, int nextLvExp, CharacterStatusData updatedStatusData, Guid optionsKey, List<StatusUpgrateOptionData> statusOptionList)
-    {
-        OnLevelUpSyn(level, nowExp, nextLvExp, updatedStatusData, optionsKey, statusOptionList);
-    }
-
-    /// <summary>
-    /// 発射物の生成通知
-    /// Aughter:木田晃輔
-    /// </summary>
-    public void OnShootBullets(params ShootBulletData[] shootBulletDatas)
-    {
-        OnShootedBullet(shootBulletDatas.ToList());
-    }
-
-    /// <summary>
-    /// 敵の生成通知
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <param name="enemyData"></param>
-    /// <param name="pos"></param>
-    public void OnSpawnEnemy(List<SpawnEnemyData> spawnEnemyDatas)
-    {
-        OnSpawndEnemy(spawnEnemyDatas);
-    }
-
-    /// <summary>
-    /// 敵体力増減通知
-    /// Aughter:木田晃輔
-    /// </summary>
-    public void OnEnemyHealth(EnemyDamegeData enemyDamegeData)
-    {
-        OnEnemyHealthSyn(enemyDamegeData);
-    }
-
-    /// <summary>
-    /// 指定した敵を削除する通知
-    /// </summary>
-    /// <param name="enemId"></param>
-    public void OnDeleteEnemy(string enemId)
-    {
-        OnDeleteEnemySyn(enemId);
-    }
-
-    /// <summary>
-    /// ビームエフェクトのアクティブ通知
-    /// </summary>
-    /// <param name="conID"></param>
-    /// <param name="isActive"></param>
-    public void OnBeamEffectActive(Guid conID, bool isActive)
-    {
-        OnBeamEffectActived(conID, isActive);
-    }
 
     #endregion
 
@@ -578,16 +494,35 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnAdvancedStageSyn();
     }
 
+    /// <summary>
+    /// オブジェクト生成通知
+    /// Author;木田晃輔
+    /// </summary>
+    /// <param name="spawnPos"></param>
+    /// <param name="uniqueId"></param>
     public void OnSpawnObject(Vector3 spawnPos, string uniqueId)
     {
         OnSpawnedObjectSyn(spawnPos, uniqueId);
     }
 
+    /// <summary>
+    /// オブジェクト更新通知
+    /// Author;木田晃輔
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="rot"></param>
+    /// <param name="uniqueId"></param>
     public void OnUpdateObject(Vector3 pos,Quaternion rot, string uniqueId)
     {
         OnUpdatedObject(pos,rot, uniqueId);
     }
 
+    /// <summary>
+    /// オブジェクト所有権変更通知
+    /// Author;木田晃輔
+    /// </summary>
+    /// <param name="uniqueId"></param>
+    /// <param name="joinOrder"></param>
     public void OnOwnershipSwapObject(string uniqueId, int joinOrder)
     {
         OnOwnershipSwapObjectSyn(uniqueId, joinOrder);
@@ -608,20 +543,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// <returns></returns>
     public async UniTask JoinedAsync(int userId)
     {
-        //if(MatchingManager.JoinMode != "create")
-        //{
-        //    var handler = new YetAnotherHttpHandler() { Http2Only = true };
-        //    var channel = GrpcChannel.ForAddress(ServerURL, new GrpcChannelOptions() { HttpHandler = handler });
-        //    var client = MagicOnionClient.Create<IRoomService>(channel);
-
-        //    var roomData = await client.GetRoom(userName);
-        //    if (roomData == null)
-        //    {
-        //        OnFailedJoinSyn(3);
-        //        return;
-        //    }
-
-        //}
         this.ConnectionId = await roomHub.GetConnectionIdAsync();
         joinedUserList = await roomHub.JoinedAsync(userId);
         if (joinedUserList == null) return;
@@ -647,17 +568,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         //自分をリストから消す
         joinedUserList.Clear();
     }
-
-    /// <summary>
-    /// キャラクター変更
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <returns></returns>
-    public async UniTask ChangeCharacterAsync(int characterId)
-    {
-        await roomHub.ChangeCharacterAsync(characterId);
-    }
-
     /// <summary>
     /// 準備完了同期
     /// </summary>
@@ -666,21 +576,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     {
         await roomHub.ReadyAsync(characterId);
     }
-
-    /// <summary>
-    /// スタート
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <param name="hostName"></param>
-    /// <returns></returns>
-    //public async Task StartRoomAsync(string hostName)
-    //{
-    //    var handler = new YetAnotherHttpHandler() { Http2Only = true };
-    //    var channel = GrpcChannel.ForAddress(ServerURL, new GrpcChannelOptions() { HttpHandler = handler });
-    //    var client = MagicOnionClient.Create<IRoomService>(channel);
-
-    //    await client.StartRoom(hostName);
-    //}
     #endregion
 
     #region ゲーム内
@@ -697,28 +592,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     }
 
     /// <summary>
-    /// マスタークライアントの更新同期
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <param name="masterClient"></param>
-    /// <returns></returns>
-    public async UniTask UpdateMasterClientAsync(MasterClientData masterClient)
-    {
-        await roomHub.UpdateMasterClientAsync(masterClient);
-    }
-
-    /// <summary>
-    /// プレイヤーダウン同期
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <param name="playerID"></param>
-    /// <returns></returns>
-    //public async UniTask<PlayerDeathResult> PlayerDeadAsync()
-    //{
-       //return await roomHub.PlayerDeadAsync();
-    //}
-
-    /// <summary>
     /// アイテム獲得
     /// Author:Nishiura
     /// </summary>
@@ -729,20 +602,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     {
         //await roomHub.GetItemAsync(itemType, itemID);
     }
-
-    /// <summary>
-    /// 発射物の生成
-    /// </summary>
-    /// <param name="type">発射物の種類</param>
-    /// <param name="spawnPos">生成位置</param>
-    /// <param name="shootVec">発射ベクトル</param>
-    /// <returns></returns>
-    public async UniTask ShootBulletAsync(params ShootBulletData[] shootBulletDatas)
-    {
-        //await roomHub.ShootBulletsAsync(shootBulletDatas);
-    }
-
-
     #endregion
 
     #region 敵関連
