@@ -127,9 +127,16 @@ public class Player : MonoBehaviour
 
             //�G���[�g�Đ����̏ꍇ
             case PLAYER_STATE.EMOTE:
+                //プレイヤーとプレイヤーオブジェクトの角度を同期
+                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z����10���ɐݒ� parent
                 Emote(1);
                 break;
 
+            case PLAYER_STATE.STRICKER:
+
+                //プレイヤーとプレイヤーオブジェクトの角度を同期
+                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z����10���ɐݒ� parent
+                break;
             //�G���[�̏ꍇ
             case PLAYER_STATE.ERROR:
 
