@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Xml;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Scripting;
@@ -194,8 +195,11 @@ public class OnlineGameManager : MonoBehaviour
         Rigidbody rb = subplayer.GetComponent<Rigidbody>();
 
         rb.DOMove(pos, 0.1f).SetEase(Ease.Linear);
+        rb.transform.GetChild(0).DOMove(pos, 0.1f).SetEase(Ease.Linear);
 
         subplayer.transform.DORotate(rot.eulerAngles, 0.1f);
+        subplayer.transform.GetChild(0).DORotate(rot.eulerAngles, 0.1f);
+
     }
 
     /// <summary>
@@ -254,7 +258,7 @@ public class OnlineGameManager : MonoBehaviour
                     Debug.Log("オブジェクトの権限を得ました");
                     return;
                 }
-                else
+                else if(joinOrder != RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
                     Destroy(syncObjList[i].GetComponent<Rigidbody>());
                     Debug.Log("オブジェクトの権限を失いました");

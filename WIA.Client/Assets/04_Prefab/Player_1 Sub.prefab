@@ -2806,7 +2806,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &8582433757478233362
 MonoBehaviour:
@@ -2826,6 +2826,9 @@ MonoBehaviour:
   hip: {fileID: 0}
   leftLeg: {fileID: 0}
   warpPoint: {fileID: 0}
+  grabber: {fileID: 0}
+  isDead: 0
+  isRespawn: 1
   player_State: 1
 --- !u!114 &-2281548578500776977
 MonoBehaviour:

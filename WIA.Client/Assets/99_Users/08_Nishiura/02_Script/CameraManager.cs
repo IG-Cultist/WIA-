@@ -22,7 +22,11 @@ public class CameraManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //メインキャラクターのカメラを取る
         playerCamera = GameObject.Find("Main(Clone)").transform.Find("First Person Camera").gameObject;
+
+        //カメラが入った状態でのみ通す
+        if(playerCamera != null)
 
         // カメラの優先順位調整
         if(thirdPersonCamera != null) thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 0;
