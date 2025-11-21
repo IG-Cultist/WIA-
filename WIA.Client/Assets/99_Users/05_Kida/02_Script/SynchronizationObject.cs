@@ -9,9 +9,10 @@ public class SynchronizationObject : MonoBehaviour
     {
         if (!RoomModel.Instance) return;
         gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
-        for (int i = 0; i < OnlineGameManager.SyncGameObjectList.Count; i++)
+        var synObjList = gameManager.GetSynObj();
+        for (int i = 0; i < synObjList.Count; i++)
         {
-            if (OnlineGameManager.SyncGameObjectList[i].name == this.gameObject.name)
+            if (synObjList[i].gameObject == this.gameObject)
             {
                 id = i.ToString(); break;
             }
