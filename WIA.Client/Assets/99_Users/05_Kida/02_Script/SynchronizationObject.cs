@@ -29,7 +29,7 @@ public class SynchronizationObject : MonoBehaviour
     {
         if (!RoomModel.Instance) return;
 
-        if (collision.collider.tag == "Player")
+        if (collision.collider.name == "Main")
         {
             gameManager.ObjectOwnershipSwap(id.ToString(), RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
         }
