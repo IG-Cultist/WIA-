@@ -1,5 +1,6 @@
 using DG.Tweening;
 using NUnit;
+using NUnit.Framework;
 using Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
 using System.Xml;
@@ -29,11 +30,6 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
     [SerializeField] List<GameObject> syncObjList;//同期用オブジェクト初期設定
-    public static List<GameObject> syncGameObjectList;//同期用オブジェクト
-    public static List<GameObject> SyncGameObjectList
-    {
-        get { return syncGameObjectList; }
-    }
     GameObject player; //操作プレイヤー
     GameObject subplayer; //非操作プレイヤー
     private static Dictionary<string,GameObject> objList = new Dictionary<string, GameObject>(); //生成オブジェクトリスト
@@ -56,16 +52,13 @@ public class OnlineGameManager : MonoBehaviour
         if (RoomModel.Instance)
         {//オンラインだったら
 
-            //既存オブジェクト初期設定
-            syncGameObjectList = syncObjList;
-
             //オブジェクト更新を行う
             InvokeRepeating("UpdateObj", 0.1f, 0.1f);
 
             if (RoomModel.Instance.IsMaster == false) 
             {
                 //すべてのオブジェクトからRigidbodyを外す
-                foreach (var obj in syncGameObjectList)
+                foreach (var obj in syncObjList)
                 {
                     Destroy(obj.GetComponent<Rigidbody>());
                 }
@@ -140,6 +133,11 @@ public class OnlineGameManager : MonoBehaviour
 #endif
     }
 
+    public List<GameObject> GetSynObj()
+    {
+        return syncObjList;
+    }
+
     /// <summary>
     /// オブジェクト生成
     /// </summary>
@@ -162,11 +160,11 @@ public class OnlineGameManager : MonoBehaviour
             }
         }
 
-        for (int i=0;i<syncGameObjectList.Count;i++)
+        for (int i=0;i< syncObjList.Count;i++)
         {
-            if (syncGameObjectList[i].GetComponent<Rigidbody>() == null) continue;
-            await RoomModel.Instance.UpdateObjectAsync(syncGameObjectList[i].transform.localPosition,
-                syncGameObjectList[i].transform.rotation, i.ToString());
+            if (syncObjList[i].GetComponent<Rigidbody>() == null) continue;
+            await RoomModel.Instance.UpdateObjectAsync(syncObjList[i].transform.localPosition,
+                syncObjList[i].transform.rotation, i.ToString());
         }
     }
 
@@ -228,12 +226,12 @@ public class OnlineGameManager : MonoBehaviour
                 obj.Value.transform.DORotate(rot.eulerAngles, 0.1f);
             }
         }
-        for (int i = 0;i<syncGameObjectList.Count;i++)
+        for (int i = 0;i<syncObjList.Count;i++)
         {
             if (i.ToString() == id)
             {
-                syncGameObjectList[i].transform.DOLocalMove(pos, 0.1f).SetEase(Ease.Linear);
-                syncGameObjectList[i].transform.DORotate(rot.eulerAngles, 0.1f);
+                syncObjList[i].transform.DOLocalMove(pos, 0.1f).SetEase(Ease.Linear);
+                syncObjList[i].transform.DORotate(rot.eulerAngles, 0.1f);
             }
         }
     }
@@ -246,19 +244,19 @@ public class OnlineGameManager : MonoBehaviour
     void OnOwnershipSwapObjectSyn(string uniqueId,int joinOrder)
     {
         //既存オブジェクトの場合
-        for (int i = 0; i < syncGameObjectList.Count; i++)
+        for (int i = 0; i < syncObjList.Count; i++)
         {
             if (i.ToString() == uniqueId)
             {
                 if (joinOrder == RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
-                    syncGameObjectList[i].AddComponent<Rigidbody>();
+                    syncObjList[i].AddComponent<Rigidbody>();
                     Debug.Log("オブジェクトの権限を得ました");
                     return;
                 }
                 else
                 {
-                    Destroy(syncGameObjectList[i].GetComponent<Rigidbody>());
+                    Destroy(syncObjList[i].GetComponent<Rigidbody>());
                     Debug.Log("オブジェクトの権限を失いました");
                     return;
                 }
