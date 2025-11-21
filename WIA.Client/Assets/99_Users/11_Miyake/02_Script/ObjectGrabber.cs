@@ -145,7 +145,7 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Pot")) //植木鉢に触れた場合
             {
-                GameObject.Find("FlowerPot_obj(Clone)").GetComponent<FlowerPot>().GrabPot();
+                GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
             }
         }
     }

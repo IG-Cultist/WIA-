@@ -57,6 +57,10 @@ public class FlowerPotManager : MonoBehaviour
         int generatNumber = Random.Range(0, randomSpawnPoint.Length); //¶¬ˆÊ’u‚ğrandomSpawnPoint‚Ì’†‚©‚çŒˆ‚ß‚é
 
         Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ğ¶¬‚·‚é
+
+
         potList.Add(potObj);
+
+
     }
 }
