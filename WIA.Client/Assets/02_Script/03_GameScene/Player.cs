@@ -300,7 +300,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Container"))
+        if (collision.gameObject.CompareTag("Container"))
         {
             SEManager.Instance.Play(
             audioPath: SEPath.DEATH, //再生したいオーディオのパス
@@ -310,6 +310,44 @@ public class Player : MonoBehaviour
              isLoop: false,                 //ループ再生するか
              callback: null                 //再生終了後の処理
         );
+
+            //死亡状態に変更
+            player_State = PLAYER_STATE.DEATH;
+
+            deathCnt++;
+
+            //二秒後にリスポーン
+            Invoke("RespawnPlayer", 2);
+        }
+        if (collision.gameObject.CompareTag("Trap"))
+        { // 触れたオブジェクトがトラップの場合、死ぬ
+            SEManager.Instance.Play(
+               audioPath: SEPath.DEATH, //再生したいオーディオのパス
+                volumeRate: 1,                 //音量の倍率
+                delay: 0,                      //再生されるまでの遅延時間
+                pitch: 1,                      //ピッチ
+                isLoop: false,                 //ループ再生するか
+                callback: null                 //再生終了後の処理
+               );
+
+            //死亡状態に変更
+            player_State = PLAYER_STATE.DEATH;
+
+            deathCnt++;
+
+            //二秒後にリスポーン
+            Invoke("RespawnPlayer", 2);
+        }
+        if (collision.gameObject.name =="knife")
+        { // 触れたオブジェクトがナイフの場合、死ぬ
+            SEManager.Instance.Play(
+                audioPath: SEPath.DEATH, //再生したいオーディオのパス
+                 volumeRate: 1,                 //音量の倍率
+                 delay: 0,                      //再生されるまでの遅延時間
+                 pitch: 1,                      //ピッチ
+                 isLoop: false,                 //ループ再生するか
+                 callback: null                 //再生終了後の処理
+                );
 
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;

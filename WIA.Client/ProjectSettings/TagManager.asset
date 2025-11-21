@@ -15,6 +15,7 @@ TagManager:
   - Pot
   - CheckableObject
   - CoffeeMachine
+  - Trap
   layers:
   - Default
   - TransparentFX
