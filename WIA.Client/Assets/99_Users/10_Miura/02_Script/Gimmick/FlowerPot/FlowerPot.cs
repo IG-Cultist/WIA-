@@ -13,8 +13,6 @@ public class FlowerPot : MonoBehaviour
     [SerializeField] GameObject potFragmentObj;
     [SerializeField] float moveSpeed;
 
-    //public List<GameObject> potList = new List<GameObject>(); //植木鉢の生成個数を格納するリスト
-
     Vector3 mouse;
     Vector3 target;
 
@@ -44,14 +42,14 @@ public class FlowerPot : MonoBehaviour
            
         } 
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            isGrab = true;
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    isGrab = true;
             
-            cameraManager.TurnOffPlayerCam();
-            cameraManager.TurnOnLookDownCam();
+        //    cameraManager.TurnOffPlayerCam();
+        //    cameraManager.TurnOnLookDownCam();
            
-        }
+        //}
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -78,28 +76,36 @@ public class FlowerPot : MonoBehaviour
     {
         if(collision.gameObject.tag=="Base")
         {//Baseタグのオブジェクトに触れたら
+            FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
+            potObj = flowerPotManager.potObj;
+            potFragmentObj = flowerPotManager.potFragmentObj;
+
             GameObject fragment; //破片オブジェクト
-            fragment = Instantiate(potFragmentObj, potObj.transform.position, potObj.transform.rotation);
+            fragment = Instantiate(potFragmentObj, this.gameObject.transform.position, this.gameObject.transform.rotation);
 
             //植木鉢を消す
             Destroy(this.gameObject);
-            
+            flowerPotManager.potList.Remove(potObj);
+            flowerPotManager.potCnt -=1;
+            flowerPotManager.isPot = false;
 
             for (int i = 0; i < fragment.transform.childCount; i++)
             {//potFragmentObjの子の数だけループ
-             //植木鉢の破片を生成する
                 fragment.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(new Vector2(50, 50)); //子を取得　
 
                 DestroyFragment(fragment);
                 FadeFragment(fragment.transform.GetChild(i)); //破片をフェードアウトさせる
             }
-
-           
         }
+    }
 
-        
+    public void GrabPot()
+    {
+        isGrab = true;
 
-        
+        cameraManager.TurnOffPlayerCam();
+        cameraManager.TurnOnLookDownCam();
+
     }
 
     /// <summary>
@@ -117,15 +123,10 @@ public class FlowerPot : MonoBehaviour
     /// <param name="fragment"></param>
     public async void DestroyFragment(GameObject fragment)
     {
-       
-
         await Task.Delay(6000); //6秒待つ　
         Destroy(fragment.gameObject);　//破片を消す
     }
 
-    public static void Craked()
-    {
-    }
 
     private void ChangeFirstCamera()
     {
