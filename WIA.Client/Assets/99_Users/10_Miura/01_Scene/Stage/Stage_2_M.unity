@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 106717748}
   m_Layer: 0
   m_Name: Frame_4
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2478,7 +2478,7 @@ GameObject:
   - component: {fileID: 136294604}
   m_Layer: 0
   m_Name: Frame_1
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3404,7 +3404,7 @@ GameObject:
   - component: {fileID: 189913307}
   m_Layer: 0
   m_Name: Frame_3
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6733,7 +6733,7 @@ GameObject:
   - component: {fileID: 340171962}
   m_Layer: 0
   m_Name: Garden_1
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7396,7 +7396,7 @@ GameObject:
   - component: {fileID: 369116421}
   m_Layer: 0
   m_Name: Pillers
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28938,7 +28938,7 @@ GameObject:
   - component: {fileID: 945873795}
   m_Layer: 0
   m_Name: Manhole_Cover
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29144,7 +29144,7 @@ GameObject:
   - component: {fileID: 953865479}
   m_Layer: 0
   m_Name: Garden_2
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46430,7 +46430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_Name
-      value: Player_2
+      value: Main
       objectReference: {fileID: 0}
     - target: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_IsActive
@@ -68648,8 +68648,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18.979893, y: 2.4047313, z: 6.125065}
-  m_Center: {x: 8.989948, y: -2.7860496, z: 0.028346062}
+  m_Size: {x: 32.928448, y: 2.4047313, z: 31.452229}
+  m_Center: {x: 3.8726573, y: -2.7860496, z: 0.22474289}
 --- !u!1001 &2016569374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69756,7 +69756,7 @@ GameObject:
   - component: {fileID: 2081453938}
   m_Layer: 0
   m_Name: Ground_1
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71330,7 +71330,7 @@ GameObject:
   - component: {fileID: 2144724749}
   m_Layer: 0
   m_Name: Frame_2
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
