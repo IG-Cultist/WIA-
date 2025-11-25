@@ -14,12 +14,16 @@ public class TaskUIManager : MonoBehaviour
     [SerializeField] Text taskCount;
     // タスクアイコン
     [SerializeField] Image taskIcon;
+    // 死亡回数
+    [SerializeField] Text deathCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         string nowSceneName = SceneManager.GetActiveScene().name;
         Texture2D texture;
+
+        deathCount.text = ": 0/3";
         // 現在のシーンに応じてテクスチャ、文言を変更
         switch (SceneManager.GetActiveScene().name)
         {
