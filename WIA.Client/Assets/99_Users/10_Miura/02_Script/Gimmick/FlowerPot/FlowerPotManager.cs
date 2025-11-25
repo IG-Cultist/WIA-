@@ -58,9 +58,11 @@ public class FlowerPotManager : MonoBehaviour
 
         Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ğ¶¬‚·‚é
 
-
         potList.Add(potObj);
-
-
     }
+
+    //public void ChangeName()
+    //{
+    //    potObj.name = "FlowerPot_obj";
+    //}
 }

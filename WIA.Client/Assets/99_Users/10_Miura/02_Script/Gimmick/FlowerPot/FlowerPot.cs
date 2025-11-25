@@ -25,6 +25,7 @@ public class FlowerPot : MonoBehaviour
     void Start()
     {
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
+        potObj.name = "FlowerPot_obj";
     }
 
     // Update is called once per frame
@@ -99,13 +100,21 @@ public class FlowerPot : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Abyss"))
+        {
+            Destroy(potObj);
+        }
+
+    }
+
     public void GrabPot()
     {
         isGrab = true;
 
         cameraManager.TurnOffPlayerCam();
         cameraManager.TurnOnLookDownCam();
-
     }
 
     /// <summary>
