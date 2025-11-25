@@ -8,11 +8,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TaskCheck : MonoBehaviour
 {
-    int cubeCnt; //要素の変数
-    int checkCnt = 2; //目標の要素数
+    public int cubeCnt; //要素の変数
+    int checkCnt = 2; //目標の要素数(デバッグ用で2)
     [SerializeField] List<int> cubeList = new List<int>(); //int型のList
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +36,10 @@ public class TaskCheck : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
+            // 配達完了数を加算
+            cubeCnt++;
+            GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + cubeCnt + "/5";
+
             //リストに要素を追加する
             cubeList.Add(cubeCnt);
 
