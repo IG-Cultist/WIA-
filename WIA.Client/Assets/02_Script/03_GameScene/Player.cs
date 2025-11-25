@@ -175,7 +175,9 @@ public class Player : MonoBehaviour
 
         hitPoint.SetActive(true);
         animator.enabled = false;
-        
+
+        GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
+
         /*
         if(deathCnt>=3)
         {
