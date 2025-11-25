@@ -61,8 +61,4 @@ public class FlowerPotManager : MonoBehaviour
         potList.Add(potObj);
     }
 
-    //public void ChangeName()
-    //{
-    //    potObj.name = "FlowerPot_obj";
-    //}
 }

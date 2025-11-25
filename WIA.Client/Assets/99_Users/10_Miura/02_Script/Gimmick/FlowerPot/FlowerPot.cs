@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class FlowerPot : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class FlowerPot : MonoBehaviour
     Vector3 mouse;
     Vector3 target;
 
+    int potCheckCnt;
     public bool isGrab = false;
 
     // カメラマネージャースクリプト
@@ -75,7 +77,7 @@ public class FlowerPot : MonoBehaviour
 
     private async void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Base")
+        if(collision.gameObject.tag=="Base"||collision.gameObject.tag== "Player")
         {//Baseタグのオブジェクトに触れたら
             FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
             potObj = flowerPotManager.potObj;

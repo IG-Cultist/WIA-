@@ -362,6 +362,22 @@ public class Player : MonoBehaviour
             //二秒後にリスポーン
             Invoke("RespawnPlayer", 2);
         }
+        if(collision.gameObject.CompareTag("Pot"))
+        {//触れたオブジェクトが植木鉢だった場合
+         // 死亡回数を加算
+            deathCnt++;
+            GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deathCnt + "/5";
+
+            player_State = PLAYER_STATE.DEATH; //死亡状態にする
+
+            if (deathCnt >= 3)
+            {//3回死んだら
+                Initiate.Fade("30_ResultScene", Color.black, 1.0f);　//リザルトシーンへ遷移
+            }
+
+            //二秒後にリスポーン
+            Invoke("RespawnPlayer", 2);
+        }
     }
 
     void RespawnPlayer()
