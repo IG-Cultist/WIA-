@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4944158596258116352}
   - component: {fileID: 6513460992603707647}
   - component: {fileID: 852948351917777783}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FlowerPot_obj
   m_TagString: Pot
   m_Icon: {fileID: 0}
