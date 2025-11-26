@@ -13,7 +13,8 @@ public class FlowerPot : MonoBehaviour
     [SerializeField] public GameObject potObj;
     [SerializeField] GameObject potFragmentObj;
     [SerializeField] float moveSpeed;
-
+    // 警告円のプレハブ
+    [SerializeField] GameObject dangerZone;
     Vector3 mouse;
     Vector3 target;
 
@@ -22,6 +23,10 @@ public class FlowerPot : MonoBehaviour
 
     // カメラマネージャースクリプト
     CameraManager cameraManager;
+
+    // 警告円オブジェクト
+    GameObject dangerZoneObj;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +38,10 @@ public class FlowerPot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 警告円オブジェクトを花瓶の下部に常に移動させる
+        if (dangerZoneObj != null) dangerZoneObj.transform.position
+            = new Vector3(this.gameObject.transform.position.x,0.52f, this.gameObject.transform.position.z);
+
         if (isGrab) 
         {
             Cursor.lockState = CursorLockMode.None;
@@ -42,21 +51,12 @@ public class FlowerPot : MonoBehaviour
         else 
         {
             Cursor.visible = false;
-           
         } 
 
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    isGrab = true;
-            
-        //    cameraManager.TurnOffPlayerCam();
-        //    cameraManager.TurnOnLookDownCam();
-           
-        //}
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetMouseButtonDown(1))
         {
             isGrab = false;
+
             Cursor.visible = false;
             this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
@@ -71,13 +71,14 @@ public class FlowerPot : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             mouse = Input.mousePosition;
             target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, 5f));
+
             this.transform.position = target;
         }
     }
 
     private async void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Base"||collision.gameObject.tag== "Player")
+        if(collision.gameObject.tag=="Base"||collision.gameObject.tag== "Player" || collision.gameObject.tag == "Abyss")
         {//Baseタグのオブジェクトに触れたら
             FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
             potObj = flowerPotManager.potObj;
@@ -88,6 +89,8 @@ public class FlowerPot : MonoBehaviour
 
             //植木鉢を消す
             Destroy(this.gameObject);
+            // 警告円を破壊する
+            Destroy(dangerZoneObj);
             flowerPotManager.potList.Remove(potObj);
             flowerPotManager.potCnt -=1;
             flowerPotManager.isPot = false;
@@ -115,6 +118,10 @@ public class FlowerPot : MonoBehaviour
     {
         isGrab = true;
 
+        // 警告円オブジェクトを生成
+        dangerZoneObj = Instantiate(dangerZone, new Vector3(0f,0.52f,0f), dangerZone.transform.rotation);
+        
+        // カメラを切り替える
         cameraManager.TurnOffPlayerCam();
         cameraManager.TurnOnLookDownCam();
     }
