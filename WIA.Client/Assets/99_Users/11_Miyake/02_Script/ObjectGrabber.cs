@@ -17,14 +17,25 @@ public class ObjectGrabber : MonoBehaviour
     [SerializeField] Image crosshairImage;         // 通常時のクロスヘア
     [SerializeField] Image leftClickImage;         // 掴めるときに表示するLeftClick
 
+    [Header("調査処理系")]
+    FirstPersonMovement playerMove;
+    FirstPersonLook playerCamera; 
+
+
     // 現在掴んでいるオブジェクトのRigidbody参照
     private Rigidbody grabbedRb = null;
 
     void Start()
     {
+        //メインキャラクターのカメラを取る
+        playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+        playerMove = transform.parent.gameObject.GetComponent<FirstPersonMovement>();
+
         // LeftClickは初期状態では非表示
         if (leftClickImage != null)
             leftClickImage.enabled = false;
+
+        
     }
 
     void Update()
@@ -44,6 +55,13 @@ public class ObjectGrabber : MonoBehaviour
         {
             if (grabbedRb != null)
                 Release();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("解除");
+            // 調査を開始する
+            GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckOutObject();
         }
     }
 
@@ -135,17 +153,21 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("CheckableObject")) //調査可能オブジェクトに触れた場合
             {
-                // 調査を開始する
-                GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckObject(hit.transform.gameObject);
-            }
-            else if (hit.collider.CompareTag("CoffeeMachine")) //コーヒーマシンに触れた場合
-            {
-                // コーヒーを生成する
-                GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>().DripCoffee();
-            }
-            else if (hit.collider.CompareTag("Pot")) //植木鉢に触れた場合
-            {
-                GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    // 調査を開始する
+                    GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckInObject(hit.transform.gameObject, hit.transform.GetComponent<FindKeyStatus>());
+
+                }        
+                else if (hit.collider.CompareTag("CoffeeMachine")) //コーヒーマシンに触れた場合
+                {
+                    // コーヒーを生成する
+                    GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>().DripCoffee();
+                }
+                else if (hit.collider.CompareTag("Pot")) //植木鉢に触れた場合
+                {
+                    GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
+                }
             }
         }
     }
@@ -161,4 +183,5 @@ public class ObjectGrabber : MonoBehaviour
         grabbedRb.constraints = RigidbodyConstraints.None;
         grabbedRb = null;
     }
+
 }
