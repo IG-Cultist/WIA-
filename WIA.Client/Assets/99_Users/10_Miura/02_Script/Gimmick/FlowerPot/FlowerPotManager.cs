@@ -15,7 +15,6 @@ public class FlowerPotManager : MonoBehaviour
 
     public bool isPot = false; //A–Ø”«‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚Ì•Ï”
     public int potCnt; //A–Ø”«‚ª‚¢‚­‚Â‚ ‚é‚©‚Ì•Ï”
-    bool collitionCheck;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,9 +55,8 @@ public class FlowerPotManager : MonoBehaviour
         //¶¬ˆÊ’u‚ğŒˆ‚ß‚é
         int generatNumber = Random.Range(0, randomSpawnPoint.Length); //¶¬ˆÊ’u‚ğrandomSpawnPoint‚Ì’†‚©‚çŒˆ‚ß‚é
 
-        Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); //A–Ø”«‚ğ¶¬‚·‚é
+        Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation);
 
         potList.Add(potObj);
     }
-
 }
