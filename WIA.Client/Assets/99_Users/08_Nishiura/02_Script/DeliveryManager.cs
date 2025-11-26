@@ -28,7 +28,10 @@ public class DeliveryManager : MonoBehaviour
 
     // コーヒー生存判定
     public bool isCreated = false;
-    
+
+    // クールダウン中判定
+    bool isCooldown = false;
+
     // コーヒー要求デスク番号
     int deskNum;
 
@@ -37,8 +40,8 @@ public class DeliveryManager : MonoBehaviour
     /// </summary>
     public void DripCoffee()
     {
-        // まだコーヒーを生成していない場合、コーヒーを生成する
-        if (isCreated) return;
+        // まだコーヒーを生成していない場合または、クールダウン中でない場合、コーヒーを生成する
+        if (isCreated || isCooldown) return;
 
         // デスク番号がユニークなものになるまでループ
         while (true)
@@ -50,6 +53,10 @@ public class DeliveryManager : MonoBehaviour
         }
         // 生成済みとする
         isCreated = true;
+        isCooldown = true;
+
+        // 10秒後、クールダウン終了
+        Invoke("ResetCooldown", 10f);
 
         // コーヒーマシンを使用不可にする
         coffeeMachine.GetComponent<BoxCollider>().enabled = false;
@@ -111,5 +118,13 @@ public class DeliveryManager : MonoBehaviour
     {
         Initiate.DoneFading();
         Initiate.Fade("03_GameScene", Color.black, 1.0f);   // フェード時間1秒
+    }
+
+    /// <summary>
+    /// クールダウン終了処理
+    /// </summary>
+    void ResetCooldown()
+    {
+        isCooldown = false;
     }
 }

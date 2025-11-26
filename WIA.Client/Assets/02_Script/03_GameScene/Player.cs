@@ -146,45 +146,37 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// ���S�֐�
+    /// 死亡処理
     /// </summary>
     private void Death()
     {
+        // すでに死亡している場合、処理しない
         if (isDead) return;
-
-        /*
-        SEManager.Instance.Play(
-            audioPath: SEPath.DEATH_VOICE, //再生したいオーディオのパス
-            volumeRate: 1,                 //音量の倍率
-            delay: 0,                      //再生されるまでの遅延時間
-            pitch: 1,                      //ピッチ
-            isLoop: false,                 //ループ再生するか
-            callback: null                 //再生終了後の処理
-        );*/
-
-        grabber.Release();
+        // 死亡済みとする
         isDead = true;
+        // 手に持っているものを離す
+        grabber.Release();
 
-        isRespawn = false;
-
-        ChangeBodyGravity(true);
-
+        // メインカメラを非アクティブ化
         cameraManager.TurnOffPlayerCam();
-
+        // 0.8秒後にフェードアウトを開始
         Invoke("FadeOut", 0.8f);
 
         hitPoint.SetActive(true);
-        animator.enabled = false;
+        ChangeBodyGravity(true);
 
+        animator.enabled = false;
+        isRespawn = false;
+
+        // 死亡回数を加算
+        deathCnt++;
+        // 死亡回数テキストを取得し、死亡回数を反映
         GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
 
-        /*
-        if(deathCnt>=3)
-        {
-
-            Initiate.Fade("30_ResultScene",Color.black ,3);
-        }*/
-
+        // 3回死んだ場合
+        if (deathCnt >= 3) Initiate.Fade("30_ResultScene", Color.black, 1.0f); //リザルトシーンへ遷移
+        // まだ3回死んでいない場合
+        else Invoke("RespawnPlayer", 2);  //2秒後にリスポーン
     }
 
     /// <summary>
@@ -279,15 +271,6 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Abyss"))
         {
-            if(player_State==PLAYER_STATE.DEATH)
-            {//���Ɏ��S��Ԃ�������
-                //�ȍ~�̏��������s���Ȃ�
-                return;
-            }
-
-            //�v���C���[�̏�Ԃ����S��Ԃɂ���
-            player_State = PLAYER_STATE.DEATH;
-
             SEManager.Instance.Play(
             audioPath: SEPath.FALL, //再生したいオーディオのパス
                 volumeRate: 1,                 //音量の倍率
@@ -296,10 +279,8 @@ public class Player : MonoBehaviour
                 isLoop: false,                 //ループ再生するか
                 callback: null                 //再生終了後の処理
             );
-            deathCnt++;
-
-            //2�b��ɕ�������
-            Invoke("RespawnPlayer", 2);
+            //�v���C���[�̏�Ԃ����S��Ԃɂ���
+            player_State = PLAYER_STATE.DEATH;
         }
     }
 
@@ -308,21 +289,15 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Container"))
         {
             SEManager.Instance.Play(
-            audioPath: SEPath.DEATH, //再生したいオーディオのパス
-             volumeRate: 1,                 //音量の倍率
-             delay: 0,                      //再生されるまでの遅延時間
-             pitch: 1,                      //ピッチ
-             isLoop: false,                 //ループ再生するか
-             callback: null                 //再生終了後の処理
-        );
-
+                audioPath: SEPath.DEATH, //再生したいオーディオのパス
+                 volumeRate: 1,                 //音量の倍率
+                 delay: 0,                      //再生されるまでの遅延時間
+                 pitch: 1,                      //ピッチ
+                 isLoop: false,                 //ループ再生するか
+                 callback: null                 //再生終了後の処理
+            );
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
-
-            deathCnt++;
-
-            //二秒後にリスポーン
-            Invoke("RespawnPlayer", 2);
         }
         if (collision.gameObject.CompareTag("Trap"))
         { // 触れたオブジェクトがトラップの場合、死ぬ
@@ -334,14 +309,8 @@ public class Player : MonoBehaviour
                 isLoop: false,                 //ループ再生するか
                 callback: null                 //再生終了後の処理
                );
-
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
-
-            deathCnt++;
-
-            //二秒後にリスポーン
-            Invoke("RespawnPlayer", 2);
         }
         if (collision.gameObject.name =="knife")
         { // 触れたオブジェクトがナイフの場合、死ぬ
@@ -353,36 +322,17 @@ public class Player : MonoBehaviour
                  isLoop: false,                 //ループ再生するか
                  callback: null                 //再生終了後の処理
                 );
-
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
-
-            deathCnt++;
-
-            //二秒後にリスポーン
-            Invoke("RespawnPlayer", 2);
         }
         if(collision.gameObject.CompareTag("Pot"))
         {//触れたオブジェクトが植木鉢だった場合
-         // 死亡回数を加算
-            deathCnt++;
-            GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deathCnt + "/5";
-
             player_State = PLAYER_STATE.DEATH; //死亡状態にする
-
-            if (deathCnt >= 3)
-            {//3回死んだら
-                Initiate.Fade("30_ResultScene", Color.black, 1.0f);　//リザルトシーンへ遷移
-            }
-
-            //二秒後にリスポーン
-            Invoke("RespawnPlayer", 2);
         }
     }
 
     void RespawnPlayer()
     {
-
         // ���[�v�|�C���g�Ɉړ�����
         //transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
         this.gameObject.transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
