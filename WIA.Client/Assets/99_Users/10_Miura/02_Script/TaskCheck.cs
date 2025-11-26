@@ -32,7 +32,7 @@ public class TaskCheck : MonoBehaviour
     {
         if (player.deathCnt >= 3)
         {
-            if (!isDead) Initiate.Fade("Stage_2", Color.black, 1.0f);
+            if (!isDead) Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
             isDead = true;
         }
     }
@@ -58,7 +58,7 @@ public class TaskCheck : MonoBehaviour
             if (cubeList.Count >= checkCnt)
             {//要素数が目標数と同じになったら
              //フェードアウトしてシーン遷移
-                Initiate.Fade("Stage_2", Color.black, 1.0f);
+                Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
             }
         }
     }
