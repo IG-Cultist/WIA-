@@ -22,6 +22,8 @@ public class CheckableObjManager : MonoBehaviour
     [SerializeField] public float chackableTimer;    //調査所要時間
     private bool isCheckNow;     //現在調査中か
 
+    private bool isGetKey;      //キーを取得できたか
+
     GameObject nowFindObj;       //現在調査中のオブジェクト
     FindKeyStatus nowFindStatus; //現在調査中のオブジェクトのステータス
 
@@ -50,6 +52,13 @@ public class CheckableObjManager : MonoBehaviour
         {
             if (nowFindStatus.isChecked) return;  //チェック済みはreturn
 
+
+            if (nowFindObj.name == "Door" && !isGetKey)
+            {
+                Debug.Log("まだカギないよ");
+                return;
+            }
+
             checkNowText.SetActive(true);   //調査テキスト表示
             playerCamera.enabled = false;   //カメラアングル固定化
             playerMove.enabled = false;     //プレイヤー座標固定化
@@ -69,6 +78,8 @@ public class CheckableObjManager : MonoBehaviour
         {
             if(nowFindObj.name == "Door")
             {
+                if (!isGetKey) return;
+
                 Initiate.Fade("Stage_3", Color.black, 1.0f);
             }
 
@@ -77,7 +88,7 @@ public class CheckableObjManager : MonoBehaviour
             {
                 Debug.Log("鍵を見つけた");
                 //鍵獲得の処理を記述
-
+                isGetKey = true;
             }
             else
             {

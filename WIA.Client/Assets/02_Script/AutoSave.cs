@@ -3,6 +3,9 @@ using UnityEditor;
 using UnityEngine;
 using System.IO;
 
+/// <summary>
+/// ビルド時にコメントアウトしないとエラー起きるかも
+/// </summary>
 [InitializeOnLoad]
 public class AutoSave
 {
