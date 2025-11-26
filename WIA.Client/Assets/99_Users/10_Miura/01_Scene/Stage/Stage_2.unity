@@ -4553,6 +4553,8 @@ MonoBehaviour:
   - {fileID: 1857609667}
   - {fileID: 826204305}
   - {fileID: 608433281}
+  checkNowText: {fileID: 0}
+  chackableTimer: 0
 --- !u!1 &235374114
 GameObject:
   m_ObjectHideFlags: 0
@@ -46581,6 +46583,7 @@ MonoBehaviour:
   - {fileID: 1006542331}
   - {fileID: 79977231}
   - {fileID: 1576759295}
+  spawnPointPos: []
   isPot: 0
   potCnt: 0
 --- !u!1 &1497480201
