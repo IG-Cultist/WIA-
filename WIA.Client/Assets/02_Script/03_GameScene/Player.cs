@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     //フェード用変数
     FadeImage fadeImageScript;
 
+    Rigidbody rigidbody;
+
     //死亡判定
     public bool isDead = false;
     //リスポーン判定
@@ -50,9 +52,14 @@ public class Player : MonoBehaviour
 
     public int deathCnt = 0; //死亡回数
 
+    float x;
+    float z;
+    public float moveSpeed;
+
     private void Awake()
     {
         SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     void Start()
@@ -65,6 +72,28 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Horizontal
+        //Vertical
+        x = Input.GetAxisRaw("Vertical");
+        z = Input.GetAxisRaw("Horizontal");
+
+        
+        Vector3 direction = transform.position + new Vector3(x, 0f, z) * moveSpeed;
+
+        //transform.LookAt(direction);
+        //速度設定
+        rigidbody.velocity = move * moveSpeed;
+
+        if (move != Vector3.zero)
+        {
+            //transform.forward = move;
+            //                                目的の方向        指定の方向    方向転換にかかる時間
+            transform.forward = Vector3.Slerp(transform.forward, move, Time.deltaTime * 6);
+        }
+
+        animator.SetFloat("Speed", rigidbody.velocity.magnitude);
+
+
         if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
         if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
 
