@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
+    [System.Obsolete]
     void Update()
     {
         //Horizontal
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
 
         //transform.LookAt(direction);
         //速度設定
-        rigidbody.velocity = move * moveSpeed;
+        /*rigidbody.velocity = move * moveSpeed;
 
         if (move != Vector3.zero)
         {
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour
             transform.forward = Vector3.Slerp(transform.forward, move, Time.deltaTime * 6);
         }
 
-        animator.SetFloat("Speed", rigidbody.velocity.magnitude);
+        animator.SetFloat("Speed", rigidbody.velocity.magnitude);*/
 
 
         if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
