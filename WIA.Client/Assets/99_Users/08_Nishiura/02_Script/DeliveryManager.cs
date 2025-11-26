@@ -2,6 +2,7 @@
 /// デリバリーマネージャー
 /// Author:Nishiura Date:25/11/10
 /// ------------------------------
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,9 @@ public class DeliveryManager : MonoBehaviour
 
     // コーヒーマシンのオブジェクト
     [SerializeField] GameObject coffeeMachine;
+
+    // クールダウン用スライダー
+    [SerializeField] GameObject coolDownSlider;
 
     // 配達済みデスクリスト
     List<int> servedDeskList = new List<int>();
@@ -38,17 +42,23 @@ public class DeliveryManager : MonoBehaviour
     // プレイヤー
     private Player player;
 
-    //死亡判定
+    // 死亡判定
     private bool isDead;
 
     private void Start()
     {
         player = GameObject.Find("Main").gameObject.GetComponent<Player>();
         isDead = false;
+        coolDownSlider.SetActive(false);
     }
 
     private void Update()
     {
+        //if (isCooldown)
+        //{
+        //    coolDownSlider.value -= 0.0015f;   //調査時間加算
+        //}
+
         if (player.deathCnt >= 3)
         {
             if(!isDead) Initiate.Fade("30_ResultScene", Color.black, 1.0f);
@@ -76,8 +86,11 @@ public class DeliveryManager : MonoBehaviour
         isCreated = true;
         isCooldown = true;
 
+        coolDownSlider.SetActive(true);
+        coolDownSlider.GetComponent<Slider>().value = 1f;
+        coolDownSlider.GetComponent<Slider>().DOValue(0, 15f).SetEase(Ease.Linear);
         // 10秒後、クールダウン終了
-        Invoke("ResetCooldown", 10f);
+        Invoke("ResetCooldown", 15f);
 
         // コーヒーマシンを使用不可にする
         coffeeMachine.GetComponent<BoxCollider>().enabled = false;
@@ -147,5 +160,6 @@ public class DeliveryManager : MonoBehaviour
     void ResetCooldown()
     {
         isCooldown = false;
+        coolDownSlider.SetActive(false);
     }
 }

@@ -14564,6 +14564,7 @@ MonoBehaviour:
   - {fileID: 620497974}
   checkNowText: {fileID: 404589127}
   chackableTimer: 8
+  isGetKey: 0
 --- !u!1 &244409307
 GameObject:
   m_ObjectHideFlags: 0
@@ -32710,8 +32711,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 22.45293, z: 1}
+  m_Center: {x: 0, y: 0.62683344, z: 0}
 --- !u!23 &927132099
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38802,8 +38803,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 20.749947, z: 1}
+  m_Center: {x: 0, y: 0.7075411, z: 0}
 --- !u!23 &1093051372
 MeshRenderer:
   m_ObjectHideFlags: 0
