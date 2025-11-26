@@ -16,16 +16,25 @@ public class TaskCheck : MonoBehaviour
     int checkCnt = 5; //–Ú•W‚Ì—v‘f”
     [SerializeField] List<int> cubeList = new List<int>(); //intŒ^‚ÌList
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    // ƒvƒŒƒCƒ„[
+    private Player player;
 
+    //€–S”»’è
+    private bool isDead;
+
+    private void Start()
+    {
+        player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+        isDead = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
+        if (player.deathCnt >= 3)
+        {
+            if (!isDead) Initiate.Fade("Stage_2", Color.black, 1.0f);
+            isDead = true;
+        }
     }
 
     /// <summary>

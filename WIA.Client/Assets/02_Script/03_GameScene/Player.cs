@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     [SerializeField] public PLAYER_STATE player_State;
     List<Transform> allChildren;
 
-    int deathCnt = 0; //死亡回数
+    public int deathCnt = 0; //死亡回数
 
     private void Awake()
     {
@@ -172,13 +172,13 @@ public class Player : MonoBehaviour
         // 死亡回数テキストを取得し、死亡回数を反映
         GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
 
-        // 3回死んだ場合
-        if (deathCnt >= 3)
+
+        if (deathCnt <= 3)
         {
-            Initiate.Fade("Stage_2", Color.black, 1.0f);
+            // まだ3回死んでいない場合
+            Invoke("RespawnPlayer", 2);  //2秒後にリスポーン
         }
-        // まだ3回死んでいない場合
-        else Invoke("RespawnPlayer", 2);  //2秒後にリスポーン
+        
     }
 
     /// <summary>

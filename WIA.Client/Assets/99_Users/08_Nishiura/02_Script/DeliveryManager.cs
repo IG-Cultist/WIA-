@@ -35,6 +35,27 @@ public class DeliveryManager : MonoBehaviour
     // コーヒー要求デスク番号
     int deskNum;
 
+    // プレイヤー
+    private Player player;
+
+    //死亡判定
+    private bool isDead;
+
+    private void Start()
+    {
+        player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+        isDead = false;
+    }
+
+    private void Update()
+    {
+        if (player.deathCnt >= 3)
+        {
+            if(!isDead) Initiate.Fade("30_ResultScene", Color.black, 1.0f);
+            isDead = true;
+        }
+    }
+
     /// <summary>
     /// コーヒー生成処理
     /// </summary>
