@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     [SerializeField] public PLAYER_STATE player_State;
     List<Transform> allChildren;
 
-    public int deathCnt = 0; //死亡回数
+    public int deathCnt; //死亡回数
 
     float x;
     float z;
@@ -64,13 +64,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        deathCnt = 0; //死亡回数
+
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
         // �t�F�[�h�C���[�W����X�N���v�g���擾
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
     }
 
     // Update is called once per frame
-    [System.Obsolete]
     void Update()
     {
         //Horizontal
@@ -80,10 +81,10 @@ public class Player : MonoBehaviour
 
         
         Vector3 direction = transform.position + new Vector3(x, 0f, z) * moveSpeed;
-
+        /*
         //transform.LookAt(direction);
         //速度設定
-        /*rigidbody.velocity = move * moveSpeed;
+        rigidbody.linearVelocity = move * moveSpeed;
 
         if (move != Vector3.zero)
         {
@@ -92,9 +93,9 @@ public class Player : MonoBehaviour
             transform.forward = Vector3.Slerp(transform.forward, move, Time.deltaTime * 6);
         }
 
-        animator.SetFloat("Speed", rigidbody.velocity.magnitude);*/
+        animator.SetFloat("Speed", rigidbody.linearVelocity.magnitude);
 
-
+        */
         if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
         if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
 

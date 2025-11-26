@@ -39,14 +39,32 @@ EditorBuildSettings:
     path: Assets/99_Users/04_Kawaguchi/01_Scene/Stage_1_M.unity
     guid: f1a8b6c9e72632347ada8efd326437aa
   - enabled: 1
+    path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Attacker_1.unity
+    guid: cb34a5bbabdb2114f9be98461caa0144
+  - enabled: 1
+    path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Worker_1.unity
+    guid: 5f518ddbb46747d4f852cccb64e5af63
+  - enabled: 1
     path: Assets/01_Scene/Stage/Stage_1.unity
     guid: c323e2b1d3270a249901d9ccd7208fa4
   - enabled: 1
+    path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Attacker_2.unity
+    guid: 4e6f208487ac2f64f9638e66764bf6ab
+  - enabled: 1
+    path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Worker_2.unity
+    guid: ec71f6fc69deee1459a5324f4d14c262
+  - enabled: 1
     path: Assets/01_Scene/Stage/Stage_2.unity
-    guid: 1211c149ea32fc94a8bdb52a3685d812
+    guid: a13e3fb7857751242ac30338264698e3
+  - enabled: 1
+    path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Attacker_3.unity
+    guid: 57e76606f9aed224596cc34d9f66c413
+  - enabled: 1
+    path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Worker_3.unity
+    guid: 19f0bf6e4d7b93d469af189c50b447b9
   - enabled: 1
     path: Assets/01_Scene/Stage/Stage_3.unity
-    guid: a2c06131c1fa8954e84db75541f7eb6a
+    guid: 1bc7f04ee9a3a984db0d64c66706cf03
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 18892b957a7b3b24fad4ae87fc9a7aaa, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 41dcf610a1ed6154faaf676839b523fe, type: 2}

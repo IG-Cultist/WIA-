@@ -97,7 +97,8 @@ public class MenuManager : MonoBehaviour
             case NEXTSCENE_STATE.GAME:  //ゲーム選択状態
 
                 //ロビーシーンに遷移
-                Initiate.Fade("Stage_1", endColor, 1.0f);
+                //Initiate.Fade("Stage_1", endColor, 1.0f);
+                Initiate.Fade("Exp_Worker_1", endColor, 1.0f);
 
                 break;
 
