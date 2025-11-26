@@ -117,7 +117,7 @@ public class DeliveryManager : MonoBehaviour
     void GoNextStage()
     {
         Initiate.DoneFading();
-        Initiate.Fade("03_GameScene", Color.black, 1.0f);   // フェード時間1秒
+        Initiate.Fade("30_ResultScene", Color.black, 1.0f);   // フェード時間1秒
     }
 
     /// <summary>

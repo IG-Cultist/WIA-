@@ -3,6 +3,7 @@
 // 三宅歩人
 //==============================================
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ObjectGrabber : MonoBehaviour
@@ -59,9 +60,12 @@ public class ObjectGrabber : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("解除");
-            // 調査を開始する
-            GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckOutObject();
+            if (SceneManager.GetActiveScene().name == "Stage_2")
+            {
+                Debug.Log("解除");
+                // 調査を開始する
+                GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckOutObject();
+            }
         }
     }
 
@@ -153,21 +157,18 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("CheckableObject")) //調査可能オブジェクトに触れた場合
             {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    // 調査を開始する
-                    GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckInObject(hit.transform.gameObject, hit.transform.GetComponent<FindKeyStatus>());
+                // 調査を開始する
+                GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckInObject(hit.transform.gameObject, hit.transform.GetComponent<FindKeyStatus>());
 
-                }        
-                else if (hit.collider.CompareTag("CoffeeMachine")) //コーヒーマシンに触れた場合
-                {
-                    // コーヒーを生成する
-                    GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>().DripCoffee();
-                }
-                else if (hit.collider.CompareTag("Pot")) //植木鉢に触れた場合
-                {
-                    GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
-                }
+            }
+            else if (hit.collider.CompareTag("CoffeeMachine")) //コーヒーマシンに触れた場合
+            {
+                // コーヒーを生成する
+                GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>().DripCoffee();
+            }
+            else if (hit.collider.CompareTag("Pot")) //植木鉢に触れた場合
+            {
+                GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
             }
         }
     }

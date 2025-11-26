@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
         GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
 
         // 3回死んだ場合
-        if (deathCnt >= 3) Initiate.Fade("30_ResultScene", Color.black, 1.0f); //リザルトシーンへ遷移
+        if (deathCnt >= 3) Initiate.Fade("Stage_2", Color.black, 1.0f);
         // まだ3回死んでいない場合
         else Invoke("RespawnPlayer", 2);  //2秒後にリスポーン
     }

@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class BillBoard : MonoBehaviour
 {
+     GameObject p;
+    private void Start()
+    {
+        p = GameObject.Find("First Person Camera").gameObject;
+    }
 
     void Update()
     {
-        Vector3 p = GameObject.Find("First Person Camera").GetComponent<Camera>().transform.position;
-        p.y = transform.position.y;
-        transform.LookAt(p);
+        if (p.gameObject == true)
+        {
+
+            Vector3 pos = p.transform.position;
+            pos.y = transform.position.y;
+            transform.LookAt(pos);
+        }
     }
 }

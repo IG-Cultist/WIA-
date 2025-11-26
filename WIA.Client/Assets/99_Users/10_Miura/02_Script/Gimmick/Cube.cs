@@ -15,7 +15,9 @@ public class Cube : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        warpPoint = GameObject.Find("BoxSpawnPoint").gameObject.transform;    //マネージャー取得
+        minPoint = GameObject.Find("minBoxSpawnPoint").gameObject.transform;    //マネージャー取得
+        maxPoint = GameObject.Find("maxBoxSpawnPoint").gameObject.transform;    //マネージャー取得
     }
 
     // Update is called once per frame

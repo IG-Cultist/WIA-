@@ -25,6 +25,7 @@ public class CheckableObjManager : MonoBehaviour
     GameObject nowFindObj;       //現在調査中のオブジェクト
     FindKeyStatus nowFindStatus; //現在調査中のオブジェクトのステータス
 
+
     void Start()
     {
         //メインキャラクターのカメラを取る
@@ -66,6 +67,11 @@ public class CheckableObjManager : MonoBehaviour
         //調査オブジェクトの調査時間が所要時間を超えたら
         if (chackableTimer <= nowFindStatus.checkedTime)
         {
+            if(nowFindObj.name == "Door")
+            {
+                Initiate.Fade("Stage_3", Color.black, 1.0f);
+            }
+
             // 調べたオブジェクトにキーが入っていた場合
             if (nowFindObj == checkableObjList[keyObjectNum])
             {
