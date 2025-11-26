@@ -4,6 +4,7 @@
 /// ------------------------------
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class CheckableObjManager : MonoBehaviour
@@ -85,6 +86,7 @@ public class CheckableObjManager : MonoBehaviour
                 Debug.Log("Œ®‚ğŒ©‚Â‚¯‚½");
                 //Œ®Šl“¾‚Ìˆ—‚ğ‹Lq
                 isGetKey = true;
+                GameObject.Find("TaskCount").GetComponent<Text>().text = ": 1/1";
             }
             else
             {

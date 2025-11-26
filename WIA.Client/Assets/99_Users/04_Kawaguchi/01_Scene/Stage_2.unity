@@ -670,6 +670,7 @@ MonoBehaviour:
   - {fileID: 318292491}
   checkNowText: {fileID: 2100204092}
   chackableTimer: 5
+  isGetKey: 0
 --- !u!1 &45062796
 GameObject:
   m_ObjectHideFlags: 0
@@ -25858,8 +25859,6 @@ MonoBehaviour:
   isChecked: 0
   checkedTime: 0
   checkSlider: {fileID: 0}
-  isShowUIArea: 0
-  activationDistance: 5
   player: {x: 0, y: 0, z: 0}
 --- !u!1 &774118099
 GameObject:
@@ -74602,8 +74601,6 @@ MonoBehaviour:
   isChecked: 0
   checkedTime: 0
   checkSlider: {fileID: 0}
-  isShowUIArea: 0
-  activationDistance: 5
   player: {x: 0, y: 0, z: 0}
 --- !u!65 &3469287838017787248
 BoxCollider:
@@ -74811,8 +74808,6 @@ MonoBehaviour:
   isChecked: 0
   checkedTime: 0
   checkSlider: {fileID: 0}
-  isShowUIArea: 0
-  activationDistance: 5
   player: {x: 0, y: 0, z: 0}
 --- !u!65 &4340157384540384929
 BoxCollider:
@@ -75795,8 +75790,6 @@ MonoBehaviour:
   isChecked: 0
   checkedTime: 0
   checkSlider: {fileID: 0}
-  isShowUIArea: 0
-  activationDistance: 5
   player: {x: 0, y: 0, z: 0}
 --- !u!114 &6333447974419544555
 MonoBehaviour:
@@ -76335,8 +76328,6 @@ MonoBehaviour:
   isChecked: 0
   checkedTime: 0
   checkSlider: {fileID: 0}
-  isShowUIArea: 0
-  activationDistance: 5
   player: {x: 0, y: 0, z: 0}
 --- !u!65 &8172690832976232802
 BoxCollider:
