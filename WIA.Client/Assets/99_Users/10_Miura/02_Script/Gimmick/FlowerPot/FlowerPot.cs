@@ -9,15 +9,13 @@ using UnityEngine.UI;
 
 public class FlowerPot : MonoBehaviour
 {
-    [SerializeField] public GameObject potObj;
-    [SerializeField] GameObject potFragmentObj;
-    [SerializeField] float moveSpeed;
+    [SerializeField] public GameObject potObj; //植木鉢プレハブ
+    [SerializeField] GameObject potFragmentObj; //植木鉢の破片プレハブ
     // 警告円のプレハブ
     [SerializeField] GameObject dangerZone;
     Vector3 mouse;
     Vector3 target;
 
-    int potCheckCnt;
     public bool isGrab = false;
 
     // カメラマネージャースクリプト
@@ -26,12 +24,14 @@ public class FlowerPot : MonoBehaviour
     // 警告円オブジェクト
     GameObject dangerZoneObj;
 
+    // 植木鉢がスポーンした場所のリスト
+    List<int> nowSpawnList = new List<int>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
-        potObj.name = "FlowerPot_obj";
+        potObj.name = "FlowerPot_obj"; //生成される植木鉢オブジェクトの名前を固定
     }
 
     // Update is called once per frame
@@ -77,22 +77,25 @@ public class FlowerPot : MonoBehaviour
 
     private async void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Base"||collision.gameObject.tag== "Player" || collision.gameObject.tag == "Abyss" || collision.gameObject.tag == "CheckableObject")
+        if (collision.gameObject.tag == "Base" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "CheckableObject")
         {//Baseタグのオブジェクトに触れたら
             FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
             potObj = flowerPotManager.potObj;
             potFragmentObj = flowerPotManager.potFragmentObj;
+            nowSpawnList = flowerPotManager.nowSpawnList;
 
             GameObject fragment; //破片オブジェクト
             fragment = Instantiate(potFragmentObj, this.gameObject.transform.position, this.gameObject.transform.rotation);
 
+            flowerPotManager.RemoveList(flowerPotManager.generatNumber);
+
             //植木鉢を消す
             Destroy(this.gameObject);
+
             // 警告円を破壊する
             Destroy(dangerZoneObj);
             flowerPotManager.potList.Remove(potObj);
-            flowerPotManager.potCnt -=1;
-            flowerPotManager.isPot = false;
+            flowerPotManager.isThreePot = false;
 
             for (int i = 0; i < fragment.transform.childCount; i++)
             {//potFragmentObjの子の数だけループ
@@ -107,10 +110,14 @@ public class FlowerPot : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Abyss"))
-        {
-            Destroy(potObj);
-        }
+        {// Abyssタグのものに触れたら
+            FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
 
+            Destroy(potObj); //植木鉢を消す
+
+            //flowerPotManagerで使用していた番号を削除
+            flowerPotManager.RemoveList(flowerPotManager.generatNumber);
+        }
     }
 
     public void GrabPot()
@@ -131,7 +138,8 @@ public class FlowerPot : MonoBehaviour
     /// <param name="fragment"></param>
     public void FadeFragment(Transform fragment)
     {
-        fragment.GetComponent<Renderer>().material.DOFade(0, 6);
+        // 破片をフェードアウトさせる
+        fragment.GetComponent<Renderer>().material.DOFade(0, 6); // マテリアルを取得してフェードアウト
     }
 
     /// <summary>

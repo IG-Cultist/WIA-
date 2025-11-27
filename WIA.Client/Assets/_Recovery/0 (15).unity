@@ -13228,7 +13228,7 @@ GameObject:
   - component: {fileID: 604670376}
   m_Layer: 0
   m_Name: Pipe_2
-  m_TagString: Base
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31889,7 +31889,7 @@ GameObject:
   - component: {fileID: 989259250}
   m_Layer: 0
   m_Name: Soil_1
-  m_TagString: Base
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46539,7 +46539,7 @@ GameObject:
   - component: {fileID: 1495624762}
   m_Layer: 10
   m_Name: FlowerPotManager
-  m_TagString: Base
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46584,9 +46584,7 @@ MonoBehaviour:
   - {fileID: 1006542331}
   - {fileID: 79977231}
   - {fileID: 1576759295}
-  nowSpawnList: 
   isThreePot: 0
-  generatNumber: 0
 --- !u!1 &1497480201
 GameObject:
   m_ObjectHideFlags: 0
@@ -49024,7 +49022,7 @@ GameObject:
   - component: {fileID: 1574566111}
   m_Layer: 0
   m_Name: Soil
-  m_TagString: Base
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55557,7 +55555,7 @@ GameObject:
   - component: {fileID: 1842142440}
   m_Layer: 0
   m_Name: Pipe_3
-  m_TagString: Base
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditorInternal.ReorderableList;
+using UnityEngine.UIElements;
 
 
 public class FlowerPotManager : MonoBehaviour
@@ -11,39 +13,29 @@ public class FlowerPotManager : MonoBehaviour
 
     public List<GameObject> potList = new List<GameObject>(); //植木鉢の生成個数を格納するリスト
     public List<GameObject> randomSpawnPoint =new List<GameObject>(); //植木鉢がスポーンする場所のリスト
-    public List<int> useNumList = new List<int>(); //スポーンした場所の番号のリスト
+    public List<int> nowSpawnList=new List<int>();
 
-    public bool isPot = false; //植木鉢が存在するかどうかの変数
-    public int potCnt; //植木鉢がいくつあるかの変数
+    public bool isThreePot = false; //植木鉢が3個存在するかどうかの変数
+    public int generatNumber;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        //植木鉢を生成する
+        GeneratePot();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Return))
-        {//Enterキーを押されたら
-
-            if (isPot == true) { return; } //植木鉢が3個以上ある場合、以下の処理を実行しない
-
-            for (int i = 0;i<3;i++)
-            {//3回繰り返す
-                GeneratePot(); //植木鉢を生成する
-                potCnt++; //植木鉢の個数カウントを増やす
-
-                if (potCnt>=3)
-                {//potCuntが3以上になったら
-                    isPot = true; //植木鉢が3個ある状態にする
-                }
-                if(potCnt<=2)
-                {
-                    isPot= false; //植木鉢が3個存在しない状態
-                }
-            }
+        if (potList.Count >= 3)
+        {//potListの要素が3以上だったら
+            isThreePot = true; // 植木鉢が3個ある状態にする
+        }
+        if (potList.Count <= 2)
+        {//potListの要素が2以下だったら
+            GeneratePot(); //植木鉢を生成する
+            isThreePot = false; // 植木鉢が3個存在しない状態
         }
     }
 
@@ -52,32 +44,30 @@ public class FlowerPotManager : MonoBehaviour
     /// </summary>
     private void GeneratePot()
     {
-        ////生成位置を決める
-        //int generatNumber = Random.Range(0, randomSpawnPoint.Length); //生成位置をspawnPointPosの中から決める
-        //spawnPointPos.Add(randomSpawnPoint[generatNumber].transform.position);
-
-        //Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation);
-
         while (true)
-        { // 無限ループ
-          //生成位置を決める
-            int generatNumber = Random.Range(0, randomSpawnPoint.Count); //生成位置をspawnPointPosの中から決める
+        {        
+            // 生成位置を決める
+            generatNumber = Random.Range(0, randomSpawnPoint.Count); // 生成位置をspawnPointPosの中から決める
 
-            //int i = Random.Range(0, spawnPointPos.Count - 1); // ランダム生成
+            if (!nowSpawnList.Contains(generatNumber))
+            {
+                break;
+            }
+        }
+        nowSpawnList.Add(generatNumber);
 
-            //if ()
-            //{
-            //    continue; // ランダムで出てきた数字がすでに1度出てきてたら、もう一度
-            //}
-            //count++;
-            //GameObject obj = Instantiate(obj1, basyo[i], Quaternion.identity) as GameObject;
-            //objList.Add(obj); // 作ったインスタンスを保持
-            //randomList.Add(i);  // ランダムで出てきた数字を保持
+        // potObjを生成する
+        Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); // randomSpawnPointに格納されたgameObjectのgeneratNumberの場所に生成
 
-            //if (count >= basyo.Count)
-            //{
-            //    break;  // basyo数分のインスタンスを作ったらループを抜ける
-            //}
+        //potListに要素を追加する
+        potList.Add(potObj);
+    }
+
+    public void RemoveList(int generateNumber)
+    {
+        if(nowSpawnList.Contains(generateNumber))
+        {
+            nowSpawnList.Remove(generateNumber);
         }
     }
 }
