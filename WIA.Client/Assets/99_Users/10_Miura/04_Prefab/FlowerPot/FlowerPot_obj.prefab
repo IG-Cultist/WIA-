@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4944158596258116352}
   - component: {fileID: 6513460992603707647}
   - component: {fileID: 852948351917777783}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FlowerPot_obj
   m_TagString: Pot
   m_Icon: {fileID: 0}
@@ -107,7 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlowerPot
   potObj: {fileID: 1454636699154065244}
   potFragmentObj: {fileID: 635231456264371297, guid: a01becb58960ef1438167fa2931b13a9, type: 3}
-  moveSpeed: 10
   dangerZone: {fileID: 5029692440823248656, guid: df9fd05ebb910984e8c96845aa9f498b, type: 3}
   isGrab: 0
 --- !u!54 &4944158596258116352
@@ -135,7 +134,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 16
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &6513460992603707647
 BoxCollider:
