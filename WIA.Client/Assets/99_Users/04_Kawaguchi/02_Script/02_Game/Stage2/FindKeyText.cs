@@ -11,11 +11,14 @@ public class FindKeyText : MonoBehaviour
     private float repeatSpan;    //繰り返す間隔
     private float timeElapsed;   //経過時間
 
+    private bool textChange;
+
     CheckableObjManager checkableObjManager;
 
     void Start()
     {
         checkableObjManager = GameObject.Find("CheckableObjManager").gameObject.GetComponent<CheckableObjManager>();    //マネージャー取得
+        textChange = false;
 
         //表示切り替え時間を指定
         repeatSpan = 0.5f;
@@ -25,9 +28,20 @@ public class FindKeyText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeElapsed += Time.deltaTime;     //時間をカウントする
         if (checkableObjManager.isGetKey)
         {
+            if (!textChange)
+            {
+                GetComponent<Text>().text = "ドア開錠中";
+                textChange = true;
+            }
+
+        }
+
+        timeElapsed += Time.deltaTime;     //時間をカウントする
+        if (checkableObjManager.nowFindObj.name == "Door")
+        {
+
             if (timeElapsed >= repeatSpan)
             {//時間経過でテキスト切り替え
                 GetComponent<Text>().text = "ドア開錠中";
@@ -48,6 +62,7 @@ public class FindKeyText : MonoBehaviour
         }
         else
         {
+
             if (timeElapsed >= repeatSpan)
             {//時間経過でテキスト切り替え
                 GetComponent<Text>().text = "鍵捜索中";
