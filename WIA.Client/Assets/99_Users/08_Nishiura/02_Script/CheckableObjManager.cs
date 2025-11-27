@@ -25,7 +25,7 @@ public class CheckableObjManager : MonoBehaviour
 
     public bool isGetKey;      //キーを取得できたか
 
-    GameObject nowFindObj;       //現在調査中のオブジェクト
+    public GameObject nowFindObj;       //現在調査中のオブジェクト
     FindKeyStatus nowFindStatus; //現在調査中のオブジェクトのステータス
 
 

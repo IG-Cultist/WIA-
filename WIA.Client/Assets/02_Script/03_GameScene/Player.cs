@@ -93,8 +93,6 @@ public class Player : MonoBehaviour
         // オブジェクトの速度を元にアニメーションの速度を決定する
         float walkSpeed = rigidbody.linearVelocity.magnitude * 3.0f;
 
-        string a = walkSpeed.ToString();
-        Debug.Log(a);
 
         // アニメーションの速度を[WalkSpeed]パラメータに設定する
         animator.SetFloat(p_WalkSpeed, walkSpeed);

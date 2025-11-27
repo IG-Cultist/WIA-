@@ -13,7 +13,7 @@ public class FindKeyStatus : MonoBehaviour
 
     [Header("調査UI表示切り替え用")]
     public Slider checkSlider;     //調査進捗UI
-    float activationDistance = 1f; //UI表示可能距離
+    float activationDistance = 1.5f; //UI表示可能距離
     public Vector3 player;         //プレイヤー座標
 
     CheckableObjManager checkableObjManager;
