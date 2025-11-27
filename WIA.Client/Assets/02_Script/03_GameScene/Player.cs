@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     [Header("フラグ系")]
     public bool isDead = false;     //死亡判定
     public bool isRespawn = true;   //リスポーン判定
-
+    public bool isDebug;
 
     //プレイヤーステート
     public enum PLAYER_STATE
@@ -238,7 +238,7 @@ public class Player : MonoBehaviour
         isRespawn = false;
 
         // 死亡回数を加算
-        deathCnt++;
+        if(!isDebug)deathCnt++;
         // 死亡回数テキストを取得し、死亡回数を反映
         GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
 

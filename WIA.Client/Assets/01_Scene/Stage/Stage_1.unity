@@ -8954,8 +8954,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.36740977, y: -0.44786966, z: 0.20884502, w: 0.7879128}
-  m_LocalPosition: {x: 25.853586, y: 10.1, z: 7.0797105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.45, y: -0.0069999695, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14969,18 +14969,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 651164778}
     m_Modifications:
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: maxPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: minPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: warpPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8065990998585097377, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
       propertyPath: m_Name
       value: Box_1
@@ -15024,6 +15012,18 @@ PrefabInstance:
     - target: {fileID: 8937174083076549553, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: maxPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: minPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: warpPoint
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15493,18 +15493,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 651164778}
     m_Modifications:
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: maxPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: minPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: warpPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 184531201943223713, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       propertyPath: m_Name
       value: Box_4
@@ -15556,6 +15544,18 @@ PrefabInstance:
     - target: {fileID: 5613611799098288263, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: maxPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: minPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: warpPoint
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -51081,6 +51081,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7534841442416822557, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+      propertyPath: isDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534841442416822557, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: warpPoint
       value: 
       objectReference: {fileID: 1557371691}
@@ -65240,9 +65244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b78f65089f8574ea3bb6522aed6a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::container
-  m_force: 80
+  m_force: 75
   m_radius: 10
-  m_upwards: 30
+  m_upwards: 20
 --- !u!1 &8436876918638847816
 GameObject:
   m_ObjectHideFlags: 0
