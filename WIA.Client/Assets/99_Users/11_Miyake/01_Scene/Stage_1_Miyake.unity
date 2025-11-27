@@ -2726,6 +2726,30 @@ PrefabInstance:
       propertyPath: warpPoint
       value: 
       objectReference: {fileID: 1557371691}
+    - target: {fileID: 1981524222756845117, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 951
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457249806198616798, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457249806198616798, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341165447491649485, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341165447491649485, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8157676173965011464, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0167
+      objectReference: {fileID: 0}
     - target: {fileID: 8283995986666785492, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_Name
       value: Main
@@ -2733,6 +2757,10 @@ PrefabInstance:
     - target: {fileID: 8283995986666785492, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459450687595631553, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0227
       objectReference: {fileID: 0}
     - target: {fileID: 8981146642648769388, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_LocalPosition.x
