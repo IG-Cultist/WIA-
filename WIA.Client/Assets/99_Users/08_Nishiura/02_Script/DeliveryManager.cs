@@ -88,9 +88,9 @@ public class DeliveryManager : MonoBehaviour
 
         coolDownSlider.SetActive(true);
         coolDownSlider.GetComponent<Slider>().value = 1f;
-        coolDownSlider.GetComponent<Slider>().DOValue(0, 15f).SetEase(Ease.Linear);
+        coolDownSlider.GetComponent<Slider>().DOValue(0, 10f).SetEase(Ease.Linear);
         // 10秒後、クールダウン終了
-        Invoke("ResetCooldown", 15f);
+        Invoke("ResetCooldown", 10f);
 
         // コーヒーマシンを使用不可にする
         coffeeMachine.GetComponent<BoxCollider>().enabled = false;
