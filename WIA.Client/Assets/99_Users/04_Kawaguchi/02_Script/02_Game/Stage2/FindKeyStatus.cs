@@ -9,10 +9,11 @@ public class FindKeyStatus : MonoBehaviour
     [Header("調査判定用")]
     public bool isChecked;        //調査済みか
     public float checkedTime;     //調査完了時間
+    public bool canCheckArea;     //調査可能エリアにいるか
 
     [Header("調査UI表示切り替え用")]
     public Slider checkSlider;     //調査進捗UI
-    float activationDistance = 4f; //UI表示可能距離
+    float activationDistance = 1f; //UI表示可能距離
     public Vector3 player;         //プレイヤー座標
 
     CheckableObjManager checkableObjManager;
@@ -26,6 +27,7 @@ public class FindKeyStatus : MonoBehaviour
 
         checkSlider.gameObject.SetActive(false);
 
+        canCheckArea = false;
         isChecked = false;
         checkedTime = 0f;
     }
@@ -37,8 +39,16 @@ public class FindKeyStatus : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player);    //距離計算
 
         //距離が指定した範囲内ならオブジェクトを表示、そうでなければ非表示
-        if (distance <= activationDistance) checkSlider.gameObject.SetActive(true);
-        else checkSlider.gameObject.SetActive(false);
+        if (distance <= activationDistance)
+        {
+            canCheckArea = true;   //調査可能に
+            checkSlider.gameObject.SetActive(true);
+        }
+        else
+        {
+            canCheckArea = false;   //調査不可に
+            checkSlider.gameObject.SetActive(false);
+        }
         
 
         if (isChecked) return;   //調査済みの場合return

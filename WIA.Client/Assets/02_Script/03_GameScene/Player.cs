@@ -26,15 +26,10 @@ public class Player : MonoBehaviour
     //フェード用変数
     FadeImage fadeImageScript;
 
-    public float moveSpeed;   //プレイヤー移動速度
     Rigidbody rigidbody;      //慣性取得用
     private const string p_WalkSpeed = "MoveSpeed";
 
     [Header("フラグ系")]
-    public bool isCatch;   //物を掴んでるか
-    public bool isWolk;    //走ってるか
-    public bool isDash;    //走ってるか
-
     public bool isDead = false;     //死亡判定
     public bool isRespawn = true;   //リスポーン判定
 
@@ -178,13 +173,8 @@ public class Player : MonoBehaviour
 
         }
 
-        if(!isDash) player_anim_State = PLAYER_ANIM_STATE.IDLE;  //走ってない
-        else
-        {
 
-        }
-
-        //プレイヤーアニメーション分岐
+        //プレイヤーアニメーション分岐(サーバー送信用)
         switch (player_anim_State)
         {
             //停止状態(アイドル)

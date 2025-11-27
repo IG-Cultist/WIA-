@@ -51,7 +51,7 @@ public class CheckableObjManager : MonoBehaviour
         //オブジェクト調査中
         if (isCheckNow)
         {
-            if (nowFindStatus.isChecked) return;  //チェック済みはreturn
+            if (nowFindStatus.isChecked || !nowFindStatus.canCheckArea) return;  //チェック済みはreturn
 
             if (nowFindObj.name == "Door" && !isGetKey) return; //鍵非所持でドア開錠もreturn
 
