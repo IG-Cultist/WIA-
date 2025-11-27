@@ -46466,6 +46466,7 @@ MonoBehaviour:
   - {fileID: 1006542331}
   - {fileID: 79977231}
   - {fileID: 1576759295}
+  useNumList: 
   isPot: 0
   potCnt: 0
 --- !u!1 &1499078204

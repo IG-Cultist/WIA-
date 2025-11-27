@@ -16,6 +16,10 @@ public class TaskUIManager : MonoBehaviour
     [SerializeField] Image taskIcon;
     // 死亡回数
     [SerializeField] Text deathCount;
+    // 死亡回数
+    [SerializeField] Text timerText;
+
+    float count = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +34,7 @@ public class TaskUIManager : MonoBehaviour
             case "Stage_1":
                 // リソースからアイコンを取得
                 texture = Resources.Load("Icons/Icon_Box") as Texture2D;
-                taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),Vector2.zero);
+                taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
 
                 // タスクカウントを設定
                 taskCount.text = ": 0/5";
@@ -76,9 +80,9 @@ public class TaskUIManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        count += Time.deltaTime;
+        timerText.text = count.ToString("n2");
     }
 }

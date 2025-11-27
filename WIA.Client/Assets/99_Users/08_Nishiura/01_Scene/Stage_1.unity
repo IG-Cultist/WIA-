@@ -40476,6 +40476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7a950ece81aa54d93675bc35b6ac0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskCheck
+  boxCnt: 0
   cubeList: 
 --- !u!1 &1076832742
 GameObject:
