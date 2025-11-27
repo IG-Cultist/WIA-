@@ -170,6 +170,10 @@ public class ObjectGrabber : MonoBehaviour
             {
                 GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
             }
+            else if (hit.collider.CompareTag("WaterCooler"))
+            {
+                hit.transform.GetChild(0).gameObject.SetActive(true);
+            }
         }
     }
 
