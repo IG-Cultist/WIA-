@@ -91,7 +91,7 @@ public class FlowerPot : MonoBehaviour
             // åxçêâ~ÇîjâÛÇ∑ÇÈ
             Destroy(dangerZoneObj);
             flowerPotManager.potList.Remove(potObj);
-            flowerPotManager.potCnt -=1;
+            //flowerPotManager.potCnt -=1;
             flowerPotManager.isThreePot = false;
 
             for (int i = 0; i < fragment.transform.childCount; i++)
