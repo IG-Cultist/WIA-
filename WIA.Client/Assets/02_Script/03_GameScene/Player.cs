@@ -11,30 +11,33 @@ using UnityEngine.UI;
 /// </summary>
 public class Player : MonoBehaviour
 {
+    [Header("プレイヤー(当たり判定・アニメーション)系")]
     [SerializeField] GameObject child;
-
     [SerializeField] GameObject hitPoint;    //Player(lagdoll)当たり判定
     [SerializeField] Animator animator;
 
-    //
-    [SerializeField] Rigidbody hip;
-    [SerializeField] Rigidbody leftLeg;
-
+    [Header("アクション座標系")]
     [SerializeField] Transform warpPoint; //リスポーン地点
-
     [SerializeField] ObjectGrabber grabber;
+
     //カメラ切り替え用変数
     CameraManager cameraManager;
 
     //フェード用変数
     FadeImage fadeImageScript;
 
-    Rigidbody rigidbody;
+    public float moveSpeed;   //プレイヤー移動速度
+    Rigidbody rigidbody;      //慣性取得用
+    private const string p_WalkSpeed = "MoveSpeed";
 
-    //死亡判定
-    public bool isDead = false;
-    //リスポーン判定
-    public bool isRespawn = true;
+    [Header("フラグ系")]
+    public bool isCatch;   //物を掴んでるか
+    public bool isWolk;    //走ってるか
+    public bool isDash;    //走ってるか
+
+    public bool isDead = false;     //死亡判定
+    public bool isRespawn = true;   //リスポーン判定
+
 
     //プレイヤーステート
     public enum PLAYER_STATE
@@ -47,19 +50,33 @@ public class Player : MonoBehaviour
         ERROR,                //上記非該当状態
     }
 
-    [SerializeField] public PLAYER_STATE player_State;
+    //プレイヤーステート
+    public enum PLAYER_ANIM_STATE
+    {
+        IDLE = 0,             //停止状態(アイドル)
+        WALK,                 //歩行状態
+        RUN,                  //走行状態
+        HAVE,                 //オブジェクト取得状態
+        HAVE_RUN,             //取得中走行状態
+        ERROR,                //上記非該当状態
+    }
+
+    [Header("プレイヤー状態系")]
+    [SerializeField] public PLAYER_STATE player_State;  //プレイヤー状態
+    public PLAYER_ANIM_STATE player_anim_State;         //プレイヤー(アニメーション)状態
+
     List<Transform> allChildren;
 
     public int deathCnt; //死亡回数
 
     float x;
     float z;
-    public float moveSpeed;
+
 
     private void Awake()
     {
         SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
-        rigidbody = GetComponent<Rigidbody>();
+        rigidbody = this.GetComponent<Rigidbody>();
     }
 
     void Start()
@@ -67,46 +84,35 @@ public class Player : MonoBehaviour
         deathCnt = 0; //死亡回数
 
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
-        // �t�F�[�h�C���[�W����X�N���v�g���擾
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Horizontal
-        //Vertical
-        x = Input.GetAxisRaw("Vertical");
-        z = Input.GetAxisRaw("Horizontal");
-
-        
-        Vector3 direction = transform.position + new Vector3(x, 0f, z) * moveSpeed;
-        /*
-        //transform.LookAt(direction);
-        //速度設定
-        rigidbody.linearVelocity = move * moveSpeed;
-
-        if (move != Vector3.zero)
-        {
-            //transform.forward = move;
-            //                                目的の方向        指定の方向    方向転換にかかる時間
-            transform.forward = Vector3.Slerp(transform.forward, move, Time.deltaTime * 6);
-        }
-
-        animator.SetFloat("Speed", rigidbody.linearVelocity.magnitude);
-
-        */
+        //デバッグ用
         if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
         if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
 
+       
+        // オブジェクトの速度を元にアニメーションの速度を決定する
+        float walkSpeed = rigidbody.linearVelocity.magnitude * 3.0f;
+
+        string a = walkSpeed.ToString();
+        Debug.Log(a);
+
+        // アニメーションの速度を[WalkSpeed]パラメータに設定する
+        animator.SetFloat(p_WalkSpeed, walkSpeed);
+
+        //プレイヤー状態分岐
         switch (player_State)
         {
-            //�����O�̏��
+            //生成前状態
             case PLAYER_STATE.STOP:
 
                 break;
 
-            //�������̏ꍇ
+            //生存状態
             case PLAYER_STATE.ALIVE:
 
                 this.gameObject.GetComponent<CapsuleCollider>().enabled = true;
@@ -117,21 +123,19 @@ public class Player : MonoBehaviour
                 //プレイヤーとプレイヤーオブジェクトの角度を同期
                 child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z����10���ɐݒ� parent
 
-                ChangeBodyGravity(false);
-
-           
-
-                hitPoint.SetActive(false);
+                //LagDoll
+                ChangeBodyGravity(false);    //LagDollパーツに掛かる重力をfalseに
+                hitPoint.SetActive(false);   //当たり判定をfalseに
                 animator.enabled = true;
 
                 //以下に生存中の処理を記入
                 //----------------------------------------------------
 
-                if(!isRespawn)
+                //リスポーン位置調整処理
+                if (!isRespawn)
                 {
                     if (player_State == PLAYER_STATE.STRICKER) return;
 
-                    
                     //加速度をリセット
                     Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
 
@@ -145,34 +149,75 @@ public class Player : MonoBehaviour
                     Debug.Log("リセット完了");
                 }
 
-
                 break;
 
-            //���S���̏ꍇ
+            //死亡状態
             case PLAYER_STATE.DEATH:
                
-
                 Death();
                 break;
 
-            //�G���[�g�Đ����̏ꍇ
+            //エモート状態
             case PLAYER_STATE.EMOTE:
+
                 //プレイヤーとプレイヤーオブジェクトの角度を同期
-                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z����10���ɐݒ� parent
+                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; 
                 Emote(1);
                 break;
 
             case PLAYER_STATE.STRICKER:
 
                 //プレイヤーとプレイヤーオブジェクトの角度を同期
-                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z����10���ɐݒ� parent
+                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles;
                 break;
-            //�G���[�̏ꍇ
+
+            //上記非該当状態
             case PLAYER_STATE.ERROR:
 
                 break;
 
         }
+
+        if(!isDash) player_anim_State = PLAYER_ANIM_STATE.IDLE;  //走ってない
+        else
+        {
+
+        }
+
+        //プレイヤーアニメーション分岐
+        switch (player_anim_State)
+        {
+            //停止状態(アイドル)
+            case PLAYER_ANIM_STATE.IDLE:
+
+                break;
+
+            //生存状態
+            case PLAYER_ANIM_STATE.WALK:
+
+                break;
+
+            //死亡状態
+            case PLAYER_ANIM_STATE.RUN:
+
+                break;
+
+            //エモート状態
+            case PLAYER_ANIM_STATE.HAVE:
+
+                break;
+
+            case PLAYER_ANIM_STATE.HAVE_RUN:
+
+                break;
+
+            //上記非該当状態
+            case PLAYER_ANIM_STATE.ERROR:
+
+                break;
+        }
+
+
     }
 
     /// <summary>
@@ -184,8 +229,12 @@ public class Player : MonoBehaviour
         if (isDead) return;
         // 死亡済みとする
         isDead = true;
-        // 手に持っているものを離す
-        grabber.Release();
+
+        // 手に持っているものを離す（VR時は無視）
+        if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null)
+        {
+            grabber.Release();
+        }
 
         // メインカメラを非アクティブ化
         cameraManager.TurnOffPlayerCam();

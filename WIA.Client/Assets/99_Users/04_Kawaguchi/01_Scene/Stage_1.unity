@@ -14969,18 +14969,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 651164778}
     m_Modifications:
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: maxPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: minPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: warpPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8065990998585097377, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
       propertyPath: m_Name
       value: Box_1
@@ -15024,6 +15012,18 @@ PrefabInstance:
     - target: {fileID: 8937174083076549553, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: maxPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: minPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: warpPoint
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15493,18 +15493,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 651164778}
     m_Modifications:
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: maxPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: minPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: warpPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 184531201943223713, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       propertyPath: m_Name
       value: Box_4
@@ -15556,6 +15544,18 @@ PrefabInstance:
     - target: {fileID: 5613611799098288263, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: maxPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: minPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: warpPoint
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -51078,6 +51078,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6926587854077396242, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534841442416822557, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+      propertyPath: moveSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7534841442416822557, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
