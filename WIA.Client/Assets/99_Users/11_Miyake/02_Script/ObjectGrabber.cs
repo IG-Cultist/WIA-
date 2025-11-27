@@ -14,6 +14,7 @@ public class ObjectGrabber : MonoBehaviour
     [SerializeField] float moveForce = 250f;      // 掴んだオブジェクトをHoldPointに引き寄せる力
     [SerializeField] float maxDistance = 4f;      // 掴んだオブジェクトがこの距離より離れたら自動で離す
 
+
     [Header("UI系")]
     [SerializeField] Image crosshairImage;         // 通常時のクロスヘア
     [SerializeField] Image leftClickImage;         // 掴めるときに表示するLeftClick
