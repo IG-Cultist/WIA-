@@ -5693,6 +5693,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 184531201943223713, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 211960109}
+    - targetCorrespondingSourceObject: {fileID: 184531201943223713, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 211960110}
   m_SourcePrefab: {fileID: 100100000, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
 --- !u!4 &211960107 stripped
 Transform:
@@ -5719,6 +5722,18 @@ MonoBehaviour:
   warpPoint: {fileID: 0}
   minPoint: {fileID: 0}
   maxPoint: {fileID: 0}
+--- !u!114 &211960110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211960108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &212056368
 GameObject:
   m_ObjectHideFlags: 0
@@ -8806,8 +8821,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.36740977, y: -0.44786966, z: 0.20884502, w: 0.7879128}
-  m_LocalPosition: {x: 25.853586, y: 10.1, z: 7.0797105}
+  m_LocalRotation: {x: 0.28234148, y: -0.000000014901161, z: 0, w: 0.95931405}
+  m_LocalPosition: {x: -3.45, y: 0.553, z: -1.9699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29584,6 +29599,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2321543398235093276, guid: 9f94d60e6495c0d4f8a57aa97cd908dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1051790639}
+    - targetCorrespondingSourceObject: {fileID: 2321543398235093276, guid: 9f94d60e6495c0d4f8a57aa97cd908dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1051790640}
   m_SourcePrefab: {fileID: 100100000, guid: 9f94d60e6495c0d4f8a57aa97cd908dd, type: 3}
 --- !u!4 &1051790637 stripped
 Transform:
@@ -29610,6 +29628,18 @@ MonoBehaviour:
   warpPoint: {fileID: 0}
   minPoint: {fileID: 0}
   maxPoint: {fileID: 0}
+--- !u!114 &1051790640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051790638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1057351915
 GameObject:
   m_ObjectHideFlags: 0
@@ -33843,6 +33873,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8065990998585097377, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1241822947}
+    - targetCorrespondingSourceObject: {fileID: 8065990998585097377, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1241822948}
   m_SourcePrefab: {fileID: 100100000, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
 --- !u!4 &1241822945 stripped
 Transform:
@@ -33869,6 +33902,18 @@ MonoBehaviour:
   warpPoint: {fileID: 0}
   minPoint: {fileID: 0}
   maxPoint: {fileID: 0}
+--- !u!114 &1241822948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241822946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1242033066
 GameObject:
   m_ObjectHideFlags: 0
@@ -35864,18 +35909,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 546672294}
     m_Modifications:
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: maxPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: minPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
-      propertyPath: warpPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8065990998585097377, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
       propertyPath: m_Name
       value: Box_1
@@ -35920,6 +35953,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: maxPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: minPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869422372851886418, guid: b0ea54fb23fee654b8e216a7215cd057, type: 3}
+      propertyPath: warpPoint
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35927,6 +35972,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8065990998585097377, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1330217501}
+    - targetCorrespondingSourceObject: {fileID: 8065990998585097377, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1330217502}
   m_SourcePrefab: {fileID: 100100000, guid: dac642e7bcbf95042965e02b57fcb5f3, type: 3}
 --- !u!4 &1330217499 stripped
 Transform:
@@ -35953,6 +36001,18 @@ MonoBehaviour:
   warpPoint: {fileID: 0}
   minPoint: {fileID: 0}
   maxPoint: {fileID: 0}
+--- !u!114 &1330217502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330217500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1331479985
 GameObject:
   m_ObjectHideFlags: 0
@@ -45340,18 +45400,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 546672294}
     m_Modifications:
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: maxPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: minPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
-      propertyPath: warpPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 184531201943223713, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       propertyPath: m_Name
       value: Box_4
@@ -45404,6 +45452,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: maxPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: minPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047128059480943114, guid: d0be43915a287e24e803d659e02c8069, type: 3}
+      propertyPath: warpPoint
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45411,6 +45471,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 184531201943223713, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1729273513}
+    - targetCorrespondingSourceObject: {fileID: 184531201943223713, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1729273514}
   m_SourcePrefab: {fileID: 100100000, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
 --- !u!4 &1729273511 stripped
 Transform:
@@ -45437,6 +45500,18 @@ MonoBehaviour:
   warpPoint: {fileID: 0}
   minPoint: {fileID: 0}
   maxPoint: {fileID: 0}
+--- !u!114 &1729273514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729273512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1729276635
 GameObject:
   m_ObjectHideFlags: 0
@@ -50660,7 +50735,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7594537265788474993, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1928067615}
   m_SourcePrefab: {fileID: 100100000, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
 --- !u!4 &1928067613 stripped
 Transform:
@@ -50672,6 +50750,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7594537265788474993, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
   m_PrefabInstance: {fileID: 1928067612}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1928067615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928067614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1928184905
 GameObject:
   m_ObjectHideFlags: 0
@@ -56187,6 +56277,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7594537265788474993, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2032609410}
+    - targetCorrespondingSourceObject: {fileID: 7594537265788474993, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2032609411}
   m_SourcePrefab: {fileID: 100100000, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
 --- !u!4 &2032609408 stripped
 Transform:
@@ -56213,6 +56306,18 @@ MonoBehaviour:
   warpPoint: {fileID: 0}
   minPoint: {fileID: 0}
   maxPoint: {fileID: 0}
+--- !u!114 &2032609411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032609409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &2035037951
 GameObject:
   m_ObjectHideFlags: 0
