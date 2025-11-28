@@ -6177,13 +6177,14 @@ MonoBehaviour:
   child: {fileID: 568476383161561972}
   hitPoint: {fileID: 5947470467130703653}
   animator: {fileID: 3401867156953844262}
-  hip: {fileID: 0}
-  leftLeg: {fileID: 0}
   warpPoint: {fileID: 0}
   grabber: {fileID: 0}
   isDead: 0
   isRespawn: 1
+  isDebug: 0
   player_State: 1
+  player_anim_State: 0
+  deathCnt: 0
 --- !u!136 &7973912633960380106
 CapsuleCollider:
   m_ObjectHideFlags: 0
