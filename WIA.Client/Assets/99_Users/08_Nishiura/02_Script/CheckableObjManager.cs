@@ -28,6 +28,11 @@ public class CheckableObjManager : MonoBehaviour
     public GameObject nowFindObj;       //現在調査中のオブジェクト
     FindKeyStatus nowFindStatus; //現在調査中のオブジェクトのステータス
 
+    // プレイヤー
+    private Player player;
+    //死亡判定
+    private bool isDead;
+
 
     void Start()
     {
@@ -41,6 +46,9 @@ public class CheckableObjManager : MonoBehaviour
         Debug.Log("鍵が隠されているのは" + checkableObjList[keyObjectNum].name);
 
         checkNowText.SetActive(false);
+
+        player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+        isDead = false;
     }
 
     private void Update()
@@ -97,6 +105,11 @@ public class CheckableObjManager : MonoBehaviour
             nowFindStatus.isChecked = true;  //調査済みに変更
         }
 
+        if (player.deathCnt >= 3)
+        {
+            if (!isDead) Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
+            isDead = true;
+        }
     }
 
     /// <summary>
