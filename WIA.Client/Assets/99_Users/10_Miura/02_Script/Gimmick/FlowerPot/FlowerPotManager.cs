@@ -5,7 +5,6 @@ using UnityEngine;
 using static UnityEditorInternal.ReorderableList;
 using UnityEngine.UIElements;
 
-
 public class FlowerPotManager : MonoBehaviour
 {
     [SerializeField] public GameObject potObj; //植木鉢オブジェクト
@@ -31,6 +30,7 @@ public class FlowerPotManager : MonoBehaviour
         if (potList.Count >= 3)
         {//potListの要素が3以上だったら
             isThreePot = true; // 植木鉢が3個ある状態にする
+            RemoveList(generatNumber);
         }
         if (potList.Count <= 2)
         {//potListの要素が2以下だったら
