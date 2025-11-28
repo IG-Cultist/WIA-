@@ -36,7 +36,19 @@ public class TextManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isFinish)
         {
             Initiate.DoneFading();
-            Initiate.Fade("Stage_"+ nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+            Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+        }
+        if (Input.GetMouseButtonDown(0) && !isFinish)
+        {
+            CancelInvoke();
+            isFinish = true;
+
+            clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+
+            foreach (Text text in textList)
+            {
+                text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+            }
         }
     }
 
