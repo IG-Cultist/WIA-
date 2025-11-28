@@ -77,6 +77,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         deathCnt = 0; //死亡回数
+        if (SceneManager.GetActiveScene().name == "Stage_3") this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+        else this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
