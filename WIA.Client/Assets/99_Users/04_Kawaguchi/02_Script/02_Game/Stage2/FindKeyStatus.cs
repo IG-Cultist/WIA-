@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// 鍵調査オブジェクト処理スクリプト
@@ -16,7 +17,32 @@ public class FindKeyStatus : MonoBehaviour
     float activationDistance = 1f; //UI表示可能距離
     public Vector3 player;         //プレイヤー座標
 
+    [Header("VR用")]
+    [SerializeField] private InputActionReference hold_L;           //入力を受け取る対象のAction(左)
+    [SerializeField] private InputActionReference hold_R;           //（右）
+
     CheckableObjManager checkableObjManager;
+
+    private void Awake()
+    {
+        if (hold_L == null) return;
+
+        // performedコールバックのみを受け取る
+        // 長押し判定になったらこのコールバックが呼ばれる
+        hold_L.action.performed += OnHold;
+
+        // 入力を受け取るためには必ず有効化する必要がある
+        hold_L.action.Enable();
+
+        if (hold_R == null) return;
+
+        // performedコールバックのみを受け取る
+        // 長押し判定になったらこのコールバックが呼ばれる
+        hold_R.action.performed += OnHold;
+
+        // 入力を受け取るためには必ず有効化する必要がある
+        hold_R.action.Enable();
+    }
 
     void Start()
     {
@@ -60,5 +86,11 @@ public class FindKeyStatus : MonoBehaviour
         {
             isChecked = true;   //調査済みに変更
         }
+    }
+
+    // 長押しされたときに呼ばれるメソッド
+    private void OnHold(InputAction.CallbackContext context)
+    {
+        Debug.Log("長押しされてるよ～");
     }
 }
