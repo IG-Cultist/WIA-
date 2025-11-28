@@ -77,7 +77,7 @@ public class CheckableObjManager : MonoBehaviour
             {
                 if (!isGetKey) return;
 
-                Initiate.Fade("Stage_3", Color.black, 1.0f);
+                Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
             }
 
             // 調べたオブジェクトにキーが入っていた場合
