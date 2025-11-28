@@ -53,6 +53,12 @@ public class CheckableObjManager : MonoBehaviour
 
     private void Update()
     {
+        if (player.deathCnt >= 3)
+        {
+            if (!isDead) Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
+            isDead = true;
+        }
+
         //nullチェック
         if (nowFindObj == null) return;
 
@@ -105,11 +111,7 @@ public class CheckableObjManager : MonoBehaviour
             nowFindStatus.isChecked = true;  //調査済みに変更
         }
 
-        if (player.deathCnt >= 3)
-        {
-            if (!isDead) Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
-            isDead = true;
-        }
+       
     }
 
     /// <summary>
