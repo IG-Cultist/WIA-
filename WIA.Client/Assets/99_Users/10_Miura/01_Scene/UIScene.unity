@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 442170856}
   - component: {fileID: 442170857}
   - component: {fileID: 442170858}
+  - component: {fileID: 442170859}
   m_Layer: 5
   m_Name: TaskCount
   m_TagString: Untagged
@@ -198,6 +199,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0/0
+--- !u!114 &442170859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442170855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 0.34509805}
+  m_EffectDistance: {x: 2.42, y: 2.48}
+  m_UseGraphicAlpha: 1
 --- !u!1 &555672255
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +274,7 @@ GameObject:
   - component: {fileID: 814051089}
   - component: {fileID: 814051088}
   - component: {fileID: 814051087}
+  - component: {fileID: 814051090}
   m_Layer: 5
   m_Name: TaskIcon
   m_TagString: Untagged
@@ -322,6 +339,21 @@ RectTransform:
   m_AnchoredPosition: {x: -895, y: 355}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &814051090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814051086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 0.54509807}
+  m_EffectDistance: {x: 2.42, y: 2.48}
+  m_UseGraphicAlpha: 1
 --- !u!1 &882565481
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +365,7 @@ GameObject:
   - component: {fileID: 882565482}
   - component: {fileID: 882565484}
   - component: {fileID: 882565483}
+  - component: {fileID: 882565485}
   m_Layer: 5
   m_Name: DeathCount
   m_TagString: Untagged
@@ -401,6 +434,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882565481}
   m_CullTransparentMesh: 1
+--- !u!114 &882565485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882565481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 0.34509805}
+  m_EffectDistance: {x: 2.42, y: 2.48}
+  m_UseGraphicAlpha: 1
 --- !u!1 &921337115
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +597,7 @@ GameObject:
   - component: {fileID: 1181156333}
   - component: {fileID: 1181156335}
   - component: {fileID: 1181156334}
+  - component: {fileID: 1181156336}
   m_Layer: 5
   m_Name: DeathIcon
   m_TagString: Untagged
@@ -613,6 +662,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181156332}
   m_CullTransparentMesh: 1
+--- !u!114 &1181156336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181156332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 0.54509807}
+  m_EffectDistance: {x: 2.42, y: 2.48}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1202434392
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +796,7 @@ GameObject:
   - component: {fileID: 1255339654}
   - component: {fileID: 1255339655}
   - component: {fileID: 1255339656}
+  - component: {fileID: 1255339657}
   m_Layer: 5
   m_Name: TaskExplanation
   m_TagString: Untagged
@@ -800,6 +865,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Task:'
+--- !u!114 &1255339657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255339653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 0.34509805}
+  m_EffectDistance: {x: 2.42, y: 2.48}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1330295139
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,6 +1071,7 @@ GameObject:
   - component: {fileID: 1818808077}
   - component: {fileID: 1818808079}
   - component: {fileID: 1818808078}
+  - component: {fileID: 1818808080}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -1059,6 +1140,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818808076}
   m_CullTransparentMesh: 1
+--- !u!114 &1818808080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818808076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 0.34509805}
+  m_EffectDistance: {x: 2.42, y: 2.48}
+  m_UseGraphicAlpha: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
