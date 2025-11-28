@@ -14,11 +14,17 @@ public class OptionManager : MonoBehaviour
     private float SEVolume;
     private float BGMVolume;
 
+    bool isSetting;
+
+
+    FirstPersonLook pov;
+
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
 
         window.SetActive(false);
+        isSetting = false;
 
         //設定をローカルで保存するならここで取得先を変える
         BGMSlider.value = 100.0f;
@@ -28,6 +34,18 @@ public class OptionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+        if(isSetting)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;    //カーソルを表示
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }*/
+        
 
         //スライダーの値を音量に反映
         BGMVolume = BGMSlider.value * 0.01f;
@@ -54,6 +72,11 @@ public class OptionManager : MonoBehaviour
             else window.SetActive(false);
 
         }
+
+        // "TargetObject"という名前のオブジェクトを探す
+        GameObject targetObject = GameObject.Find("TargetObject");
+
+        //pov = GameObject.Find("Main").gameObject.transform.GetChild(1).gameObject.transform.GetComponent<FirstPersonLook>();   //調査プレイヤーの現在地取得
     }
 
     /// <summary>
@@ -62,6 +85,10 @@ public class OptionManager : MonoBehaviour
     public void OpenOption()
     {
         window.SetActive(true);
+
+        if (pov == null) return;
+
+        pov.enabled = false;
     }
 
     /// <summary>
@@ -70,5 +97,9 @@ public class OptionManager : MonoBehaviour
     public void CloseOption()
     {
         window.SetActive(false);
+
+        if (pov == null) return;
+
+        pov.enabled = true;
     }
 }

@@ -6,7 +6,7 @@ using System.IO;
 /// <summary>
 /// ビルド時にコメントアウトしないとエラー起きるかも
 /// </summary>
-
+/*
 [InitializeOnLoad]
 public class AutoSave
 {
@@ -174,5 +174,5 @@ public class AutoSave
 		File.WriteAllBytes (EditorApplication.currentScene, data);
 		AssetDatabase.Refresh (ImportAssetOptions.Default);
 	}
-
-}
+	
+}*/
