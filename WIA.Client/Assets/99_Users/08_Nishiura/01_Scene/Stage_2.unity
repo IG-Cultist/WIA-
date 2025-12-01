@@ -44671,9 +44671,9 @@ MonoBehaviour:
   - {fileID: 1006542331}
   - {fileID: 79977231}
   - {fileID: 1576759295}
-  useNumList: 
-  isPot: 0
-  potCnt: 0
+  nowSpawnList: 
+  isThreePot: 0
+  generatNumber: 0
 --- !u!1 &1497480201
 GameObject:
   m_ObjectHideFlags: 0
@@ -71851,7 +71851,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlowerPot
   potObj: {fileID: 1454636698396799567}
   potFragmentObj: {fileID: 635231456264371297, guid: a01becb58960ef1438167fa2931b13a9, type: 3}
-  moveSpeed: 10
   dangerZone: {fileID: 0}
   isGrab: 0
 --- !u!33 &1376708212276267584

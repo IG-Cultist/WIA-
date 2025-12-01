@@ -15,10 +15,11 @@ public class FirstPersonMovement : MonoBehaviour
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
     public List<System.Func<float>> speedOverrides = new List<System.Func<float>>();
 
-
+    Player player;
 
     void Awake()
     {
+        player = GetComponent<Player>();
         // Get the rigidbody on this.
         rigidbody = GetComponent<Rigidbody>();
     }
@@ -35,8 +36,17 @@ public class FirstPersonMovement : MonoBehaviour
             targetMovingSpeed = speedOverrides[speedOverrides.Count - 1]();
         }
 
+        Vector2 targetVelocity;
+        if (player.isTrip)
+        {
+            targetVelocity = new Vector2(Input.GetAxis("Horizontal") *( targetMovingSpeed * -1 / 1.5f), Input.GetAxis("Vertical") * (targetMovingSpeed * -1 / 1.5f));
+
+        }
         // Get targetVelocity from input.
-        Vector2 targetVelocity =new Vector2( Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
+        else
+        {
+            targetVelocity = new Vector2(Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
+        }
 
         // Apply movement.
         rigidbody.linearVelocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.linearVelocity.y, targetVelocity.y);

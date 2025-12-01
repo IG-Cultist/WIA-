@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2977845708777824504}
   - component: {fileID: 1208997348164669863}
   - component: {fileID: 948259457704271310}
+  - component: {fileID: 5035079731941424882}
   m_Layer: 0
   m_Name: Cup
   m_TagString: Item
@@ -84,6 +85,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.025636828, y: 0.024485698, z: 0.026144266}
   m_Center: {x: -0.00045258403, y: 0.01670712, z: -0.00029537678}
+--- !u!114 &5035079731941424882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617965653973081452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a7d0849f01f384eb01215a44e892ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cup
+  waterPrefab: {fileID: 354273508913060562, guid: 6e0b21b89cc00074cba293c32e0b0ca8, type: 3}
 --- !u!1 &3879586985468528981
 GameObject:
   m_ObjectHideFlags: 0
