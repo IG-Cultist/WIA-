@@ -23,7 +23,6 @@ namespace Shared.Interfaces.StreamingHubs
     public interface IRoomHubReceiver
     {
         //ここにサーバー～クライアントの定義
-
         #region 入室からゲーム開始まで
         /// <summary>
         /// ルーム作成通知
@@ -74,6 +73,13 @@ namespace Shared.Interfaces.StreamingHubs
         /// Author:Nishiura
         /// </summary>
         void OnUpdatePlayer(Vector3 pos,Quaternion rot);
+
+        /// <summary>
+        /// プレイヤー死亡通知
+        /// Author:木田晃輔
+        /// </summary>
+        /// <param name="guid"></param>
+        void OnPlayerDead(Guid guid);
 
 
         #endregion
