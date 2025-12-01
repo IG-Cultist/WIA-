@@ -1573,6 +1573,8 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  hold_L: {fileID: 0}
+  hold_R: {fileID: 0}
 --- !u!64 &83763437
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14566,6 +14568,7 @@ MonoBehaviour:
   checkNowText: {fileID: 404589127}
   chackableTimer: 8
   isGetKey: 0
+  nowFindObj: {fileID: 0}
 --- !u!1 &244409307
 GameObject:
   m_ObjectHideFlags: 0
@@ -23338,6 +23341,8 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  hold_L: {fileID: 0}
+  hold_R: {fileID: 0}
 --- !u!65 &609325461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23942,6 +23947,8 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  hold_L: {fileID: 0}
+  hold_R: {fileID: 0}
 --- !u!1 &621795473
 GameObject:
   m_ObjectHideFlags: 0
@@ -28741,6 +28748,8 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  hold_L: {fileID: 0}
+  hold_R: {fileID: 0}
 --- !u!65 &802928705
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36118,6 +36127,8 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  hold_L: {fileID: 0}
+  hold_R: {fileID: 0}
 --- !u!64 &1032599603
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36878,6 +36889,38 @@ PrefabInstance:
     - target: {fileID: 1711161634300781122, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_Name
       value: Main
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329995546335292453, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329995546335292453, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440260965506523573, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.676
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440260965506523573, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.977
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440260965506523573, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440260965506523573, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440260965506523573, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440260965506523573, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8368822495517647873, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: warpPoint
@@ -45198,7 +45241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fa7ad9c0c47444bb11f5a3c03cf24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
-  playerCamera: {fileID: 1630462470}
+  playerCamera: {fileID: 0}
   thirdPersonCamera: {fileID: 559457666}
   lookDownCamera: {fileID: 1074032073}
 --- !u!1 &1442842534
@@ -45870,6 +45913,8 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  hold_L: {fileID: 0}
+  hold_R: {fileID: 0}
 --- !u!64 &1459942855
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46516,9 +46561,9 @@ MonoBehaviour:
   - {fileID: 1006542331}
   - {fileID: 79977231}
   - {fileID: 1576759295}
-  useNumList: 
-  isPot: 0
-  potCnt: 0
+  nowSpawnList: 
+  isThreePot: 0
+  generatNumber: 0
 --- !u!1 &1499078204
 GameObject:
   m_ObjectHideFlags: 0
@@ -59291,11 +59336,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628989285}
   m_Mesh: {fileID: -355255188425379839, guid: fa80f29fe098e7349bad09b60a204cb8, type: 3}
---- !u!1 &1630462470 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6846845619118311146, guid: 7857b9a6420761043a129858830c776d, type: 3}
-  m_PrefabInstance: {fileID: 1063531065}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1632949338
 GameObject:
   m_ObjectHideFlags: 0
