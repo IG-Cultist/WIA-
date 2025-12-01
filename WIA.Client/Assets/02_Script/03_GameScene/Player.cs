@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     public bool isDead = false;     //死亡判定
     public bool isRespawn = true;   //リスポーン判定
     public bool isDebug;
+    public bool isTrip = false;
 
     //プレイヤーステート
     public enum PLAYER_STATE
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
     [SerializeField] public PLAYER_STATE player_State;  //プレイヤー状態
 
     List<Transform> allChildren;
+    GameObject tripPanel;
 
     public int deathCnt; //死亡回数
 
@@ -73,6 +75,8 @@ public class Player : MonoBehaviour
 
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
+        tripPanel = GameObject.Find("TripPanel");
+        tripPanel.SetActive(false);
 
         isHave = false;
     }
@@ -85,7 +89,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
 
         moveSpeed = rigidbody.linearVelocity.magnitude * 3.0f;   //オブジェクト速度を元にアニメーションの速度を決定
-        if(moveSpeed < 0) moveSpeed = 0; 
+        if(moveSpeed < 0) moveSpeed = 0;
         //else if(moveSpeed >= 7) moveSpeed = 7;      //再生最大速度を設定
 
         //プレイヤー状態分岐
@@ -114,7 +118,7 @@ public class Player : MonoBehaviour
 
                 //以下に生存中の処理を記入
                 //----------------------------------------------------
-                
+
                 //リスポーン位置調整処理
                 if (!isRespawn)
                 {
@@ -162,7 +166,7 @@ public class Player : MonoBehaviour
 
             //死亡状態
             case PLAYER_STATE.DEATH:
-               
+
                 Death();
                 break;
 
@@ -170,7 +174,7 @@ public class Player : MonoBehaviour
             case PLAYER_STATE.EMOTE:
 
                 //プレイヤーとプレイヤーオブジェクトの角度を同期
-                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; 
+                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles;
                 Emote(1);
                 break;
 
@@ -179,7 +183,6 @@ public class Player : MonoBehaviour
                 //プレイヤーとプレイヤーオブジェクトの角度を同期
                 child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles;
                 break;
-
             //上記非該当状態
             case PLAYER_STATE.ERROR:
 
@@ -196,6 +199,7 @@ public class Player : MonoBehaviour
     {
         // すでに死亡している場合、処理しない
         if (isDead) return;
+
         // 死亡済みとする
         isDead = true;
 
@@ -204,7 +208,6 @@ public class Player : MonoBehaviour
 
         // 手に持っているものを離す（VR時は無視）
         if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null) grabber.Release();
-        
 
         // メインカメラを非アクティブ化
         cameraManager.TurnOffPlayerCam();
@@ -222,6 +225,9 @@ public class Player : MonoBehaviour
         // 死亡回数テキストを取得し、死亡回数を反映
         GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
 
+        // 画面の毒々しさを解除する
+        tripPanel.SetActive(false);
+        isTrip = false;
 
         if (deathCnt <= 3)
         {
@@ -383,6 +389,17 @@ public class Player : MonoBehaviour
         {//触れたオブジェクトが植木鉢だった場合
             player_State = PLAYER_STATE.DEATH; //死亡状態にする
         }
+        if (collision.gameObject.name =="Injector")
+        {//触れたオブジェクトが注射器だった場合
+
+            // 注射器を破壊する
+            Destroy(collision.gameObject);
+            isTrip = true;
+
+            Invoke("ResetTrip", 10f);
+            // 画面を毒々しくする
+            tripPanel.SetActive(true);
+        }
     }
 
     void RespawnPlayer()
@@ -407,4 +424,11 @@ public class Player : MonoBehaviour
         //cameraManager.TurnOnPlayerCam();
     }
 
+    void ResetTrip()
+    {
+        if (!isTrip) return;
+        isTrip = false;
+        // 画面の毒々しさを解除する
+        tripPanel.SetActive(false);
+    }
 }

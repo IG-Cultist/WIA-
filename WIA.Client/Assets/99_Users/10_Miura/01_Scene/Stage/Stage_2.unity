@@ -4483,8 +4483,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084c01ab381b9da4082c1f84cf70751b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceThreshold: 0.15
-  isGrounded: 0
+  player: {fileID: 0}
+  OnEnterGround:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExitGround:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &222455405
 Transform:
   m_ObjectHideFlags: 0
@@ -67141,6 +67146,7 @@ MonoBehaviour:
   maxDistance: 4
   crosshairImage: {fileID: 0}
   leftClickImage: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &1879078679
 MonoBehaviour:
   m_ObjectHideFlags: 0
