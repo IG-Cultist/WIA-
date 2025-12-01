@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using KanKikuchi.AudioManager;
+
 
 public class TaskCheck : MonoBehaviour
 {
@@ -45,6 +47,15 @@ public class TaskCheck : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
+            SEManager.Instance.Play(
+                audioPath: SEPath.SUCCESS, //再生したいオーディオのパス
+                volumeRate: 1,                 //音量の倍率
+                delay: 0,                      //再生されるまでの遅延時間
+                pitch: 1,                      //ピッチ
+                isLoop: false,                 //ループ再生するか
+                callback: null                 //再生終了後の処理
+            );
+
             // 運搬した箱の数を加算
             boxCnt++;
             GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + boxCnt + "/5";
