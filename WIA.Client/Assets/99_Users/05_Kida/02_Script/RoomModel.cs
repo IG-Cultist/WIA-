@@ -26,6 +26,7 @@ using static Shared.Interfaces.StreamingHubs.IRoomHubReceiver;
 //using static Unity.Cinemachine.CinemachineSplineRoll;
 using Vector2 = UnityEngine.Vector2;
 using NUnit.Framework;
+using static Player;
 #endregion
 
 public class RoomModel : BaseModel, IRoomHubReceiver
@@ -375,6 +376,16 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         IsMaster = true;
     }
 
+    /// <summary>
+    /// プレイヤー死亡通知
+    /// Aughter:木田晃輔
+    /// </summary>
+    /// <param name="guid"></param>
+    public void OnPlayerDead(Guid guid)
+    {
+        OnPlayerDeadSyn(guid);
+    }
+
 
     #endregion
 
@@ -601,6 +612,12 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public async UniTask GetItemAsync(EnumManager.ITEM_TYPE itemType, string itemID)
     {
         //await roomHub.GetItemAsync(itemType, itemID);
+    }
+
+
+    public async UniTask PlayerDeadAsync()
+    {
+        await roomHub.PlayerDeadAsync();
     }
     #endregion
 

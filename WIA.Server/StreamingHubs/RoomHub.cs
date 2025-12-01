@@ -390,58 +390,12 @@ namespace WIA.Server.StreamingHubs
         /// </summary>
         /// <param name="conID">プレイヤーID</param>
         /// <returns></returns>
-        //public async Task<PlayerDeathResult> PlayerDeadAsync()
-        //{
-        //    lock (roomContextRepository) // 排他制御
-        //    {
-        //        PlayerDeathResult resultData = new PlayerDeathResult()
-        //        {
-        //            BuckupHDMICnt = 0,
-        //            IsDead = true
-        //        };
+        public async Task PlayerDeadAsync()
+        {
+            // 死亡者以外の参加者全員に対象者が死亡したことを通知
+            this.roomContext.Group.Except([this.ConnectionId]).OnPlayerDead(this.ConnectionId);
 
-        //        // 蘇生アイテムを持っているかチェック
-        //        var relicStatusData = this.roomContext.playerStatusDataList[this.ConnectionId].Item2;
-        //        if (relicStatusData.BuckupHDMICnt > 0)
-        //        {
-        //            // 蘇生アイテムを消費して全回復して復活する
-        //            relicStatusData.BuckupHDMICnt--;
-        //            this.roomContext.characterDataList[this.ConnectionId].State.hp = this.roomContext.characterDataList[this.ConnectionId].Status.hp;
-
-        //            resultData.BuckupHDMICnt = relicStatusData.BuckupHDMICnt;
-        //            resultData.IsDead = false;
-        //            return resultData;
-        //        }
-
-        //        // 生存時間を登録
-        //        this.roomContext.resultDataList[this.ConnectionId].AliveTime = DateTime.Now - this.roomContext.startTime;
-
-        //        // 全滅判定変数
-        //        bool isAllDead = true;
-        //        // ルームデータから接続IDを指定して自身のデータを取得
-        //        var playerData = this.roomContext.characterDataList[this.ConnectionId].IsDead = true;
-
-        //        foreach (var player in this.roomContext.characterDataList)
-        //        {
-        //            if (player.Value.IsDead == false) // もし誰かが生きていた場合
-        //            {
-        //                isAllDead = false;
-        //                break;
-        //            }
-        //        }
-
-        //        // 死亡者以外の参加者全員に対象者が死亡したことを通知
-        //        this.roomContext.Group.Except([this.ConnectionId]).OnPlayerDead(this.ConnectionId);
-
-        //        // 全滅した場合、ゲーム終了通知を全員に出す
-        //        if (isAllDead)
-        //        {
-        //            Result();
-        //        }
-
-        //        return resultData;
-        //    }
-        //}
+        }
 
 
         /// <summary>

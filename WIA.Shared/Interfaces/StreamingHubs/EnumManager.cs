@@ -136,6 +136,18 @@ namespace Shared.Interfaces.StreamingHubs
 
         #region キャラクター関連
 
+        //プレイヤーステート
+        public enum PLAYER_ANIM_STATE
+        {
+            IDLE = 0,             //停止状態(アイドル)
+            WALK,                 //歩行状態
+            RUN,                  //走行状態
+            HAVE,                 //オブジェクト取得状態
+            HAVE_RUN,             //取得中走行状態
+            ERROR,                //上記非該当状態
+        }
+
+
         /// <summary>
         /// 状態異常の種類
         /// </summary>

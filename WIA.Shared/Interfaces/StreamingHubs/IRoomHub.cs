@@ -57,10 +57,18 @@ namespace Shared.Interfaces.StreamingHubs
 
         /// <summary>
         /// プレイヤーの更新
+        /// Author:木田晃輔
         /// </summary>
         /// <param name="playerData"></param>
         /// <returns></returns>
         Task UpdatePlayerAsync(Vector3 pos,Quaternion rot);
+
+        /// <summary>
+        /// プレイヤー死亡同期
+        /// Author:木田晃輔
+        /// </summary>
+        /// <returns></returns>
+        Task PlayerDeadAsync();
 
 
         #endregion

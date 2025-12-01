@@ -2,6 +2,7 @@ using DG.Tweening;
 using NUnit;
 using NUnit.Framework;
 using Shared.Interfaces.StreamingHubs;
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using Unity.Cinemachine;
@@ -46,6 +47,59 @@ public class OnlineGameManager : MonoBehaviour
 
     #endregion
 
+    private void Awake()
+    {
+        if (RoomModel.Instance.IsMaster == false)
+        {
+            //すべてのオブジェクトからRigidbodyを外す
+            foreach (var obj in syncObjList)
+            {
+                Destroy(obj.GetComponent<Rigidbody>());
+            }
+        }
+
+        //通知の設定
+        RoomModel.Instance.OnUpdatePlayerSyn += OnUpdatePlayerSyn;
+        RoomModel.Instance.OnSpawnedObjectSyn += OnSpawnedObjectSyn;
+        RoomModel.Instance.OnLeavedUser += OnLeavedUser;
+        RoomModel.Instance.OnUpdatedObject += OnUpdatedObject;
+        RoomModel.Instance.OnOwnershipSwapObjectSyn += OnOwnershipSwapObjectSyn;
+
+        //プレイヤーの設定
+        foreach (var user in RoomModel.Instance.joinedUserList)
+        {
+            if (user.Key == RoomModel.Instance.ConnectionId)
+            {
+                player = Instantiate(mainPlayerPrefab);
+                player.name = "Main";
+                if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+                {
+                    player.transform.position = spawnPointP1.position;
+                }
+                else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+                {
+                    player.transform.position = spawnPointP2.position;
+                }
+                mainSpawnPoint = player.transform;
+                InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
+            }
+            else
+            {
+                subplayer = Instantiate(subPlayerPrefab);
+                subplayer.name = "Sub";
+                if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+                {
+                    subplayer.transform.position = spawnPointP2.position;
+                }
+                else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+                {
+                    subplayer.transform.position = spawnPointP1.position;
+                }
+            }
+        }
+
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,54 +110,6 @@ public class OnlineGameManager : MonoBehaviour
             //オブジェクト更新を行う
             InvokeRepeating("UpdateObj", 0.1f, 0.1f);
 
-            if (RoomModel.Instance.IsMaster == false) 
-            {
-                //すべてのオブジェクトからRigidbodyを外す
-                foreach (var obj in syncObjList)
-                {
-                    Destroy(obj.GetComponent<Rigidbody>());
-                }
-            }
-
-            //通知の設定
-            RoomModel.Instance.OnUpdatePlayerSyn += OnUpdatePlayerSyn;
-            RoomModel.Instance.OnSpawnedObjectSyn += OnSpawnedObjectSyn;
-            RoomModel.Instance.OnLeavedUser += OnLeavedUser;
-            RoomModel.Instance.OnUpdatedObject += OnUpdatedObject;
-            RoomModel.Instance.OnOwnershipSwapObjectSyn += OnOwnershipSwapObjectSyn;
-
-            //プレイヤーの設定
-            foreach (var user in RoomModel.Instance.joinedUserList)
-            {
-                if (user.Key == RoomModel.Instance.ConnectionId)
-                {
-                    player = Instantiate(mainPlayerPrefab);
-                    player.name = "Main";
-                    if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
-                    {
-                        player.transform.position = spawnPointP1.position;
-                    }
-                    else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
-                    {
-                        player.transform.position = spawnPointP2.position;
-                    }
-                    mainSpawnPoint = player.transform;
-                    InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
-                }
-                else
-                {
-                    subplayer = Instantiate(subPlayerPrefab);
-                    subplayer.name = "Sub";
-                    if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
-                    {
-                        subplayer.transform.position = spawnPointP2.position;
-                    }
-                    else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
-                    {
-                        subplayer.transform.position = spawnPointP1.position;
-                    }
-                }
-            }
         }
     }
 
@@ -182,7 +188,8 @@ public class OnlineGameManager : MonoBehaviour
     /// </summary>
     public async void UpDatePlayer()
     {
-        await RoomModel.Instance.UpdatePlayerAsync(player.transform.position,player.transform.rotation);
+        await RoomModel.Instance.UpdatePlayerAsync(player.transform.position
+            ,player.transform.rotation);
     }
 
     /// <summary>
@@ -199,7 +206,6 @@ public class OnlineGameManager : MonoBehaviour
 
         subplayer.transform.DORotate(rot.eulerAngles, 0.1f);
         subplayer.transform.GetChild(0).DORotate(rot.eulerAngles, 0.1f);
-
     }
 
     /// <summary>
