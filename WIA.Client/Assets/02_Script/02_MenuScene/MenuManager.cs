@@ -13,10 +13,16 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] GameObject guideText;
     [SerializeField] GameObject textPrefab;
+    [SerializeField] Image viewImage;
+
+    [Header("プレビュー画像")]
+    [SerializeField] Sprite view1;
+    [SerializeField] Sprite view2;
+    [SerializeField] Sprite view3;
 
     /////////////////////////
     ///説明テキスト  
-    
+
     string GameText = "二名の体験者がそれぞれ罹災者側・被災者側に分かれて、実際に発生した労働災害の事例を体験することが出来ます。";
     string DictionaryText = "本プロトコルで体験した労働災害について詳しく振り返ることが出来ます。再発防止に努めましょう。";
     string ProfileText = "登録されているユーザー情報を確認・変更することが出来ます。名前変更はこちらから。";
@@ -38,6 +44,7 @@ public class MenuManager : MonoBehaviour
     public void SelectGame()
     {
         scene_State = NEXTSCENE_STATE.GAME;
+        viewImage.sprite = view1;
 
         ChangeText(GameText);
     }
@@ -45,6 +52,7 @@ public class MenuManager : MonoBehaviour
     public void SelectDictionary()
     {
         scene_State = NEXTSCENE_STATE.DICTIONARY;
+        viewImage.sprite = view2;
 
         ChangeText(DictionaryText);
     }
@@ -52,6 +60,7 @@ public class MenuManager : MonoBehaviour
     public void SelectProfile()
     {
         scene_State = NEXTSCENE_STATE.PROFILE;
+        viewImage.sprite = view3;
 
         ChangeText(ProfileText);
     }
