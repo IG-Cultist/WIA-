@@ -480,6 +480,10 @@ MonoBehaviour:
     rgba: 4294967295
   guideText: {fileID: 69890711}
   textPrefab: {fileID: 6845287160900656651, guid: 70219406e0a6196449e278f47b910909, type: 3}
+  viewImage: {fileID: 703347500}
+  view1: {fileID: 21300000, guid: 91c46d2e4079380408657693f481ceda, type: 3}
+  view2: {fileID: 21300000, guid: dddcc578f2693ff4fb386bfd87e20842, type: 3}
+  view3: {fileID: 21300000, guid: 736f9e7f98623984ab308fad3da02f68, type: 3}
 --- !u!1 &335054827
 GameObject:
   m_ObjectHideFlags: 0
