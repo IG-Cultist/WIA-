@@ -47,7 +47,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(GetAnimId());
+        //Debug.Log(GetAnimId());
     }
     /// <summary>
     /// アニメーションID取得

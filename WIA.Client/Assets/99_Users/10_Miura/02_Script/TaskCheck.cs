@@ -32,6 +32,7 @@ public class TaskCheck : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log(player.deathCnt);
         if (player.deathCnt >= 3)
         {
             if (!isDead) Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
