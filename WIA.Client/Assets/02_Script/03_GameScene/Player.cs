@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static PlayerAnimation;
 
 /// <summary>
 /// プレイヤースクリプト
@@ -14,7 +15,8 @@ public class Player : MonoBehaviour
     [Header("プレイヤー(当たり判定・アニメーション)系")]
     [SerializeField] GameObject child;
     [SerializeField] GameObject hitPoint;    //Player(lagdoll)当たり判定
-    [SerializeField] Animator animator;
+    [SerializeField] Animator animator;      //アニメーター(速度調整用)
+    [SerializeField] PlayerAnimation plaAnimation;    //アニメーションスクリプト
 
     [Header("アクション座標系")]
     [SerializeField] Transform warpPoint; //リスポーン地点
@@ -27,9 +29,12 @@ public class Player : MonoBehaviour
     FadeImage fadeImageScript;
 
     Rigidbody rigidbody;      //慣性取得用
-    private const string p_WalkSpeed = "MoveSpeed";
+
+    private float moveSpeed;
 
     [Header("フラグ系")]
+    public bool isHave = false;
+    public bool isFall = false;
     public bool isDead = false;     //死亡判定
     public bool isRespawn = true;   //リスポーン判定
     public bool isDebug;
@@ -45,27 +50,12 @@ public class Player : MonoBehaviour
         ERROR,                //上記非該当状態
     }
 
-    //プレイヤーステート
-    public enum PLAYER_ANIM_STATE
-    {
-        IDLE = 0,             //停止状態(アイドル)
-        WALK,                 //歩行状態
-        RUN,                  //走行状態
-        HAVE,                 //オブジェクト取得状態
-        HAVE_RUN,             //取得中走行状態
-        ERROR,                //上記非該当状態
-    }
-
     [Header("プレイヤー状態系")]
     [SerializeField] public PLAYER_STATE player_State;  //プレイヤー状態
-    public PLAYER_ANIM_STATE player_anim_State;         //プレイヤー(アニメーション)状態
 
     List<Transform> allChildren;
 
     public int deathCnt; //死亡回数
-
-    float x;
-    float z;
 
 
     private void Awake()
@@ -76,12 +66,15 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+
         deathCnt = 0; //死亡回数
-        if (SceneManager.GetActiveScene().name == "Stage_3") this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+        if (SceneManager.GetActiveScene().name == "Stage_3") this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;    //ステージ3のみY座標固定
         else this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
+
+        isHave = false;
     }
 
     // Update is called once per frame
@@ -91,13 +84,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
         if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
 
-       
-        // オブジェクトの速度を元にアニメーションの速度を決定する
-        float walkSpeed = rigidbody.linearVelocity.magnitude * 3.0f;
-
-
-        // アニメーションの速度を[WalkSpeed]パラメータに設定する
-        animator.SetFloat(p_WalkSpeed, walkSpeed);
+        moveSpeed = rigidbody.linearVelocity.magnitude * 3.0f;   //オブジェクト速度を元にアニメーションの速度を決定
+        if(moveSpeed < 0) moveSpeed = 0; 
+        //else if(moveSpeed >= 7) moveSpeed = 7;      //再生最大速度を設定
 
         //プレイヤー状態分岐
         switch (player_State)
@@ -116,7 +105,7 @@ public class Player : MonoBehaviour
                 //cameraManager.TurnOnPlayerCam();
 
                 //プレイヤーとプレイヤーオブジェクトの角度を同期
-                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; // Z����10���ɐݒ� parent
+                child.transform.eulerAngles = this.gameObject.gameObject.transform.eulerAngles; //親オブジェクトに角度を統一
 
                 //LagDoll
                 ChangeBodyGravity(false);    //LagDollパーツに掛かる重力をfalseに
@@ -125,7 +114,7 @@ public class Player : MonoBehaviour
 
                 //以下に生存中の処理を記入
                 //----------------------------------------------------
-
+                
                 //リスポーン位置調整処理
                 if (!isRespawn)
                 {
@@ -142,6 +131,31 @@ public class Player : MonoBehaviour
 
                     isRespawn = true;
                     Debug.Log("リセット完了");
+                }
+
+                if (moveSpeed > 11)
+                {
+                    plaAnimation.SetAnim(ANIM_STATE.FALL, 1);
+
+                }
+                else
+                {
+                    if (moveSpeed <= 1)
+                    {
+                        if (!isHave) plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
+                        else plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
+                    }
+                    else if (moveSpeed > 4)
+                    {
+                        if (!isHave) plaAnimation.SetAnim(ANIM_STATE.RUN, moveSpeed);
+                        else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
+                    }
+                    else if (moveSpeed > 1)
+                    {
+                        if (!isHave) plaAnimation.SetAnim(ANIM_STATE.WALK, moveSpeed);
+                        else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
+                    }
+
                 }
 
                 break;
@@ -173,41 +187,6 @@ public class Player : MonoBehaviour
 
         }
 
-
-        //プレイヤーアニメーション分岐(サーバー送信用)
-        switch (player_anim_State)
-        {
-            //停止状態(アイドル)
-            case PLAYER_ANIM_STATE.IDLE:
-
-                break;
-
-            //生存状態
-            case PLAYER_ANIM_STATE.WALK:
-
-                break;
-
-            //死亡状態
-            case PLAYER_ANIM_STATE.RUN:
-
-                break;
-
-            //エモート状態
-            case PLAYER_ANIM_STATE.HAVE:
-
-                break;
-
-            case PLAYER_ANIM_STATE.HAVE_RUN:
-
-                break;
-
-            //上記非該当状態
-            case PLAYER_ANIM_STATE.ERROR:
-
-                break;
-        }
-
-
     }
 
     /// <summary>
@@ -220,11 +199,12 @@ public class Player : MonoBehaviour
         // 死亡済みとする
         isDead = true;
 
+        isFall = false;
+        //ResetAnimation();    //アニメーターリセット
+
         // 手に持っているものを離す（VR時は無視）
-        if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null)
-        {
-            grabber.Release();
-        }
+        if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null) grabber.Release();
+        
 
         // メインカメラを非アクティブ化
         cameraManager.TurnOffPlayerCam();
@@ -232,7 +212,7 @@ public class Player : MonoBehaviour
         Invoke("FadeOut", 0.8f);
 
         hitPoint.SetActive(true);
-        ChangeBodyGravity(true);
+        ChangeBodyGravity(true);    //重力をtrueに
 
         animator.enabled = false;
         isRespawn = false;
@@ -252,51 +232,48 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// �G���[�g�֐�
+    /// エモート再生処理
     /// </summary>
     private void Emote(int animationID)
     {
-        ChangeBodyGravity(false);
-        //�����蔻����ꎞ�I�ɍ폜
-        hitPoint.SetActive(false);
+        ChangeBodyGravity(false);    //重力削除
+        hitPoint.SetActive(false);   //当たり判定削除
 
-        //�����Ŏ擾�����A�j���[�V����ID�ŃA�j���[�V�����Đ�(�g�ݍ��ނƂ��ɏ��������Ă�)
+        //plaAnimation.SetAnim(PlayerAnimation.ANIM_STATE.EMOTE,moveSpeed);
     }
 
     /// <summary>
-    /// �d�͐؂�ւ��֐�(�R�������Ɖ����x���E�˔j����)
+    /// lagdoll重力切り替え関数
     /// </summary>
     /// <param name="isChange"></param>
     private void ChangeBodyGravity(bool isChange)
     {
-        // true��n���Ɣ�A�N�e�B�u�ȃI�u�W�F�N�g�����ׂĎ擾���܂�
+        //Amateur子オブジェクト全取得
         allChildren = GetAllChildTransforms(this.gameObject.transform, true);
 
-        // �擾�����I�u�W�F�N�g�̃��X�g��\�������
+        //子オブジェクト分周回
         foreach (Transform child in allChildren)
         {
-            // �q���I�u�W�F�N�g���g���܂܂�邽�߁A���g�����O����ꍇ��if���Ŕ��肵�܂�
+            //子オブジェクトが存在したら
             if (child != this.transform)
             {
                 Rigidbody rb = child.GetComponent<Rigidbody>();
 
-                //Rigidbody���t���Ă���I�u�W�F�N�g�ɑ΂��ďd�͐ؑ�
+                //Rigidbodyを取得出来たら
                 if (rb != null)
                 {
                     switch (isChange)
                     {
                         case true:
-                            rb.useGravity = true;       //�d�͂�ON�ɂ���
+                            rb.useGravity = true;       //重力ON
                      
                             break;
 
                         case false:
-                            rb.useGravity = false;      //�d�͂�OFF�ɂ���
+                            rb.useGravity = false;      //重力OFF
  
                             break;
                     }
-
-                    //Debug.Log("�q���I�u�W�F�N�g��: " + child.gameObject.name);
                 }
             }
         }
@@ -304,7 +281,12 @@ public class Player : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// 子オブジェクトリスト格納処理
+    /// </summary>
+    /// <param name="parent">対象親オブジェクト</param>
+    /// <param name="includeInactive"></param>
+    /// <returns></returns>
     public static List<Transform> GetAllChildTransforms(Transform parent, bool includeInactive = true)
     {
         var results = new List<Transform>();
@@ -351,7 +333,7 @@ public class Player : MonoBehaviour
                 isLoop: false,                 //ループ再生するか
                 callback: null                 //再生終了後の処理
             );
-            //�v���C���[�̏�Ԃ����S��Ԃɂ���
+            //死亡状態
             player_State = PLAYER_STATE.DEATH;
         }
     }
@@ -405,16 +387,19 @@ public class Player : MonoBehaviour
 
     void RespawnPlayer()
     {
-        // ���[�v�|�C���g�Ɉړ�����
-        //transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+
         this.gameObject.transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
 
-        //�v���C���[�̏�Ԃ𐶑���Ԃɂ���
+        //生存状態に
         player_State = PLAYER_STATE.ALIVE;
 
         fadeImageScript.FadeIn();
     }
 
+    private void ResetAnimation()
+    {
+    
+    }
     void FadeOut()
     {
         fadeImageScript.FadeOut();

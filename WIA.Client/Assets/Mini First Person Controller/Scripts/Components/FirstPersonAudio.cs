@@ -66,7 +66,7 @@ public class FirstPersonAudio : MonoBehaviour
     {
         // Play moving audio if the character is moving and on the ground.
         float velocity = Vector3.Distance(CurrentCharacterPosition, lastCharacterPosition);
-        if (velocity >= velocityThreshold && groundCheck && groundCheck.isGrounded)
+        if (velocity >= velocityThreshold && groundCheck)
         {
             if (crouch && crouch.IsCrouched)
             {
@@ -121,7 +121,7 @@ public class FirstPersonAudio : MonoBehaviour
     void SubscribeToEvents()
     {
         // PlayLandingAudio when Grounded.
-        groundCheck.Grounded += PlayLandingAudio;
+        //groundCheck.Grounded += PlayLandingAudio;
 
         // PlayJumpAudio when Jumped.
         if (jump)
@@ -140,7 +140,7 @@ public class FirstPersonAudio : MonoBehaviour
     void UnsubscribeToEvents()
     {
         // Undo PlayLandingAudio when Grounded.
-        groundCheck.Grounded -= PlayLandingAudio;
+        //groundCheck.Grounded -= PlayLandingAudio;
 
         // Undo PlayJumpAudio when Jumped.
         if (jump)

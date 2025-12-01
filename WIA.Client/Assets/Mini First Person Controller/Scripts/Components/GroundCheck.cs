@@ -1,41 +1,38 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteInEditMode]
 public class GroundCheck : MonoBehaviour
 {
-    [Tooltip("Maximum distance from the ground.")]
-    public float distanceThreshold = .15f;
+    BoxCollider collider;
+    [SerializeField] Player player;
 
-    [Tooltip("Whether this transform is grounded now.")]
-    public bool isGrounded = true;
-    /// <summary>
-    /// Called when the ground is touched again.
-    /// </summary>
-    public event System.Action Grounded;
+    //接地した場合の処理
+    public UnityEvent OnEnterGround;
+    //地面から離れた場合の処理
+    public UnityEvent OnExitGround;
+    //接地数
+    private int enterNum = 0;
+    private Rigidbody rb;
+    private int upForce;
+    private float distance;
 
-    const float OriginOffset = .001f;
-    Vector3 RaycastOrigin => transform.position + Vector3.up * OriginOffset;
-    float RaycastDistance => distanceThreshold + OriginOffset;
-
-
-    void LateUpdate()
+    //OnCollisionStay関数
+    private void OnCollisionStay(Collision collision)
     {
-        // Check if we are grounded now.
-        bool isGroundedNow = Physics.Raycast(RaycastOrigin, Vector3.down, distanceThreshold * 2);
-
-        // Call event if we were in the air and we are now touching the ground.
-        if (isGroundedNow && !isGrounded)
+        if (collision.gameObject)
         {
-            Grounded?.Invoke();
+            player.isFall = false;
         }
-
-        // Update isGrounded.
-        isGrounded = isGroundedNow;
     }
 
-    void OnDrawGizmosSelected()
+    //OnCollisionExit関数
+    private void OnCollisionExit(Collision collision)
     {
-        // Draw a line in the Editor to show whether we are touching the ground.
-        Debug.DrawLine(RaycastOrigin, RaycastOrigin + Vector3.down * RaycastDistance, isGrounded ? Color.white : Color.red);
+
+        if (collision.gameObject)
+        {
+            player.isFall = true;
+        }
     }
 }

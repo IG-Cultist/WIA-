@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145696669151962853}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.24022733, z: -0, w: 0.97071666}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -1265,7 +1265,7 @@ Transform:
   m_GameObject: {fileID: 911729611168499706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 1.5}
+  m_LocalPosition: {x: 0.12, y: -0.75, z: 2.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3315,6 +3315,7 @@ GameObject:
   - component: {fileID: 5875113872636456304}
   - component: {fileID: 4966055313147709518}
   - component: {fileID: 7534841442416822557}
+  - component: {fileID: 4259608365881567620}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -3422,15 +3423,30 @@ MonoBehaviour:
   child: {fileID: 145696669151962853}
   hitPoint: {fileID: 7574342444582365648}
   animator: {fileID: 8691807516541674486}
-  hip: {fileID: 0}
-  leftLeg: {fileID: 0}
+  plaAnimation: {fileID: 4259608365881567620}
   warpPoint: {fileID: 0}
   grabber: {fileID: 2380555317666283579}
+  isHave: 0
   isDead: 0
   isRespawn: 1
+  isDebug: 0
   player_State: 1
   deathCnt: 0
-  moveSpeed: 0
+--- !u!114 &4259608365881567620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255917015044651565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fa5d47a0ffb0a4bbbed31e085ba437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
+  player: {fileID: 7534841442416822557}
+  animator: {fileID: 8691807516541674486}
+  anim_State: 0
 --- !u!1 &5264057758234078295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4336,7 +4352,7 @@ Transform:
   m_GameObject: {fileID: 6270911981488510612}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2.52, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4546,6 +4562,7 @@ MonoBehaviour:
   maxDistance: 4
   crosshairImage: {fileID: 0}
   leftClickImage: {fileID: 0}
+  player: {fileID: 7534841442416822557}
 --- !u!1 &6311764926508323957
 GameObject:
   m_ObjectHideFlags: 0
@@ -4686,7 +4703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.15
-  isGrounded: 0
+  isGrounded: 1
 --- !u!1 &7238086746792637187
 GameObject:
   m_ObjectHideFlags: 0

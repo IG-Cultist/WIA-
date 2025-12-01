@@ -21,7 +21,9 @@ public class ObjectGrabber : MonoBehaviour
 
     [Header("調査処理系")]
     FirstPersonMovement playerMove;
-    FirstPersonLook playerCamera; 
+    FirstPersonLook playerCamera;
+
+    [SerializeField] Player player;
 
 
     // 現在掴んでいるオブジェクトのRigidbody参照
@@ -151,6 +153,8 @@ public class ObjectGrabber : MonoBehaviour
                     grabbedRb.linearDamping = 10f;
                     grabbedRb.constraints = RigidbodyConstraints.FreezeRotation;
 
+                    player.isHave = true;
+
                     // 掴んだらCrosshair表示、LeftClick非表示
                     if (crosshairImage != null) crosshairImage.enabled = true;
                     if (leftClickImage != null) leftClickImage.enabled = false;
@@ -184,6 +188,8 @@ public class ObjectGrabber : MonoBehaviour
     public void Release()
     {
         if (grabbedRb == null) return;
+
+        player.isHave = false;
 
         grabbedRb.linearDamping = 0f;
         grabbedRb.constraints = RigidbodyConstraints.None;
