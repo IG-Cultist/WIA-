@@ -21,19 +21,30 @@ public class FirstPersonLook : MonoBehaviour
     {
         // Lock the mouse cursor to the game screen.
         Cursor.lockState = CursorLockMode.Locked;
+
+        //ジャイロを有効にする
+        Input.gyro.enabled = true;
     }
 
     void Update()
     {
+        //ふるまいの設定
+        Quaternion attitude = Input.gyro.attitude;
+
         // Get smooth velocity.
-        Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        Vector2 rawFrameVelocity = Vector2.Scale(mouseDelta, Vector2.one * sensitivity);
-        frameVelocity = Vector2.Lerp(frameVelocity, rawFrameVelocity, 1 / smoothing);
-        velocity += frameVelocity;
-        velocity.y = Mathf.Clamp(velocity.y, -90, 90);
+        //Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        //Vector2 rawFrameVelocity = Vector2.Scale(mouseDelta, Vector2.one * sensitivity);
+        //frameVelocity = Vector2.Lerp(frameVelocity, rawFrameVelocity, 1 / smoothing);
+        //velocity += frameVelocity;
+        //velocity.y = Mathf.Clamp(velocity.y, -90, 90);
 
         // Rotate camera up-down and controller left-right from velocity.
-        transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
+        //transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
+
+        //カメラの回転
+        transform.localRotation = Quaternion.Euler(90, 0,this.transform.rotation.z) * new Quaternion(-attitude.x, -attitude.y, attitude.z, attitude.w);
+
         character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
+
     }
 }
