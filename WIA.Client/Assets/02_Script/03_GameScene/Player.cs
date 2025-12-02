@@ -70,8 +70,13 @@ public class Player : MonoBehaviour
     {
 
         deathCnt = 0; //死亡回数
-        if (SceneManager.GetActiveScene().name == "Stage_3") this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;    //ステージ3のみY座標固定
-        else this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        //VR時は無視
+        if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null)
+        {
+            //ステージ3のみY座標固定
+            if (SceneManager.GetActiveScene().name == "Stage_3") this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            else this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        }
 
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
         fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
