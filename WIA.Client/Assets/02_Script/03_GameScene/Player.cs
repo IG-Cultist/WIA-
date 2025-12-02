@@ -353,6 +353,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Container"))
         {
+            Debug.Log("コンテナ衝突");
             SEManager.Instance.Play(
                 audioPath: SEPath.DEATH, //再生したいオーディオのパス
                  volumeRate: 1,                 //音量の倍率

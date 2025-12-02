@@ -9410,8 +9410,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084c01ab381b9da4082c1f84cf70751b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceThreshold: 0.15
-  isGrounded: 0
+  player: {fileID: 0}
+  OnEnterGround:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExitGround:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &222455405
 Transform:
   m_ObjectHideFlags: 0
@@ -36886,6 +36891,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1036178206305731072, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.893
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036178206305731072, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.749
+      objectReference: {fileID: 0}
     - target: {fileID: 1711161634300781122, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_Name
       value: Main
@@ -36926,6 +36939,10 @@ PrefabInstance:
       propertyPath: warpPoint
       value: 
       objectReference: {fileID: 1182053071}
+    - target: {fileID: 8675859266303065490, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -71213,6 +71230,7 @@ MonoBehaviour:
   maxDistance: 4
   crosshairImage: {fileID: 0}
   leftClickImage: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &1879078679
 MonoBehaviour:
   m_ObjectHideFlags: 0
