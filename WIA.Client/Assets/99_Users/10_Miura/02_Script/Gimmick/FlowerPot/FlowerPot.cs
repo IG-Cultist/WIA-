@@ -75,7 +75,7 @@ public class FlowerPot : MonoBehaviour
         }
     }
 
-    private async void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Base" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "CheckableObject")
         {//Baseタグのオブジェクトに触れたら
