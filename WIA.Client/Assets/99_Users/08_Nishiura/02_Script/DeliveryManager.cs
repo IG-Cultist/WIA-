@@ -77,13 +77,23 @@ public class DeliveryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// コーヒー生成処理
+    /// コーヒー生成要求処理
     /// </summary>
-    public void DripCoffee()
+    public void RequestCoffee()
     {
         // まだコーヒーを生成していない場合または、クールダウン中でない場合、コーヒーを生成する
         if (isCreated || isCooldown) return;
+        source.PlayOneShot(brewCoffee);
+        Invoke("DripCoffee",1f);
+        GameObject.Find("FadeImage").GetComponent<Image>().DOFade(1f, 1f);
+    }
 
+    /// <summary>
+    /// コーヒー生成処理
+    /// </summary>
+    void DripCoffee()
+    {
+        GameObject.Find("FadeImage").GetComponent<Image>().DOFade(0f, 1f);
         // デスク番号がユニークなものになるまでループ
         while (true)
         {
@@ -96,7 +106,6 @@ public class DeliveryManager : MonoBehaviour
         isCreated = true;
         isCooldown = true;
 
-        source.PlayOneShot(brewCoffee);
         coolDownSlider.SetActive(true);
         coolDownSlider.GetComponent<Slider>().value = 1f;
         coolDownSlider.GetComponent<Slider>().DOValue(0, 10f).SetEase(Ease.Linear);

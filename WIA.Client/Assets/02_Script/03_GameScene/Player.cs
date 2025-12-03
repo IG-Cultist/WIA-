@@ -402,6 +402,14 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.name =="Injector")
         {//触れたオブジェクトが注射器だった場合
+            SEManager.Instance.Play(
+                 audioPath: SEPath.STAB, //再生したいオーディオのパス
+                 volumeRate: 0.8f,                 //音量の倍率
+                 delay: 0,                      //再生されるまでの遅延時間
+                 pitch: 1,                      //ピッチ
+                 isLoop: false,                 //ループ再生するか
+                 callback: null                 //再生終了後の処理
+                );
 
             // 注射器を破壊する
             Destroy(collision.gameObject);
