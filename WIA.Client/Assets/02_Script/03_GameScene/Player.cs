@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     public bool isRespawn = true;   //リスポーン判定
     public bool isDebug;
     public bool isTrip = false;
+    public bool isSliped = false;
 
     //プレイヤーステート
     public enum PLAYER_STATE
@@ -367,14 +368,18 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Trap"))
         { // 触れたオブジェクトがトラップの場合、死ぬ
-            SEManager.Instance.Play(
-               audioPath: SEPath.DEATH, //再生したいオーディオのパス
-                volumeRate: 1,                 //音量の倍率
-                delay: 0,                      //再生されるまでの遅延時間
-                pitch: 1,                      //ピッチ
-                isLoop: false,                 //ループ再生するか
-                callback: null                 //再生終了後の処理
-               );
+            if (!isSliped)
+            {
+                SEManager.Instance.Play(
+                   audioPath: SEPath.SLIP, //再生したいオーディオのパス
+                    volumeRate: 1,                 //音量の倍率
+                    delay: 0,                      //再生されるまでの遅延時間
+                    pitch: 1,                      //ピッチ
+                    isLoop: false,                 //ループ再生するか
+                    callback: null                 //再生終了後の処理
+                   );
+                isSliped = true;
+            }
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
         }
@@ -415,7 +420,7 @@ public class Player : MonoBehaviour
 
         //生存状態に
         player_State = PLAYER_STATE.ALIVE;
-
+        isSliped = false;
         fadeImageScript.FadeIn();
     }
 
