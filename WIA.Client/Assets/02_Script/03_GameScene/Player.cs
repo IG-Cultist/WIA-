@@ -90,9 +90,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ////デバッグ用
-        //if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
-        //if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
+        //デバッグ用
+        if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
+        if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
 
         moveSpeed = rigidbody.linearVelocity.magnitude * 3.0f;   //オブジェクト速度を元にアニメーションの速度を決定
         if(moveSpeed < 0) moveSpeed = 0;

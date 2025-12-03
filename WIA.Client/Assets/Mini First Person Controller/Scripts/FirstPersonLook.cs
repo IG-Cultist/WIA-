@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class FirstPersonLook : MonoBehaviour
 {
@@ -25,7 +24,6 @@ public class FirstPersonLook : MonoBehaviour
 
         //ジャイロを有効にする
         Input.gyro.enabled = true;
-        InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
     }
 
     void Update()
@@ -44,7 +42,9 @@ public class FirstPersonLook : MonoBehaviour
         //transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
 
         //カメラの回転
-        transform.localRotation = Quaternion.Euler(90, 0,-90) * new Quaternion(-attitude.x, -attitude.y, attitude.z, attitude.w);
+        transform.localRotation = Quaternion.Euler(90, 0,this.transform.rotation.z) * new Quaternion(-attitude.x, -attitude.y, attitude.z, attitude.w);
+
         character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
+
     }
 }

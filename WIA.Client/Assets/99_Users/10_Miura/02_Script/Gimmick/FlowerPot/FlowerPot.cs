@@ -37,24 +37,6 @@ public class FlowerPot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 現在のマウス情報
-        var currentMouse = Mouse.current;
-
-        // マウス接続チェック
-        if (currentMouse == null)
-        {
-            // マウスが接続されていないと
-            // Mouse.currentがnullになる
-            return;
-        }
-
-        // マウスカーソル位置取得
-        var cursorPosition = currentMouse.position.ReadValue();
-
-        // 左ボタンの入力状態取得
-        var leftButton = currentMouse.leftButton;
-        var rightButton = currentMouse.rightButton;
-
         // 警告円オブジェクトを花瓶の下部に常に移動させる
         if (dangerZoneObj != null) dangerZoneObj.transform.position
             = new Vector3(this.gameObject.transform.position.x,0.52f, this.gameObject.transform.position.z);
@@ -63,14 +45,15 @@ public class FlowerPot : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+          
         }
         else 
         {
             Cursor.visible = false;
         } 
 
-        if (rightButton.wasPressedThisFrame)
-        {//右クリックしたら
+        if (Input.GetMouseButtonDown(1))
+        {
             isGrab = false;
 
             Cursor.visible = false;
@@ -85,8 +68,8 @@ public class FlowerPot : MonoBehaviour
         if (isGrab)
         {
             this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-           
-            target = Camera.main.ScreenToWorldPoint(new Vector3(cursorPosition.x, cursorPosition.y, 5f));
+            mouse = Input.mousePosition;
+            target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, 5f));
 
             this.transform.position = target;
         }
