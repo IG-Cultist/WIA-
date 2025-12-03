@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4224332775124958116}
-  - component: {fileID: 6622744082705480066}
   - component: {fileID: 5253724225327244304}
+  - component: {fileID: 1902684993670692144}
   m_Layer: 0
   m_Name: Water(Spawned)
   m_TagString: Trap
@@ -36,27 +36,6 @@ Transform:
   - {fileID: 8672412607511577419}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6622744082705480066
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 354273508913060562}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1.1899953, y: 0.122915804, z: 1.5427634}
-  m_Center: {x: 0.44661188, y: 0.04922673, z: 0.33790642}
 --- !u!114 &5253724225327244304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +48,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3356a0bfec88e6a47b7f978d33ccdd0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FadeObject
+--- !u!82 &1902684993670692144
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354273508913060562}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4143847344460228825
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,6 +158,7 @@ GameObject:
   - component: {fileID: 8701438607958044295}
   - component: {fileID: 4144889284641021915}
   - component: {fileID: 8155769194630808875}
+  - component: {fileID: 258989951903850005}
   m_Layer: 0
   m_Name: Cylinder_2
   m_TagString: Trap
@@ -3084,6 +3161,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4143847344460228825}
   m_Mesh: {fileID: 0}
+--- !u!64 &258989951903850005
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4143847344460228825}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &4855818121435350729
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,7 +3196,6 @@ GameObject:
   - component: {fileID: 4162096448421419713}
   - component: {fileID: 148435648759847419}
   - component: {fileID: 638963859126032694}
-  - component: {fileID: 1799809090425859358}
   - component: {fileID: 4874809370818395954}
   m_Layer: 0
   m_Name: Cylinder
@@ -6101,27 +6199,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4855818121435350729}
   m_Mesh: {fileID: 0}
---- !u!65 &1799809090425859358
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4855818121435350729}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1.369661, y: 20.201752, z: 1.5983583}
-  m_Center: {x: -0.06312145, y: 9.100878, z: -0.008765757}
 --- !u!64 &4874809370818395954
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6157,7 +6234,6 @@ GameObject:
   - component: {fileID: 4620404042043044095}
   - component: {fileID: 1119136590633729659}
   - component: {fileID: 879240963836358478}
-  - component: {fileID: 7776996988912433234}
   - component: {fileID: 4991691931372757026}
   m_Layer: 0
   m_Name: Cylinder_1
@@ -9161,27 +9237,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8014699283618556053}
   m_Mesh: {fileID: 0}
---- !u!65 &7776996988912433234
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8014699283618556053}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1.5972773, y: 18.633436, z: 1.6795902}
-  m_Center: {x: 0.0010140736, y: 8.316715, z: -0.000248909}
 --- !u!64 &4991691931372757026
 MeshCollider:
   m_ObjectHideFlags: 0

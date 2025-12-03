@@ -21,6 +21,13 @@ public class DeliveryManager : MonoBehaviour
     // クールダウン用スライダー
     [SerializeField] GameObject coolDownSlider;
 
+
+    // コーヒーを淹れる音
+    [SerializeField] AudioClip brewCoffee;
+
+    // コーヒーを置く音
+    [SerializeField] AudioClip PutCoffee;
+
     // 配達済みデスクリスト
     List<int> servedDeskList = new List<int>();
 
@@ -45,11 +52,14 @@ public class DeliveryManager : MonoBehaviour
     // 死亡判定
     private bool isDead;
 
+
+    AudioSource source; //オーディオソース
     private void Start()
     {
-        player = GameObject.Find("Main").gameObject.GetComponent<Player>();
-        isDead = false;
-        coolDownSlider.SetActive(false);
+        player = GameObject.Find("Main").gameObject.GetComponent<Player>(); // シーン内のプレイヤーからスクリプトを取得
+        isDead = false; //死んでいない状態にする
+        coolDownSlider.SetActive(false);    //クールダウンスライダーを非表示にする
+        source = this.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -86,6 +96,7 @@ public class DeliveryManager : MonoBehaviour
         isCreated = true;
         isCooldown = true;
 
+        source.PlayOneShot(brewCoffee);
         coolDownSlider.SetActive(true);
         coolDownSlider.GetComponent<Slider>().value = 1f;
         coolDownSlider.GetComponent<Slider>().DOValue(0, 10f).SetEase(Ease.Linear);
@@ -109,6 +120,7 @@ public class DeliveryManager : MonoBehaviour
     {
         if (!isCreated) return; // コーヒーがない場合、処理しない
         isCreated = false;  // 未生成とする
+        source.PlayOneShot(PutCoffee);
 
         // コーヒーマシンを使用可能にする
         coffeeMachine.GetComponent<BoxCollider>().enabled = true;

@@ -20,6 +20,7 @@ public static class SEPath{
 	public const string NEXT_PAGE       = "SE/NextPage";
 	public const string PUSH_BUTTON     = "SE/Push_Button";
 	public const string SEARCH_KEY      = "SE/Search_Key";
+	public const string SLIP            = "SE/Slip";
 	public const string SUCCESS         = "SE/Success";
 	public const string TASK_COMPLETED  = "SE/Task_Completed";
 	public const string TASK_FAILURE    = "SE/Task_Failure";
