@@ -3,6 +3,7 @@
 // 三宅歩人
 //==============================================
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -47,21 +48,34 @@ public class ObjectGrabber : MonoBehaviour
         // 掴める距離にオブジェクトがあるかチェック
         ShowGrabUI();
 
+        // 現在のマウス情報
+        var currentMouse = Mouse.current;
+        var leftButton = currentMouse.leftButton;
+        var rightButton = currentMouse.rightButton;
+
+        // マウス接続チェック
+        if (currentMouse == null)
+        {
+            // マウスが接続されていないと
+            // Mouse.currentがnullになる
+            return;
+        }
+
         // 左クリックで掴む
-        if (Input.GetMouseButtonDown(0))
+        if (leftButton.wasPressedThisFrame)
         {
             if (grabbedRb == null)
                 Grab();
         }
 
         // 右クリックで離す
-        if (Input.GetMouseButtonDown(1))
+        if (rightButton.wasPressedThisFrame)
         {
             if (grabbedRb != null)
                 Release();
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (leftButton.wasReleasedThisFrame)
         {
             if (SceneManager.GetActiveScene().name == "Stage_2")
             {

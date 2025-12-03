@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MoveArm : MonoBehaviour
 {
@@ -16,12 +17,30 @@ public class MoveArm : MonoBehaviour
     {
         Transform armTransform = crane.transform;
 
-        if (Input.GetKey(KeyCode.R))
+        // 現在のキーボード情報
+        var currentKeyBoard = Keyboard.current;
+
+        // キーボード接続チェック
+        if (currentKeyBoard == null)
         {
+            // キーボードが接続されていないと
+            // Keyboard.currentがnullになる
+            return;
+        }
+
+        // キーの入力状態取得
+        var rKey = currentKeyBoard.rKey;
+        var lkey = currentKeyBoard.lKey;
+
+        // Rキー/Lキーが押されたかどうか
+        if (rKey.wasPressedThisFrame)
+        {
+            //クレーンを動かす
             armTransform.DORotate(new Vector3(0, 45, 0), 40);
         }
-        if (Input.GetKey(KeyCode.L))
+        if (lkey.wasPressedThisFrame)
         {
+            //クレーンを動かす
             armTransform.DORotate(new Vector3(0, -45, 0), 40);
         }
     }
