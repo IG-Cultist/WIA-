@@ -1,0 +1,95 @@
+{
+    "version": 1,
+    "name": "Button Input Actions",
+    "maps": [
+        {
+            "name": "XR Controller Input",
+            "id": "3d685fa1-46db-483f-a1e9-0cab4cb61f07",
+            "actions": [
+                {
+                    "name": "L_Press_Trriger",
+                    "type": "Button",
+                    "id": "5a03b808-b35b-4cad-934c-440e4ed30365",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "L_Release_Trriger",
+                    "type": "Button",
+                    "id": "78e9d8cd-9101-4dcd-98a5-bafc9db69598",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "R_Press_Trriger",
+                    "type": "Button",
+                    "id": "8d386908-a0c2-4f0d-afc8-d2f68779ab53",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "R_Release_Trriger",
+                    "type": "Button",
+                    "id": "b5b34e60-168a-4999-9bd9-c7538f350e80",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cba2d6c6-9a18-4c48-a7e5-b533a92e21bf",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L_Press_Trriger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc69f5c5-861e-4747-bcc7-49355c6ca0a5",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L_Release_Trriger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af487a0b-30c7-43f1-a02d-0826bc28e514",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R_Press_Trriger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f2922b7-f6dd-45a6-9e0d-71c7d92426ee",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R_Release_Trriger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
