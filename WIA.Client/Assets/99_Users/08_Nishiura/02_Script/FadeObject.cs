@@ -6,7 +6,7 @@ public class FadeObject : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        FadeMySelf();
+        Invoke("FadeMySelf", 10f);
     }
 
 
@@ -14,10 +14,11 @@ public class FadeObject : MonoBehaviour
     {
         for (int i = 0; i < this.gameObject.transform.childCount; i++)
         {
-            this.gameObject.transform.GetChild(i).GetComponent<Renderer>().material.DOFade(0, 10); // マテリアルを取得してフェードアウト
+            this.gameObject.transform.GetChild(i).GetComponent<Renderer>().material.DOFade(0, 1f); // マテリアルを取得してフェードアウト
+            this.gameObject.transform.GetChild(i).GetComponent<MeshCollider>().enabled = false;
         }
 
-        Invoke("DestroyThisObject", 10f);
+        Invoke("DestroyThisObject", 1f);
     }
 
 
