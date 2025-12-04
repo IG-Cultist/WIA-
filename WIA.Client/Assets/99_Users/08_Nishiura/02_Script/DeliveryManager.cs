@@ -21,7 +21,6 @@ public class DeliveryManager : MonoBehaviour
     // クールダウン用スライダー
     [SerializeField] GameObject coolDownSlider;
 
-
     // コーヒーを淹れる音
     [SerializeField] AudioClip brewCoffee;
 
@@ -64,11 +63,6 @@ public class DeliveryManager : MonoBehaviour
 
     private void Update()
     {
-        //if (isCooldown)
-        //{
-        //    coolDownSlider.value -= 0.0015f;   //調査時間加算
-        //}
-
         if (player.deathCnt >= 3)
         {
             if(!isDead) Initiate.Fade("30_ResultScene", Color.black, 1.0f);
@@ -83,6 +77,9 @@ public class DeliveryManager : MonoBehaviour
     {
         // まだコーヒーを生成していない場合または、クールダウン中でない場合、コーヒーを生成する
         if (isCreated || isCooldown) return;
+        // 生成済みとする
+        isCreated = true;
+
         source.PlayOneShot(brewCoffee);
         Invoke("DripCoffee",1f);
         GameObject.Find("FadeImage").GetComponent<Image>().DOFade(1f, 1f);
@@ -102,10 +99,13 @@ public class DeliveryManager : MonoBehaviour
             // 生成された数値がすでに届けられたデスク番号でない場合、ループを抜ける
             if (!servedDeskList.Contains(deskNum)) break;
         }
-        // 生成済みとする
-        isCreated = true;
-        isCooldown = true;
 
+        // コーヒーを生成する
+        coffeeObj = Instantiate(coffeePrefabs);
+        coffeeObj.name = coffeePrefabs.name;
+        coffeeObj.transform.position = new Vector3(-17f, 0.44f, 2.5f);
+
+        isCooldown = true;
         coolDownSlider.SetActive(true);
         coolDownSlider.GetComponent<Slider>().value = 1f;
         coolDownSlider.GetComponent<Slider>().DOValue(0, 10f).SetEase(Ease.Linear);
@@ -117,9 +117,7 @@ public class DeliveryManager : MonoBehaviour
         // 生成した数値のデスクを指定し、コーヒー要求アイコンを表示
         deskList[deskNum].transform.GetChild(1).gameObject.SetActive(true);
         deskList[deskNum].transform.GetComponent<BoxCollider>().enabled = true;
-        // コーヒーを生成する
-        coffeeObj = Instantiate(coffeePrefabs);
-        coffeeObj.transform.position = new Vector3(-17f, 0.44f, 2.5f);
+
     }
 
     /// <summary>
@@ -129,6 +127,7 @@ public class DeliveryManager : MonoBehaviour
     {
         if (!isCreated) return; // コーヒーがない場合、処理しない
         isCreated = false;  // 未生成とする
+        player.isHave = false;
         source.PlayOneShot(PutCoffee);
 
         // コーヒーマシンを使用可能にする

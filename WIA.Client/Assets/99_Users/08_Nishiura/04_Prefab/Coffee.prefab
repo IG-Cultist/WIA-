@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a0cee77dc207d4b489e776143db923ef, type: 2}
+  - {fileID: 2100000, guid: dc94d55339f1270419a2f73fc8729b06, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -244,7 +244,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a0cee77dc207d4b489e776143db923ef, type: 2}
+  - {fileID: 2100000, guid: dc94d55339f1270419a2f73fc8729b06, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 3978172443022907332}
   - component: {fileID: 7746478129021372594}
   m_Layer: 9
-  m_Name: Cup_Plate
+  m_Name: Coffee
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

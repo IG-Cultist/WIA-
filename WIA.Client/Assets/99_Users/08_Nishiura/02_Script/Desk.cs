@@ -17,7 +17,7 @@ public class Desk : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Item")
+        if(other.transform.tag == "Item" && other.transform.name =="Coffee")
         {
             // ƒR[ƒq[ó‚¯“n‚µˆ—‚ğŒÄ‚Ô
             deliveryManager.ServeCoffee();
