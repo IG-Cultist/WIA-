@@ -76,13 +76,22 @@ public class CheckableObjManager : MonoBehaviour
 
             nowFindStatus.checkedTime += Time.deltaTime;   //調査時間加算
 
+            if (nowFindObj.name == "Book" || nowFindObj.name == "Cube_2") player.isLow = true;
+            else player.isLow = false;
+
+            player.isSearch = isCheckNow;
         }
         else if (!isCheckNow)
         {
             checkNowText.SetActive(false); //調査テキスト非表示
             playerCamera.enabled = true;   //アングル固定解除
             playerMove.enabled = true;     //座標固定解除
+            player.isSearch = isCheckNow;
+
         }
+        
+
+
 
         //調査オブジェクトの調査時間が所要時間を超えたら
         if (chackableTimer <= nowFindStatus.checkedTime)

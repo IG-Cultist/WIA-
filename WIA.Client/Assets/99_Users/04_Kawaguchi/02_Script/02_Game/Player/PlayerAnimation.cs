@@ -24,8 +24,8 @@ public class PlayerAnimation : MonoBehaviour
         HAVE_IDLE,            //オブジェクト取得状態
         HAVE_RUN,             //取得中走行状態
         FALL,                 //落下状態
-        SEARCH_BIG,           //調査状態(大)
-        SEARCH_SMALL,         //調査状態(小)
+        SEARCH_HIGH,           //調査状態(大)
+        SEARCH_LOW,         //調査状態(小)
         EMOTE = 50,           //エモート再生状態
         ERROR,                //上記非該当状態
     }

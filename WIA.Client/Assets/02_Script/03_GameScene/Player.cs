@@ -33,13 +33,15 @@ public class Player : MonoBehaviour
     private float moveSpeed;
 
     [Header("フラグ系")]
-    public bool isHave = false;
-    public bool isFall = false;
+    public bool isHave = false;     //荷物所持判定
+    public bool isFall = false;     //落下状態判定
     public bool isDead = false;     //死亡判定
     public bool isRespawn = true;   //リスポーン判定
+    public bool isSearch = false;
+    public bool isLow = false;      //調査オブジェクト高さ判定
     public bool isDebug;
-    public bool isTrip = false;
-    public bool isSliped = false;
+    public bool isTrip = false;     //転倒判定
+    public bool isSliped = false;   //転倒後判定
 
     //プレイヤーステート
     public enum PLAYER_STATE
@@ -143,31 +145,35 @@ public class Player : MonoBehaviour
                     Debug.Log("リセット完了");
                 }
 
-                if (moveSpeed > 11)
+                if (isSearch)
                 {
-                    plaAnimation.SetAnim(ANIM_STATE.FALL, 1);
-
+                    if (isLow) plaAnimation.SetAnim(ANIM_STATE.SEARCH_LOW, 1);
+                    else plaAnimation.SetAnim(ANIM_STATE.SEARCH_HIGH, 1);
                 }
                 else
                 {
-                    if (moveSpeed <= 1)
-                    {
-                        if (!isHave) plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
-                        else plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
-                    }
-                    else if (moveSpeed > 4)
-                    {
-                        if (!isHave) plaAnimation.SetAnim(ANIM_STATE.RUN, moveSpeed);
-                        else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
-                    }
-                    else if (moveSpeed > 1)
-                    {
-                        if (!isHave) plaAnimation.SetAnim(ANIM_STATE.WALK, moveSpeed);
-                        else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
-                    }
 
+                    if (moveSpeed > 11) plaAnimation.SetAnim(ANIM_STATE.FALL, 1);
+                    else
+                    {
+                        if (moveSpeed <= 1)
+                        {
+                            if (!isHave) plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
+                            else plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
+                        }
+                        else if (moveSpeed > 4)
+                        {
+                            if (!isHave) plaAnimation.SetAnim(ANIM_STATE.RUN, moveSpeed);
+                            else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
+                        }
+                        else if (moveSpeed > 1)
+                        {
+                            if (!isHave) plaAnimation.SetAnim(ANIM_STATE.WALK, moveSpeed);
+                            else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
+                        }
+
+                    }
                 }
-
                 break;
 
             //死亡状態
