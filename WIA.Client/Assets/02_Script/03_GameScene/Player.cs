@@ -416,11 +416,11 @@ public class Player : MonoBehaviour
                  isLoop: false,                 //ループ再生するか
                  callback: null                 //再生終了後の処理
                 );
-
+            CancelInvoke("ResetTrip");
             // 注射器を破壊する
             Destroy(collision.gameObject);
             isTrip = true;
-
+            isHave = false;
             Invoke("ResetTrip", 10f);
             // 画面を毒々しくする
             tripPanel.SetActive(true);

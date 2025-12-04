@@ -182,41 +182,7 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("ItemBox"))    // アイテムボックスの場合
             {
-                // 乱数を生成
-                int rnd = Random.Range(0, 2);
-                GameObject prefab;
-
-                switch (rnd)    // 乱数に応じて生成するオブジェクトを分ける
-                {
-                    case 0:
-                        prefab = Resources.Load("Items/Injector") as GameObject;
-                        break;
-                           
-                    case 1:
-                        prefab = Resources.Load("Items/Cup") as GameObject;
-                        break;
-
-                    default:
-                        prefab = null;
-                        break;
-                }
-                // 読み込まれたプレハブを生成する
-                GameObject obj = Instantiate(prefab, new Vector3(0f,0f,0f), Quaternion.identity);
-                obj.name = prefab.name;
-
-                grabbedRb = obj.GetComponent<Rigidbody>();
-                if (grabbedRb != null)
-                {
-                    grabbedRb.useGravity = true;
-                    grabbedRb.linearDamping = 10f;
-                    grabbedRb.constraints = RigidbodyConstraints.FreezeRotation;
-
-                    player.isHave = true;
-
-                    // 掴んだらCrosshair表示、LeftClick非表示
-                    if (crosshairImage != null) crosshairImage.enabled = true;
-                    if (leftClickImage != null) leftClickImage.enabled = false;
-                }
+                GameObject.Find("ItemBox").GetComponent<ItemBox>().GetItem();
             }
         }
     }
