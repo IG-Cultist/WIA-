@@ -33,6 +33,9 @@ public class CheckableObjManager : MonoBehaviour
     //死亡判定
     private bool isDead;
 
+    //VR
+    private XRControllerButtonEvents xrControllerButtonEvents;
+
 
     void Start()
     {
@@ -40,6 +43,8 @@ public class CheckableObjManager : MonoBehaviour
         playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
         //プレイヤー移動処理スクリプト取得
         playerMove = GameObject.Find("Main").GetComponent<FirstPersonMovement>();
+        //VRのスクリプト取得
+        xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
 
         // 0からリストの長さ分までの乱数を設定
         keyObjectNum = Random.Range(0, checkableObjList.Count);
@@ -59,8 +64,21 @@ public class CheckableObjManager : MonoBehaviour
             isDead = true;
         }
 
+        //VRでオブジェクトを調査していたら
+        if (xrControllerButtonEvents.isFind)
+        {
+            isCheckNow = true;
+            Debug.Log("trueにしたよ");
+        }
+        else
+        {
+            isCheckNow = false;
+            Debug.Log("falseにしたよ");
+        }
+
         //nullチェック
         if (nowFindObj == null) return;
+
 
         //オブジェクト調査中
         if (isCheckNow)
