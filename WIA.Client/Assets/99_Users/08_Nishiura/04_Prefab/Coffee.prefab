@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1000857365936934771}
   - component: {fileID: 1544636198667268021}
   - component: {fileID: 5415111087477699159}
+  - component: {fileID: 4658715654042146740}
   m_Layer: 9
   m_Name: Cup_Coffee
   m_TagString: Untagged
@@ -89,6 +90,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4658715654042146740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420227847978994820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &2042196123545434805
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +119,7 @@ GameObject:
   - component: {fileID: 1185460174650863724}
   - component: {fileID: 6605129678222734560}
   - component: {fileID: 7595856806757766740}
+  - component: {fileID: 6976215766783090784}
   m_Layer: 9
   m_Name: Plate
   m_TagString: Untagged
@@ -178,6 +198,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6976215766783090784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042196123545434805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6505535910281447180
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +227,7 @@ GameObject:
   - component: {fileID: 5333080684640911448}
   - component: {fileID: 7973398014715837952}
   - component: {fileID: 174385526260698275}
+  - component: {fileID: 2233350344960734112}
   m_Layer: 9
   m_Name: Cup
   m_TagString: Untagged
@@ -267,6 +306,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2233350344960734112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505535910281447180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &9112057679510237814
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +336,6 @@ GameObject:
   - component: {fileID: 7233239074857698622}
   - component: {fileID: 4414062444151703590}
   - component: {fileID: 3978172443022907332}
-  - component: {fileID: 7746478129021372594}
   m_Layer: 9
   m_Name: Coffee
   m_TagString: Item
@@ -366,21 +422,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coffee
   sadCoffeePrefab: {fileID: 3155805051288402306, guid: 39b553ef9ca22c240b356ace28385b50, type: 3}
---- !u!114 &7746478129021372594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9112057679510237814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 8
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
