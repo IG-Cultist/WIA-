@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace NIGHTRAVEL.Shared.Interfaces.StreamingHubs
+namespace WIA.Shared.Interfaces.StreamingHubs
 {
     internal class UpdateEnemyDamageData
     {

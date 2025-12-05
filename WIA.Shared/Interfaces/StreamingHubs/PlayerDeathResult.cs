@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NIGHTRAVEL.Shared.Interfaces.StreamingHubs
+namespace WIA.Shared.Interfaces.StreamingHubs
 {
     [MessagePackObject]
     public class PlayerDeathResult

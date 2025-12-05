@@ -4,7 +4,7 @@
 //=============================
 
 using MagicOnion;
-using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
+using WIA.Shared.Interfaces.StreamingHubs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -61,14 +61,21 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         /// <param name="playerData"></param>
         /// <returns></returns>
-        Task UpdatePlayerAsync(Vector3 pos,Quaternion rot);
+        Task UpdatePlayerAsync(Vector3 pos,Quaternion rot,int animState, float moveSpeed);
 
-        /// <summary>
-        /// プレイヤー死亡同期
-        /// Author:木田晃輔
-        /// </summary>
-        /// <returns></returns>
-        Task PlayerDeadAsync();
+        ///// <summary>
+        ///// プレイヤー死亡同期
+        ///// Author:木田晃輔
+        ///// </summary>
+        ///// <returns></returns>
+        //Task PlayerDeadAsync();
+
+        ///// <summary>
+        ///// プレイヤーリスポーン同期
+        ///// Author:木田晃輔
+        ///// </summary>
+        ///// <returns></returns>
+        //Task PlayerRespownAsync();
 
 
         #endregion

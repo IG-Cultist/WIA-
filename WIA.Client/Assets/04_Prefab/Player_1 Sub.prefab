@@ -418,7 +418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7832847697000920382
 Transform:
   m_ObjectHideFlags: 0
@@ -2734,6 +2734,7 @@ GameObject:
   - component: {fileID: 5875113872636456304}
   - component: {fileID: 8582433757478233362}
   - component: {fileID: -2281548578500776977}
+  - component: {fileID: 2734063944647513851}
   m_Layer: 0
   m_Name: Player_1 Sub
   m_TagString: Player
@@ -2820,16 +2821,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89276dfe997f2ba4abe21845b34c70b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  child: {fileID: 145696669151962853, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
-  hitPoint: {fileID: 7574342444582365648, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
-  animator: {fileID: 8691807516541674486, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
-  hip: {fileID: 0}
-  leftLeg: {fileID: 0}
+  child: {fileID: 145696669151962853}
+  hitPoint: {fileID: 7574342444582365648}
+  animator: {fileID: 8691807516541674486}
+  plaAnimation: {fileID: 2734063944647513851}
   warpPoint: {fileID: 0}
   grabber: {fileID: 0}
+  subMoveSpeed: 0
+  isHave: 0
+  isFall: 0
   isDead: 0
   isRespawn: 1
+  isDebug: 0
+  isTrip: 0
   player_State: 1
+  deathCnt: 0
 --- !u!114 &-2281548578500776977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2846,6 +2852,21 @@ MonoBehaviour:
   canRun: 0
   runSpeed: 2.5
   runningKey: 0
+--- !u!114 &2734063944647513851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255917015044651565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fa5d47a0ffb0a4bbbed31e085ba437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
+  player: {fileID: 8582433757478233362}
+  animator: {fileID: 8691807516541674486}
+  anim_State: 0
 --- !u!1 &5264057758234078295
 GameObject:
   m_ObjectHideFlags: 0
@@ -3780,8 +3801,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084c01ab381b9da4082c1f84cf70751b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceThreshold: 0.15
-  isGrounded: 0
+  player: {fileID: 0}
+  OnEnterGround:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExitGround:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7238086746792637187
 GameObject:
   m_ObjectHideFlags: 0
