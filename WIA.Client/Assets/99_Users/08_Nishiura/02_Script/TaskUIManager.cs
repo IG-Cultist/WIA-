@@ -26,7 +26,7 @@ public class TaskUIManager : MonoBehaviour
     // 経過時間カウント変数
     float count = 0;
     // 制限時間カウント変数
-    public float limitCount = 60;
+    public float limitCount = 180;
     // 現在のシーン名
     string nowSceneName;
     // 終了判定
