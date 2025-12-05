@@ -3,6 +3,7 @@
 /// Author:Nishiura Date:25/11/10
 /// ------------------------------
 using DG.Tweening;
+using KanKikuchi.AudioManager;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,7 +66,19 @@ public class DeliveryManager : MonoBehaviour
     {
         if (player.deathCnt >= 3)
         {
-            if(!isDead) Initiate.Fade("30_ResultScene", Color.black, 1.0f);
+            if (!isDead)
+            {
+                SEManager.Instance.Play(
+                    audioPath: SEPath.TASK_FAILURE, //再生したいオーディオのパス
+                    volumeRate: 1,                //音量の倍率
+                    delay: 1,                //再生されるまでの遅延時間
+                    pitch: 1,                //ピッチ
+                    isLoop: false,             //ループ再生するか
+                    callback: null              //再生終了後の処理
+                );
+
+                Initiate.Fade("30_ResultScene", Color.black, 1.0f);
+            }
             isDead = true;
         }
         if ((GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().limitCount <= 0))

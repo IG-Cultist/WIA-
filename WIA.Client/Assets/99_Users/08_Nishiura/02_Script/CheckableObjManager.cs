@@ -34,6 +34,7 @@ public class CheckableObjManager : MonoBehaviour
     //死亡判定
     private bool isDead;
 
+    private bool playSE;
     private bool searchingSE;
     private bool searchedSE;
     private bool openDoor;
@@ -59,6 +60,8 @@ public class CheckableObjManager : MonoBehaviour
         player = GameObject.Find("Main").gameObject.GetComponent<Player>();
         isDead = false;
 
+
+        playSE = false;
         searchingSE = false;
         searchedSE = false;
         openDoor = false;
@@ -68,6 +71,16 @@ public class CheckableObjManager : MonoBehaviour
     {
         if (player.deathCnt >= 3)
         {
+            if (playSE) return;
+            SEManager.Instance.Play(
+                audioPath: SEPath.TASK_FAILURE, //再生したいオーディオのパス
+                volumeRate: 1,                //音量の倍率
+                delay: 1,                //再生されるまでの遅延時間
+                pitch: 1,                //ピッチ
+                isLoop: false,             //ループ再生するか
+                callback: null              //再生終了後の処理
+            );
+            playSE = true;
             if (!isDead) Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
             isDead = true;
         }
