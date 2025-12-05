@@ -16,15 +16,22 @@ public class TaskUIManager : MonoBehaviour
     [SerializeField] Image taskIcon;
     // 死亡回数
     [SerializeField] Text deathCount;
-    // 死亡回数
+    // 経過時間テキスト
     [SerializeField] Text timerText;
-
+    // 制限時間テキスト
+    [SerializeField] Text limitTimerText;
+    // 経過時間カウント変数
     float count = 0;
-
+    // 制限時間カウント変数
+    public float limitCount = 60;
+    // 現在のシーン名
+    string nowSceneName;
+    // 終了判定
+    public bool isFinish = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        string nowSceneName = SceneManager.GetActiveScene().name;
+        nowSceneName = SceneManager.GetActiveScene().name;
         Texture2D texture;
 
         deathCount.text = ": 0/3";
@@ -59,7 +66,7 @@ public class TaskUIManager : MonoBehaviour
                 // タスクカウントを設定
                 taskCount.text = ": 0/5";
                 // 説明文を変更
-                taskExplanation.text = "任務:指定位置にコーヒーを配達";
+                taskExplanation.text = "任務:コーヒーを配達";
                 break;
             case "Stage_4":
 
@@ -84,5 +91,12 @@ public class TaskUIManager : MonoBehaviour
     {
         count += Time.deltaTime;
         timerText.text = count.ToString("n2");
+
+        if(nowSceneName == "Stage_3" && !isFinish)
+        {
+            if(limitCount <= 0) limitCount = 0;
+            else limitCount -= Time.deltaTime;
+            limitTimerText.text = limitCount.ToString("n2");
+        }
     }
 }
