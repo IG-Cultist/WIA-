@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using KanKikuchi.AudioManager;
+using static Unity.Burst.Intrinsics.X86;
 
 public class CheckableObjManager : MonoBehaviour
 {
@@ -209,6 +210,7 @@ public class CheckableObjManager : MonoBehaviour
                 if (!searchedSE)
                 {
                     Debug.Log("鍵発見");
+                    GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + "1" + "/1";
 
                     SEManager.Instance.Play(
                         audioPath: SEPath.FIND_KEY, //再生したいオーディオのパス
