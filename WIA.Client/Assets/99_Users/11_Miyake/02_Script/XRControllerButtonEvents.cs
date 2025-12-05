@@ -1,14 +1,18 @@
+//===============================================
+//VRのボタン管理
+//2025/12/04
+//===============================================
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Readers;
 
 public class XRControllerButtonEvents : MonoBehaviour
 {
-    [Header("XR Button Input Readers")]
-    [SerializeField] private XRInputButtonReader rTrriger_PressInput = new XRInputButtonReader("R_Press_Trriger");
-    [SerializeField] private XRInputButtonReader rTrriger_ReleaseInput = new XRInputButtonReader("R_Release_Trriger");
-    [SerializeField] private XRInputButtonReader lTrriger_PressInput = new XRInputButtonReader("L_PressTrriger");
-    [SerializeField] private XRInputButtonReader lTrriger_ReleaseInput = new XRInputButtonReader("L_Release_Trriger");
+    [Header("VRのボタン")]
+    [SerializeField] private XRInputButtonReader rTrriger_PressInput = new XRInputButtonReader("R_Press_Trriger");          //右トリガーを押した時
+    [SerializeField] private XRInputButtonReader rTrriger_ReleaseInput = new XRInputButtonReader("R_Release_Trriger");      //離したとき
+    [SerializeField] private XRInputButtonReader lTrriger_PressInput = new XRInputButtonReader("L_PressTrriger");           //左トリガーを押したとき
+    [SerializeField] private XRInputButtonReader lTrriger_ReleaseInput = new XRInputButtonReader("L_Release_Trriger");      //離したとき
 
     [Header("Button Events")]
     public UnityEvent OnRTrrigerPressed;
@@ -17,8 +21,17 @@ public class XRControllerButtonEvents : MonoBehaviour
     public UnityEvent OnRTrrigerReleased;
     public UnityEvent OnLTrrigerReleased;
 
+    //探しているか
+    public bool isFind;
+    ObjectGrabber grabber;
+
     void Start()
     {
+        isFind = false;
+
+        //スクリプト取得
+        grabber = GetComponent<ObjectGrabber>();
+
         rTrriger_PressInput.EnableDirectActionIfModeUsed();
         rTrriger_ReleaseInput.EnableDirectActionIfModeUsed();
         lTrriger_PressInput.EnableDirectActionIfModeUsed();
@@ -55,23 +68,31 @@ public class XRControllerButtonEvents : MonoBehaviour
         lTrriger_ReleaseInput.DisableDirectActionIfModeUsed() ;
     }
 
+    //右トリガーが押されたとき
     public void PressTrriger_R()
     {
         Debug.Log("右のトリガーが押されたよん");
+        isFind = true;
     }
 
+    //左トリガーを押したとき
     public void PressTrriger_L()
     {
         Debug.Log("左のトリガーが押されたよん");
+        isFind = true;
     }
 
+    //右トリガーを離したとき
     public void ReleaseTrriger_R()
     {
         Debug.Log("右のトリガーが離されたよん");
+        isFind = false;
     }
 
+    //左トリガーを離したとき
     public void ReleaseTrriger_L()
     {
         Debug.Log("左のトリガーが離されたよん");
+        isFind = false;
     }
 }
