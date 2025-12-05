@@ -5,6 +5,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class TaskUIManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class TaskUIManager : MonoBehaviour
     [SerializeField] Text timerText;
     // 制限時間テキスト
     [SerializeField] Text limitTimerText;
+    // 変動数テキスト
+    [SerializeField] Text fluctTimeText;
     // 経過時間カウント変数
     float count = 0;
     // 制限時間カウント変数
@@ -89,14 +92,34 @@ public class TaskUIManager : MonoBehaviour
 
     void Update()
     {
-        count += Time.deltaTime;
-        timerText.text = count.ToString("n2");
+        count += Time.deltaTime;    // カウントアップ
+        timerText.text = count.ToString("n2");  // 小数第二位真で表示
 
-        if(nowSceneName == "Stage_3" && !isFinish)
+        // ステージ3の場合かつステージを終了していない場合
+        if (nowSceneName == "Stage_3" && !isFinish)
         {
-            if(limitCount <= 0) limitCount = 0;
-            else limitCount -= Time.deltaTime;
-            limitTimerText.text = limitCount.ToString("n2");
+            if(limitCount <= 0) limitCount = 0; // カウントが0になっている場合、0で固定
+            else limitCount -= Time.deltaTime;  //カウントダウン
+            limitTimerText.text = limitCount.ToString("n2");    // 小数第二位真で表示
         }
+    }
+
+    /// <summary>
+    /// 時間変動処理
+    /// </summary>
+    /// <param name="num"></param>
+    public void FluctNowTime(int num)
+    {
+        // 受け取った数値に応じて表示を変更
+        if (num > 0) fluctTimeText.text = "+" + num;
+        else fluctTimeText.text =num.ToString();
+
+        limitCount += num; // 現在の制限時間に受け取った値を加算/減算
+
+        // 表示させた後、非表示にする
+        var sequence = DOTween.Sequence(); 
+        sequence.Append(fluctTimeText.GetComponent<Text>().DOFade(1f, 0.3f))
+                .Append(fluctTimeText.GetComponent<Text>().DOFade(1f, 0.8f))
+                .Append(fluctTimeText.GetComponent<Text>().DOFade(0f, 0.3f));
     }
 }
