@@ -1570,12 +1570,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
-  hold_L: {fileID: 0}
-  hold_R: {fileID: 0}
 --- !u!64 &83763437
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16763,7 +16762,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -23183,12 +23182,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
-  hold_L: {fileID: 0}
-  hold_R: {fileID: 0}
 --- !u!65 &609325461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23711,12 +23709,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
-  hold_L: {fileID: 0}
-  hold_R: {fileID: 0}
 --- !u!114 &620497979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28899,12 +28896,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
-  hold_L: {fileID: 0}
-  hold_R: {fileID: 0}
 --- !u!65 &802928705
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36304,12 +36300,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
-  hold_L: {fileID: 0}
-  hold_R: {fileID: 0}
 --- !u!64 &1032599603
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46240,12 +46235,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
-  hold_L: {fileID: 0}
-  hold_R: {fileID: 0}
 --- !u!64 &1459942855
 MeshCollider:
   m_ObjectHideFlags: 0
