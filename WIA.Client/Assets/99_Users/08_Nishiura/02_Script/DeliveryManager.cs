@@ -68,6 +68,10 @@ public class DeliveryManager : MonoBehaviour
             if(!isDead) Initiate.Fade("30_ResultScene", Color.black, 1.0f);
             isDead = true;
         }
+        if ((GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().limitCount <= 0))
+        {
+            GoNextStage();
+        }
     }
 
     /// <summary>
@@ -148,7 +152,13 @@ public class DeliveryManager : MonoBehaviour
         deliveredCount++;
         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deliveredCount + "/5";
 
-        if (deliveredCount >=5) GoNextStage(); // 5の場合、次のシーンへ移動
+        GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().limitCount += 10f;
+
+        if (deliveredCount >= 5)
+        {
+            GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().isFinish = true;
+            GoNextStage(); // 5の場合、次のシーンへ移動
+        }
     }
 
     /// <summary>
