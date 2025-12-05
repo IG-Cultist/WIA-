@@ -1,5 +1,5 @@
 using KanKikuchi.AudioManager;
-using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
+using WIA.Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject child;
     [SerializeField] GameObject hitPoint;    //Player(lagdoll)当たり判定
     [SerializeField] Animator animator;      //アニメーター(速度調整用)
-    [SerializeField] PlayerAnimation plaAnimation;    //アニメーションスクリプト
+    [SerializeField] public PlayerAnimation plaAnimation;    //アニメーションスクリプト
 
     [Header("アクション座標系")]
     [SerializeField] Transform warpPoint; //リスポーン地点
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     Rigidbody rigidbody;      //慣性取得用
 
     private float moveSpeed;
+    public float subMoveSpeed;
 
     [Header("フラグ系")]
     public bool isHave = false;     //荷物所持判定
@@ -87,6 +88,17 @@ public class Player : MonoBehaviour
         tripPanel.SetActive(false);
 
         isHave = false;
+
+        //ワープ地点設定通信中のみ処理する
+        if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+        {
+            warpPoint = GameObject.Find("PlayerSpawnPoint_1").transform;
+        }
+        else
+        {
+            warpPoint = GameObject.Find("PlayerSpawnPoint_2").transform;
+        }
+
     }
 
     // Update is called once per frame
@@ -145,6 +157,8 @@ public class Player : MonoBehaviour
                     Debug.Log("リセット完了");
                 }
 
+
+
                 if (isSearch)
                 {
                     if (isLow) plaAnimation.SetAnim(ANIM_STATE.SEARCH_LOW, 1);
@@ -174,6 +188,36 @@ public class Player : MonoBehaviour
 
                     }
                 }
+
+                //操作していないプレイヤーのアニメーション設定
+                if (this.name == "Sub")
+                {
+                    if ((int)plaAnimation.anim_State == 0)
+                    {
+                        plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
+                    }
+                    else if ((int)plaAnimation.anim_State == 1)
+                    {
+                        plaAnimation.SetAnim(ANIM_STATE.WALK, subMoveSpeed);
+                    }
+                    else if ((int)plaAnimation.anim_State == 2)
+                    {
+                        plaAnimation.SetAnim(ANIM_STATE.RUN, subMoveSpeed);
+                    }
+                    else if ((int)plaAnimation.anim_State == 3)
+                    {
+                        plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
+                    }
+                    else if ((int)plaAnimation.anim_State == 4)
+                    {
+                        plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, subMoveSpeed);
+                    }
+                    else if ((int)plaAnimation.anim_State == 5)
+                    {
+                        plaAnimation.SetAnim(ANIM_STATE.FALL, subMoveSpeed);
+                    }
+                }
+
                 break;
 
             //死亡状態
@@ -221,10 +265,13 @@ public class Player : MonoBehaviour
         // 手に持っているものを離す（VR時は無視）
         if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null) grabber.Release();
 
-        // メインカメラを非アクティブ化
-        cameraManager.TurnOffPlayerCam();
-        // 0.8秒後にフェードアウトを開始
-        Invoke("FadeOut", 0.8f);
+        if (this.name == "Main")
+        {
+            // メインカメラを非アクティブ化
+            cameraManager.TurnOffPlayerCam();
+            // 0.8秒後にフェードアウトを開始
+            Invoke("FadeOut", 0.8f);
+        }
 
         hitPoint.SetActive(true);
         ChangeBodyGravity(true);    //重力をtrueに
@@ -232,10 +279,13 @@ public class Player : MonoBehaviour
         animator.enabled = false;
         isRespawn = false;
 
-        // 死亡回数を加算
-        if(!isDebug)deathCnt++;
-        // 死亡回数テキストを取得し、死亡回数を反映
-        GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
+        if (this.name == "Main")
+        {
+            // 死亡回数を加算
+            if (!isDebug) deathCnt++;
+            // 死亡回数テキストを取得し、死亡回数を反映
+            GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
+        }
 
         // 画面の毒々しさを解除する
         tripPanel.SetActive(false);
