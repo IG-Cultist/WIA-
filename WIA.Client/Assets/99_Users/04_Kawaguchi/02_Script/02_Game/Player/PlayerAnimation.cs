@@ -8,7 +8,7 @@ using UnityEngine.XR.ARFoundation;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] Player player;
-    [SerializeField] Animator animator;
+    [SerializeField] public Animator animator;
 
     private const string moveSpeed = "MoveSpeed";
 

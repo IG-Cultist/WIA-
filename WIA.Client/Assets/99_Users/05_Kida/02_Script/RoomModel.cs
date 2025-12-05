@@ -13,7 +13,6 @@ using Grpc.Net.Client;
 using MagicOnion;
 using MagicOnion.Client;
 using WIA.Shared.Interfaces.Model.Entity;
-using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
 using Shared.Interfaces.StreamingHubs;
 using System;
 using System.Collections.Generic;
@@ -75,17 +74,11 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //ゲーム開始通知
     public Action OnStartedGame { get; set; }
 
-    //同時開始通知
-    public Action<List<TerminalData>> OnSameStartSyn { get; set; }
-
     //難易度上昇通知
     public Action<int> OnAscendDifficultySyn { get; set; }
 
     //次ステージ進行通知
     public Action<STAGE_TYPE> OnAdanceNextStageSyn { get; set; }
-
-    //レベルアップ通知
-    public Action<int, int, int, CharacterStatusData, Guid, List<StatusUpgrateOptionData>> OnLevelUpSyn { get; set; }
 
     //ステージ進行通知
     public Action OnAdvancedStageSyn { get; set; }
@@ -104,13 +97,14 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action<MasterClientData> OnUpdateMasterClientSyn { get; set; }
 
     //プレイヤー位置回転通知
-    public Action<Vector3,Quaternion> OnUpdatePlayerSyn { get; set; }
+    public Action<Vector3,Quaternion,int,float> OnUpdatePlayerSyn { get; set; }
 
-    // プレイヤーのステータス更新通知
-    public Action<CharacterStatusData, PlayerRelicStatusData> OnUpdateStatusSyn { get; set; }
 
     //プレイヤーダウン通知
     public Action<Guid> OnPlayerDeadSyn { get; set; }
+
+    //プレイヤーリスポーン通知
+    public Action<Guid> OnPlayerRespownSyn {  get; set; }
 
     public Action<Guid, bool> OnBeamEffectActived { get; set; }
 
@@ -256,15 +250,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     #region 通知の処理
 
     /// <summary>
-    /// 同時開始
-    /// Aughtor:木田晃輔
-    /// </summary>
-    public void OnSameStart(List<TerminalData> list)
-    {
-        OnSameStartSyn(list);
-    }
-
-    /// <summary>
     /// ゲーム終了通知
     /// </summary>
     /// <param name="result"></param>
@@ -360,9 +345,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// <param name="pos"></param>
     /// <param name="rot"></param>
     /// <param name="animID"></param>
-    public void OnUpdatePlayer(Vector3 pos, Quaternion rot)
+    public void OnUpdatePlayer(Vector3 pos, Quaternion rot, int animState, float moveSpeed)
     {
-        OnUpdatePlayerSyn(pos,rot);
+        OnUpdatePlayerSyn(pos,rot,animState,moveSpeed);
     }
 
     /// <summary>
@@ -376,15 +361,20 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         IsMaster = true;
     }
 
-    /// <summary>
-    /// プレイヤー死亡通知
-    /// Aughter:木田晃輔
-    /// </summary>
-    /// <param name="guid"></param>
-    public void OnPlayerDead(Guid guid)
-    {
-        OnPlayerDeadSyn(guid);
-    }
+    ///// <summary>
+    ///// プレイヤー死亡通知
+    ///// Aughter:木田晃輔
+    ///// </summary>
+    ///// <param name="guid"></param>
+    //public void OnPlayerDead(Guid guid)
+    //{
+    //    OnPlayerDeadSyn(guid);
+    //}
+
+    //public void OnPlayerRespown(Guid guid)
+    //{
+    //    OnPlayerRespownSyn(guid);
+    //}
 
 
     #endregion
@@ -597,9 +587,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// </summary>
     /// <param name="playerData"></param>
     /// <returns></returns>
-    public async UniTask UpdatePlayerAsync(Vector3 pos,Quaternion rot)
+    public async UniTask UpdatePlayerAsync(Vector3 pos,Quaternion rot,int animState, float moveSpeed)
     {
-        await roomHub.UpdatePlayerAsync(pos,rot);
+        await roomHub.UpdatePlayerAsync(pos,rot,animState, moveSpeed);
     }
 
     /// <summary>
@@ -615,10 +605,15 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     }
 
 
-    public async UniTask PlayerDeadAsync()
-    {
-        await roomHub.PlayerDeadAsync();
-    }
+    //public async UniTask PlayerDeadAsync()
+    //{
+    //    await roomHub.PlayerDeadAsync();
+    //}
+
+    //public async UniTask PlayerRespownAsync()
+    //{
+    //    await roomHub.PlayerRespownAsync();
+    //}
     #endregion
 
     #region 敵関連

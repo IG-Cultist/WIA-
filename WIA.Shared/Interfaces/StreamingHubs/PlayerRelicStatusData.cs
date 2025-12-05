@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using static Shared.Interfaces.StreamingHubs.EnumManager;
 
-namespace NIGHTRAVEL.Shared.Interfaces.StreamingHubs
+namespace WIA.Shared.Interfaces.StreamingHubs
 {
     [MessagePackObject]
     public class PlayerRelicStatusData

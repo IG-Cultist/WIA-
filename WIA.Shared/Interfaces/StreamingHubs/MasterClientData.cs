@@ -3,7 +3,7 @@
 // Author:Enomoto Data:07/25
 //=============================
 using MessagePack;
-using NIGHTRAVEL.Shared.Interfaces.StreamingHubs;
+using WIA.Shared.Interfaces.StreamingHubs;
 using Shared.Interfaces.StreamingHubs;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;

@@ -103,8 +103,8 @@ public class MatchingManager : MonoBehaviour
         RoomModel.Instance.OnFailedJoinSyn -= this.OnFailedJoinSyn;
         RoomModel.Instance.OnJoinedUser -= this.OnJoinedUser;
         RoomModel.Instance.OnLeavedUser -= this.OnLeavedUser;
-        RoomModel.Instance.OnReadySyn += this.OnReadySyn;
-        RoomModel.Instance.OnStartedGame += this.OnStartedGame;
+        RoomModel.Instance.OnReadySyn -= this.OnReadySyn;
+        RoomModel.Instance.OnStartedGame -= this.OnStartedGame;
     }
 
     //void NewRoomModel()

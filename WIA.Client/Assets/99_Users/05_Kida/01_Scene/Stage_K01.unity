@@ -16043,7 +16043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 558554123}
   m_Layer: 0
-  m_Name: PlayerSpawnPoint1_1
+  m_Name: PlayerSpawnPoint_2
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41757,7 +41757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1557371691}
   m_Layer: 0
-  m_Name: PlayerSpawnPoint1
+  m_Name: PlayerSpawnPoint_1
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

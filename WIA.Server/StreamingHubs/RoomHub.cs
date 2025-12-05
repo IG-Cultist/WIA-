@@ -228,13 +228,13 @@ namespace WIA.Server.StreamingHubs
         /// </summary>
         /// <param name="playerData"></param>
         /// <returns></returns>
-        public async Task UpdatePlayerAsync(Vector3 pos,Quaternion rot)
+        public async Task UpdatePlayerAsync(Vector3 pos,Quaternion rot,int animState, float moveSpeed)
         {
             lock (roomContextRepository) // 排他制御
             {
 
                 // ルームの自分以外に、ユーザ情報通知を送信
-                this.roomContext.Group.Except([this.ConnectionId]).OnUpdatePlayer(pos,rot);
+                this.roomContext.Group.Except([this.ConnectionId]).OnUpdatePlayer(pos,rot,animState,moveSpeed);
             }
         }
 
@@ -375,6 +375,12 @@ namespace WIA.Server.StreamingHubs
             }
         }
 
+        /// <summary>
+        /// オブジェクト権限取得処理
+        /// </summary>
+        /// <param name="uniqueId"></param>
+        /// <param name="joinOrder"></param>
+        /// <returns></returns>
         public async Task OwnershipSwapObjectAsync(string uniqueId, int joinOrder)
         {
             lock (roomContextRepository)
@@ -384,18 +390,29 @@ namespace WIA.Server.StreamingHubs
         }
 
 
-        /// <summary>
-        /// プレイヤー死亡同期処理
-        /// Author:Nishiura
-        /// </summary>
-        /// <param name="conID">プレイヤーID</param>
-        /// <returns></returns>
-        public async Task PlayerDeadAsync()
-        {
-            // 死亡者以外の参加者全員に対象者が死亡したことを通知
-            this.roomContext.Group.Except([this.ConnectionId]).OnPlayerDead(this.ConnectionId);
+        ///// <summary>
+        ///// プレイヤー死亡同期処理
+        ///// Author:Nishiura
+        ///// </summary>
+        ///// <param name="conID">プレイヤーID</param>
+        ///// <returns></returns>
+        //public async Task PlayerDeadAsync()
+        //{
+        //    // 死亡者以外の参加者全員に対象者が死亡したことを通知
+        //    this.roomContext.Group.Except([this.ConnectionId]).OnPlayerDead(this.ConnectionId);
 
-        }
+        //}
+
+        ///// <summary>
+        ///// プレイヤーリスポーン同期
+        ///// Author:木田晃輔
+        ///// </summary>
+        ///// <returns></returns>
+        //public async Task PlayerRespownAsync()
+        //{
+        //    // 死亡者以外の参加者全員に対象者が死亡したことを通知
+        //    this.roomContext.Group.Except([this.ConnectionId]).OnPlayerRespown(this.ConnectionId);
+        //}
 
 
         /// <summary>

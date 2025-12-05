@@ -72,14 +72,21 @@ namespace Shared.Interfaces.StreamingHubs
         /// プレイヤー動作通知
         /// Author:Nishiura
         /// </summary>
-        void OnUpdatePlayer(Vector3 pos,Quaternion rot);
+        void OnUpdatePlayer(Vector3 pos,Quaternion rot,int animState, float moveSpeed);
 
-        /// <summary>
-        /// プレイヤー死亡通知
-        /// Author:木田晃輔
-        /// </summary>
-        /// <param name="guid"></param>
-        void OnPlayerDead(Guid guid);
+        ///// <summary>
+        ///// プレイヤー死亡通知
+        ///// Author:木田晃輔
+        ///// </summary>
+        ///// <param name="guid"></param>
+        //void OnPlayerDead(Guid guid);
+
+        ///// <summary>
+        ///// プレイヤーリスポーン通知
+        ///// Author:木田晃輔
+        ///// </summary>
+        ///// <param name="guid"></param>
+        //void OnPlayerRespown(Guid guid);
 
 
         #endregion

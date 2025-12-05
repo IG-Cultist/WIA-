@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using static Shared.Interfaces.StreamingHubs.EnumManager;
 
-namespace NIGHTRAVEL.Shared.Interfaces.StreamingHubs
+namespace WIA.Shared.Interfaces.StreamingHubs
 {
     public class UpdatePlayerStatusData
     {

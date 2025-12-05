@@ -64,6 +64,9 @@ public class OnlineGameManager : MonoBehaviour
         RoomModel.Instance.OnLeavedUser += OnLeavedUser;
         RoomModel.Instance.OnUpdatedObject += OnUpdatedObject;
         RoomModel.Instance.OnOwnershipSwapObjectSyn += OnOwnershipSwapObjectSyn;
+        //RoomModel.Instance.OnPlayerDeadSyn += this.OnPlayerDeadSyn;
+        //RoomModel.Instance.OnPlayerRespownSyn += this.OnPlayerRespownSyn;
+
 
         //プレイヤーの設定
         foreach (var user in RoomModel.Instance.joinedUserList)
@@ -121,6 +124,8 @@ public class OnlineGameManager : MonoBehaviour
         RoomModel.Instance.OnLeavedUser -= OnLeavedUser;
         RoomModel.Instance.OnUpdatedObject -= OnUpdatedObject;
         RoomModel.Instance.OnOwnershipSwapObjectSyn -= OnOwnershipSwapObjectSyn;
+        //RoomModel.Instance.OnPlayerDeadSyn -= this.OnPlayerDeadSyn;
+        //RoomModel.Instance.OnPlayerRespownSyn -= this.OnPlayerRespownSyn;
     }
 
     private void Update()
@@ -188,8 +193,10 @@ public class OnlineGameManager : MonoBehaviour
     /// </summary>
     public async void UpDatePlayer()
     {
-        await RoomModel.Instance.UpdatePlayerAsync(player.transform.position
-            ,player.transform.rotation);
+        await RoomModel.Instance.UpdatePlayerAsync(player.transform.position,
+            player.transform.rotation,
+            GameObject.Find("Main").GetComponent<Player>().plaAnimation.animator.GetInteger("AnimID"),
+            GameObject.Find("Main").GetComponent<Player>().plaAnimation.animator.GetFloat("MoveSpeed"));
     }
 
     /// <summary>
@@ -197,7 +204,7 @@ public class OnlineGameManager : MonoBehaviour
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="rot"></param>
-    void OnUpdatePlayerSyn(Vector3 pos,Quaternion rot)
+    void OnUpdatePlayerSyn(Vector3 pos,Quaternion rot, int animState,float moveSpeed)
     {
         Rigidbody rb = subplayer.GetComponent<Rigidbody>();
 
@@ -206,6 +213,8 @@ public class OnlineGameManager : MonoBehaviour
 
         subplayer.transform.DORotate(rot.eulerAngles, 0.1f);
         subplayer.transform.GetChild(0).DORotate(rot.eulerAngles, 0.1f);
+        subplayer.GetComponent<Player>().plaAnimation.anim_State = (PlayerAnimation.ANIM_STATE)animState;
+        subplayer.GetComponent<Player>().subMoveSpeed = moveSpeed;
     }
 
     /// <summary>
@@ -296,4 +305,16 @@ public class OnlineGameManager : MonoBehaviour
     {
         Debug.Log(joinedUser.UserData.Name+"が退室しました。");
     }
+
+    //void OnPlayerDeadSyn(Guid guid)
+    //{
+    //    if (RoomModel.Instance.ConnectionId == guid)
+    //        subplayer.GetComponent<Player>().plaAnimation.enabled = false;
+    //}
+
+    //void OnPlayerRespownSyn(Guid guid)
+    //{
+    //    if (RoomModel.Instance.ConnectionId == guid)
+    //        subplayer.GetComponent<Player>().plaAnimation.enabled = true;
+    //}
 }
