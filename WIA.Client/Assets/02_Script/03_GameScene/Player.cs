@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
         tripPanel.SetActive(false);
 
         isHave = false;
-
+        /*
         //ワープ地点設定通信中のみ処理する
         if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
         {
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
         else
         {
             warpPoint = GameObject.Find("PlayerSpawnPoint_2").transform;
-        }
+        }*/
 
     }
 
