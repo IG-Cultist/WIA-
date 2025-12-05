@@ -65,6 +65,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/08_Nishiura/01_Scene/Stage_3.unity
     guid: 793d553c0f231864ea8ed4906425c76c
+  - enabled: 1
+    path: Assets/01_Scene/Stage/Stage_3.unity
+    guid: 1a2133c3e3231534abd40d2525fbbaf6
   - enabled: 0
     path: Assets/99_Users/04_Kawaguchi/01_Scene/Stage_3.unity
     guid: ef6949e567094d04a91f7b06e9cd847a
