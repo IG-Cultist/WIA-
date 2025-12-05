@@ -24,9 +24,10 @@ public class CameraManager : MonoBehaviour
     {
         //メインキャラクターのカメラを取る
         playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject;
+        //playerCamera = GameObject.Find("Main").gameObject.transform.Find("Human").gameObject.transform.Find("Helmet").transform.Find("First Person Camera").gameObject;
 
         //カメラが入った状態でのみ通す
-        if(playerCamera != null)
+        if (playerCamera != null)
 
         // カメラの優先順位調整
         if(thirdPersonCamera != null) thirdPersonCamera.GetComponent<CinemachineCamera>().Priority = 0;

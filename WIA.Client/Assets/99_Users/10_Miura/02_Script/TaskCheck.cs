@@ -23,11 +23,13 @@ public class TaskCheck : MonoBehaviour
 
     //死亡判定
     private bool isDead;
+    private bool playSE;
 
     private void Start()
     {
         player = GameObject.Find("Main").gameObject.GetComponent<Player>();
         isDead = false;
+        playSE = false;
     }
 
     private void Update()
@@ -35,6 +37,18 @@ public class TaskCheck : MonoBehaviour
         //Debug.Log(player.deathCnt);
         if (player.deathCnt >= 3)
         {
+            if (playSE) return;
+
+            SEManager.Instance.Play(
+                audioPath: SEPath.TASK_FAILURE, //再生したいオーディオのパス
+                volumeRate: 1,                //音量の倍率
+                delay: 1,                //再生されるまでの遅延時間
+                pitch: 1,                //ピッチ
+                isLoop: false,             //ループ再生するか
+                callback: null              //再生終了後の処理
+            );
+            playSE = true;
+
             if (!isDead) Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
             isDead = true;
         }
@@ -70,6 +84,15 @@ public class TaskCheck : MonoBehaviour
             if (cubeList.Count >= checkCnt)
             {//要素数が目標数と同じになったら
              //フェードアウトしてシーン遷移
+                SEManager.Instance.Play(
+                    audioPath: SEPath.TASK_COMPLETED, //再生したいオーディオのパス
+                    volumeRate: 1,                //音量の倍率
+                    delay: 1,                //再生されるまでの遅延時間
+                    pitch: 1,                //ピッチ
+                    isLoop: false,             //ループ再生するか
+                    callback: null              //再生終了後の処理
+                );
+
                 Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
             }
         }
