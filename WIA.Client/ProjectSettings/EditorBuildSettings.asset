@@ -66,7 +66,7 @@ EditorBuildSettings:
     path: Assets/99_Users/08_Nishiura/01_Scene/Stage_3.unity
     guid: 793d553c0f231864ea8ed4906425c76c
   - enabled: 0
-    path: Assets/01_Scene/Stage/Stage_3.unity
+    path: Assets/99_Users/04_Kawaguchi/01_Scene/Stage_3.unity
     guid: ef6949e567094d04a91f7b06e9cd847a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 18892b957a7b3b24fad4ae87fc9a7aaa, type: 2}
