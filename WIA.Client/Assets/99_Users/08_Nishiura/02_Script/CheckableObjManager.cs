@@ -139,8 +139,13 @@ public class CheckableObjManager : MonoBehaviour
             }
 
             checkNowText.SetActive(true);   //調査テキスト表示
-            playerCamera.enabled = false;   //カメラアングル固定化
-            playerMove.enabled = false;     //プレイヤー座標固定化
+
+            //VR時は無視
+            if (!UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                playerCamera.enabled = false;   //カメラアングル固定化
+                playerMove.enabled = false;     //プレイヤー座標固定化
+            }
 
             nowFindStatus.checkedTime += Time.deltaTime;   //調査時間加算
 
@@ -152,8 +157,13 @@ public class CheckableObjManager : MonoBehaviour
         else if (!isCheckNow)
         {
             checkNowText.SetActive(false); //調査テキスト非表示
-            playerCamera.enabled = true;   //アングル固定解除
-            playerMove.enabled = true;     //座標固定解除
+
+            //VR時は無視
+            if (!UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                playerCamera.enabled = true;   //アングル固定解除
+                playerMove.enabled = true;     //座標固定解除
+            }
             player.isSearch = isCheckNow;
 
         }
