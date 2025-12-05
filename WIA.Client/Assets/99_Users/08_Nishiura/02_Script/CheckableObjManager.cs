@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using KanKikuchi.AudioManager;
 
 public class CheckableObjManager : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class CheckableObjManager : MonoBehaviour
     //死亡判定
     private bool isDead;
 
+    private bool searchingSE;
+    private bool searchedSE;
+    private bool openDoor;
     //VR
     private XRControllerButtonEvents xrControllerButtonEvents;
 
@@ -54,6 +58,10 @@ public class CheckableObjManager : MonoBehaviour
 
         player = GameObject.Find("Main").gameObject.GetComponent<Player>();
         isDead = false;
+
+        searchingSE = false;
+        searchedSE = false;
+        openDoor = false;
     }
 
     private void Update()
@@ -64,6 +72,7 @@ public class CheckableObjManager : MonoBehaviour
             isDead = true;
         }
 
+        /*
         //VRでオブジェクトを調査していたら
         if (xrControllerButtonEvents.isFind)
         {
@@ -74,7 +83,7 @@ public class CheckableObjManager : MonoBehaviour
         {
             isCheckNow = false;
             Debug.Log("falseにしたよ");
-        }
+        }*/
 
         //nullチェック
         if (nowFindObj == null) return;
@@ -87,6 +96,33 @@ public class CheckableObjManager : MonoBehaviour
 
             if (nowFindObj.name == "Door" && !isGetKey) return; //鍵非所持でドア開錠もreturn
 
+            if(!searchingSE)
+            {
+                if (nowFindObj.name == "Door")
+                {
+                    SEManager.Instance.Play(
+                        audioPath: SEPath.DIFFUSE, //再生したいオーディオのパス
+                        volumeRate: 1,                //音量の倍率
+                        delay: 0,                //再生されるまでの遅延時間
+                        pitch: 1,                //ピッチ
+                        isLoop: true,             //ループ再生するか
+                        callback: null              //再生終了後の処理
+                    );
+                }
+                else
+                {
+                    SEManager.Instance.Play(
+                        audioPath: SEPath.SEARCH_KEY, //再生したいオーディオのパス
+                        volumeRate: 1,                //音量の倍率
+                        delay: 0,                //再生されるまでの遅延時間
+                        pitch: 1,                //ピッチ
+                        isLoop: true,             //ループ再生するか
+                        callback: null              //再生終了後の処理
+                    );
+                }
+
+                searchingSE = true;
+            }
 
             checkNowText.SetActive(true);   //調査テキスト表示
             playerCamera.enabled = false;   //カメラアングル固定化
@@ -118,16 +154,61 @@ public class CheckableObjManager : MonoBehaviour
             {
                 if (!isGetKey) return;
 
+                if(!openDoor)
+                {
+                    SEManager.Instance.Play(
+                        audioPath: SEPath.UNLOCK_KEY, //再生したいオーディオのパス
+                        volumeRate: 1,                //音量の倍率
+                        delay: 0,                //再生されるまでの遅延時間
+                        pitch: 1,                //ピッチ
+                        isLoop: false,             //ループ再生するか
+                        callback: null              //再生終了後の処理
+                    );
+
+                    SEManager.Instance.Play(
+                        audioPath: SEPath.OPEN_DOOR, //再生したいオーディオのパス
+                        volumeRate: 1,                //音量の倍率
+                        delay: 0.5f,                //再生されるまでの遅延時間
+                        pitch: 1,                //ピッチ
+                        isLoop: false,             //ループ再生するか
+                        callback: null              //再生終了後の処理
+                    );
+
+                    SEManager.Instance.Play(
+                        audioPath: SEPath.TASK_COMPLETED, //再生したいオーディオのパス
+                        volumeRate: 1,                //音量の倍率
+                        delay: 1,                //再生されるまでの遅延時間
+                        pitch: 1,                //ピッチ
+                        isLoop: false,             //ループ再生するか
+                        callback: null              //再生終了後の処理
+                    );
+                    SEManager.Instance.Stop(SEPath.DIFFUSE);
+
+                    openDoor = true;
+                }
                 Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
             }
 
             // 調べたオブジェクトにキーが入っていた場合
             if (nowFindObj == checkableObjList[keyObjectNum])
             {
-                Debug.Log("鍵を見つけた");
-                //鍵獲得の処理を記述
-                isGetKey = true;
-                GameObject.Find("TaskCount").GetComponent<Text>().text = ": 1/1";
+
+                if (!searchedSE)
+                {
+                    Debug.Log("鍵発見");
+
+                    SEManager.Instance.Play(
+                        audioPath: SEPath.FIND_KEY, //再生したいオーディオのパス
+                        volumeRate: 1,                //音量の倍率
+                        delay: 0,                //再生されるまでの遅延時間
+                        pitch: 1,                //ピッチ
+                        isLoop: false,             //ループ再生するか
+                        callback: null              //再生終了後の処理
+                    );
+                    isGetKey = true;
+
+                    searchedSE = true;
+                }
             }
             else
             {
@@ -160,9 +241,18 @@ public class CheckableObjManager : MonoBehaviour
     /// </summary>
     public void CheckOutObject()
     {
+        if (nowFindStatus == null) return;
+
         isCheckNow = false;
 
-        if (nowFindStatus == null) return;
+        if (searchingSE)
+        {
+            //SYSTEM20のSEだけを停止
+            SEManager.Instance.Stop(SEPath.SEARCH_KEY);
+            searchingSE = false;
+        }
+
+        
 
     }
 }

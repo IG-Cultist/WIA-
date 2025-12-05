@@ -9,6 +9,7 @@ public static class SEPath{
 	public const string CONTAINER_SOUND = "SE/Container_Sound";
 	public const string DEATH           = "SE/Death";
 	public const string DEATH_VOICE     = "SE/Voice/Death_Voice";
+	public const string DIFFUSE         = "SE/Diffuse";
 	public const string ERROR           = "SE/Error";
 	public const string FALL            = "SE/Fall";
 	public const string FIND_KEY        = "SE/Find_Key";
@@ -19,8 +20,10 @@ public static class SEPath{
 	public const string GLASS_CRASH_2   = "SE/Glass_Crash_2";
 	public const string IRON_HIT        = "SE/Iron_Hit";
 	public const string NEXT_PAGE       = "SE/NextPage";
+	public const string OPEN_DOOR       = "SE/Open_Door";
 	public const string PUSH_BUTTON     = "SE/Push_Button";
 	public const string SEARCH_KEY      = "SE/Search_Key";
+	public const string SEARCHED        = "SE/Searched";
 	public const string SLIP            = "SE/Slip";
 	public const string STAB            = "SE/Stab";
 	public const string SUCCESS         = "SE/Success";

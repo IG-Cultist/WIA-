@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using KanKikuchi.AudioManager;
 
 /// <summary>
 /// 鍵調査オブジェクト処理スクリプト
@@ -9,6 +10,7 @@ public class FindKeyStatus : MonoBehaviour
 {
     [Header("調査判定用")]
     public bool isChecked;        //調査済みか
+    public bool isSearchedSE;
     public float checkedTime;     //調査完了時間
     public bool canCheckArea;     //調査可能エリアにいるか
 
@@ -31,6 +33,7 @@ public class FindKeyStatus : MonoBehaviour
 
         canCheckArea = false;
         isChecked = false;
+        isSearchedSE = false;
         checkedTime = 0f;
     }
 
@@ -60,7 +63,18 @@ public class FindKeyStatus : MonoBehaviour
         //調査所要時間を超えた場合
         if(checkSlider.maxValue <= checkedTime)
         {
-            isChecked = true;   //調査済みに変更
+            if (!isChecked)
+            {
+                SEManager.Instance.Play(
+                    audioPath: SEPath.SEARCHED, //再生したいオーディオのパス
+                    volumeRate: 1,                //音量の倍率
+                    delay: 0,                //再生されるまでの遅延時間
+                    pitch: 1,                //ピッチ
+                    isLoop: true,             //ループ再生するか
+                    callback: null              //再生終了後の処理
+                );
+                isChecked = true;   //調査済みに変更
+            }
         }
     }
 }
