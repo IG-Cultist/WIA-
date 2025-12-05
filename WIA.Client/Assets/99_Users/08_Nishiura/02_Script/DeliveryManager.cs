@@ -152,7 +152,7 @@ public class DeliveryManager : MonoBehaviour
         deliveredCount++;
         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deliveredCount + "/5";
 
-        GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().limitCount += 10f;
+        GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(10);
 
         if (deliveredCount >= 5)
         {
@@ -168,6 +168,7 @@ public class DeliveryManager : MonoBehaviour
     {
         // 手元のコーヒーオブジェクトを破棄
         Destroy(coffeeObj);
+        GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(-5);
 
         // コーヒーマシンを使用可能にする
         coffeeMachine.GetComponent<BoxCollider>().enabled = true;
