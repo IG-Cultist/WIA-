@@ -40216,21 +40216,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4837732997002775482, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_Depth
-      value: 0.94
-      objectReference: {fileID: 0}
     - target: {fileID: 6364533647932554291, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.178
+      value: -0.21734
       objectReference: {fileID: 0}
     - target: {fileID: 6364533647932554291, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.702
+      value: 0.52308
       objectReference: {fileID: 0}
     - target: {fileID: 6364533647932554291, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.45873
       objectReference: {fileID: 0}
     - target: {fileID: 6364533647932554291, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -40260,18 +40256,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6692962207539075658, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0000034603281
-      objectReference: {fileID: 0}
-    - target: {fileID: 6692962207539075658, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -573.68677
-      objectReference: {fileID: 0}
-    - target: {fileID: 6692962207539075658, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -369.71588
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40280,11 +40264,6 @@ PrefabInstance:
 --- !u!1 &1168540205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5544734191216457416, guid: 7857b9a6420761043a129858830c776d, type: 3}
-  m_PrefabInstance: {fileID: 1168540204}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1168540206 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1852200169273701107, guid: 7857b9a6420761043a129858830c776d, type: 3}
   m_PrefabInstance: {fileID: 1168540204}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1181672708
@@ -45647,7 +45626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fa7ad9c0c47444bb11f5a3c03cf24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
-  playerCamera: {fileID: 1168540206}
+  playerCamera: {fileID: 0}
   thirdPersonCamera: {fileID: 1168540205}
   lookDownCamera: {fileID: 1074032073}
 --- !u!1 &1442842534

@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/10_Miura/01_Scene/UIScene.unity
     guid: baea5ee5378ded148853eb38aecb4981
+  - enabled: 1
+    path: Assets/99_Users/11_Miyake/01_Scene/VRUIScene.unity
+    guid: 0560c4cfe7f9b0d42abf309645d5644b
   - enabled: 0
     path: Assets/99_Users/05_Kida/01_Scene/PreGameScene.unity
     guid: 0550deca19749524d8946c53a1e004cd
