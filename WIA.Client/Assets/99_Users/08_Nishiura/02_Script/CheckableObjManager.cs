@@ -274,6 +274,7 @@ public class CheckableObjManager : MonoBehaviour
         {
             //SYSTEM20‚ÌSE‚¾‚¯‚ð’âŽ~
             SEManager.Instance.Stop(SEPath.SEARCH_KEY);
+            SEManager.Instance.Stop(SEPath.DIFFUSE);
             searchingSE = false;
         }
 
