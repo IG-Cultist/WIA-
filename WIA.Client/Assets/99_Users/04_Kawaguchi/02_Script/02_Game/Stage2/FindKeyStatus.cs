@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using KanKikuchi.AudioManager;
+using Unity.VisualScripting;
 
 /// <summary>
 /// 鍵調査オブジェクト処理スクリプト
@@ -18,7 +19,11 @@ public class FindKeyStatus : MonoBehaviour
     public Slider checkSlider;     //調査進捗UI
     float activationDistance = 1.5f; //UI表示可能距離
     public Vector3 player;         //プレイヤー座標
+    [SerializeField] Outline outline;
+    private bool canCheck = false;
 
+    private bool isLook1 = false;
+    private bool isLook2 = false;
     CheckableObjManager checkableObjManager;
 
 
@@ -39,6 +44,17 @@ public class FindKeyStatus : MonoBehaviour
 
     void Update()
     {
+        if(isLook1 != isLook2)
+        {
+            outline.enabled = true;
+        }
+        else
+        {
+            outline.enabled = false;       //ここ前回
+
+        }
+        isLook2 = isLook1;
+
         player = GameObject.Find("Main").gameObject.transform.position;   //調査プレイヤーの現在地取得
 
         float distance = Vector3.Distance(transform.position, player);    //距離計算
@@ -76,5 +92,11 @@ public class FindKeyStatus : MonoBehaviour
                 isChecked = true;   //調査済みに変更
             }
         }
+    }
+
+    public void LookObject()
+    {
+        if (isLook1) isLook1 = false;
+        else if (!isLook1) isLook1 = true;
     }
 }
