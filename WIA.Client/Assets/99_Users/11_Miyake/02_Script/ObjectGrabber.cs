@@ -32,8 +32,7 @@ public class ObjectGrabber : MonoBehaviour
     void Start()
     {
         //メインキャラクターのカメラを取る
-        //playerCamera = GameObject.Find("Main").gameObject.transform.Find("Human").gameObject.transform.Find("Helmet").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
-        playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+        playerCamera = GameObject.Find(player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
 
         playerMove = transform.parent.gameObject.GetComponent<FirstPersonMovement>();
 

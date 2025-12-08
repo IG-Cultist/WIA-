@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////////////////////////////
+///        オンライン通信を使ったゲームを動作させるスクリプト
+///        
+///　Aughtor：木田晃輔
+///　更新日：１２月５日
+///　概要：Unityのステージのシーンに配置。！！オンライン環境のみ使用可能！！
+///　
+///////////////////////////////////////////////////////////////////////////////
 using DG.Tweening;
 using NUnit;
 using NUnit.Framework;
@@ -9,10 +17,12 @@ using Unity.Cinemachine;
 using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Scripting;
 using static Shared.Interfaces.StreamingHubs.EnumManager;
 using static UnityEngine.Rendering.DebugUI.Table;
+using UnityEngine.SceneManagement;
 
 public class OnlineGameManager : MonoBehaviour
 {
@@ -32,7 +42,11 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
     [SerializeField] List<GameObject> syncObjList;//同期用オブジェクト初期設定
-    GameObject player; //操作プレイヤー
+    private static GameObject player;//操作プレイヤー
+    public static GameObject Player
+    {
+        get { return player; }
+    }
     GameObject subplayer; //非操作プレイヤー
     private static Dictionary<string,GameObject> objList = new Dictionary<string, GameObject>(); //生成オブジェクトリスト
     public static Dictionary<string,GameObject> ObjList 
@@ -45,6 +59,7 @@ public class OnlineGameManager : MonoBehaviour
         get { return spawnObjId; }
     }
 
+    private int TaskCnt; //タスクカウント
     #endregion
 
     private void Awake()
@@ -64,6 +79,8 @@ public class OnlineGameManager : MonoBehaviour
         RoomModel.Instance.OnLeavedUser += OnLeavedUser;
         RoomModel.Instance.OnUpdatedObject += OnUpdatedObject;
         RoomModel.Instance.OnOwnershipSwapObjectSyn += OnOwnershipSwapObjectSyn;
+        RoomModel.Instance.OnCounted += this.OnCounted;
+        RoomModel.Instance.OnDeliteObjectSyn += this.OnDeliteObjectSyn;
         //RoomModel.Instance.OnPlayerDeadSyn += this.OnPlayerDeadSyn;
         //RoomModel.Instance.OnPlayerRespownSyn += this.OnPlayerRespownSyn;
 
@@ -74,13 +91,20 @@ public class OnlineGameManager : MonoBehaviour
             if (user.Key == RoomModel.Instance.ConnectionId)
             {
                 player = Instantiate(mainPlayerPrefab);
-                player.name = "Main";
+                if(user.Value.JoinOrder == 1)
+                {//働く方
+                    player.name = "Worker";
+                }
+                else
+                {//労災側
+                    player.name = "Stricker";
+                }
                 if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
-                {
+                {//働く方リスポーン
                     player.transform.position = spawnPointP1.position;
                 }
                 else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
-                {
+                {//労災側リスポーン
                     player.transform.position = spawnPointP2.position;
                 }
                 mainSpawnPoint = player.transform;
@@ -89,13 +113,20 @@ public class OnlineGameManager : MonoBehaviour
             else
             {
                 subplayer = Instantiate(subPlayerPrefab);
-                subplayer.name = "Sub";
+                if (user.Value.JoinOrder == 1)
+                {//働く方
+                    subplayer.name = "Worker";
+                }
+                else
+                {//労災側
+                    subplayer.name = "Stricker";
+                }
                 if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
-                {
+                {//働く方リスポーン
                     subplayer.transform.position = spawnPointP2.position;
                 }
                 else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
-                {
+                {//労災側リスポーン
                     subplayer.transform.position = spawnPointP1.position;
                 }
             }
@@ -124,6 +155,8 @@ public class OnlineGameManager : MonoBehaviour
         RoomModel.Instance.OnLeavedUser -= OnLeavedUser;
         RoomModel.Instance.OnUpdatedObject -= OnUpdatedObject;
         RoomModel.Instance.OnOwnershipSwapObjectSyn -= OnOwnershipSwapObjectSyn;
+        RoomModel.Instance.OnCounted -= this.OnCounted;
+        RoomModel.Instance.OnDeliteObjectSyn -= this.OnDeliteObjectSyn;
         //RoomModel.Instance.OnPlayerDeadSyn -= this.OnPlayerDeadSyn;
         //RoomModel.Instance.OnPlayerRespownSyn -= this.OnPlayerRespownSyn;
     }
@@ -145,9 +178,28 @@ public class OnlineGameManager : MonoBehaviour
 #endif
     }
 
+    /// <summary>
+    /// 同期オブジェクトの取得
+    /// </summary>
+    /// <returns></returns>
     public List<GameObject> GetSynObj()
     {
         return syncObjList;
+    }
+
+    /// <summary>
+    /// 同期オブジェクトの更新
+    /// </summary>
+    /// <param name="gameObject"></param>
+    public async void DeliteSynObj(GameObject gameObject)
+    {
+        foreach (var syncObj in syncObjList)
+        {
+            if (syncObj != gameObject) continue;
+            syncObjList.Remove(syncObj);
+            break;
+        }
+        await RoomModel.Instance.DeliteObjectAsync(gameObject.name);
     }
 
     /// <summary>
@@ -195,8 +247,8 @@ public class OnlineGameManager : MonoBehaviour
     {
         await RoomModel.Instance.UpdatePlayerAsync(player.transform.position,
             player.transform.rotation,
-            GameObject.Find("Main").GetComponent<Player>().plaAnimation.animator.GetInteger("AnimID"),
-            GameObject.Find("Main").GetComponent<Player>().plaAnimation.animator.GetFloat("MoveSpeed"));
+            GameObject.Find(player.name).GetComponent<Player>().plaAnimation.animator.GetInteger("AnimID"),
+            GameObject.Find(player.name).GetComponent<Player>().plaAnimation.animator.GetFloat("MoveSpeed"));
     }
 
     /// <summary>
@@ -255,6 +307,17 @@ public class OnlineGameManager : MonoBehaviour
         }
     }
 
+    void OnDeliteObjectSyn(string objName)
+    {
+        foreach(var syncObj in syncObjList)
+        {
+            if (syncObj.name != objName) continue;
+            syncObjList.Remove(syncObj);
+            Destroy(GameObject.Find(objName));
+            break;
+        }
+    }
+
     /// <summary>
     /// オブジェクト所有権変更通知
     /// </summary>
@@ -296,6 +359,39 @@ public class OnlineGameManager : MonoBehaviour
             return;
         }
     }
+
+    void OnCounted(bool isTask)
+    {
+        switch (isTask)
+        {
+            case true:
+                // タスク回数を加算
+                TaskCnt++;
+                switch (SceneManager.GetActiveScene().name)
+                {
+                    case "Stage_K01":
+                        // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
+                        GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/5";
+                        if (TaskCnt >= 5)
+                        {//要素数が目標数と同じになったら
+                         //フェードアウトしてシーン遷移
+                            Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
+                        }
+                        break;
+                }
+                break;
+            case false:
+                // 死亡回数を加算
+                GameObject.Find(player.name).GetComponent<Player>().deathCnt++;
+                // 死亡回数テキストを取得し、死亡回数を反映
+                GameObject.Find("DeathCount").GetComponent<Text>().text = 
+                    ": " +
+                    GameObject.Find(player.name).GetComponent<Player>().deathCnt +
+                    "/3";
+                break;
+        }
+    }
+
 
     /// <summary>
     /// 退室通知

@@ -74,6 +74,8 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //ゲーム開始通知
     public Action OnStartedGame { get; set; }
 
+    public Action<bool> OnCounted {  get; set; }
+
     //難易度上昇通知
     public Action<int> OnAscendDifficultySyn { get; set; }
 
@@ -105,8 +107,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
 
     //プレイヤーリスポーン通知
     public Action<Guid> OnPlayerRespownSyn {  get; set; }
-
-    public Action<Guid, bool> OnBeamEffectActived { get; set; }
 
     #endregion
 
@@ -144,6 +144,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
 
     // オブジェクト生成通知
     public Action< Vector3,Quaternion, string> OnUpdatedObject { get; set; }
+
+    //オブジェクトの削除通知
+    public Action<string> OnDeliteObjectSyn {  get; set; }
 
     //オブジェクト所有権変更通知
     public Action<string,int> OnOwnershipSwapObjectSyn {  get; set; }
@@ -518,6 +521,12 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnUpdatedObject(pos,rot, uniqueId);
     }
 
+
+    public void OnDeliteObject(string objName)
+    {
+        OnDeliteObjectSyn(objName);
+    }
+
     /// <summary>
     /// オブジェクト所有権変更通知
     /// Author;木田晃輔
@@ -527,6 +536,16 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public void OnOwnershipSwapObject(string uniqueId, int joinOrder)
     {
         OnOwnershipSwapObjectSyn(uniqueId, joinOrder);
+    }
+
+
+    /// <summary>
+    /// オブジェクト所有権変更通知
+    /// Author;木田晃輔
+    /// </summary>
+    public void OnCount(bool isTask)
+    {
+        OnCounted(isTask);
     }
 
     #endregion
@@ -683,12 +702,31 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     }
 
     /// <summary>
+    /// オブジェクトの削除
+    /// </summary>
+    /// <param name="objName"></param>
+    /// <returns></returns>
+    public async UniTask DeliteObjectAsync(string objName)
+    {
+        await roomHub.DeliteObjectAsync(objName);
+    }
+
+    /// <summary>
     /// オブジェクト所有権変更
     /// </summary>
     /// <returns></returns>
     public async UniTask ObjectOwnershipSwapAsync(string uniqueId, int joinOrder)
     {
         await roomHub.OwnershipSwapObjectAsync(uniqueId,joinOrder);
+    }
+
+    /// <summary>
+    /// オブジェクト所有権変更
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask CountAsync(bool isTask)
+    {
+        await roomHub.CountAsync(isTask);
     }
 
     public async Task GameEndAsync()

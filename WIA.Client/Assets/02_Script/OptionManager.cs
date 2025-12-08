@@ -76,7 +76,7 @@ public class OptionManager : MonoBehaviour
         // "TargetObject"という名前のオブジェクトを探す
         GameObject targetObject = GameObject.Find("TargetObject");
 
-        //pov = GameObject.Find("Main").gameObject.transform.GetChild(1).gameObject.transform.GetComponent<FirstPersonLook>();   //調査プレイヤーの現在地取得
+        //pov = GameObject.Find(player.name).gameObject.transform.GetChild(1).gameObject.transform.GetComponent<FirstPersonLook>();   //調査プレイヤーの現在地取得
     }
 
     /// <summary>
