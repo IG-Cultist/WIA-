@@ -1497,7 +1497,6 @@ GameObject:
   - component: {fileID: 83763437}
   - component: {fileID: 83763436}
   - component: {fileID: 83763435}
-  - component: {fileID: 83763434}
   - component: {fileID: 83763440}
   m_Layer: 0
   m_Name: Box
@@ -1522,20 +1521,6 @@ Transform:
   - {fileID: 751055704}
   m_Father: {fileID: 1663836238}
   m_LocalEulerAnglesHint: {x: 0, y: 220, z: 0}
---- !u!114 &83763434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 83763432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd27f3626c00974fad5155621b00f0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SearchPlayerArea
-  checkSlider: {fileID: 0}
-  isShowUIArea: 0
 --- !u!65 &83763435
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1575,6 +1560,7 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  outline: {fileID: 83763440}
 --- !u!64 &83763437
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23141,6 +23127,7 @@ GameObject:
   - component: {fileID: 609325459}
   - component: {fileID: 609325460}
   - component: {fileID: 609325461}
+  - component: {fileID: 609325462}
   m_Layer: 0
   m_Name: Door
   m_TagString: CheckableObject
@@ -23187,6 +23174,7 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  outline: {fileID: 609325462}
 --- !u!65 &609325461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23208,6 +23196,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8776436, y: 2.6268256, z: 0.5285413}
   m_Center: {x: -0.82241154, y: 0.98527324, z: 0.30604827}
+--- !u!114 &609325462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609325458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &611531087
 GameObject:
   m_ObjectHideFlags: 0
@@ -23714,6 +23720,7 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  outline: {fileID: 620497979}
 --- !u!114 &620497979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28844,7 +28851,6 @@ GameObject:
   - component: {fileID: 802928706}
   - component: {fileID: 802928705}
   - component: {fileID: 802928704}
-  - component: {fileID: 802928703}
   - component: {fileID: 802928708}
   m_Layer: 0
   m_Name: Book
@@ -28869,20 +28875,6 @@ Transform:
   - {fileID: 1130062962}
   m_Father: {fileID: 1663836238}
   m_LocalEulerAnglesHint: {x: 0, y: 65, z: 0}
---- !u!114 &802928703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802928701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd27f3626c00974fad5155621b00f0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SearchPlayerArea
-  checkSlider: {fileID: 0}
-  isShowUIArea: 0
 --- !u!114 &802928704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28901,6 +28893,7 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  outline: {fileID: 802928708}
 --- !u!65 &802928705
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36305,6 +36298,7 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  outline: {fileID: 1032599606}
 --- !u!64 &1032599603
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46240,6 +46234,7 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
+  outline: {fileID: 1459942858}
 --- !u!64 &1459942855
 MeshCollider:
   m_ObjectHideFlags: 0
