@@ -65,16 +65,10 @@ public class Player : MonoBehaviour
 
 
     private void Awake()
-    {        
+    {
         //VR時は無視
-        if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null)
-        {
-            SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
-        }
-        else
-        {
-            SceneManager.LoadScene("VRUIScene", LoadSceneMode.Additive);
-        }
+
+        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
 
         rigidbody = this.GetComponent<Rigidbody>();
     }

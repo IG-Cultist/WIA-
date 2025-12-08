@@ -87,6 +87,10 @@ public class XRControllerButtonEvents : MonoBehaviour
     {
         Debug.Log("‰E‚ÌƒgƒŠƒK[‚ª—£‚³‚ê‚½‚æ‚ñ");
         isFind = false;
+
+        //‰¹‚ğ~‚ß‚é
+        CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
+        manager.CheckOutObject();
     }
 
     //¶ƒgƒŠƒK[‚ğ—£‚µ‚½‚Æ‚«
@@ -94,5 +98,9 @@ public class XRControllerButtonEvents : MonoBehaviour
     {
         Debug.Log("¶‚ÌƒgƒŠƒK[‚ª—£‚³‚ê‚½‚æ‚ñ");
         isFind = false;
+
+        //‰¹‚ğ~‚ß‚é
+        CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
+        manager.CheckOutObject();
     }
 }

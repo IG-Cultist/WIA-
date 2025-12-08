@@ -95,6 +95,7 @@ public class VRObjectFindManager : MonoBehaviour
         {
             // タグが違う → 以前のヒットはリセット
             lastHitObj = null;
+            OutCheckableHit();
         }
     }
 
@@ -118,6 +119,13 @@ public class VRObjectFindManager : MonoBehaviour
         manager.CheckInObject(obj, status);
 
 
+    }
+
+    //音を止める
+    public void OutCheckableHit()
+    {
+        CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager> ();
+        manager.CheckOutObject();
     }
 
     void OnCoffeeHit(GameObject obj, NearFarInteractor interactor)
