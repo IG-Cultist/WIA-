@@ -28,8 +28,23 @@ public class FirstPersonLook : MonoBehaviour
 
     void Update()
     {
-        //ふるまいの設定
-        Quaternion attitude = Input.gyro.attitude;
+        Camera cam = GetComponent<Camera>();
+        if (cam == null) return;
+
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            if (hit.collider.CompareTag("CheckableObject")) //調査可能オブジェクトに触れた場合
+            {
+                // 調査を開始する
+                hit.transform.GetComponent<FindKeyStatus>().LookObject();
+            }
+            
+
+        }
+            //ふるまいの設定
+            Quaternion attitude = Input.gyro.attitude;
 
         // Get smooth velocity.
         Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
