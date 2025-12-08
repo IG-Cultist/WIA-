@@ -86,18 +86,22 @@ public class CheckableObjManager : MonoBehaviour
             isDead = true;
         }
 
-        /*
-        //VRでオブジェクトを調査していたら
-        if (xrControllerButtonEvents.isFind)
+        //VR時のみの処理
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
-            isCheckNow = true;
-            Debug.Log("trueにしたよ");
+            //VRでオブジェクトを調査していたら
+            if (xrControllerButtonEvents.isFind)
+            {
+                isCheckNow = true;
+                Debug.Log("trueにしたよ");
+            }
+            else
+            {
+                isCheckNow = false;
+                Debug.Log("falseにしたよ");
+            }
         }
-        else
-        {
-            isCheckNow = false;
-            Debug.Log("falseにしたよ");
-        }*/
+
 
         //nullチェック
         if (nowFindObj == null) return;
