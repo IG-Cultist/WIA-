@@ -312,6 +312,7 @@ namespace WIA.Server.StreamingHubs
 
         /// <summary>
         /// ステージ進行完了同期処理
+        /// Author:木田晃輔
         /// </summary>
         /// <param name="conID">接続ID</param>
         /// <param name="isAdvance">ステージ進行判定</param>
@@ -353,6 +354,7 @@ namespace WIA.Server.StreamingHubs
 
         /// <summary>
         /// オブジェクト生成処理
+        /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
         public async Task SpawnObjectAsync(Vector3 spawnPos)
@@ -365,6 +367,7 @@ namespace WIA.Server.StreamingHubs
         }
         /// <summary>
         /// オブジェクト更新処理
+        /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
         public async Task UpdateObjectAsync(Vector3 pos,Quaternion rot, string uniqueId)
@@ -376,7 +379,22 @@ namespace WIA.Server.StreamingHubs
         }
 
         /// <summary>
+        /// オブジェクトの削除
+        /// Author:木田晃輔
+        /// </summary>
+        /// <param name="objName"></param>
+        /// <returns></returns>
+        public async Task DeliteObjectAsync(string objName)
+        {
+            lock(roomContextRepository) 
+            {
+                this.roomContext.Group.Except([this.ConnectionId]).OnDeliteObject(objName);
+            }
+        }
+
+        /// <summary>
         /// オブジェクト権限取得処理
+        /// Author:木田晃輔
         /// </summary>
         /// <param name="uniqueId"></param>
         /// <param name="joinOrder"></param>
@@ -386,6 +404,25 @@ namespace WIA.Server.StreamingHubs
             lock (roomContextRepository)
             {
                 this.roomContext.Group.All.OnOwnershipSwapObject(uniqueId,joinOrder);
+            }
+        }
+
+        /// <summary>
+        /// カウント同期処理
+        /// Author:木田晃輔
+        /// </summary>
+        public async Task CountAsync(bool isTask)
+        {
+            lock (roomContextRepository) 
+            {
+                if(isTask == true)
+                {
+                    this.roomContext.Group.All.OnCount(isTask);
+                }
+                else if(isTask == false)
+                {
+                    this.roomContext.Group.Except([this.ConnectionId]).OnCount(isTask);
+                }
             }
         }
 

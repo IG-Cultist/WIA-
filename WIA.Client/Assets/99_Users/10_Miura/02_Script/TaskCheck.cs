@@ -26,7 +26,9 @@ public class TaskCheck : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+        if(RoomModel.Instance)
+        player = OnlineGameManager.Player.gameObject.GetComponent<Player>();
+
         isDead = false;
     }
 
@@ -44,7 +46,7 @@ public class TaskCheck : MonoBehaviour
     /// エリアに触れた時の処理
     /// </summary>
     /// <param name="other">触れたオブジェクト</param>
-    private void OnTriggerEnter(Collider other)
+    private async void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Item"))
         {
@@ -56,17 +58,26 @@ public class TaskCheck : MonoBehaviour
                 isLoop: false,                 //ループ再生するか
                 callback: null                 //再生終了後の処理
             );
+            if(!RoomModel.Instance)
+            {
+                // 運搬した箱の数を加算
+                boxCnt++;
+                GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + boxCnt + "/5";
+                //リストに要素を追加する
+                cubeList.Add(boxCnt);
+            }
 
-            // 運搬した箱の数を加算
-            boxCnt++;
-            GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + boxCnt + "/5";
+            if (RoomModel.Instance) await RoomModel.Instance.CountAsync(true);//木田晃輔が変更
 
-            //リストに要素を追加する
-            cubeList.Add(boxCnt);
 
             //箱を消す
-            Destroy(other.gameObject);
+            if (RoomModel.Instance) GameObject.Find("OnlineGameManager").
+                GetComponent<OnlineGameManager>().DeliteSynObj(other.gameObject); //木田晃輔が変更
 
+                Destroy(other.gameObject);
+
+
+            if(!RoomModel.Instance)
             if (cubeList.Count >= checkCnt)
             {//要素数が目標数と同じになったら
              //フェードアウトしてシーン遷移

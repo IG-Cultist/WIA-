@@ -36,7 +36,7 @@ public class FindKeyStatus : MonoBehaviour
 
     void Update()
     {
-        player = GameObject.Find("Main").gameObject.transform.position;   //調査プレイヤーの現在地取得
+        player = GameObject.Find("Worker").gameObject.transform.position;   //調査プレイヤーの現在地取得
 
         float distance = Vector3.Distance(transform.position, player);    //距離計算
 

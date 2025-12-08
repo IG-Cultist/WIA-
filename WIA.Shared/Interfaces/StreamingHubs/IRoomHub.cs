@@ -107,25 +107,43 @@ namespace Shared.Interfaces.StreamingHubs
 
         /// <summary>
         /// オブジェクト生成リクエスト
+        /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
         Task SpawnObjectAsync(Vector3 spawnPos);
 
         /// <summary>
         /// オブジェクト更新
+        /// Author:木田晃輔
         /// </summary>
         /// <param name="spawnPos"></param>
         /// <returns></returns>
         Task UpdateObjectAsync(Vector3 pos,Quaternion rot,string uniqueId);
 
         /// <summary>
+        /// オブジェクトの削除
+        /// </summary>
+        /// <returns></returns>
+        Task DeliteObjectAsync(string objName);
+
+        /// <summary>
         /// オブジェクト所有権変更
+        /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
         Task OwnershipSwapObjectAsync(string uniqueId,int joinOrder);
 
         /// <summary>
+        /// カウント同期
+        /// Author:木田晃輔
+        /// </summary>
+        /// <returns></returns>
+
+        Task CountAsync(bool isTask);
+
+        /// <summary>
         /// ゲーム終了同期
+        /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
         Task GameEndAsync();

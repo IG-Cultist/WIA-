@@ -28,8 +28,8 @@ public class SynchronizationObject : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!RoomModel.Instance) return;
-
-        if (collision.collider.name == "Main")
+        if (collision.gameObject.tag != "Player") return;
+        if (collision.gameObject.GetComponent<Player>().isMain == true)
         {
             gameManager.ObjectOwnershipSwap(id.ToString(), RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
         }

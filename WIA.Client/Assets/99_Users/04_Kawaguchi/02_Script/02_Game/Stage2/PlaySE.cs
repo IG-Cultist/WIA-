@@ -21,7 +21,7 @@ public class PlaySE : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //フィールドに当たった場合
-        if (collision.gameObject.name != "Main")
+        if (collision.gameObject.GetComponent<Player>().isMain == true)
         {
             if (delayTime <= 0.5f) return;
 

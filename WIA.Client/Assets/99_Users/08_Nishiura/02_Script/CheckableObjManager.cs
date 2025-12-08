@@ -40,11 +40,11 @@ public class CheckableObjManager : MonoBehaviour
     void Start()
     {
         //メインキャラクターのカメラを取る
-        playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+        playerCamera = GameObject.Find(player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
         //プレイヤー移動処理スクリプト取得
-        playerMove = GameObject.Find("Main").GetComponent<FirstPersonMovement>();
+        playerMove = GameObject.Find(player.name).GetComponent<FirstPersonMovement>();
         //VRのスクリプト取得
-        xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+        xrControllerButtonEvents = GameObject.Find(player.name).GetComponent<XRControllerButtonEvents>();
 
         // 0からリストの長さ分までの乱数を設定
         keyObjectNum = Random.Range(0, checkableObjList.Count);
@@ -52,7 +52,7 @@ public class CheckableObjManager : MonoBehaviour
 
         checkNowText.SetActive(false);
 
-        player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+        player = GameObject.Find(player.name).gameObject.GetComponent<Player>();
         isDead = false;
     }
 

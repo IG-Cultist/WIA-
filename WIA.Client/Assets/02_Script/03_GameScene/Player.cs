@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static PlayerAnimation;
+using System;
 
 /// <summary>
 /// プレイヤースクリプト
@@ -43,6 +44,13 @@ public class Player : MonoBehaviour
     public bool isDebug;
     public bool isTrip = false;     //転倒判定
     public bool isSliped = false;   //転倒後判定
+    public bool isMain = false;
+    //private static bool isMain = false;//操作本人か(初期は本人ではないと判断)
+    //public static bool IsMain
+    //{
+    //    get { return isMain; }
+    //}
+
 
     //プレイヤーステート
     public enum PLAYER_STATE
@@ -66,12 +74,39 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
-        rigidbody = this.GetComponent<Rigidbody>();
+        if(RoomModel.Instance)
+        {
+            if(this.name == "Player_1(Clone)")
+            {
+                //操作キャラクター分のUIを表示
+                SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
+                isMain = true;
+            }
+
+            rigidbody = this.GetComponent<Rigidbody>();
+        }
+        else
+        {
+            //操作キャラクター分のUIを表示
+            SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
+            rigidbody = this.GetComponent<Rigidbody>();
+        }
     }
 
     void Start()
     {
+
+        //ワープ地点設定通信中のみ処理する
+        if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+        {
+            warpPoint = GameObject.Find("PlayerSpawnPoint_1").transform;
+        }
+        else
+        {
+            warpPoint = GameObject.Find("PlayerSpawnPoint_2").transform;
+        }
+
+        if (!isMain) return;
 
         deathCnt = 0; //死亡回数
         //VR時は無視
@@ -88,19 +123,7 @@ public class Player : MonoBehaviour
         tripPanel.SetActive(false);
 
         isHave = false;
-
-        //ワープ地点設定通信中のみ処理する
-        if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
-        {
-            warpPoint = GameObject.Find("PlayerSpawnPoint_1").transform;
-        }
-        else
-        {
-            warpPoint = GameObject.Find("PlayerSpawnPoint_2").transform;
-        }
-
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -251,7 +274,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 死亡処理
     /// </summary>
-    private void Death()
+    private async void Death()
     {
         // すでに死亡している場合、処理しない
         if (isDead) return;
@@ -265,7 +288,7 @@ public class Player : MonoBehaviour
         // 手に持っているものを離す（VR時は無視）
         if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null) grabber.Release();
 
-        if (this.name == "Main")
+        if (!isMain)
         {
             // メインカメラを非アクティブ化
             cameraManager.TurnOffPlayerCam();
@@ -279,17 +302,22 @@ public class Player : MonoBehaviour
         animator.enabled = false;
         isRespawn = false;
 
-        if (this.name == "Main")
+        if (!isMain)
         {
             // 死亡回数を加算
             if (!isDebug) deathCnt++;
             // 死亡回数テキストを取得し、死亡回数を反映
             GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
-        }
 
-        // 画面の毒々しさを解除する
-        tripPanel.SetActive(false);
-        isTrip = false;
+            if(RoomModel.Instance && !isMain)
+            {//通信中
+                await RoomModel.Instance.CountAsync(false);
+            }
+
+            // 画面の毒々しさを解除する
+            tripPanel.SetActive(false);
+            isTrip = false;
+        }
 
         if (deathCnt <= 3)
         {
@@ -485,7 +513,8 @@ public class Player : MonoBehaviour
         //生存状態に
         player_State = PLAYER_STATE.ALIVE;
         isSliped = false;
-        fadeImageScript.FadeIn();
+        if (!isMain)
+            fadeImageScript.FadeIn();
     }
 
     private void ResetAnimation()

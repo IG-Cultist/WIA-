@@ -41,6 +41,16 @@ public class TaskUIManager : MonoBehaviour
                 // 説明文を変更
                 taskExplanation.text = "任務:指定位置まで箱を運搬";
                 break;
+            case "Stage_K01":  //木田晃輔が変更
+                // リソースからアイコンを取得
+                texture = Resources.Load("Icons/Icon_Box") as Texture2D;
+                taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+
+                // タスクカウントを設定
+                taskCount.text = ": 0/5";
+                // 説明文を変更
+                taskExplanation.text = "任務:指定位置まで箱を運搬";
+                break;
             case "Stage_2":
                 // リソースからアイコンを取得
                 texture = Resources.Load("Icons/Icon_Key") as Texture2D;

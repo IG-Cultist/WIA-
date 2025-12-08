@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         //メインキャラクターのカメラを取る
-        playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject;
+        playerCamera = OnlineGameManager.Player.transform.Find("First Person Camera").gameObject;
 
         //カメラが入った状態でのみ通す
         if(playerCamera != null)

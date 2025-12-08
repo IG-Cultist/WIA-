@@ -123,22 +123,37 @@ namespace Shared.Interfaces.StreamingHubs
 
         /// <summary>
         /// オブジェクト生成通知
+        /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
         void OnSpawnObject(Vector3 spawnPos, string uniqueId);
 
         /// <summary>
         /// オブジェクト更新通知
+        /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
         void OnUpdateObject(Vector3 pos,Quaternion rot, string uniqueId);
 
         /// <summary>
+        /// オブジェクトの削除
+        /// Author:木田晃輔
+        /// </summary>
+        void OnDeliteObject(string objName);
+
+        /// <summary>
         /// オブジェクト所有権変更通知
+        /// Author:木田晃輔
         /// </summary>
         /// <param name="uniqueId"></param>
         /// <param name="joinOrder"></param>
         void OnOwnershipSwapObject(string uniqueId,int joinOrder);
+
+        /// <summary>
+        /// オブジェクト所有権変更通知
+        /// Author:木田晃輔
+        /// </summary>
+        void OnCount(bool isTask);
 
         #endregion
         #endregion
