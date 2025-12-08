@@ -1570,6 +1570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
@@ -18666,17 +18667,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442037731}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &443044320 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5015989623125936212, guid: 7857b9a6420761043a129858830c776d, type: 3}
-  m_PrefabInstance: {fileID: 1736640680}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25a07ef133a37d140a87cdf1f1c75fdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &448518103
 GameObject:
   m_ObjectHideFlags: 0
@@ -23192,6 +23182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
@@ -23718,6 +23709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
@@ -28904,6 +28896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
@@ -36312,6 +36305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
@@ -45099,56 +45093,6 @@ Transform:
   - {fileID: 994805921}
   m_Father: {fileID: 543188585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1406048335
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1406048336}
-  - component: {fileID: 1406048337}
-  m_Layer: 0
-  m_Name: VRObjectFindManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1406048336
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406048335}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1736640692}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1406048337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406048335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372dc956473724c915cfd47ed08a25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VRObjectFindManager
-  nearFarInteractor_L: {fileID: 443044320}
-  nearFarInteractor_R: {fileID: 1736413075}
-  defaultMaxDistance: 10
-  raycastMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &1409207725
 GameObject:
   m_ObjectHideFlags: 0
@@ -46296,6 +46240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FindKeyStatus
   isChecked: 0
+  isSearchedSE: 0
   checkedTime: 0
   canCheckArea: 0
   checkSlider: {fileID: 0}
@@ -62584,17 +62529,6 @@ Transform:
   - {fileID: 350703727}
   m_Father: {fileID: 1006937997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1736413075 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7076856201144803500, guid: 7857b9a6420761043a129858830c776d, type: 3}
-  m_PrefabInstance: {fileID: 1736640680}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25a07ef133a37d140a87cdf1f1c75fdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1736640680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62607,34 +62541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main
       objectReference: {fileID: 0}
-    - target: {fileID: 1546811438317378751, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2061954454014762031, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: warpPoint
       value: 
       objectReference: {fileID: 1182053071}
-    - target: {fileID: 2957319786901087809, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5015989623125936212, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5631316012146876268, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6040104110859190823, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_ActionAssets.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6040104110859190823, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: 'm_ActionAssets.Array.data[1]'
-      value: 
-      objectReference: {fileID: -944628639613478452, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
     - target: {fileID: 6364533647932554291, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.877
@@ -62675,224 +62585,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8327269257739216539, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6364533647932554291, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1406048336}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 705278478036046589, guid: 7857b9a6420761043a129858830c776d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1736640682}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7857b9a6420761043a129858830c776d, type: 3}
---- !u!1 &1736640681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 705278478036046589, guid: 7857b9a6420761043a129858830c776d, type: 3}
-  m_PrefabInstance: {fileID: 1736640680}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1736640682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736640681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20f6ae8cebec6a84da5a7f05f48a28b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::XRControllerButtonEvents
-  rTrriger_PressInput:
-    m_InputSourceMode: 2
-    m_InputActionPerformed:
-      m_Name: R_Press_Trriger
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 0f40b01b-409e-4101-b664-212e62d5b9b1
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionValue:
-      m_Name: R_Press_Trriger Value
-      m_Type: 0
-      m_ExpectedControlType: Axis
-      m_Id: 24a8a242-0fda-4f52-99c5-28b454503e09
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: -1438860313975745271, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
-    m_InputActionReferenceValue: {fileID: -1438860313975745271, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualPerformed: 0
-    m_ManualValue: 0
-    m_ManualQueuePerformed: 0
-    m_ManualQueueWasPerformedThisFrame: 0
-    m_ManualQueueWasCompletedThisFrame: 0
-    m_ManualQueueValue: 0
-    m_ManualQueueTargetFrame: 0
-  rTrriger_ReleaseInput:
-    m_InputSourceMode: 2
-    m_InputActionPerformed:
-      m_Name: R_Release_Trriger
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 2615b2fe-2d12-4d17-b8d2-bbe60e172643
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionValue:
-      m_Name: R_Release_Trriger Value
-      m_Type: 0
-      m_ExpectedControlType: Axis
-      m_Id: d2e05975-48b5-4d95-b54e-595f5a860e84
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: -8755464088939686983, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
-    m_InputActionReferenceValue: {fileID: -8755464088939686983, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualPerformed: 0
-    m_ManualValue: 0
-    m_ManualQueuePerformed: 0
-    m_ManualQueueWasPerformedThisFrame: 0
-    m_ManualQueueWasCompletedThisFrame: 0
-    m_ManualQueueValue: 0
-    m_ManualQueueTargetFrame: 0
-  lTrriger_PressInput:
-    m_InputSourceMode: 2
-    m_InputActionPerformed:
-      m_Name: L_PressTrriger
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 6894ac22-2d0b-4a1c-8d09-47511d15d6c7
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionValue:
-      m_Name: L_PressTrriger Value
-      m_Type: 0
-      m_ExpectedControlType: Axis
-      m_Id: 5634456c-8ff7-42fe-9e5f-6e182f330147
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: -5453336424933505240, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
-    m_InputActionReferenceValue: {fileID: -5453336424933505240, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualPerformed: 0
-    m_ManualValue: 0
-    m_ManualQueuePerformed: 0
-    m_ManualQueueWasPerformedThisFrame: 0
-    m_ManualQueueWasCompletedThisFrame: 0
-    m_ManualQueueValue: 0
-    m_ManualQueueTargetFrame: 0
-  lTrriger_ReleaseInput:
-    m_InputSourceMode: 2
-    m_InputActionPerformed:
-      m_Name: L_Release_Trriger
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 432b1532-659e-4b2a-b9df-57288edaf19b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionValue:
-      m_Name: L_Release_Trriger Value
-      m_Type: 0
-      m_ExpectedControlType: Axis
-      m_Id: fbe8013d-381a-47d0-8061-55469dbe204b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: -5069134769878305047, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
-    m_InputActionReferenceValue: {fileID: -5069134769878305047, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualPerformed: 0
-    m_ManualValue: 0
-    m_ManualQueuePerformed: 0
-    m_ManualQueueWasPerformedThisFrame: 0
-    m_ManualQueueWasCompletedThisFrame: 0
-    m_ManualQueueValue: 0
-    m_ManualQueueTargetFrame: 0
-  OnRTrrigerPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1736640682}
-        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
-        m_MethodName: PressTrriger_R
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLTrrigerPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1736640682}
-        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
-        m_MethodName: PressTrriger_L
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnRTrrigerReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1736640682}
-        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
-        m_MethodName: ReleaseTrriger_R
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLTrrigerReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1736640682}
-        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
-        m_MethodName: ReleaseTrriger_L
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  isFind: 0
---- !u!4 &1736640692 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6364533647932554291, guid: 7857b9a6420761043a129858830c776d, type: 3}
-  m_PrefabInstance: {fileID: 1736640680}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1736918336 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3627036421307361010, guid: 574d052656a7a174b84f3eec4278eb8f, type: 3}

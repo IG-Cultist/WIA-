@@ -419,6 +419,7 @@ GameObject:
   - component: {fileID: 2061954454014762031}
   - component: {fileID: 8048401233455859278}
   - component: {fileID: 7015399233313650830}
+  - component: {fileID: 5416571714921319591}
   m_Layer: 2
   m_Name: Main
   m_TagString: Player
@@ -443,6 +444,7 @@ Transform:
   - {fileID: 4708824247662474342}
   - {fileID: 7591316999811630980}
   - {fileID: 9198306563169605637}
+  - {fileID: 2241803231491735065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &738444191852267092
@@ -501,6 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: -944628639613478452, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
 --- !u!114 &8550384956679462919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,12 +601,16 @@ MonoBehaviour:
   plaAnimation: {fileID: 8048401233455859278}
   warpPoint: {fileID: 0}
   grabber: {fileID: 0}
+  subMoveSpeed: 0
   isHave: 0
   isFall: 0
   isDead: 0
   isRespawn: 1
+  isSearch: 0
+  isLow: 0
   isDebug: 1
   isTrip: 0
+  isSliped: 0
   player_State: 1
   deathCnt: 0
 --- !u!114 &8048401233455859278
@@ -648,6 +655,199 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &5416571714921319591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705278478036046589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f6ae8cebec6a84da5a7f05f48a28b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XRControllerButtonEvents
+  rTrriger_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: R_Press_Trriger
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 0f40b01b-409e-4101-b664-212e62d5b9b1
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: R_Press_Trriger Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 24a8a242-0fda-4f52-99c5-28b454503e09
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: -1438860313975745271, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_InputActionReferenceValue: {fileID: -1438860313975745271, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  rTrriger_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: R_Release_Trriger
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 2615b2fe-2d12-4d17-b8d2-bbe60e172643
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: R_Release_Trriger Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: d2e05975-48b5-4d95-b54e-595f5a860e84
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: -8755464088939686983, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_InputActionReferenceValue: {fileID: -8755464088939686983, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  lTrriger_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: L_PressTrriger
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 6894ac22-2d0b-4a1c-8d09-47511d15d6c7
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: L_PressTrriger Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 5634456c-8ff7-42fe-9e5f-6e182f330147
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: -5453336424933505240, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_InputActionReferenceValue: {fileID: -5453336424933505240, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  lTrriger_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: L_Release_Trriger
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 432b1532-659e-4b2a-b9df-57288edaf19b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: L_Release_Trriger Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: fbe8013d-381a-47d0-8061-55469dbe204b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: -5069134769878305047, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_InputActionReferenceValue: {fileID: -5069134769878305047, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  OnRTrrigerPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5416571714921319591}
+        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
+        m_MethodName: PressTrriger_R
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLTrrigerPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5416571714921319591}
+        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
+        m_MethodName: PressTrriger_L
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRTrrigerReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5416571714921319591}
+        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
+        m_MethodName: ReleaseTrriger_R
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLTrrigerReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5416571714921319591}
+        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
+        m_MethodName: ReleaseTrriger_L
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isFind: 0
 --- !u!1 &905584196274556360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,7 +1431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9198306563169605637
 Transform:
   m_ObjectHideFlags: 0
@@ -2109,6 +2309,56 @@ Transform:
   - {fileID: 6338252881259041586}
   m_Father: {fileID: 1188994822981120936}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2822158585828137947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2241803231491735065}
+  - component: {fileID: 2318965609594113330}
+  m_Layer: 0
+  m_Name: VRObjectFindManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2241803231491735065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822158585828137947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6364533647932554291}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2318965609594113330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822158585828137947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64372dc956473724c915cfd47ed08a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRObjectFindManager
+  nearFarInteractor_L: {fileID: 5015989623125936212}
+  nearFarInteractor_R: {fileID: 7076856201144803500}
+  defaultMaxDistance: 10
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &2857850010830007389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,7 +2407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3044481771508184307
 Transform:
   m_ObjectHideFlags: 0
