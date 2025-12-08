@@ -82,6 +82,15 @@ public class VRObjectFindManager : MonoBehaviour
             // 当たり続ける（Stay）状態の処理を入れたい場合はここで実行
             // e.g. OnCheckableStay(obj, interactor);
         }
+        else if (obj.CompareTag("CoffeeMachine"))
+        {
+            // 新しく当たった瞬間だけ処理を実行
+            if (obj != lastHitObj)
+            {
+                lastHitObj = obj;
+                OnCoffeeHit(obj, interactor);
+            }
+        }
         else
         {
             // タグが違う → 以前のヒットはリセット
@@ -109,5 +118,13 @@ public class VRObjectFindManager : MonoBehaviour
         manager.CheckInObject(obj, status);
 
 
+    }
+
+    void OnCoffeeHit(GameObject obj, NearFarInteractor interactor)
+    {
+        Debug.Log($"CoffeeMachine にヒット: {obj.name} ｜ Interactor: {interactor.gameObject.name}");
+
+        // コーヒーを生成する
+        GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>().RequestCoffee();
     }
 }
