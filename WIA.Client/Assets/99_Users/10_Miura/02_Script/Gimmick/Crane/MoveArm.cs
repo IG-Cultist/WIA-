@@ -16,13 +16,31 @@ public class MoveArm : MonoBehaviour
     {
         Transform armTransform = crane.transform;
 
-        if (Input.GetKey(KeyCode.R))
+        if (RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
         {
-            armTransform.DORotate(new Vector3(0, 45, 0), 40);
+
         }
-        if (Input.GetKey(KeyCode.L))
+        else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
         {
-            armTransform.DORotate(new Vector3(0, -45, 0), 40);
+            if (Input.GetKey(KeyCode.R))
+            {
+                armTransform.DORotate(new Vector3(0, 45, 0), 40);
+            }
+            if (Input.GetKey(KeyCode.L))
+            {
+                armTransform.DORotate(new Vector3(0, -45, 0), 40);
+            }
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.R))
+            {
+                armTransform.DORotate(new Vector3(0, 45, 0), 40);
+            }
+            if (Input.GetKey(KeyCode.L))
+            {
+                armTransform.DORotate(new Vector3(0, -45, 0), 40);
+            }
         }
     }
 }

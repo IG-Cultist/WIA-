@@ -102,10 +102,16 @@ public class OnlineGameManager : MonoBehaviour
                 if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
                 {//働く方リスポーン
                     player.transform.position = spawnPointP1.position;
+                    Destroy(GameObject.Find("Crane").GetComponent<Rigidbody>());
+                    Destroy(GameObject.Find("Hook").GetComponent<Rigidbody>());
+                    syncObjList.Add(GameObject.Find("Crane"));
+                    syncObjList.Add(GameObject.Find("Hook"));
                 }
                 else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
                 {//労災側リスポーン
                     player.transform.position = spawnPointP2.position;
+                    syncObjList.Add(GameObject.Find("Crane"));
+                    syncObjList.Add(GameObject.Find("Hook"));
                 }
                 mainSpawnPoint = player.transform;
                 InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);

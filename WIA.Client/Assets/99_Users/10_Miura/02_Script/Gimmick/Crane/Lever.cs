@@ -23,13 +23,31 @@ public class Lever : MonoBehaviour
         Transform leverTransform=leverObj.transform;
         Transform armTransform = craneObj.transform;
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {//Lキーを押したら
-            leverTransform.DORotate(new Vector3(-20, armTransform.rotation.y, 0), 3); //レバーが左に傾く
+        if(RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
+        {
+
         }
-        if(Input.GetKeyDown(KeyCode.R))
-        {//Rキーを押したら
-            leverTransform.DORotate(new Vector3(20, armTransform.rotation.y, 0), 3); //レバーが右に傾く
+        else if(RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {//Lキーを押したら
+                leverTransform.DORotate(new Vector3(-20, armTransform.rotation.y, 0), 3); //レバーが左に傾く
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {//Rキーを押したら
+                leverTransform.DORotate(new Vector3(20, armTransform.rotation.y, 0), 3); //レバーが右に傾く
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {//Lキーを押したら
+                leverTransform.DORotate(new Vector3(-20, armTransform.rotation.y, 0), 3); //レバーが左に傾く
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {//Rキーを押したら
+                leverTransform.DORotate(new Vector3(20, armTransform.rotation.y, 0), 3); //レバーが右に傾く
+            }
         }
     }
 }
