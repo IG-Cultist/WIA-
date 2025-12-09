@@ -28,7 +28,13 @@ public class TaskCheck : MonoBehaviour
     private void Start()
     {
         if(RoomModel.Instance)
-        player = OnlineGameManager.Player.gameObject.GetComponent<Player>();
+        {
+            player = OnlineGameManager.Player.gameObject.GetComponent<Player>();
+        }
+        else
+        {
+            player = GameObject.Find("Main").GetComponent<Player>();
+        }
 
         isDead = false;
         playSE = false;

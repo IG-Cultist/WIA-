@@ -56,7 +56,7 @@ public class DeliveryManager : MonoBehaviour
     AudioSource source; //オーディオソース
     private void Start()
     {
-        player = GameObject.Find(player.name).gameObject.GetComponent<Player>(); // シーン内のプレイヤーからスクリプトを取得
+        player = GameObject.Find("Main").gameObject.GetComponent<Player>(); // シーン内のプレイヤーからスクリプトを取得
         isDead = false; //死んでいない状態にする
         coolDownSlider.SetActive(false);    //クールダウンスライダーを非表示にする
         source = this.GetComponent<AudioSource>();

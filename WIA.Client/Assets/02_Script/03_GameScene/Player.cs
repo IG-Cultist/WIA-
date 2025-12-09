@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     public bool isDebug;
     public bool isTrip = false;     //転倒判定
     public bool isSliped = false;   //転倒後判定
-    public bool isMain = false;
+    public bool isMain = false;    //操作本人か
     //private static bool isMain = false;//操作本人か(初期は本人ではないと判断)
     //public static bool IsMain
     //{
@@ -74,10 +74,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        //VR時は無視
-
-        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
-
         if(RoomModel.Instance)
         {
             if(this.name == "Player_1(Clone)")
@@ -91,6 +87,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            isMain = true;
             //操作キャラクター分のUIを表示
             SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
             rigidbody = this.GetComponent<Rigidbody>();
@@ -294,7 +291,7 @@ public class Player : MonoBehaviour
         // 手に持っているものを離す（VR時は無視）
         if (!UnityEngine.XR.XRSettings.isDeviceActive && grabber != null) grabber.Release();
 
-        if (!isMain)
+        if (isMain == true)
         {
             // メインカメラを非アクティブ化
             cameraManager.TurnOffPlayerCam();
@@ -308,14 +305,14 @@ public class Player : MonoBehaviour
         animator.enabled = false;
         isRespawn = false;
 
-        if (!isMain)
+        if (isMain == true)
         {
             // 死亡回数を加算
             if (!isDebug) deathCnt++;
             // 死亡回数テキストを取得し、死亡回数を反映
             GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
 
-            if(RoomModel.Instance && !isMain)
+            if(RoomModel.Instance && isMain)
             {//通信中
                 await RoomModel.Instance.CountAsync(false);
             }
@@ -519,7 +516,7 @@ public class Player : MonoBehaviour
         //生存状態に
         player_State = PLAYER_STATE.ALIVE;
         isSliped = false;
-        if (!isMain)
+        if (isMain)
             fadeImageScript.FadeIn();
     }
 
