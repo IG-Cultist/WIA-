@@ -3,6 +3,7 @@
 /// Author:Nishiura Date:25/11/17
 /// ------------------------------
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -22,8 +23,16 @@ public class CameraManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //メインキャラクターのカメラを取る
-        playerCamera = OnlineGameManager.Player.transform.Find("First Person Camera").gameObject;
+        if(RoomModel.Instance)
+        {
+            //メインキャラクターのカメラを取る
+            playerCamera = OnlineGameManager.Player.transform.Find("First Person Camera").gameObject;
+        }
+        else
+        {
+            //メインキャラクターのカメラを取る
+            playerCamera = GameObject.Find("First Person Camera").gameObject;
+        }
 
         //カメラが入った状態でのみ通す
         if (playerCamera != null)

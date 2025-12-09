@@ -99,15 +99,17 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
-        //ワープ地点設定通信中のみ処理する
-        if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+        if(RoomModel.Instance)
         {
-            warpPoint = GameObject.Find("PlayerSpawnPoint_1").transform;
-        }
-        else
-        {
-            warpPoint = GameObject.Find("PlayerSpawnPoint_2").transform;
+            //ワープ地点設定通信中のみ処理する
+            if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+            {
+                warpPoint = GameObject.Find("PlayerSpawnPoint_1").transform;
+            }
+            else
+            {
+                warpPoint = GameObject.Find("PlayerSpawnPoint_2").transform;
+            }
         }
 
         if (!isMain) return;
