@@ -22,12 +22,12 @@ public class XRControllerButtonEvents : MonoBehaviour
     public UnityEvent OnLTrrigerReleased;
 
     //探しているか
-    public bool isFind;
+    public bool isTrriger;
     ObjectGrabber grabber;
 
     void Start()
     {
-        isFind = false;
+        isTrriger = false;
 
         //スクリプト取得
         grabber = GetComponent<ObjectGrabber>();
@@ -72,21 +72,21 @@ public class XRControllerButtonEvents : MonoBehaviour
     public void PressTrriger_R()
     {
         Debug.Log("右のトリガーが押されたよん");
-        isFind = true;
+        isTrriger = true;
     }
 
     //左トリガーを押したとき
     public void PressTrriger_L()
     {
         Debug.Log("左のトリガーが押されたよん");
-        isFind = true;
+        isTrriger = true;
     }
 
     //右トリガーを離したとき
     public void ReleaseTrriger_R()
     {
         Debug.Log("右のトリガーが離されたよん");
-        isFind = false;
+        isTrriger = false;
 
         //音を止める
         CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
@@ -97,7 +97,7 @@ public class XRControllerButtonEvents : MonoBehaviour
     public void ReleaseTrriger_L()
     {
         Debug.Log("左のトリガーが離されたよん");
-        isFind = false;
+        isTrriger = false;
 
         //音を止める
         CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();

@@ -90,7 +90,7 @@ public class CheckableObjManager : MonoBehaviour
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
             //VRでオブジェクトを調査していたら
-            if (xrControllerButtonEvents.isFind)
+            if (xrControllerButtonEvents.isTrriger)
             {
                 isCheckNow = true;
                 Debug.Log("trueにしたよ");
