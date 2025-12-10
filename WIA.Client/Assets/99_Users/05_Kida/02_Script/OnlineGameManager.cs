@@ -229,7 +229,7 @@ public class OnlineGameManager : MonoBehaviour
                 await RoomModel.Instance.UpdateObjectAsync(obj.Value.transform.position, obj.Value.transform.rotation, obj.Key);
             }
         }
-
+        if(syncObjList != null)
         for (int i=0;i< syncObjList.Count;i++)
         {
             if (syncObjList[i].GetComponent<Rigidbody>() == null) continue;
@@ -381,7 +381,14 @@ public class OnlineGameManager : MonoBehaviour
                         if (TaskCnt >= 5)
                         {//要素数が目標数と同じになったら
                          //フェードアウトしてシーン遷移
-                            Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
+                            if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+                            {
+                                Initiate.Fade("Exp_Worker_K02", Color.black, 1.0f);
+                            }
+                            else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+                            {
+                                Initiate.Fade("Exp_Stricker_K02", Color.black, 1.0f);
+                            }
                         }
                         break;
                 }

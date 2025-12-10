@@ -74,6 +74,12 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //ゲーム開始通知
     public Action OnStartedGame { get; set; }
 
+    //プレイヤー待機通知
+    public Action OnWaitSyn {  get; set; }
+
+    //同時開始通知
+    public Action OnSameStarted {  get; set; }
+
     public Action<bool> OnCounted {  get; set; }
 
     //難易度上昇通知
@@ -337,6 +343,17 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         joinedUserList[joinedUser.ConnectionId] = joinedUser;
         OnReadySyn(joinedUser.ConnectionId);
     }
+
+
+    public void OnWait()
+    {
+        OnWaitSyn();
+    }
+
+    public void OnSameStart()
+    {
+        OnSameStarted();
+    }
     #endregion
 
     #region プレイヤー通知関連
@@ -588,6 +605,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         //自分をリストから消す
         joinedUserList.Clear();
     }
+
     /// <summary>
     /// 準備完了同期
     /// </summary>
@@ -595,6 +613,16 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public async UniTask ReadyAsync(int characterId)
     {
         await roomHub.ReadyAsync(characterId);
+    }
+
+    /// <summary>
+    /// プレイヤー待機同期
+    /// Aughter:木田晃輔
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask WaitAsync()
+    {
+        await roomHub.WaitAsync();
     }
     #endregion
 

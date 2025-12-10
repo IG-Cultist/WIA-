@@ -283,7 +283,14 @@ public class MatchingManager : MonoBehaviour
         //ゲーム開始時の処理をする
         // シーン遷移
         Initiate.DoneFading();
-        Initiate.Fade("Stage_K01", endColor, 2.0f);
+        if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+        {//働く人
+            Initiate.Fade("Exp_Worker_K01", endColor, 2.0f);
+        }
+        else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+        {//労災側
+            Initiate.Fade("Exp_Stricker_K01", endColor, 2.0f);
+        }
 
     }
     #endregion

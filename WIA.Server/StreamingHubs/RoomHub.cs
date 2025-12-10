@@ -209,12 +209,50 @@ namespace WIA.Server.StreamingHubs
                 // ゲームが開始できる場合、開始通知をする
                 if (canStartGame)
                 {
+                    foreach (var user in this.roomContext.JoinedUserList)
+                    { // 現在の参加者数分ループ
+                        user.Value.IsReady = false;
+                    }
                     this.roomContext.Group.All.OnStartGame();
-
                     this.roomContext.IsStartGame = true;
 
                     // 現在時刻を代入
                     this.roomContext.startTime = DateTime.Now;
+                }
+            }
+        }
+
+        /// <summary>
+        /// プレイヤー待機同期
+        /// </summary>
+        /// <returns></returns>
+        public async Task WaitAsync()
+        {
+            lock (roomContextRepository) 
+            {
+                bool canStartGame = true; // ゲーム開始可能判定変数
+
+                // 自身のデータを取得
+                var joinedUser = roomContext.JoinedUserList[this.ConnectionId];
+                joinedUser.IsReady = true; // 準備完了にする
+
+                foreach (var user in this.roomContext.JoinedUserList)
+                { // 現在の参加者数分ループ
+                    if (user.Value.IsReady != true) canStartGame = false; // もし一人でも準備完了していなかった場合、開始させない
+                }
+
+                // 全員が準備した場合に同時開始通知を、してない場合は待機通知をする
+                if (canStartGame == true)
+                {
+                    foreach (var user in this.roomContext.JoinedUserList)
+                    { // 現在の参加者数分ループ
+                        user.Value.IsReady = false;
+                    }
+                    this.roomContext.Group.All.OnSameStart();
+                }
+                else
+                {
+                    this.roomContext.Group.All.OnWait();
                 }
             }
         }
