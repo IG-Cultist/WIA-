@@ -25,12 +25,19 @@ public class VR_UIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //UIScene‚©‚çŽæ“¾
+        taskExplanation.text = GameObject.Find("TaskExplanation").GetComponent<Text>().text;
+        taskCount.text = GameObject.Find("TaskCount").GetComponent<Text>().text;
+        deathCount.text = GameObject.Find("DeathCount").GetComponent<Text>().text;
+        timerText.text = GameObject.Find("Time").GetComponent<Text>().text;
+        limitTimerText.text = GameObject.Find("LimitTime").GetComponent<Text>().text;
+        fluctTimeText.text = GameObject.Find("FluctTime").GetComponent<Text>().text;
+        taskIcon.sprite = GameObject.Find("TaskIcon").GetComponent<Image>().sprite;
     }
 }
