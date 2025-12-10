@@ -42,8 +42,15 @@ public class TextManager : MonoBehaviour
             RoomModel.Instance.OnWaitSyn += this.OnWaitSyn;
             RoomModel.Instance.OnSameStarted += this.OnSameStarted;
 
-        //VRのスクリプト取得
-        xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+        if(RoomModel.Instance)
+        {
+
+        }
+        else
+        {
+            //VRのスクリプト取得
+            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+        }
 
         //VRの場合カメラを切り替える
         if (UnityEngine.XR.XRSettings.isDeviceActive)
@@ -57,15 +64,6 @@ public class TextManager : MonoBehaviour
         //VRの操作対応
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
-            if(RoomModel.Instance)
-            {
-                Ready();
-            }
-            else
-            {
-                Initiate.DoneFading();
-                Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
-            }
             if (xrControllerButtonEvents.isTrriger && isFinish)
             {
                 Initiate.DoneFading();
@@ -88,8 +86,15 @@ public class TextManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && isFinish)
             {
-                Initiate.DoneFading();
-                Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+                if (RoomModel.Instance)
+                {
+                    Ready();
+                }
+                else
+                {
+                    Initiate.DoneFading();
+                    Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+                }
             }
             if (Input.GetMouseButtonDown(0) && !isFinish)
             {
