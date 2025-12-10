@@ -50,6 +50,12 @@ namespace Shared.Interfaces.StreamingHubs
         /// <returns></returns>
         Task ReadyAsync(int characterID);
 
+        /// <summary>
+        /// プレイヤー待機
+        /// Author:木田晃輔
+        /// </summary>
+        Task WaitAsync();
+
         #endregion
 
         #region ゲーム内

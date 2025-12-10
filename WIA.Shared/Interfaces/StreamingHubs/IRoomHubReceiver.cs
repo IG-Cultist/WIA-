@@ -64,6 +64,18 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         void OnStartGame();
 
+        /// <summary>
+        /// プレイヤー待機通知
+        /// Aughtor:木田晃輔
+        /// </summary>
+        void OnWait();
+
+        /// <summary>
+        /// 同時開始通知
+        /// Aughtor:木田晃輔
+        /// </summary>
+        void OnSameStart();
+
         #endregion
 
         #region ゲーム内

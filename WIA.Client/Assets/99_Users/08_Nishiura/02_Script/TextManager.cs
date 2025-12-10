@@ -29,14 +29,26 @@ public class TextManager : MonoBehaviour
         nowSceneName = SceneManager.GetActiveScene().name.Split("_");
         // 文字生成を開始
         InvokeRepeating("SpawnMessage", 1f, 2f);
+
+        //通信用
+        if (RoomModel.Instance)
+            RoomModel.Instance.OnWaitSyn += this.OnWaitSyn;
+            RoomModel.Instance.OnSameStarted += this.OnSameStarted;
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && isFinish)
         {
-            Initiate.DoneFading();
-            Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+            if(RoomModel.Instance)
+            {
+                Ready();
+            }
+            else
+            {
+                Initiate.DoneFading();
+                Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+            }
         }
         if (Input.GetMouseButtonDown(0) && !isFinish)
         {
@@ -50,6 +62,12 @@ public class TextManager : MonoBehaviour
                 text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        RoomModel.Instance.OnWaitSyn -= this.OnWaitSyn;
+        RoomModel.Instance.OnSameStarted -= this.OnSameStarted;
     }
 
     /// <summary>
@@ -70,5 +88,28 @@ public class TextManager : MonoBehaviour
             // 次の説明文がない場合、ループを終了する
             if (textList.Count <= cnt) isFinish = true;
         }
+    }
+
+    //////////////
+    /// 通信用 ///
+    //////////////
+
+    /// <summary>
+    /// オンラインで開始の準備をする
+    /// </summary>
+    async void Ready()
+    {
+        await RoomModel.Instance.WaitAsync();
+    }
+
+    void OnWaitSyn()
+    {
+        Debug.Log("プレイヤーを待っています…");
+    }
+
+    void OnSameStarted()
+    {
+        Initiate.DoneFading();
+        Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
     }
 }

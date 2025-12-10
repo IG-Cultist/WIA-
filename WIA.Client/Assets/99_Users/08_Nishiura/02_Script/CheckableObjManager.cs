@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using KanKikuchi.AudioManager;
 using static Unity.Burst.Intrinsics.X86;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class CheckableObjManager : MonoBehaviour
 {
@@ -45,12 +46,24 @@ public class CheckableObjManager : MonoBehaviour
 
     void Start()
     {
-        //メインキャラクターのカメラを取る
-        playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
-        //プレイヤー移動処理スクリプト取得
-        playerMove = GameObject.Find("Main").GetComponent<FirstPersonMovement>();
-        //VRのスクリプト取得
-        xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+        if(RoomModel.Instance)
+        {
+            //メインキャラクターのカメラを取る
+            playerCamera = GameObject.Find(OnlineGameManager.Player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+            //プレイヤー移動処理スクリプト取得
+            playerMove = GameObject.Find(OnlineGameManager.Player.name).GetComponent<FirstPersonMovement>();
+            //VRのスクリプト取得
+            xrControllerButtonEvents = GameObject.Find(OnlineGameManager.Player.name).GetComponent<XRControllerButtonEvents>();
+        }
+        else
+        {
+            //メインキャラクターのカメラを取る
+            playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+            //プレイヤー移動処理スクリプト取得
+            playerMove = GameObject.Find("Main").GetComponent<FirstPersonMovement>();
+            //VRのスクリプト取得
+            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+        }
 
         // 0からリストの長さ分までの乱数を設定
         keyObjectNum = Random.Range(0, checkableObjList.Count);
@@ -58,7 +71,8 @@ public class CheckableObjManager : MonoBehaviour
 
         checkNowText.SetActive(false);
 
-        player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+        if(RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
+        else player = GameObject.Find("Main").gameObject.GetComponent<Player>();
         isDead = false;
 
 
