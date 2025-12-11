@@ -26,9 +26,6 @@ public class TextManager : MonoBehaviour
     //VR
     private XRControllerButtonEvents xrControllerButtonEvents;
 
-    //カメラ
-    public Camera desktopCamera;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,12 +36,6 @@ public class TextManager : MonoBehaviour
 
         //VRのスクリプト取得
         xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
-
-        //VRの場合カメラを切り替える
-        if (UnityEngine.XR.XRSettings.isDeviceActive)
-        {
-            desktopCamera.enabled = false;
-        }
     }
 
     void Update()
