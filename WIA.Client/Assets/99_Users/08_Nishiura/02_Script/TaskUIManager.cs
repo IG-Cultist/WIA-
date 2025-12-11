@@ -71,6 +71,16 @@ public class TaskUIManager : MonoBehaviour
                 // 説明文を変更
                 taskExplanation.text = "任務:鍵を見つけ、アパートへ帰宅";
                 break;
+            case "Stage_K02":
+                // リソースからアイコンを取得
+                texture = Resources.Load("Icons/Icon_Key") as Texture2D;
+                taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+
+                // タスクカウントを設定
+                taskCount.text = ": 0/1";
+                // 説明文を変更
+                taskExplanation.text = "任務:鍵を見つけ、アパートへ帰宅";
+                break;
             case "Stage_3":
                 // リソースからアイコンを取得
                 texture = Resources.Load("Icons/Icon_Coffee") as Texture2D;

@@ -37,14 +37,10 @@ public class TextManager : MonoBehaviour
         // 文字生成を開始
         InvokeRepeating("SpawnMessage", 1f, 2f);
 
-        //通信用
         if (RoomModel.Instance)
+        {//通信用
             RoomModel.Instance.OnWaitSyn += this.OnWaitSyn;
             RoomModel.Instance.OnSameStarted += this.OnSameStarted;
-
-        if(RoomModel.Instance)
-        {
-
         }
         else
         {
@@ -159,5 +155,6 @@ public class TextManager : MonoBehaviour
     {
         Initiate.DoneFading();
         Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+        //Initiate.Fade("Stage_K02", Color.black, 1.0f); //デバッグ用直接ステージに遷移
     }
 }

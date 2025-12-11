@@ -185,38 +185,41 @@ public class Player : MonoBehaviour
 
 
 
-                if (isSearch)
+                if(this.name == "Main" || OnlineGameManager.Player)
                 {
-                    if (isLow) plaAnimation.SetAnim(ANIM_STATE.SEARCH_LOW, 1);
-                    else plaAnimation.SetAnim(ANIM_STATE.SEARCH_HIGH, 1);
-                }
-                else
-                {
-
-                    if (moveSpeed > 11) plaAnimation.SetAnim(ANIM_STATE.FALL, 1);
+                    if (isSearch)
+                    {
+                        if (isLow) plaAnimation.SetAnim(ANIM_STATE.SEARCH_LOW, 1);
+                        else plaAnimation.SetAnim(ANIM_STATE.SEARCH_HIGH, 1);
+                    }
                     else
                     {
-                        if (moveSpeed <= 1)
-                        {
-                            if (!isHave) plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
-                            else plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
-                        }
-                        else if (moveSpeed > 4)
-                        {
-                            if (!isHave) plaAnimation.SetAnim(ANIM_STATE.RUN, moveSpeed);
-                            else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
-                        }
-                        else if (moveSpeed > 1)
-                        {
-                            if (!isHave) plaAnimation.SetAnim(ANIM_STATE.WALK, moveSpeed);
-                            else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
-                        }
 
+                        if (moveSpeed > 11) plaAnimation.SetAnim(ANIM_STATE.FALL, 1);
+                        else
+                        {
+                            if (moveSpeed <= 1)
+                            {
+                                if (!isHave) plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
+                                else plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
+                            }
+                            else if (moveSpeed > 4)
+                            {
+                                if (!isHave) plaAnimation.SetAnim(ANIM_STATE.RUN, moveSpeed);
+                                else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
+                            }
+                            else if (moveSpeed > 1)
+                            {
+                                if (!isHave) plaAnimation.SetAnim(ANIM_STATE.WALK, moveSpeed);
+                                else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
+                            }
+
+                        }
                     }
                 }
 
                 //操作していないプレイヤーのアニメーション設定
-                if (this.name == "Sub")
+                if (this.name == "Sub"||!OnlineGameManager.Player)
                 {
                     if ((int)plaAnimation.anim_State == 0)
                     {
