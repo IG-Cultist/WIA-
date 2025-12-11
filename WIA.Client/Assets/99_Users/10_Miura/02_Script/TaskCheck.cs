@@ -56,10 +56,13 @@ public class TaskCheck : MonoBehaviour
                 callback: null              //çƒê∂èIóπå„ÇÃèàóù
             );
             playSE = true;
-
-            if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1 && !isDead) Initiate.Fade("Exp_Worker_K02", Color.black, 1.0f);
-            else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2 && !isDead) Initiate.Fade("Exp_Stricker_K02", Color.black, 1.0f);
-            if (!RoomModel.Instance && !isDead) Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
+            if(RoomModel.Instance)
+            {
+                if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1 && !isDead) Initiate.Fade("Exp_Worker_K02", Color.black, 1.0f);
+                else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2 && !isDead) Initiate.Fade("Exp_Stricker_K02", Color.black, 1.0f);
+            }
+            else if (!RoomModel.Instance && !isDead) 
+                Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
             isDead = true;
         }
     }

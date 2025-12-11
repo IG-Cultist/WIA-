@@ -82,7 +82,7 @@ public class CheckableObjManager : MonoBehaviour
         openDoor = false;
     }
 
-    private void Update()
+    private async void Update()
     {
         if (player.deathCnt >= 3)
         {
@@ -96,7 +96,15 @@ public class CheckableObjManager : MonoBehaviour
                 callback: null              //再生終了後の処理
             );
             playSE = true;
-            if (!isDead) Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
+            if (!isDead)
+            {
+                if(RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
+                    Initiate.Fade("Exp_Worker_K03", Color.black, 1.0f);
+                else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
+                    Initiate.Fade("Exp_Stricker_K03", Color.black, 1.0f);
+                else
+                    Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
+            }
             isDead = true;
         }
 
@@ -228,7 +236,10 @@ public class CheckableObjManager : MonoBehaviour
 
                     openDoor = true;
                 }
-                Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
+                if (RoomModel.Instance)
+                    await RoomModel.Instance.CountAsync(true);
+                else
+                    Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
             }
 
             // 調べたオブジェクトにキーが入っていた場合
@@ -238,7 +249,10 @@ public class CheckableObjManager : MonoBehaviour
                 if (!searchedSE)
                 {
                     Debug.Log("鍵発見");
-                    GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + "1" + "/1";
+                    if (RoomModel.Instance)
+                        await RoomModel.Instance.CountAsync(true);
+                    else
+                        GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + "1" + "/1";
 
                     SEManager.Instance.Play(
                         audioPath: SEPath.FIND_KEY, //再生したいオーディオのパス
