@@ -27,11 +27,16 @@ public class FlowerPot : MonoBehaviour
     // 植木鉢がスポーンした場所のリスト
     List<int> nowSpawnList = new List<int>();
 
+    //通信用
+    OnlineGameManager gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
         potObj.name = "FlowerPot_obj"; //生成される植木鉢オブジェクトの名前を固定
+        if (RoomModel.Instance)
+            gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
     }
 
     // Update is called once per frame
@@ -89,8 +94,15 @@ public class FlowerPot : MonoBehaviour
 
             flowerPotManager.RemoveList(flowerPotManager.generatNumber);
 
-            //植木鉢を消す
-            Destroy(this.gameObject);
+            if(RoomModel.Instance)
+            {
+                gameManager.DeliteSynObj(this.gameObject);
+            }
+            else
+            {
+                //植木鉢を消す
+                Destroy(this.gameObject);
+            }
 
             // 警告円を破壊する
             Destroy(dangerZoneObj);
@@ -148,8 +160,16 @@ public class FlowerPot : MonoBehaviour
     /// <param name="fragment"></param>
     public async void DestroyFragment(GameObject fragment)
     {
-        await Task.Delay(6000); //6秒待つ　
-        Destroy(fragment.gameObject);　//破片を消す
+        if(RoomModel.Instance)
+        {
+            await Task.Delay(6000); //6秒待つ　
+            gameManager.DeliteSynObj(fragment);
+        }
+        else
+        {
+            await Task.Delay(6000); //6秒待つ　
+            Destroy(fragment.gameObject);　//破片を消す
+        }
     }
 
 

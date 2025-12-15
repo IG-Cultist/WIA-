@@ -30,7 +30,6 @@ public class OnlineGameManager : MonoBehaviour
     [Header("基本設定")]
     PlayerData playerData;
     int tasks = 0;      //タスクの数
-    Vector3 spawnPos = Vector3.zero;
     [SerializeField] Transform spawnPointP1; //プレイヤー1の初期配置場所
     [SerializeField] Transform spawnPointP2; //プレイヤー2の初期配置場所
     private static Transform mainSpawnPoint; //操作プレイヤーの初期配置
@@ -182,7 +181,7 @@ public class OnlineGameManager : MonoBehaviour
         //Oボタンでオブジェクト生成
         if(Input.GetKeyDown("o"))
         {
-            SpawnObj();
+            SpawnObj(Vector3.zero);
         }
         //Sボタンでオブジェクト1の権限取得
         if(Input.GetKeyDown("p"))
@@ -213,13 +212,19 @@ public class OnlineGameManager : MonoBehaviour
             syncObjList.Remove(syncObj);
             break;
         }
+        foreach (var syncObj in objList)
+        {
+            if (syncObj.Value != gameObject) continue;
+            syncObjList.Remove(syncObj.Value);
+            break;
+        }
         await RoomModel.Instance.DeliteObjectAsync(gameObject.name);
     }
 
     /// <summary>
     /// オブジェクト生成
     /// </summary>
-    public async void SpawnObj()
+    public async void SpawnObj(Vector3 spawnPos)
     {
         await RoomModel.Instance.SpawnObjectAsync(spawnPos);
     }
@@ -238,11 +243,13 @@ public class OnlineGameManager : MonoBehaviour
             }
         }
         if(syncObjList != null)
-        for (int i=0;i< syncObjList.Count;i++)
         {
-            if (syncObjList[i].GetComponent<Rigidbody>() == null) continue;
-            await RoomModel.Instance.UpdateObjectAsync(syncObjList[i].transform.localPosition,
-                syncObjList[i].transform.rotation, i.ToString());
+            for (int i = 0; i < syncObjList.Count; i++)
+            {
+                if (syncObjList[i].GetComponent<Rigidbody>() == null) continue;
+                await RoomModel.Instance.UpdateObjectAsync(syncObjList[i].transform.localPosition,
+                    syncObjList[i].transform.rotation, i.ToString());
+            }
         }
     }
 
@@ -323,12 +330,25 @@ public class OnlineGameManager : MonoBehaviour
 
     void OnDeliteObjectSyn(string objName)
     {
-        foreach(var syncObj in syncObjList)
+        if(objList != null)
         {
-            if (syncObj.name != objName) continue;
-            syncObjList.Remove(syncObj);
-            Destroy(GameObject.Find(objName));
-            break;
+            foreach (var obj in objList)
+            {
+                if (obj.Value.name != objName) continue;
+                syncObjList.Remove(obj.Value);
+                Destroy(GameObject.Find(objName));
+                break;
+            }
+        }
+        if(syncObjList != null)
+        {
+            foreach (var syncObj in syncObjList)
+            {
+                if (syncObj.name != objName) continue;
+                syncObjList.Remove(syncObj);
+                Destroy(GameObject.Find(objName));
+                break;
+            }
         }
     }
 

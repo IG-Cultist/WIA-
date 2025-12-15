@@ -16,11 +16,27 @@ public class FlowerPotManager : MonoBehaviour
     public bool isThreePot = false; //A–Ø”«‚ª3ŒÂ‘¶İ‚·‚é‚©‚Ç‚¤‚©‚Ì•Ï”
     public int generatNumber;
 
+    //’ÊM—p
+    OnlineGameManager gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //A–Ø”«‚ğ¶¬‚·‚é
-        GeneratePot();
+        if(RoomModel.Instance)
+        {//’ÊM‚Ì‚İ
+            //ƒIƒ“ƒ‰ƒCƒ“ƒQ[ƒ€ƒ}ƒl[ƒWƒƒ[æ“¾
+            gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
+            if(OnlineGameManager.Player.name == "Stricker")
+            {//˜JĞ‘¤‚Ì‚İ
+                //A–Ø”«‚ğ¶¬‚·‚é
+                GeneratePot();
+            }
+        }
+        else
+        {
+            //A–Ø”«‚ğ¶¬‚·‚é
+            GeneratePot();
+        }
     }
 
     // Update is called once per frame
@@ -33,7 +49,18 @@ public class FlowerPotManager : MonoBehaviour
         }
         if (potList.Count <= 2)
         {//potList‚Ì—v‘f‚ª2ˆÈ‰º‚¾‚Á‚½‚ç
-            GeneratePot(); //A–Ø”«‚ğ¶¬‚·‚é
+            if (RoomModel.Instance)
+            {//’ÊM‚Ì‚İ
+             //ƒIƒ“ƒ‰ƒCƒ“ƒQ[ƒ€ƒ}ƒl[ƒWƒƒ[æ“¾
+                if (OnlineGameManager.Player.name == "Stricker")
+                {
+                    GeneratePot();
+                }
+            }
+            else
+            {
+                GeneratePot(); //A–Ø”«‚ğ¶¬‚·‚é
+            }
             isThreePot = false; // A–Ø”«‚ª3ŒÂ‘¶İ‚µ‚È‚¢ó‘Ô
         }
     }
@@ -55,8 +82,14 @@ public class FlowerPotManager : MonoBehaviour
         }
         nowSpawnList.Add(generatNumber);
 
-        // potObj‚ğ¶¬‚·‚é
-        Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); // randomSpawnPoint‚ÉŠi”[‚³‚ê‚½gameObject‚ÌgeneratNumber‚ÌêŠ‚É¶¬
+        if(RoomModel.Instance)
+        {
+            gameManager.SpawnObj(randomSpawnPoint[generatNumber].transform.position);
+        }
+        else
+        {
+            Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); // randomSpawnPoint‚ÉŠi”[‚³‚ê‚½gameObject‚ÌgeneratNumber‚ÌêŠ‚É¶¬
+        }
 
         //potList‚É—v‘f‚ğ’Ç‰Á‚·‚é
         potList.Add(potObj);
