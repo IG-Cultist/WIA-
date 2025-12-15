@@ -75,9 +75,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if(RoomModel.Instance)
+        if (RoomModel.Instance)
         {
-            if(this.name == "Player_1(Clone)")
+            if (this.name == "Player_1(Clone)")
             {
                 //操作キャラクター分のUIを表示
                 SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        if(RoomModel.Instance)
+        if (RoomModel.Instance)
         {
             //ワープ地点設定通信中のみ処理する
             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
 
         moveSpeed = rigidbody.linearVelocity.magnitude * 3.0f;   //オブジェクト速度を元にアニメーションの速度を決定
-        if(moveSpeed < 0) moveSpeed = 0;
+        if (moveSpeed < 0) moveSpeed = 0;
         //else if(moveSpeed >= 7) moveSpeed = 7;      //再生最大速度を設定
 
         //プレイヤー状態分岐
@@ -186,71 +186,135 @@ public class Player : MonoBehaviour
                     Debug.Log("リセット完了");
                 }
 
+                #region プレイヤーアニメーション
+                #region オンライン環境
+                if (RoomModel.Instance)
+                {//オンライン環境
+                    if (OnlineGameManager.Player)
+                    {//操作しているプレイヤー
+                        if (isSearch)
+                        {//探している
+                            if (isLow) plaAnimation.SetAnim(ANIM_STATE.SEARCH_LOW, 1);
+                            else plaAnimation.SetAnim(ANIM_STATE.SEARCH_HIGH, 1);
+                        }
+                        else
+                        {//探していない
+                            if (moveSpeed > 11) plaAnimation.SetAnim(ANIM_STATE.FALL, 1); //落ちる
+                            else
+                            {
+                                if (moveSpeed <= 1)
+                                {//待機
+                                    if (!isHave) plaAnimation.SetAnim(ANIM_STATE.IDLE, 1); //持っていない
+                                    else plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);     //持っている
+                                }
+                                else if (moveSpeed > 4)
+                                {
+                                    if (!isHave) plaAnimation.SetAnim(ANIM_STATE.RUN, moveSpeed); //持っていない
+                                    else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed); //持っている
+                                }
+                                else if (moveSpeed > 1)
+                                {
+                                    if (!isHave) plaAnimation.SetAnim(ANIM_STATE.WALK, moveSpeed);//持っていない
+                                    else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed); //持っている
+                                }
 
-
-                if(this.name == "Main" || OnlineGameManager.Player)
-                {
-                    if (isSearch)
-                    {
-                        if (isLow) plaAnimation.SetAnim(ANIM_STATE.SEARCH_LOW, 1);
-                        else plaAnimation.SetAnim(ANIM_STATE.SEARCH_HIGH, 1);
+                            }
+                        }
                     }
                     else
-                    {
-
-                        if (moveSpeed > 11) plaAnimation.SetAnim(ANIM_STATE.FALL, 1);
-                        else
-                        {
-                            if (moveSpeed <= 1)
-                            {
-                                if (!isHave) plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
-                                else plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
-                            }
-                            else if (moveSpeed > 4)
-                            {
-                                if (!isHave) plaAnimation.SetAnim(ANIM_STATE.RUN, moveSpeed);
-                                else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
-                            }
-                            else if (moveSpeed > 1)
-                            {
-                                if (!isHave) plaAnimation.SetAnim(ANIM_STATE.WALK, moveSpeed);
-                                else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed);
-                            }
-
+                    {//操作していないプレイヤー
+                        if ((int)plaAnimation.anim_State == 0)
+                        {//待機
+                            plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
+                        }
+                        else if ((int)plaAnimation.anim_State == 1)
+                        {//歩く
+                            plaAnimation.SetAnim(ANIM_STATE.WALK, subMoveSpeed);
+                        }
+                        else if ((int)plaAnimation.anim_State == 2)
+                        {//走る
+                            plaAnimation.SetAnim(ANIM_STATE.RUN, subMoveSpeed);
+                        }
+                        else if ((int)plaAnimation.anim_State == 3)
+                        {//持ちながら待機
+                            plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
+                        }
+                        else if ((int)plaAnimation.anim_State == 4)
+                        {//持ちながら走る
+                            plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, subMoveSpeed);
+                        }
+                        else if ((int)plaAnimation.anim_State == 5)
+                        {//落ちてる
+                            plaAnimation.SetAnim(ANIM_STATE.FALL, subMoveSpeed);
                         }
                     }
                 }
+                #endregion
+                #region オフライン環境
+                else if (!RoomModel.Instance)
+                {//オフライン環境
+                    if(this.name == "Main")
+                    {//操作しているプレイヤー
+                        if (isSearch)
+                        {//探している
+                            if (isLow) plaAnimation.SetAnim(ANIM_STATE.SEARCH_LOW, 1);
+                            else plaAnimation.SetAnim(ANIM_STATE.SEARCH_HIGH, 1);
+                        }
+                        else
+                        {//探していない
+                            if (moveSpeed > 11) plaAnimation.SetAnim(ANIM_STATE.FALL, 1); //落ちる
+                            else
+                            {
+                                if (moveSpeed <= 1)
+                                {//待機
+                                    if (!isHave) plaAnimation.SetAnim(ANIM_STATE.IDLE, 1); //持っていない
+                                    else plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);     //持っている
+                                }
+                                else if (moveSpeed > 4)
+                                {
+                                    if (!isHave) plaAnimation.SetAnim(ANIM_STATE.RUN, moveSpeed); //持っていない
+                                    else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed); //持っている
+                                }
+                                else if (moveSpeed > 1)
+                                {
+                                    if (!isHave) plaAnimation.SetAnim(ANIM_STATE.WALK, moveSpeed);//持っていない
+                                    else plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, moveSpeed); //持っている
+                                }
 
-                //操作していないプレイヤーのアニメーション設定
-                if (this.name == "Sub"||!OnlineGameManager.Player)
-                {
+                            }
+                        }
+                    }
+                }
+                if (this.name == "Sub")
+                {//操作していないプレイヤー
                     if ((int)plaAnimation.anim_State == 0)
-                    {
+                    {//待機
                         plaAnimation.SetAnim(ANIM_STATE.IDLE, 1);
                     }
                     else if ((int)plaAnimation.anim_State == 1)
-                    {
+                    {//歩く
                         plaAnimation.SetAnim(ANIM_STATE.WALK, subMoveSpeed);
                     }
                     else if ((int)plaAnimation.anim_State == 2)
-                    {
+                    {//走る
                         plaAnimation.SetAnim(ANIM_STATE.RUN, subMoveSpeed);
                     }
                     else if ((int)plaAnimation.anim_State == 3)
-                    {
+                    {//持ちながら待機
                         plaAnimation.SetAnim(ANIM_STATE.HAVE_IDLE, 1);
                     }
                     else if ((int)plaAnimation.anim_State == 4)
-                    {
+                    {//持ちながら走る
                         plaAnimation.SetAnim(ANIM_STATE.HAVE_RUN, subMoveSpeed);
                     }
                     else if ((int)plaAnimation.anim_State == 5)
-                    {
+                    {//落ちてる
                         plaAnimation.SetAnim(ANIM_STATE.FALL, subMoveSpeed);
                     }
                 }
-
                 break;
+            #endregion
+            #endregion
 
             //死亡状態
             case PLAYER_STATE.DEATH:
