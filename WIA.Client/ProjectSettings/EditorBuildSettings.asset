@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/10_Miura/01_Scene/UIScene.unity
     guid: baea5ee5378ded148853eb38aecb4981
-  - enabled: 1
+  - enabled: 0
     path: Assets/99_Users/11_Miyake/01_Scene/VRUIScene.unity
     guid: 0560c4cfe7f9b0d42abf309645d5644b
   - enabled: 0
@@ -68,6 +68,36 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scene/Stage/Stage_3.unity
     guid: 1a2133c3e3231534abd40d2525fbbaf6
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/PreMatchingScene.unity
+    guid: e405a3ccf0b93cd488c579d79eee3875
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Exp/Worker/Exp_Worker_K01.unity
+    guid: d177b17a992012c4289cf4fbe2a1ad96
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Exp/Stricker/Exp_Stricker_K01.unity
+    guid: 2d38f969a85206940a13b327998a765a
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Stage/Stage_K01.unity
+    guid: 3756ff71e47315b4384fd01a4c63aad1
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Exp/Worker/Exp_Worker_K02.unity
+    guid: b77af8d0e6b19294b8b05ebf7355b49f
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Exp/Stricker/Exp_Stricker_K02.unity
+    guid: cbd404baa69f08d43bd33facd2fc3c71
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Stage/Stage_K02.unity
+    guid: f79c6a5d8ad9a5e4f9037ac6ab801964
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Exp/Worker/Exp_Worker_K03.unity
+    guid: ebe385b3d6f15c842960963296977e53
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Exp/Stricker/Exp_Stricker_K03.unity
+    guid: 15cf53eab537b1d4b96762be68c80539
+  - enabled: 1
+    path: Assets/99_Users/05_Kida/01_Scene/Stage/Stage_K03.unity
+    guid: 8cb4eb16f33250a41801a9027ca3001f
   - enabled: 0
     path: Assets/99_Users/08_Nishiura/01_Scene/Stage_3.unity
     guid: 793d553c0f231864ea8ed4906425c76c

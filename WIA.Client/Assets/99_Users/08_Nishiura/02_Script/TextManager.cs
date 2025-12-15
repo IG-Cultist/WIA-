@@ -23,12 +23,6 @@ public class TextManager : MonoBehaviour
     // 現在のシーン名
     string[] nowSceneName;
 
-    //VR
-    private XRControllerButtonEvents xrControllerButtonEvents;
-
-    //カメラ
-    public Camera desktopCamera;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,27 +31,22 @@ public class TextManager : MonoBehaviour
         // 文字生成を開始
         InvokeRepeating("SpawnMessage", 1f, 2f);
 
-        //通信用
         if (RoomModel.Instance)
+        {//通信用
             RoomModel.Instance.OnWaitSyn += this.OnWaitSyn;
             RoomModel.Instance.OnSameStarted += this.OnSameStarted;
-
-        //VRのスクリプト取得
-        xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
-
-        //VRの場合カメラを切り替える
-        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        }
+        else
         {
-            desktopCamera.enabled = false;
+
         }
     }
 
     void Update()
     {
-        //VRの操作対応
-        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        if (Input.GetMouseButtonDown(0) && isFinish)
         {
-            if(RoomModel.Instance)
+            if (RoomModel.Instance)
             {
                 Ready();
             }
@@ -66,45 +55,19 @@ public class TextManager : MonoBehaviour
                 Initiate.DoneFading();
                 Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
             }
-            if (xrControllerButtonEvents.isTrriger && isFinish)
-            {
-                Initiate.DoneFading();
-                Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
-            }
-            if(xrControllerButtonEvents.isTrriger && !isFinish)
-            {
-                CancelInvoke();
-                isFinish = true;
-
-                clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
-
-                foreach (Text text in textList)
-                {
-                    text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
-                }
-            }
         }
-        else
+        if (Input.GetMouseButtonDown(0) && !isFinish)
         {
-            if (Input.GetMouseButtonDown(0) && isFinish)
-            {
-                Initiate.DoneFading();
-                Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
-            }
-            if (Input.GetMouseButtonDown(0) && !isFinish)
-            {
-                CancelInvoke();
-                isFinish = true;
+            CancelInvoke();
+            isFinish = true;
 
-                clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+            clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
 
-                foreach (Text text in textList)
-                {
-                    text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
-                }
+            foreach (Text text in textList)
+            {
+                text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
             }
         }
-
     }
 
     private void OnDisable()
@@ -154,5 +117,6 @@ public class TextManager : MonoBehaviour
     {
         Initiate.DoneFading();
         Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+        //Initiate.Fade("Stage_K02", Color.black, 1.0f); //デバッグ用直接ステージに遷移
     }
 }

@@ -60,6 +60,7 @@ public class OnlineGameManager : MonoBehaviour
     }
 
     private int TaskCnt; //タスクカウント
+    private bool isGetKey = false; //鍵を持っている
     #endregion
 
     private void Awake()
@@ -91,27 +92,36 @@ public class OnlineGameManager : MonoBehaviour
             if (user.Key == RoomModel.Instance.ConnectionId)
             {
                 player = Instantiate(mainPlayerPrefab);
-                if(user.Value.JoinOrder == 1)
-                {//働く方
-                    player.name = "Worker";
-                }
-                else
-                {//労災側
-                    player.name = "Stricker";
-                }
-                if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+                if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 1)
                 {//働く方リスポーン
+                    player.name = "Worker";
                     player.transform.position = spawnPointP1.position;
-                    Destroy(GameObject.Find("Crane").GetComponent<Rigidbody>());
-                    Destroy(GameObject.Find("Hook").GetComponent<Rigidbody>());
-                    syncObjList.Add(GameObject.Find("Crane"));
-                    syncObjList.Add(GameObject.Find("Hook"));
+                    switch (SceneManager.GetActiveScene().name)
+                    {
+                        case "Stage_K01":
+                            Destroy(GameObject.Find("Crane").GetComponent<Rigidbody>());
+                            Destroy(GameObject.Find("Hook").GetComponent<Rigidbody>());
+                            syncObjList.Add(GameObject.Find("Crane"));
+                            syncObjList.Add(GameObject.Find("Hook"));
+                            break;
+                        case "Stage_K02":
+                            break;
+
+                    }
                 }
-                else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+                else if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 2)
                 {//労災側リスポーン
+                    player.name = "Stricker";
                     player.transform.position = spawnPointP2.position;
-                    syncObjList.Add(GameObject.Find("Crane"));
-                    syncObjList.Add(GameObject.Find("Hook"));
+                    switch (SceneManager.GetActiveScene().name)
+                    {
+                        case "Stage_K01":
+                            syncObjList.Add(GameObject.Find("Crane"));
+                            syncObjList.Add(GameObject.Find("Hook"));
+                            break;
+                        case "Stage_K02":
+                            break;
+                    }
                 }
                 mainSpawnPoint = player.transform;
                 InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
@@ -119,20 +129,14 @@ public class OnlineGameManager : MonoBehaviour
             else
             {
                 subplayer = Instantiate(subPlayerPrefab);
-                if (user.Value.JoinOrder == 1)
-                {//働く方
-                    subplayer.name = "Worker";
-                }
-                else
-                {//労災側
-                    subplayer.name = "Stricker";
-                }
-                if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+                if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 1)
                 {//働く方リスポーン
+                    subplayer.name = "Worker";
                     subplayer.transform.position = spawnPointP2.position;
                 }
-                else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+                else if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 2)
                 {//労災側リスポーン
+                    subplayer.name = "Stricker";
                     subplayer.transform.position = spawnPointP1.position;
                 }
             }
@@ -165,6 +169,10 @@ public class OnlineGameManager : MonoBehaviour
         RoomModel.Instance.OnDeliteObjectSyn -= this.OnDeliteObjectSyn;
         //RoomModel.Instance.OnPlayerDeadSyn -= this.OnPlayerDeadSyn;
         //RoomModel.Instance.OnPlayerRespownSyn -= this.OnPlayerRespownSyn;
+
+        //値初期化
+        TaskCnt = 0;
+        isGetKey = false;
     }
 
     private void Update()
@@ -390,6 +398,25 @@ public class OnlineGameManager : MonoBehaviour
                                 Initiate.Fade("Exp_Stricker_K02", Color.black, 1.0f);
                             }
                         }
+                        break;
+                    case "Stage_K02":
+                        if (TaskCnt >= 1 && isGetKey)
+                        {
+                            //フェードアウトしてシーン遷移
+                            if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
+                            {
+                                Initiate.Fade("Exp_Worker_K03", Color.black, 1.0f);
+                            }
+                            else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
+                            {
+                                Initiate.Fade("Exp_Stricker_K03", Color.black, 1.0f);
+                            }
+                            break;
+                        }
+                        // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
+                        GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + "1" + "/1";
+                        isGetKey = true;
+                        TaskCnt++;
                         break;
                 }
                 break;

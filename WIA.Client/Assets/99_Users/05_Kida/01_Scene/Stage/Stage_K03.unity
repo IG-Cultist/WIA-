@@ -27367,7 +27367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1189012222}
   m_Layer: 0
-  m_Name: PlayerSpawnPoint1
+  m_Name: PlayerSpawnPoint_1
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39811,6 +39811,7 @@ Transform:
   - {fileID: 1798526189}
   - {fileID: 467255410}
   - {fileID: 1189012222}
+  - {fileID: 1851961868}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1670798210
@@ -42890,6 +42891,7 @@ Transform:
   m_Children:
   - {fileID: 443660940}
   - {fileID: 1428149990}
+  - {fileID: 2129609821}
   m_Father: {fileID: 1670522594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1798895677
@@ -43742,6 +43744,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4943809125721693744, guid: c79681adbb335d44985f2bfa9341aa64, type: 3}
   m_PrefabInstance: {fileID: 1742197805}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1851961867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1851961868}
+  m_Layer: 0
+  m_Name: PlayerSpawnPoint_2
+  m_TagString: Respawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1851961868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851961867}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.99770516, z: -0, w: -0.067708775}
+  m_LocalPosition: {x: 7.98, y: -3.494, z: 3.21}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1670522594}
+  m_LocalEulerAnglesHint: {x: 0, y: 187.765, z: 0}
 --- !u!1 &1853922934
 GameObject:
   m_ObjectHideFlags: 0
@@ -50136,6 +50169,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127687957}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2129609820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129609821}
+  - component: {fileID: 2129609822}
+  m_Layer: 0
+  m_Name: OnlineGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2129609821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129609820}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.61476, y: -16.7, z: 0.31061}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1798526189}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2129609822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129609820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5e6ab1600624a4aa2d7daa2f319140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OnlineGameManager
+  spawnPointP1: {fileID: 1189012222}
+  spawnPointP2: {fileID: 1851961868}
+  mainPlayerPrefab: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+  subPlayerPrefab: {fileID: 5255917015044651565, guid: 9e9499c5d1e1afd4fac28edd9f9bc081, type: 3}
+  objPrefab: {fileID: 5549621001856787234, guid: 06fd39fea9e2d424e92fb78f4bdc8dc0, type: 3}
+  syncObjList: []
 --- !u!1 &2131127571
 GameObject:
   m_ObjectHideFlags: 0
