@@ -173,7 +173,7 @@ public class DeliveryManager : MonoBehaviour
 
         // ”z’BŠ®—¹”‚ğ‰ÁZ
         deliveredCount++;
-        if (resultScoreManager) resultScoreManager.carelesslyNum++;
+        //if (resultScoreManager) resultScoreManager.carelesslyNum++;
 
         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deliveredCount + "/5";
 

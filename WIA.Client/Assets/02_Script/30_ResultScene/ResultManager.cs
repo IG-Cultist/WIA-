@@ -26,7 +26,7 @@ public class ResultManager : MonoBehaviour
     [SerializeField] PieChart pie;          //円グラフ
     [SerializeField] RadarChart radar;      //五角形グラフ
 
-    //private ResultScoreManager resultScoreManager;
+    private ResultScoreManager resultScoreManager;
 
     [Header("AI評価用")]
     [SerializeField] Text messageText;      //AI評価表示用テキスト
@@ -58,7 +58,7 @@ public class ResultManager : MonoBehaviour
 
     void Start()
     {
-        /*
+        
         resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
 
         if(resultScoreManager)
@@ -71,7 +71,7 @@ public class ResultManager : MonoBehaviour
             this.carelesslyNum = resultScoreManager.carelesslyNum;
             this.notPlanNum = resultScoreManager.notPlanNum;
             this.notCoolNum = resultScoreManager.notCoolNum;
-        }*/
+        }
 
         //------{成功数,失敗数}-----//
         float[] pieList = { successNum, failureNum };        //ここで労災成功数・失敗数を代入

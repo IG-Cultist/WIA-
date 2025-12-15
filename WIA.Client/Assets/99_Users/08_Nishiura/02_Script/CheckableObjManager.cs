@@ -264,7 +264,7 @@ public class CheckableObjManager : MonoBehaviour
                     else
                         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + "1" + "/1";
 
-                    if (resultScoreManager) resultScoreManager.successNum++;
+                    if (nowFindObj.name != "Door") if (resultScoreManager) resultScoreManager.successNum++;
 
                     SEManager.Instance.Play(
                         audioPath: SEPath.FIND_KEY, //再生したいオーディオのパス
