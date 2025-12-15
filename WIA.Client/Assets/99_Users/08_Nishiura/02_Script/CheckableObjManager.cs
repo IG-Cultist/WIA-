@@ -71,6 +71,7 @@ public class CheckableObjManager : MonoBehaviour
 
         checkNowText.SetActive(false);
 
+
         if(RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
         else player = GameObject.Find("Main").gameObject.GetComponent<Player>();
         isDead = false;
