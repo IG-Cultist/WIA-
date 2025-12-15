@@ -25,9 +25,11 @@ public class TaskCheck : MonoBehaviour
     private bool isDead;
     private bool playSE;
 
+    private ResultScoreManager resultScoreManager;
+
     private void Start()
     {
-        if(RoomModel.Instance)
+        if (RoomModel.Instance)
         {
             player = OnlineGameManager.Player.gameObject.GetComponent<Player>();
         }
@@ -35,6 +37,8 @@ public class TaskCheck : MonoBehaviour
         {
             player = GameObject.Find("Main").GetComponent<Player>();
         }
+        resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
+        resultScoreManager.ResetData();
 
         isDead = false;
         playSE = false;
@@ -56,13 +60,23 @@ public class TaskCheck : MonoBehaviour
                 callback: null              //再生終了後の処理
             );
             playSE = true;
-            if(RoomModel.Instance)
+
+            if (resultScoreManager) resultScoreManager.GetClearTime();
+            
+            if (RoomModel.Instance)
             {
+                if (resultScoreManager) resultScoreManager.GetClearTime();
+
                 if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1 && !isDead) Initiate.Fade("Exp_Worker_K02", Color.black, 1.0f);
                 else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2 && !isDead) Initiate.Fade("Exp_Stricker_K02", Color.black, 1.0f);
             }
-            else if (!RoomModel.Instance && !isDead) 
+            else if (!RoomModel.Instance && !isDead)
+            {
+
+
                 Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
+
+            }
             isDead = true;
         }
     }
@@ -83,10 +97,12 @@ public class TaskCheck : MonoBehaviour
                 isLoop: false,                 //ループ再生するか
                 callback: null                 //再生終了後の処理
             );
-            if(!RoomModel.Instance)
+            if (!RoomModel.Instance)
             {
                 // 運搬した箱の数を加算
                 boxCnt++;
+                if (resultScoreManager) resultScoreManager.successNum++;
+
                 GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + boxCnt + "/5";
                 //リストに要素を追加する
                 cubeList.Add(boxCnt);
@@ -99,24 +115,25 @@ public class TaskCheck : MonoBehaviour
             if (RoomModel.Instance) GameObject.Find("OnlineGameManager").
                 GetComponent<OnlineGameManager>().DeliteSynObj(other.gameObject); //木田晃輔が変更
 
-                Destroy(other.gameObject);
+            Destroy(other.gameObject);
 
 
-            if(!RoomModel.Instance)
-            if (cubeList.Count >= checkCnt)
-            {//要素数が目標数と同じになったら
-             //フェードアウトしてシーン遷移
-                SEManager.Instance.Play(
-                    audioPath: SEPath.TASK_COMPLETED, //再生したいオーディオのパス
-                    volumeRate: 1,                //音量の倍率
-                    delay: 1,                //再生されるまでの遅延時間
-                    pitch: 1,                //ピッチ
-                    isLoop: false,             //ループ再生するか
-                    callback: null              //再生終了後の処理
-                );
+            if (!RoomModel.Instance)
+                if (cubeList.Count >= checkCnt)
+                {//要素数が目標数と同じになったら
+                 //フェードアウトしてシーン遷移
+                    SEManager.Instance.Play(
+                        audioPath: SEPath.TASK_COMPLETED, //再生したいオーディオのパス
+                        volumeRate: 1,                //音量の倍率
+                        delay: 1,                //再生されるまでの遅延時間
+                        pitch: 1,                //ピッチ
+                        isLoop: false,             //ループ再生するか
+                        callback: null              //再生終了後の処理
+                    );
 
-                Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
-            }
+                    if (resultScoreManager) resultScoreManager.GetClearTime();
+                    Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
+                }
         }
     }
 }
