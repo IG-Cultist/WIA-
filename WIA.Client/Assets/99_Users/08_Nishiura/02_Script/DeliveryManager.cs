@@ -54,6 +54,7 @@ public class DeliveryManager : MonoBehaviour
 
 
     AudioSource source; //オーディオソース
+    private ResultScoreManager resultScoreManager;
     private void Start()
     {
         if(RoomModel.Instance)
@@ -64,6 +65,8 @@ public class DeliveryManager : MonoBehaviour
         {
             player = GameObject.Find("Main").gameObject.GetComponent<Player>(); // シーン内のプレイヤーからスクリプトを取得
         }
+        resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
+
         isDead = false; //死んでいない状態にする
         coolDownSlider.SetActive(false);    //クールダウンスライダーを非表示にする
         source = this.GetComponent<AudioSource>();
@@ -170,6 +173,8 @@ public class DeliveryManager : MonoBehaviour
 
         // 配達完了数を加算
         deliveredCount++;
+        //if (resultScoreManager) resultScoreManager.carelesslyNum++;
+
         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deliveredCount + "/5";
 
         GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(10);
@@ -177,6 +182,7 @@ public class DeliveryManager : MonoBehaviour
         if (deliveredCount >= 5)
         {
             GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().isFinish = true;
+            if (resultScoreManager) resultScoreManager.GetClearTime();
             GoNextStage(); // 5の場合、次のシーンへ移動
         }
     }
@@ -189,6 +195,8 @@ public class DeliveryManager : MonoBehaviour
         // 手元のコーヒーオブジェクトを破棄
         Destroy(coffeeObj);
         GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(-5);
+
+        if (resultScoreManager) resultScoreManager.carelesslyNum++;
 
         // コーヒーマシンを使用可能にする
         coffeeMachine.GetComponent<BoxCollider>().enabled = true;

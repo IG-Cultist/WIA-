@@ -26,6 +26,8 @@ public class ResultManager : MonoBehaviour
     [SerializeField] PieChart pie;          //円グラフ
     [SerializeField] RadarChart radar;      //五角形グラフ
 
+    private ResultScoreManager resultScoreManager;
+
     [Header("AI評価用")]
     [SerializeField] Text messageText;      //AI評価表示用テキスト
     [SerializeField] public int successNum;    //労災回避成功数
@@ -56,7 +58,20 @@ public class ResultManager : MonoBehaviour
 
     void Start()
     {
-       
+        
+        resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
+
+        if(resultScoreManager)
+        {//リザルト集計マネージャーが取得できたときのみ代入
+            this.successNum = resultScoreManager.successNum;
+            this.failureNum = resultScoreManager.failureNum;
+
+            this.cruelNum = resultScoreManager.cruelNum;
+            this.notJudgeNum = resultScoreManager.notJudgeNum;
+            this.carelesslyNum = resultScoreManager.carelesslyNum;
+            this.notPlanNum = resultScoreManager.notPlanNum;
+            this.notCoolNum = resultScoreManager.notCoolNum;
+        }
 
         //------{成功数,失敗数}-----//
         float[] pieList = { successNum, failureNum };        //ここで労災成功数・失敗数を代入
@@ -72,12 +87,12 @@ public class ResultManager : MonoBehaviour
         if(totalScore == 100)
         {
             if (!isStricker) rankText.text = "労災ゴッドイヤー";
-            else rankText.text = "労災の化身イヤー";
+            else rankText.text = "無労災ゴッドイヤー";
         }
         else if (totalScore > 91)
         {
             if (!isStricker) rankText.text = "プロ労災イヤー";
-            else rankText.text = "プロ災害イヤー";
+            else rankText.text = "労災の火種イヤー";
         }
         else if(totalScore > 71)
         {
@@ -92,11 +107,12 @@ public class ResultManager : MonoBehaviour
         else if (totalScore > 21)
         {
             if (!isStricker) rankText.text = "赤点労災イヤー";
-            else rankText.text = "赤点災害イヤー";
+            else rankText.text = "労災の根源イヤー";
         }
         else if (totalScore < 21)
         {
-            rankText.text = "労災にわか";
+            if (!isStricker) rankText.text = "労災にわか";
+            else rankText.text = "現場出禁イヤー";
         }
         rankText2.text = rankText.text;
     }

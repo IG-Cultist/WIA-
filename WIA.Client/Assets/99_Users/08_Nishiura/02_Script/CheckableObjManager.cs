@@ -24,7 +24,7 @@ public class CheckableObjManager : MonoBehaviour
     int keyObjectNum;
 
     [SerializeField] public float chackableTimer;    //調査所要時間
-    private bool isCheckNow;     //現在調査中か
+    public bool isCheckNow;     //現在調査中か
 
     public bool isGetKey;      //キーを取得できたか
 
@@ -43,6 +43,7 @@ public class CheckableObjManager : MonoBehaviour
     //VR
     private XRControllerButtonEvents xrControllerButtonEvents;
 
+    private ResultScoreManager resultScoreManager;
 
     void Start()
     {
@@ -64,6 +65,8 @@ public class CheckableObjManager : MonoBehaviour
             //VRのスクリプト取得
             xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
         }
+
+        resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
 
         // 0からリストの長さ分までの乱数を設定
         keyObjectNum = Random.Range(0, checkableObjList.Count);
@@ -99,7 +102,9 @@ public class CheckableObjManager : MonoBehaviour
             playSE = true;
             if (!isDead)
             {
-                if(RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
+                if (resultScoreManager) resultScoreManager.GetClearTime();
+
+                if (RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
                     Initiate.Fade("Exp_Worker_K03", Color.black, 1.0f);
                 else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
                     Initiate.Fade("Exp_Stricker_K03", Color.black, 1.0f);
@@ -207,6 +212,8 @@ public class CheckableObjManager : MonoBehaviour
 
                 if(!openDoor)
                 {
+                    if (resultScoreManager) resultScoreManager.successNum++;
+
                     SEManager.Instance.Play(
                         audioPath: SEPath.UNLOCK_KEY, //再生したいオーディオのパス
                         volumeRate: 1,                //音量の倍率
@@ -235,6 +242,8 @@ public class CheckableObjManager : MonoBehaviour
                     );
                     SEManager.Instance.Stop(SEPath.DIFFUSE);
 
+                    if (resultScoreManager) resultScoreManager.GetClearTime();
+
                     openDoor = true;
                 }
                 if (RoomModel.Instance)
@@ -255,6 +264,8 @@ public class CheckableObjManager : MonoBehaviour
                     else
                         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + "1" + "/1";
 
+                    if (nowFindObj.name != "Door") if (resultScoreManager) resultScoreManager.successNum++;
+
                     SEManager.Instance.Play(
                         audioPath: SEPath.FIND_KEY, //再生したいオーディオのパス
                         volumeRate: 1,                //音量の倍率
@@ -270,6 +281,7 @@ public class CheckableObjManager : MonoBehaviour
             }
             else
             {
+                if(isCheckNow)if(resultScoreManager)resultScoreManager.notPlanNum++;
                 Debug.Log("鍵はなかった");
             }
 

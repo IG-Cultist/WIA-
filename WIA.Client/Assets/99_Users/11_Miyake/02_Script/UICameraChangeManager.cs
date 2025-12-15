@@ -10,6 +10,9 @@ public class UICameraChangeManager : MonoBehaviour
     private GameObject pcCamera;
     private GameObject vrCamera;
 
+    [SerializeField] GameObject pcCanvas;
+    [SerializeField] GameObject vrCanvas;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,12 +22,14 @@ public class UICameraChangeManager : MonoBehaviour
             pcCamera = GameObject.Find("PC_Camera").gameObject;
             pcCamera.SetActive(false);
             Debug.Log("PC‚ÌƒJƒƒ‰‚ğOFF‚É‚µ‚½‚æ‚ñ");
+            if(pcCanvas) pcCanvas.SetActive(false);
         }
         else
         {
             vrCamera = GameObject.Find("VR_Camera").gameObject;
             vrCamera.SetActive(false);
             Debug.Log("VR‚ÌƒJƒƒ‰‚ğOFF‚É‚µ‚½‚æ‚ñ");
+            if (vrCanvas) vrCanvas.SetActive(false);
         }
     }
 

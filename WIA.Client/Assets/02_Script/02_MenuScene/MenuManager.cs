@@ -11,9 +11,12 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     Color32 endColor = new Color32(255, 255, 255, 255);
 
-    [SerializeField] GameObject guideText;
+    [SerializeField] GameObject pcGuideText;
+    [SerializeField] GameObject vrGuideText;
+
     [SerializeField] GameObject textPrefab;
-    [SerializeField] Image viewImage;
+    [SerializeField] Image pcViewImage;
+    [SerializeField] Image vrViewImage;
 
     [Header("プレビュー画像")]
     [SerializeField] Sprite view1;
@@ -44,7 +47,8 @@ public class MenuManager : MonoBehaviour
     public void SelectGame()
     {
         scene_State = NEXTSCENE_STATE.GAME;
-        viewImage.sprite = view1;
+        pcViewImage.sprite = view1;
+        vrViewImage.sprite = view1;
 
         ChangeText(GameText);
     }
@@ -52,7 +56,8 @@ public class MenuManager : MonoBehaviour
     public void SelectDictionary()
     {
         scene_State = NEXTSCENE_STATE.DICTIONARY;
-        viewImage.sprite = view2;
+        pcViewImage.sprite = view2;
+        vrViewImage.sprite = view2;
 
         ChangeText(DictionaryText);
     }
@@ -60,7 +65,8 @@ public class MenuManager : MonoBehaviour
     public void SelectProfile()
     {
         scene_State = NEXTSCENE_STATE.PROFILE;
-        viewImage.sprite = view3;
+        pcViewImage.sprite = view3;
+        vrViewImage.sprite = view3;
 
         ChangeText(ProfileText);
     }
@@ -78,14 +84,22 @@ public class MenuManager : MonoBehaviour
     /// <param name="text">代入テキスト</param>
     private void ChangeText(string text)
     {
-        Destroy(guideText.transform.GetChild(0).gameObject);   //既存テキストを削除
+        Destroy(pcGuideText.transform.GetChild(0).gameObject);   //既存テキストを削除
+        Destroy(vrGuideText.transform.GetChild(0).gameObject);   //既存テキストを削除
 
-        GameObject txt = Instantiate(textPrefab, new Vector3(610f, 195f, 0f), Quaternion.identity, guideText.gameObject.transform); //インスタンス生成
-        
-        txt.GetComponent<TextMeshProUGUI>().text = text;
+        GameObject pcTxt = Instantiate(textPrefab, new Vector3(610f, 195f, 0f), Quaternion.identity, pcGuideText.gameObject.transform); //インスタンス生成
+        GameObject vrTxt = Instantiate(textPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity, vrGuideText.gameObject.transform); //インスタンス生成
 
-        txt.transform.SetAsFirstSibling();   //先頭に並び替え
+        Vector3 pos = vrTxt.transform.position;
+        pos.x += -350.0001f;
+        pos.y += -909.5871f;
+        pos.z -= 2147.96f;
 
+        pcTxt.GetComponent<TextMeshProUGUI>().text = text;
+        vrTxt.GetComponent<TextMeshProUGUI>().text = text;
+
+        pcTxt.transform.SetAsFirstSibling();   //先頭に並び替え
+        vrTxt.transform.SetAsFirstSibling();   //先頭に並び替え
     }
 
     /// <summary>

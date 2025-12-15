@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
 
     public int deathCnt; //死亡回数
 
+    private ResultScoreManager resultScoreManager;
 
     private void Awake()
     {
@@ -110,6 +111,8 @@ public class Player : MonoBehaviour
         }
 
         if (!isMain) return;
+
+        resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
 
         deathCnt = 0; //死亡回数
         //VR時は無視
@@ -312,6 +315,8 @@ public class Player : MonoBehaviour
         {
             // 死亡回数を加算
             if (!isDebug) deathCnt++;
+            if (resultScoreManager) resultScoreManager.failureNum++;
+
             // 死亡回数テキストを取得し、死亡回数を反映
             GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
 
@@ -427,6 +432,8 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Abyss"))
         {
+            if(resultScoreManager) resultScoreManager.carelesslyNum++;
+
             SEManager.Instance.Play(
             audioPath: SEPath.FALL, //再生したいオーディオのパス
                 volumeRate: 1,                 //音量の倍率
@@ -445,6 +452,9 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Container"))
         {
             Debug.Log("コンテナ衝突");
+
+            if (resultScoreManager) resultScoreManager.carelesslyNum++;
+
             SEManager.Instance.Play(
                 audioPath: SEPath.DEATH, //再生したいオーディオのパス
                  volumeRate: 1,                 //音量の倍率
@@ -458,6 +468,9 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Trap"))
         { // 触れたオブジェクトがトラップの場合、死ぬ
+
+            if (resultScoreManager) resultScoreManager.notCoolNum++;
+
             if (!isSliped)
             {
                 SEManager.Instance.Play(
@@ -475,6 +488,9 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.name =="knife")
         { // 触れたオブジェクトがナイフの場合、死ぬ
+
+            if (resultScoreManager) resultScoreManager.cruelNum++;
+
             SEManager.Instance.Play(
                 audioPath: SEPath.DEATH, //再生したいオーディオのパス
                  volumeRate: 1,                 //音量の倍率
@@ -486,12 +502,20 @@ public class Player : MonoBehaviour
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
         }
-        if(collision.gameObject.CompareTag("Pot"))
+        if (collision.gameObject.CompareTag("Pot"))
         {//触れたオブジェクトが植木鉢だった場合
+            if (resultScoreManager) resultScoreManager.carelesslyNum++;
+
+            CheckableObjManager checkableObjManager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
+            if (checkableObjManager.isCheckNow) if (resultScoreManager) resultScoreManager.notCoolNum++; ;
+
             player_State = PLAYER_STATE.DEATH; //死亡状態にする
         }
         if (collision.gameObject.name =="Injector")
         {//触れたオブジェクトが注射器だった場合
+
+            if (resultScoreManager) resultScoreManager.notJudgeNum++;
+
             SEManager.Instance.Play(
                  audioPath: SEPath.STAB, //再生したいオーディオのパス
                  volumeRate: 0.8f,                 //音量の倍率
