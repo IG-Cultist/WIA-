@@ -4,6 +4,7 @@
 //===============================================
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Readers;
 
 public class XRControllerButtonEvents : MonoBehaviour
@@ -88,9 +89,14 @@ public class XRControllerButtonEvents : MonoBehaviour
         Debug.Log("右のトリガーが離されたよん");
         isTrriger = false;
 
-        //音を止める
-        CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
-        manager.CheckOutObject();
+        //ステージ2のみ
+        if(SceneManager.GetActiveScene().name == "Stage_2")
+        {
+            //音を止める
+            CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
+            manager.CheckOutObject();
+        }
+
     }
 
     //左トリガーを離したとき
@@ -99,8 +105,12 @@ public class XRControllerButtonEvents : MonoBehaviour
         Debug.Log("左のトリガーが離されたよん");
         isTrriger = false;
 
-        //音を止める
-        CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
-        manager.CheckOutObject();
+        //ステージ2のみ
+        if (SceneManager.GetActiveScene().name == "Stage_2")
+        {
+            //音を止める
+            CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
+            manager.CheckOutObject();
+        }
     }
 }
