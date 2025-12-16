@@ -79,7 +79,11 @@ public class AttentionText : MonoBehaviour
         if (nextLogo == null)
         {
             Initiate.DoneFading();
-            Initiate.Fade("01_TitleScene", endColor, 2.0f);
+
+            //VRÇ©Ç«Ç§Ç©Ç≈ÉVÅ[ÉìëIï 
+            if(UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_01_TitleScene",endColor,2.0f);
+            else Initiate.Fade("01_TitleScene", endColor, 2.0f);
+
         }
     }
 }
