@@ -75,7 +75,9 @@ public class MenuManager : MonoBehaviour
     {
         // シーン遷移
         Initiate.DoneFading();
-        Initiate.Fade("01_TitleScene", endColor, 2.0f);
+        //VRかどうかでシーン選別
+        if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_01_TitleScene", endColor, 2.0f);
+        else Initiate.Fade("01_TitleScene", endColor, 2.0f);
     }
 
     /// <summary>
@@ -128,14 +130,18 @@ public class MenuManager : MonoBehaviour
             case NEXTSCENE_STATE.DICTIONARY:   //名鑑選択状態
 
                 //名鑑シーンに遷移
-                Initiate.Fade("04_DictionaryScene", endColor, 1.0f);
+                //VRかどうかでシーン選別
+                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_04_DictionaryScene", endColor, 2.0f);
+                else Initiate.Fade("04_DictionaryScene", endColor, 1.0f);
 
                 break;
 
             case NEXTSCENE_STATE.PROFILE:   //登録情報選択状態
 
                 //プロフィールシーンに遷移
-                Initiate.Fade("05_ProfileScene", endColor, 1.0f);
+                //VRかどうかでシーン選別
+                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_05_ProfileScene", endColor, 2.0f);
+                else Initiate.Fade("05_ProfileScene", endColor, 1.0f);
 
                 break;
 
