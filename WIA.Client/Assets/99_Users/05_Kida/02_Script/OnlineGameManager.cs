@@ -59,11 +59,14 @@ public class OnlineGameManager : MonoBehaviour
     }
 
     private int TaskCnt; //タスクカウント
+    private int potCount;
     private bool isGetKey = false; //鍵を持っている
     #endregion
 
     private void Awake()
     {
+        objList = new Dictionary<string, GameObject>();
+
         if (RoomModel.Instance.IsMaster == false)
         {
             //すべてのオブジェクトからRigidbodyを外す
@@ -174,23 +177,6 @@ public class OnlineGameManager : MonoBehaviour
         isGetKey = false;
     }
 
-    private void Update()
-    {
-        /*以下はデバッグ用コマンド*/
-#if DEBUG
-        //Oボタンでオブジェクト生成
-        if(Input.GetKeyDown("o"))
-        {
-            SpawnObj(Vector3.zero);
-        }
-        //Sボタンでオブジェクト1の権限取得
-        if(Input.GetKeyDown("p"))
-        {
-            ObjectOwnershipSwap("0", RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
-        }
-#endif
-    }
-
     /// <summary>
     /// 同期オブジェクトの取得
     /// </summary>
@@ -212,12 +198,12 @@ public class OnlineGameManager : MonoBehaviour
             syncObjList.Remove(syncObj);
             break;
         }
-        foreach (var syncObj in objList)
-        {
-            if (syncObj.Value != gameObject) continue;
-            syncObjList.Remove(syncObj.Value);
-            break;
-        }
+        //foreach (var syncObj in objList)
+        //{
+        //    if (syncObj.Value != gameObject) continue;
+        //    objList.Remove(syncObj.Key);
+        //    break;
+        //}
         await RoomModel.Instance.DeliteObjectAsync(gameObject.name);
     }
 
@@ -238,6 +224,10 @@ public class OnlineGameManager : MonoBehaviour
         {
             foreach (var obj in objList)
             {
+                if(obj.Value == null)
+                {
+                    Debug.Log("null");
+                }
                 if (obj.Value.GetComponent<Rigidbody>() == null) continue;
                 await RoomModel.Instance.UpdateObjectAsync(obj.Value.transform.position, obj.Value.transform.rotation, obj.Key);
             }
@@ -287,6 +277,7 @@ public class OnlineGameManager : MonoBehaviour
         subplayer.transform.DORotate(rot.eulerAngles, 0.1f);
         subplayer.transform.GetChild(0).DORotate(rot.eulerAngles, 0.1f);
         subplayer.GetComponent<Player>().plaAnimation.anim_State = (PlayerAnimation.ANIM_STATE)animState;
+        Debug.Log("現在のアニメーションは" + animState.ToString());
         subplayer.GetComponent<Player>().subMoveSpeed = moveSpeed;
     }
 
@@ -295,20 +286,37 @@ public class OnlineGameManager : MonoBehaviour
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="id"></param>
-    void OnSpawnedObjectSyn(Vector3 pos,string id)
+    void OnSpawnedObjectSyn(Vector3 pos, string id)
     {
         spawnObjId = id;
         GameObject gameObject = Instantiate(objPrefab);
+        gameObject.name = gameObject.name + potCount;
         gameObject.transform.position = pos;
+        if(gameObject == null)
+        {
+            Debug.Log("Nullオブジェクト");
+        }
         objList.Add(id, gameObject);
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Stage_K02":
+                FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
+                flowerPotManager.potList.Add(gameObject);
+                potCount++;
+                if(Player.name == "Worker")
+                {
+                    Destroy(gameObject.GetComponent<Rigidbody>());
+                }
+                break;
+        }
     }
 
-    /// <summary>
-    /// オブジェクト更新通知
-    /// </summary>
-    /// <param name="pos"></param>
-    /// <param name="id"></param>
-    void OnUpdatedObject(Vector3 pos,Quaternion rot,string id)
+        /// <summary>
+        /// オブジェクト更新通知
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <param name="id"></param>
+        void OnUpdatedObject(Vector3 pos,Quaternion rot,string id)
     {
         foreach (var obj in objList)
         {
@@ -335,8 +343,16 @@ public class OnlineGameManager : MonoBehaviour
             foreach (var obj in objList)
             {
                 if (obj.Value.name != objName) continue;
-                syncObjList.Remove(obj.Value);
-                Destroy(GameObject.Find(objName));
+                objList.Remove(obj.Key);
+                if(SceneManager.GetActiveScene().name == "Stage_K02")
+                {
+                    FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
+                    flowerPotManager.PotLost(GameObject.Find(objName));
+                }
+                else
+                {
+                    Destroy(GameObject.Find(objName));
+                }
                 break;
             }
         }

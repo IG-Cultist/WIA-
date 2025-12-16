@@ -13,6 +13,9 @@ public class FlowerPotManager : MonoBehaviour
     public List<GameObject> randomSpawnPoint =new List<GameObject>(); //植木鉢がスポーンする場所のリスト
     public List<int> nowSpawnList=new List<int>();
 
+    private int potCount; //植木鉢カウント
+    private int maxPots = 3;//植木鉢の最大数
+    private int spawnConditionsPots = 2; //植木鉢が生成する条件の値
     public bool isThreePot = false; //植木鉢が3個存在するかどうかの変数
     public int generatNumber;
 
@@ -24,13 +27,9 @@ public class FlowerPotManager : MonoBehaviour
     {
         if(RoomModel.Instance)
         {//通信時のみ
+
             //オンラインゲームマネージャー取得
             gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
-            if(OnlineGameManager.Player.name == "Stricker")
-            {//労災側のみ
-                //植木鉢を生成する
-                GeneratePot();
-            }
         }
         else
         {
@@ -40,18 +39,17 @@ public class FlowerPotManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (potList.Count >= 3)
+        if (potCount >= maxPots)
         {//potListの要素が3以上だったら
             isThreePot = true; // 植木鉢が3個ある状態にする
-            RemoveList(generatNumber);
+            //RemoveList(generatNumber);
         }
-        if (potList.Count <= 2)
+        if (potCount <= spawnConditionsPots)
         {//potListの要素が2以下だったら
             if (RoomModel.Instance)
             {//通信時のみ
-             //オンラインゲームマネージャー取得
                 if (OnlineGameManager.Player.name == "Stricker")
                 {
                     GeneratePot();
@@ -63,6 +61,19 @@ public class FlowerPotManager : MonoBehaviour
             }
             isThreePot = false; // 植木鉢が3個存在しない状態
         }
+    }
+
+    /// <summary>
+    /// 植木鉢がなくなった時の処理
+    /// </summary>
+    public void PotLost(GameObject gameObject)
+    {
+        FlowerPot flowerPot = gameObject.GetComponent<FlowerPot>();
+        GameObject fragment = Instantiate(potFragmentObj);
+        fragment.transform.position = gameObject.transform.position;
+        flowerPot.SpawnFragment(fragment);
+        Destroy(gameObject);
+        potCount--;
     }
 
     /// <summary>
@@ -89,10 +100,11 @@ public class FlowerPotManager : MonoBehaviour
         else
         {
             Instantiate(potObj, randomSpawnPoint[generatNumber].transform.position, randomSpawnPoint[generatNumber].transform.rotation); // randomSpawnPointに格納されたgameObjectのgeneratNumberの場所に生成
+                                                                                                                                         //potListに要素を追加する
+            potList.Add(potObj);
         }
 
-        //potListに要素を追加する
-        potList.Add(potObj);
+        potCount++;
     }
 
     public void RemoveList(int generateNumber)
@@ -100,6 +112,10 @@ public class FlowerPotManager : MonoBehaviour
         if(nowSpawnList.Contains(generateNumber))
         {
             nowSpawnList.Remove(generateNumber);
+        }
+        if(RoomModel.Instance)
+        {
+            //gameManager.DeliteSynObj();
         }
     }
 }

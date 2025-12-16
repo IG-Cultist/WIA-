@@ -98,8 +98,7 @@ public class TaskCheck : MonoBehaviour
             //” ‚ğÁ‚·
             if (RoomModel.Instance) GameObject.Find("OnlineGameManager").
                 GetComponent<OnlineGameManager>().DeliteSynObj(other.gameObject); //–Ø“cW•ã‚ª•ÏX
-
-                Destroy(other.gameObject);
+            else Destroy(other.gameObject);
 
 
             if(!RoomModel.Instance)

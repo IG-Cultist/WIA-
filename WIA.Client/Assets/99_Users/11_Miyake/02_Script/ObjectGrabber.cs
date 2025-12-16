@@ -29,6 +29,9 @@ public class ObjectGrabber : MonoBehaviour
     // 現在掴んでいるオブジェクトのRigidbody参照
     private Rigidbody grabbedRb = null;
 
+    //通信用
+    OnlineGameManager gameManager;
+
     void Start()
     {
         //メインキャラクターのカメラを取る
@@ -40,7 +43,8 @@ public class ObjectGrabber : MonoBehaviour
         if (leftClickImage != null)
             leftClickImage.enabled = false;
 
-        
+        if (RoomModel.Instance)
+            gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
     }
 
     void Update()
@@ -174,6 +178,11 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Pot")) //植木鉢に触れた場合
             {
+                if(RoomModel.Instance)
+                {
+                    GameObject.Find(hit.collider.name).GetComponent<FlowerPot>().GrabPot();
+                }
+                else
                 GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
             }
             else if (hit.collider.CompareTag("WaterCooler"))    // ウォータークーラーに触れた場合

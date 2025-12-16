@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
 
 public class FlowerPot : MonoBehaviour
@@ -34,9 +35,10 @@ public class FlowerPot : MonoBehaviour
     void Start()
     {
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
-        potObj.name = "FlowerPot_obj"; //生成される植木鉢オブジェクトの名前を固定
         if (RoomModel.Instance)
             gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
+        else
+            potObj.name = "FlowerPot_obj"; //生成される植木鉢オブジェクトの名前を固定
     }
 
     // Update is called once per frame
@@ -86,35 +88,23 @@ public class FlowerPot : MonoBehaviour
         {//Baseタグのオブジェクトに触れたら
             FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
             potObj = flowerPotManager.potObj;
-            potFragmentObj = flowerPotManager.potFragmentObj;
             nowSpawnList = flowerPotManager.nowSpawnList;
 
-            GameObject fragment; //破片オブジェクト
-            fragment = Instantiate(potFragmentObj, this.gameObject.transform.position, this.gameObject.transform.rotation);
 
             flowerPotManager.RemoveList(flowerPotManager.generatNumber);
 
             if(RoomModel.Instance)
             {
+                if(OnlineGameManager.Player.name == "Stricker")
                 gameManager.DeliteSynObj(this.gameObject);
             }
             else
             {
                 //植木鉢を消す
                 Destroy(this.gameObject);
-            }
 
-            // 警告円を破壊する
-            Destroy(dangerZoneObj);
-            flowerPotManager.potList.Remove(potObj);
-            flowerPotManager.isThreePot = false;
-
-            for (int i = 0; i < fragment.transform.childCount; i++)
-            {//potFragmentObjの子の数だけループ
-                fragment.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(new Vector2(50, 50)); //子を取得　
-
-                DestroyFragment(fragment);
-                FadeFragment(fragment.transform.GetChild(i)); //破片をフェードアウトさせる
+                //カウントを減らす
+                flowerPotManager.PotLost(this.gameObject);
             }
         }
     }
@@ -129,6 +119,24 @@ public class FlowerPot : MonoBehaviour
 
             //flowerPotManagerで使用していた番号を削除
             flowerPotManager.RemoveList(flowerPotManager.generatNumber);
+        }
+    }
+
+    public void SpawnFragment(GameObject fragment)
+    {
+        FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
+
+        // 警告円を破壊する
+        Destroy(dangerZoneObj);
+        flowerPotManager.potList.Remove(potObj);
+        flowerPotManager.isThreePot = false;
+
+        for (int i = 0; i < fragment.transform.childCount; i++)
+        {//potFragmentObjの子の数だけループ
+            fragment.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(new Vector2(50, 50)); //子を取得　
+
+            DestroyFragment(fragment);
+            FadeFragment(fragment.transform.GetChild(i)); //破片をフェードアウトさせる
         }
     }
 
@@ -160,16 +168,8 @@ public class FlowerPot : MonoBehaviour
     /// <param name="fragment"></param>
     public async void DestroyFragment(GameObject fragment)
     {
-        if(RoomModel.Instance)
-        {
-            await Task.Delay(6000); //6秒待つ　
-            gameManager.DeliteSynObj(fragment);
-        }
-        else
-        {
-            await Task.Delay(6000); //6秒待つ　
-            Destroy(fragment.gameObject);　//破片を消す
-        }
+        await Task.Delay(6000); //6秒待つ　
+        Destroy(fragment.gameObject);　//破片を消す
     }
 
 

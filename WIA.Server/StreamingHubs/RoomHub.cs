@@ -426,7 +426,7 @@ namespace WIA.Server.StreamingHubs
         {
             lock(roomContextRepository) 
             {
-                this.roomContext.Group.Except([this.ConnectionId]).OnDeliteObject(objName);
+                this.roomContext.Group.All.OnDeliteObject(objName);
             }
         }
 

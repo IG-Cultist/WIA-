@@ -187,7 +187,7 @@ public class Player : MonoBehaviour
                 #region オンライン環境
                 if (RoomModel.Instance)
                 {//オンライン環境
-                    if (OnlineGameManager.Player)
+                    if (OnlineGameManager.Player == this.gameObject)
                     {//操作しているプレイヤー
                         if (isSearch)
                         {//探している
