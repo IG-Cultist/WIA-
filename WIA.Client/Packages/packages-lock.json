@@ -58,6 +58,13 @@
       },
       "hash": "7134b291a0a4b8a6d9aad787fe8f4d3f91340b52"
     },
+    "com.meta.xr.sdk.core": {
+      "version": "83.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
