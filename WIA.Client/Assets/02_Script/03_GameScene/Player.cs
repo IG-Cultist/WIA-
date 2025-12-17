@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
                 #region オンライン環境
                 if (RoomModel.Instance)
                 {//オンライン環境
-                    if (OnlineGameManager.Player)
+                    if (OnlineGameManager.Player == this.gameObject)
                     {//操作しているプレイヤー
                         if (isSearch)
                         {//探している
@@ -513,6 +513,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(RoomModel.Instance && OnlineGameManager.Player == this.gameObject)
+        {
+            Debug.Log("タグ：" + collision.gameObject.tag);
+        }
         if (collision.gameObject.CompareTag("Container"))
         {
             Debug.Log("コンテナ衝突");
@@ -628,5 +632,14 @@ public class Player : MonoBehaviour
         isTrip = false;
         // 画面の毒々しさを解除する
         tripPanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// オンライン限定死亡処理
+    /// </summary>
+    public void OnlineDeath()
+    {
+        //死亡状態に変更
+        player_State = PLAYER_STATE.DEATH;
     }
 }

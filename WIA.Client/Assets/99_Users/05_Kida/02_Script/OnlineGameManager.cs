@@ -59,11 +59,14 @@ public class OnlineGameManager : MonoBehaviour
     }
 
     private int TaskCnt; //タスクカウント
+    private int potCount;
     private bool isGetKey = false; //鍵を持っている
     #endregion
 
     private void Awake()
     {
+        objList = new Dictionary<string, GameObject>();
+
         if (RoomModel.Instance.IsMaster == false)
         {
             //すべてのオブジェクトからRigidbodyを外す
@@ -174,23 +177,6 @@ public class OnlineGameManager : MonoBehaviour
         isGetKey = false;
     }
 
-    private void Update()
-    {
-        /*以下はデバッグ用コマンド*/
-#if DEBUG
-        //Oボタンでオブジェクト生成
-        if(Input.GetKeyDown("o"))
-        {
-            SpawnObj(Vector3.zero);
-        }
-        //Sボタンでオブジェクト1の権限取得
-        if(Input.GetKeyDown("p"))
-        {
-            ObjectOwnershipSwap("0", RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
-        }
-#endif
-    }
-
     /// <summary>
     /// 同期オブジェクトの取得
     /// </summary>
@@ -204,21 +190,9 @@ public class OnlineGameManager : MonoBehaviour
     /// 同期オブジェクトの更新
     /// </summary>
     /// <param name="gameObject"></param>
-    public async void DeliteSynObj(GameObject gameObject)
+    public async void DeliteSynObj(GameObject gameObject , string tag)
     {
-        foreach (var syncObj in syncObjList)
-        {
-            if (syncObj != gameObject) continue;
-            syncObjList.Remove(syncObj);
-            break;
-        }
-        foreach (var syncObj in objList)
-        {
-            if (syncObj.Value != gameObject) continue;
-            syncObjList.Remove(syncObj.Value);
-            break;
-        }
-        await RoomModel.Instance.DeliteObjectAsync(gameObject.name);
+        await RoomModel.Instance.DeliteObjectAsync(gameObject.name,tag);
     }
 
     /// <summary>
@@ -238,6 +212,11 @@ public class OnlineGameManager : MonoBehaviour
         {
             foreach (var obj in objList)
             {
+                if(obj.Value == null)
+                {
+                    Debug.Log("null");
+                    continue;
+                }
                 if (obj.Value.GetComponent<Rigidbody>() == null) continue;
                 await RoomModel.Instance.UpdateObjectAsync(obj.Value.transform.position, obj.Value.transform.rotation, obj.Key);
             }
@@ -287,6 +266,7 @@ public class OnlineGameManager : MonoBehaviour
         subplayer.transform.DORotate(rot.eulerAngles, 0.1f);
         subplayer.transform.GetChild(0).DORotate(rot.eulerAngles, 0.1f);
         subplayer.GetComponent<Player>().plaAnimation.anim_State = (PlayerAnimation.ANIM_STATE)animState;
+        Debug.Log("現在のアニメーションは" + animState.ToString());
         subplayer.GetComponent<Player>().subMoveSpeed = moveSpeed;
     }
 
@@ -295,12 +275,32 @@ public class OnlineGameManager : MonoBehaviour
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="id"></param>
-    void OnSpawnedObjectSyn(Vector3 pos,string id)
+    void OnSpawnedObjectSyn(Vector3 pos, string id)
     {
         spawnObjId = id;
         GameObject gameObject = Instantiate(objPrefab);
+        gameObject.name = gameObject.name + potCount;
         gameObject.transform.position = pos;
+        if(gameObject == null)
+        {
+            Debug.Log("Nullオブジェクト");
+        }
         objList.Add(id, gameObject);
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Stage_K02":
+                FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
+                flowerPotManager.potList.Add(gameObject);
+                potCount++;
+                if(Player.name == "Worker")
+                {
+                    Destroy(gameObject.GetComponent<Rigidbody>());
+                }
+                break;
+        }
+        CancelInvoke("UpdateObj");
+        //オブジェクト更新を行う
+        InvokeRepeating("UpdateObj", 0.1f, 0.1f);
     }
 
     /// <summary>
@@ -328,15 +328,30 @@ public class OnlineGameManager : MonoBehaviour
         }
     }
 
-    void OnDeliteObjectSyn(string objName)
+    void OnDeliteObjectSyn(string objName, string tag)
     {
         if(objList != null)
         {
             foreach (var obj in objList)
             {
                 if (obj.Value.name != objName) continue;
-                syncObjList.Remove(obj.Value);
-                Destroy(GameObject.Find(objName));
+                objList.Remove(obj.Key);
+                if(SceneManager.GetActiveScene().name == "Stage_K02")
+                {
+                    FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
+                    flowerPotManager.PotLost(GameObject.Find(objName));
+                    if(tag == "Player"&&Player.name == "Worker")
+                    {
+                        player.GetComponent<Player>().OnlineDeath();
+                    }
+                }
+                else
+                {
+                    Destroy(GameObject.Find(objName));
+                }
+                CancelInvoke("UpdateObj");
+                //オブジェクト更新を行う
+                InvokeRepeating("UpdateObj", 0.1f, 0.1f);
                 break;
             }
         }

@@ -152,7 +152,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action< Vector3,Quaternion, string> OnUpdatedObject { get; set; }
 
     //オブジェクトの削除通知
-    public Action<string> OnDeliteObjectSyn {  get; set; }
+    public Action<string,string> OnDeliteObjectSyn {  get; set; }
 
     //オブジェクト所有権変更通知
     public Action<string,int> OnOwnershipSwapObjectSyn {  get; set; }
@@ -539,9 +539,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     }
 
 
-    public void OnDeliteObject(string objName)
+    public void OnDeliteObject(string objName, string tag)
     {
-        OnDeliteObjectSyn(objName);
+        OnDeliteObjectSyn(objName,tag);
     }
 
     /// <summary>
@@ -734,9 +734,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// </summary>
     /// <param name="objName"></param>
     /// <returns></returns>
-    public async UniTask DeliteObjectAsync(string objName)
+    public async UniTask DeliteObjectAsync(string objName,string tag)
     {
-        await roomHub.DeliteObjectAsync(objName);
+        await roomHub.DeliteObjectAsync(objName,tag);
     }
 
     /// <summary>
