@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -39,7 +40,7 @@ public class FlowerPotManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
         if (potCount >= maxPots)
         {//potList‚Ì—v‘f‚ª3ˆÈã‚¾‚Á‚½‚ç

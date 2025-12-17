@@ -151,7 +151,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// オブジェクトの削除
         /// Author:木田晃輔
         /// </summary>
-        void OnDeliteObject(string objName);
+        void OnDeliteObject(string objName,string tag);
 
         /// <summary>
         /// オブジェクト所有権変更通知

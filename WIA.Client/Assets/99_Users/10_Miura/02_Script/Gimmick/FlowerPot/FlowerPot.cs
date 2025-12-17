@@ -86,6 +86,8 @@ public class FlowerPot : MonoBehaviour
     {
         if (collision.gameObject.tag == "Base" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "CheckableObject")
         {//Baseタグのオブジェクトに触れたら
+            Debug.Log("当たったもの" + collision.gameObject.tag);
+            if (RoomModel.Instance && collision.gameObject == OnlineGameManager.Player) return;
             FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
             potObj = flowerPotManager.potObj;
             nowSpawnList = flowerPotManager.nowSpawnList;
@@ -96,7 +98,7 @@ public class FlowerPot : MonoBehaviour
             if(RoomModel.Instance)
             {
                 if(OnlineGameManager.Player.name == "Stricker")
-                gameManager.DeliteSynObj(this.gameObject);
+                gameManager.DeliteSynObj(this.gameObject, collision.gameObject.tag);
             }
             else
             {

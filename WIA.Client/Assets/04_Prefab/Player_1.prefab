@@ -3362,9 +3362,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1.8
+  m_Height: 3.4935737
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 1.7467868, z: 0}
 --- !u!54 &5875113872636456304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3426,10 +3426,17 @@ MonoBehaviour:
   plaAnimation: {fileID: 4259608365881567620}
   warpPoint: {fileID: 0}
   grabber: {fileID: 2380555317666283579}
+  subMoveSpeed: 0
   isHave: 0
+  isFall: 0
   isDead: 0
   isRespawn: 1
+  isSearch: 0
+  isLow: 0
   isDebug: 0
+  isTrip: 0
+  isSliped: 0
+  isMain: 0
   player_State: 1
   deathCnt: 0
 --- !u!114 &4259608365881567620
@@ -4702,8 +4709,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084c01ab381b9da4082c1f84cf70751b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceThreshold: 0.15
-  isGrounded: 1
+  player: {fileID: 0}
+  OnEnterGround:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExitGround:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7238086746792637187
 GameObject:
   m_ObjectHideFlags: 0

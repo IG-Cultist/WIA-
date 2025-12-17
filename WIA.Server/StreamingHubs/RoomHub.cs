@@ -422,11 +422,11 @@ namespace WIA.Server.StreamingHubs
         /// </summary>
         /// <param name="objName"></param>
         /// <returns></returns>
-        public async Task DeliteObjectAsync(string objName)
+        public async Task DeliteObjectAsync(string objName,string tag)
         {
             lock(roomContextRepository) 
             {
-                this.roomContext.Group.All.OnDeliteObject(objName);
+                this.roomContext.Group.All.OnDeliteObject(objName,tag);
             }
         }
 

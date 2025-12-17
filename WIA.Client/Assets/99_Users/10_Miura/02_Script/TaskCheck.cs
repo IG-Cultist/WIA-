@@ -97,7 +97,7 @@ public class TaskCheck : MonoBehaviour
 
             //箱を消す
             if (RoomModel.Instance) GameObject.Find("OnlineGameManager").
-                GetComponent<OnlineGameManager>().DeliteSynObj(other.gameObject); //木田晃輔が変更
+                GetComponent<OnlineGameManager>().DeliteSynObj(other.gameObject,"Box"); //木田晃輔が変更
             else Destroy(other.gameObject);
 
 

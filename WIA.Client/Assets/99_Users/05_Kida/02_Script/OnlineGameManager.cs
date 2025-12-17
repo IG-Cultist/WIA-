@@ -190,21 +190,9 @@ public class OnlineGameManager : MonoBehaviour
     /// 同期オブジェクトの更新
     /// </summary>
     /// <param name="gameObject"></param>
-    public async void DeliteSynObj(GameObject gameObject)
+    public async void DeliteSynObj(GameObject gameObject , string tag)
     {
-        foreach (var syncObj in syncObjList)
-        {
-            if (syncObj != gameObject) continue;
-            syncObjList.Remove(syncObj);
-            break;
-        }
-        //foreach (var syncObj in objList)
-        //{
-        //    if (syncObj.Value != gameObject) continue;
-        //    objList.Remove(syncObj.Key);
-        //    break;
-        //}
-        await RoomModel.Instance.DeliteObjectAsync(gameObject.name);
+        await RoomModel.Instance.DeliteObjectAsync(gameObject.name,tag);
     }
 
     /// <summary>
@@ -227,6 +215,7 @@ public class OnlineGameManager : MonoBehaviour
                 if(obj.Value == null)
                 {
                     Debug.Log("null");
+                    continue;
                 }
                 if (obj.Value.GetComponent<Rigidbody>() == null) continue;
                 await RoomModel.Instance.UpdateObjectAsync(obj.Value.transform.position, obj.Value.transform.rotation, obj.Key);
@@ -309,14 +298,17 @@ public class OnlineGameManager : MonoBehaviour
                 }
                 break;
         }
+        CancelInvoke("UpdateObj");
+        //オブジェクト更新を行う
+        InvokeRepeating("UpdateObj", 0.1f, 0.1f);
     }
 
-        /// <summary>
-        /// オブジェクト更新通知
-        /// </summary>
-        /// <param name="pos"></param>
-        /// <param name="id"></param>
-        void OnUpdatedObject(Vector3 pos,Quaternion rot,string id)
+    /// <summary>
+    /// オブジェクト更新通知
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="id"></param>
+    void OnUpdatedObject(Vector3 pos,Quaternion rot,string id)
     {
         foreach (var obj in objList)
         {
@@ -336,7 +328,7 @@ public class OnlineGameManager : MonoBehaviour
         }
     }
 
-    void OnDeliteObjectSyn(string objName)
+    void OnDeliteObjectSyn(string objName, string tag)
     {
         if(objList != null)
         {
@@ -348,11 +340,18 @@ public class OnlineGameManager : MonoBehaviour
                 {
                     FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
                     flowerPotManager.PotLost(GameObject.Find(objName));
+                    if(tag == "Player"&&Player.name == "Worker")
+                    {
+                        player.GetComponent<Player>().OnlineDeath();
+                    }
                 }
                 else
                 {
                     Destroy(GameObject.Find(objName));
                 }
+                CancelInvoke("UpdateObj");
+                //オブジェクト更新を行う
+                InvokeRepeating("UpdateObj", 0.1f, 0.1f);
                 break;
             }
         }

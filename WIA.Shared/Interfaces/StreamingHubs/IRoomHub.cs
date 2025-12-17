@@ -130,7 +130,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// オブジェクトの削除
         /// </summary>
         /// <returns></returns>
-        Task DeliteObjectAsync(string objName);
+        Task DeliteObjectAsync(string objName,string tag);
 
         /// <summary>
         /// オブジェクト所有権変更
