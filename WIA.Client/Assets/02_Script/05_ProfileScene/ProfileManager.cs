@@ -29,7 +29,9 @@ public class ProfileManager : MonoBehaviour
     {
         // シーン遷移
         Initiate.DoneFading();
-        Initiate.Fade("02_MenuScene", endColor, 2.0f);
+        //VRかどうかでシーン選別
+        if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_02_MenuScene", endColor, 2.0f);
+        else Initiate.Fade("02_MenuScene", endColor, 2.0f);
     }
 
     /// <summary>
