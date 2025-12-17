@@ -4784,7 +4784,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  isFind: 0
+  isTrriger: 0
 --- !u!1 &6146342138822161725
 GameObject:
   m_ObjectHideFlags: 0

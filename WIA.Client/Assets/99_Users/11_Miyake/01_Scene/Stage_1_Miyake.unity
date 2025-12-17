@@ -38663,6 +38663,7 @@ GameObject:
   - component: {fileID: 1378240370}
   - component: {fileID: 1378240374}
   - component: {fileID: 1378240373}
+  - component: {fileID: 1378240375}
   m_Layer: 0
   m_Name: HandleCube
   m_TagString: Untagged
@@ -38678,14 +38679,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378240368}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.008114855, y: 0.0005359053, z: 0.0015313437, w: 0.9999658}
+  m_LocalRotation: {x: 0.00000079955345, y: 0.00052356016, z: 0.0015271453, w: 0.9999987}
   m_LocalPosition: {x: -1.904, y: 1.46, z: 2.322}
   m_LocalScale: {x: 0.10000002, y: 0.10000003, z: 0.099999994}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 286816424179127142}
   m_Father: {fileID: 2964388714299352759}
-  m_LocalEulerAnglesHint: {x: -0.93, y: 0.06, z: 0.175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.06, z: 0.175}
 --- !u!135 &1378240370
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -38917,6 +38918,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1378240375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378240368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075c3d544a76a6a4d8c7d334eda82fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lever
+  leverObj: {fileID: 1378240368}
+  craneObj: {fileID: 5490161136033233448}
 --- !u!1 &1378821827
 GameObject:
   m_ObjectHideFlags: 0
@@ -67988,20 +68003,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &999374869804245108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505278017824184188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 075c3d544a76a6a4d8c7d334eda82fba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lever
-  leverObj: {fileID: 1505278017824184188}
-  craneObj: {fileID: 5490161136033233448}
 --- !u!1 &999526098455609222
 GameObject:
   m_ObjectHideFlags: 0
@@ -75564,7 +75565,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 286816424179127142}
-  - component: {fileID: 999374869804245108}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged

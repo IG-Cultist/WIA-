@@ -37,8 +37,8 @@ public class TaskCheck : MonoBehaviour
         {
             player = GameObject.Find("Main").GetComponent<Player>();
         }
-        resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
-        resultScoreManager.ResetData();
+        //resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
+        //resultScoreManager.ResetData();
 
         isDead = false;
         playSE = false;

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Lever : MonoBehaviour
@@ -30,17 +31,25 @@ public class Lever : MonoBehaviour
             leverTransform.DORotate(new Vector3(20, armTransform.rotation.y, 0), 3); //レバーが右に傾く
         }
 
+        
+
         //VRなら
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
-   
-            if (leverTransform.transform.rotation.x < -10)
+            //Debug.Log(leverTransform.transform.rotation.x);
+
+            if (this.gameObject.transform.localEulerAngles.x >= -9 && this.gameObject.transform.localEulerAngles.x <= 9)
             {
-                Debug.Log("左に曲げたね");
+                Debug.Log("不動あきお");
             }
-            if(leverTransform.transform.rotation.x > 10)
+            
+            else if (this.gameObject.transform.localEulerAngles.x > 10)
             {
                 Debug.Log("右に曲げたね");
+            }
+            else if (this.gameObject.transform.localEulerAngles.x < -10)
+            {
+                Debug.Log("左に曲げたね");
             }
         }
     }
