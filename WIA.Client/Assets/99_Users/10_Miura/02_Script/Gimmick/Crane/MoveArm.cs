@@ -17,11 +17,23 @@ public class MoveArm : MonoBehaviour
         var rKey = keyBoardCurrent.rKey; //RÉLÅ[
         if (rKey.wasPressedThisFrame)
         {
+            if(RoomModel.Instance)
+            {
+                if (OnlineGameManager.Player.name == "Stricker")
+                    armTransform.DORotate(new Vector3(0, 45, 0), 40);
+            }
+            else
             armTransform.DORotate(new Vector3(0, 45, 0), 40);
         }
         if (lKey.wasPressedThisFrame)
         {
-            armTransform.DORotate(new Vector3(0, -45, 0), 40);
+            if (RoomModel.Instance)
+            {
+                if (OnlineGameManager.Player.name == "Stricker")
+                    armTransform.DORotate(new Vector3(0, -45, 0), 40);
+            }
+            else
+                armTransform.DORotate(new Vector3(0, -45, 0), 40);
         }
     }
 }

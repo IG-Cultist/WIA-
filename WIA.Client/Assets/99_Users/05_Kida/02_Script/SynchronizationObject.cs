@@ -34,4 +34,14 @@ public class SynchronizationObject : MonoBehaviour
             gameManager.ObjectOwnershipSwap(id.ToString(), RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!RoomModel.Instance) return;
+        if (other.gameObject.tag != "Player") return;
+        if (other.gameObject.GetComponent<Player>().isMain == true)
+        {
+            gameManager.ObjectOwnershipSwap(id.ToString(), RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
+        }
+    }
 }
