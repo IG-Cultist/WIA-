@@ -91,6 +91,16 @@ public class TaskUIManager : MonoBehaviour
                 // 説明文を変更
                 taskExplanation.text = "任務:コーヒーを配達";
                 break;
+            case "Stage_K03":
+                // リソースからアイコンを取得
+                texture = Resources.Load("Icons/Icon_Coffee") as Texture2D;
+                taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+
+                // タスクカウントを設定
+                taskCount.text = ": 0/5";
+                // 説明文を変更
+                taskExplanation.text = "任務:コーヒーを配達";
+                break;
             case "Stage_4":
 
                 break;

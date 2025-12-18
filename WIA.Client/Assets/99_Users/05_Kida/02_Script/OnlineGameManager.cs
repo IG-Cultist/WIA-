@@ -383,12 +383,20 @@ public class OnlineGameManager : MonoBehaviour
                 {
                     syncObjList[i].AddComponent<Rigidbody>();
                     Debug.Log("オブジェクトの権限を得ました");
+                    if (syncObjList[i].name == "MovablePartition")
+                    {
+                        syncObjList[i].GetComponent<Collider>().enabled = false;
+                    }
                     return;
                 }
                 else if(joinOrder != RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
                     Destroy(syncObjList[i].GetComponent<Rigidbody>());
                     Debug.Log("オブジェクトの権限を失いました");
+                    if (syncObjList[i].name == "MovablePartition")
+                    {
+                        syncObjList[i].GetComponent<Collider>().enabled = true;
+                    }
                     return;
                 }
             }

@@ -69,7 +69,7 @@ EditorBuildSettings:
     path: Assets/01_Scene/Stage/Stage_3.unity
     guid: 1a2133c3e3231534abd40d2525fbbaf6
   - enabled: 1
-    path: Assets/99_Users/05_Kida/01_Scene/PreMatchingScene.unity
+    path: Assets/99_Users/05_Kida/01_Scene/Matching/PreMatchingScene.unity
     guid: e405a3ccf0b93cd488c579d79eee3875
   - enabled: 1
     path: Assets/99_Users/05_Kida/01_Scene/Exp/Worker/Exp_Worker_K01.unity
