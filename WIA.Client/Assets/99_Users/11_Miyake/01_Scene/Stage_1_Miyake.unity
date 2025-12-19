@@ -38932,7 +38932,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lever
   leverObj: {fileID: 1378240368}
   craneObj: {fileID: 5490161136033233448}
-  Cylinder: {fileID: 8698822909862467736}
 --- !u!1 &1378821827
 GameObject:
   m_ObjectHideFlags: 0
@@ -101273,7 +101272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &5632292876572457776
 GameObject:
   m_ObjectHideFlags: 0

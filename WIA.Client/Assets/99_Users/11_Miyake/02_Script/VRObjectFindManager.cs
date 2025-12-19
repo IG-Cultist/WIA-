@@ -91,6 +91,15 @@ public class VRObjectFindManager : MonoBehaviour
                 OnCoffeeHit(obj, interactor);
             }
         }
+        else if (obj.CompareTag("LeverButton_R"))
+        {
+            // 新しく当たった瞬間だけ処理を実行
+            if (obj != lastHitObj)
+            {
+                lastHitObj = obj;
+                OnLeverButtonHit();
+            }
+        }
         else
         {
             // タグが違う → 以前のヒットはリセット
@@ -119,6 +128,14 @@ public class VRObjectFindManager : MonoBehaviour
         manager.CheckInObject(obj, status);
 
 
+    }
+
+    /// <summary>
+    /// レバーのボタンが押されたら
+    /// </summary>
+    public void OnLeverButtonHit()
+    {
+        GameObject.Find("LeverButton").GetComponent<ButtonManager>().OnButton();
     }
 
     //音を止める

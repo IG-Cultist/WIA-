@@ -18,6 +18,8 @@ TagManager:
   - Trap
   - WaterCooler
   - ItemBox
+  - LeverButton_R
+  - LeverButton_L
   layers:
   - Default
   - TransparentFX
