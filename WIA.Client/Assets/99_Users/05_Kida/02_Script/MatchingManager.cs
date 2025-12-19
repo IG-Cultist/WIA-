@@ -81,52 +81,40 @@ public class MatchingManager : MonoBehaviour
         //conducter.Loading();
 
         #region RoomModel定義
-        //ルームモデルがあるなら削除
-        //Destroy(GameObject.Find("RoomModel"));
-        //Destroy(GameObject.Find("RoomModel(Clone)"));
-        //Invoke("NewRoomModel", 0.3f);
-        #endregion
-
-        await RoomModel.Instance.ConnectAsync();
+        if (SceneManager.GetActiveScene().name == "MatchingScene")
+        {
+            await RoomModel.Instance.ConnectAsync();
+        }
         RoomModel.Instance.OnFailedJoinSyn += this.OnFailedJoinSyn;
+        RoomModel.Instance.OnMatched += this.OnMatched;
         //ユーザーが入室した時にOnJoinedUserメソッドを実行するよう、モデルに登録
         RoomModel.Instance.OnJoinedUser += this.OnJoinedUser;
         RoomModel.Instance.OnLeavedUser += this.OnLeavedUser;
         RoomModel.Instance.OnReadySyn += this.OnReadySyn;
         RoomModel.Instance.OnStartedGame += this.OnStartedGame;
+        #endregion
 
+        if (SceneManager.GetActiveScene().name == "MatchingScene")
+            InvokeRepeating("Matching",0,1f);           
     }
 
     private void OnDisable()
     {
         //シーン遷移した場合に通知関数をモデルから解除
         RoomModel.Instance.OnFailedJoinSyn -= this.OnFailedJoinSyn;
+        RoomModel.Instance.OnMatched -= this.OnMatched;
         RoomModel.Instance.OnJoinedUser -= this.OnJoinedUser;
         RoomModel.Instance.OnLeavedUser -= this.OnLeavedUser;
         RoomModel.Instance.OnReadySyn -= this.OnReadySyn;
         RoomModel.Instance.OnStartedGame -= this.OnStartedGame;
     }
 
-    //void NewRoomModel()
-    //{
-    //    if (GameObject.Find("RoomModel") != null) return;
-    //    //ルームモデルをもう一度作成
-    //    Instantiate(roomModelPrefab);
-    //    Invoke("Connecting", 0.3f);
+    async void Matching()
+    {
+        Debug.Log("マッチング中");
+        await RoomModel.Instance.MatchingAsync();
+    }
 
-    //}
-
-
-    //void SarchRoom()
-    //{
-
-    //    //ルーム検索
-    //    SerchRoom();
-
-    //    //ローディング停止
-    //    Invoke("Loaded", 2.0f);
-
-    //}
 
     public async void Ready()
     {
@@ -181,10 +169,10 @@ public class MatchingManager : MonoBehaviour
     /// 入室処理
     /// Aughter:木田晃輔
     /// </summary>
-    public async void JoinRoom()
+    public async void JoinRoom(string roomName)
     {
         userId = userID;
-        await RoomModel.Instance.JoinedAsync(userId);
+        await RoomModel.Instance.JoinedAsync(roomName);
     }
 
     /// <summary>
@@ -296,6 +284,16 @@ public class MatchingManager : MonoBehaviour
             //Initiate.Fade("Exp_Stricker_K03", endColor, 2.0f);
         }
 
+    }
+
+    public async void OnMatched(string roomName)
+    {
+        Debug.Log("マッチングしました");
+        LeaveRoom();
+        CancelInvoke("Matching");
+        await RoomModel.Instance.JoinedAsync(roomName);
+        Initiate.DoneFading();
+        Initiate.Fade("PreMatchingScene", endColor, 2.0f);
     }
     #endregion
 }

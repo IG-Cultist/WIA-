@@ -31,6 +31,12 @@ namespace Shared.Interfaces.StreamingHubs
         void OnRoom();
 
         /// <summary>
+        /// マッチング通知
+        /// Author:Kida
+        /// </summary>
+        void OnMatching(string roomName);
+
+        /// <summary>
         /// 参加失敗の通知
         /// Author:Kida
         /// </summary>

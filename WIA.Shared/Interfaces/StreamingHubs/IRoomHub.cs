@@ -28,13 +28,19 @@ namespace Shared.Interfaces.StreamingHubs
         Task<Guid> GetConnectionIdAsync();
 
         /// <summary>
+        /// 自動マッチング
+        /// Author:木田晃輔
+        /// </summary>
+        /// <returns></returns>
+        Task<Dictionary<Guid, JoinedUser>> AutoMatchingAsync();
+
+        /// <summary>
         /// ユーザー入室
         /// Author:Kida
         /// </summary>
         /// <param name="roomName"></param>
-        /// <param name="userId"></param>
         /// <returns></returns>
-        Task<Dictionary<Guid, JoinedUser>> JoinedAsync(int userId);
+        Task<Dictionary<Guid, JoinedUser>> JoinedAsync(string roomName);
 
         /// <summary>
         /// ユーザー退室

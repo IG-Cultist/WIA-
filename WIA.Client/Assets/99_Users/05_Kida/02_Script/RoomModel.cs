@@ -56,6 +56,8 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //ルーム生成通知
     public Action OnCreatedRoom { get; set; }
 
+    public Action<string> OnMatched {  get; set; }
+
     //ユーザー接続通知
     public Action<JoinedUser> OnJoinedUser { get; set; }
 
@@ -279,6 +281,11 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public void OnRoom()
     {
         OnCreatedRoom();
+    }
+
+    public void OnMatching(string roomName)
+    {
+        OnMatched(roomName);
     }
 
     /// <summary>
@@ -571,6 +578,16 @@ public class RoomModel : BaseModel, IRoomHubReceiver
 
     #region リクエスト関連
 
+    /// <summary>
+    /// 自動マッチング
+    /// Aughter:木田晃輔
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask MatchingAsync()
+    {
+        await roomHub.AutoMatchingAsync();
+    }
+
     #region 入室からゲーム開始まで
 
     /// <summary>
@@ -578,10 +595,10 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// Aughter:木田晃輔
     /// </summary>
     /// <returns></returns>
-    public async UniTask JoinedAsync(int userId)
+    public async UniTask JoinedAsync(string roomName)
     {
         this.ConnectionId = await roomHub.GetConnectionIdAsync();
-        joinedUserList = await roomHub.JoinedAsync(userId);
+        joinedUserList = await roomHub.JoinedAsync(roomName);
         if (joinedUserList == null) return;
         foreach (var user in joinedUserList)
         {

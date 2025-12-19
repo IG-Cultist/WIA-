@@ -31,7 +31,6 @@ namespace WIA.Server.StreamingHubs
         //コンテキスト定義
         private RoomContext roomContext;
         RoomContextRepository roomContextRepos;
-        Dictionary<Guid, JoinedUser> JoinedUsers { get; set; }
 
         // 参加可能人数
         private const int MAX_JOINABLE_PLAYERS = 3;
@@ -79,14 +78,23 @@ namespace WIA.Server.StreamingHubs
             }
         }
 
+        public async Task<Dictionary<Guid, JoinedUser>> AutoMatchingAsync()
+        {
+            Dictionary<Guid, JoinedUser> JoinedUsers = await JoinedAsync("Lobby");
+            if (JoinedUsers.Count == 2)
+            {
+                this.roomContext.Group.Only([JoinedUsers.Keys.ElementAt(0), JoinedUsers.Keys.ElementAt(1)]).OnMatching(Guid.NewGuid().ToString());            
+            }
+            return JoinedUsers;
+        }
+
         /// <summary>
         /// 入室処理
         /// Author:Kida
         /// </summary>
         /// <param name="roomName"></param>
-        /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<Dictionary<Guid, JoinedUser>> JoinedAsync(int userId)
+        public async Task<Dictionary<Guid, JoinedUser>> JoinedAsync(string roomName)
         {
             lock (roomContextRepository)
             { //同時に生成しないように排他制御
@@ -98,14 +106,13 @@ namespace WIA.Server.StreamingHubs
 
                 //ユーザーデータを設定(Steam対応デバッグ用)
                 User userSteam = new User();
-                userSteam.Id = userId;
 
 
                 // ルームに参加＆ルームを保持
-                this.roomContext = roomContextRepository.GetContext("Sample");
+                this.roomContext = roomContextRepository.GetContext(roomName);
                 if (this.roomContext == null)
                 { //無かったら生成
-                    this.roomContext = roomContextRepository.CreateContext("Sample");
+                    this.roomContext = roomContextRepository.CreateContext(roomName);
 
                     //if(gameMode != 0)
                     //{
@@ -118,6 +125,7 @@ namespace WIA.Server.StreamingHubs
                     //}
                     this.roomContext.IsStartGame = false;
                 }
+
                 this.roomContext.Group.Add(this.ConnectionId, Client);
 
                 // グループストレージにユーザーデータを格納
