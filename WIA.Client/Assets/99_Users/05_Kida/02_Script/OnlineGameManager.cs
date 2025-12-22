@@ -454,6 +454,12 @@ public class OnlineGameManager : MonoBehaviour
                             {
                                 Initiate.Fade("Exp_Stricker_K03", Color.black, 1.0f);
                             }
+                        }
+                        break;
+                    case "Stage_K03":
+                        if (TaskCnt >= 5)
+                        {
+                            Initiate.Fade("Result", Color.black, 1.0f);
                             break;
                         }
                         // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
@@ -461,6 +467,7 @@ public class OnlineGameManager : MonoBehaviour
                         isGetKey = true;
                         TaskCnt++;
                         break;
+                    
                 }
                 break;
             case false:

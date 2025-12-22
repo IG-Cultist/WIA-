@@ -12,7 +12,7 @@ public class SynchronizationObject : MonoBehaviour
         var synObjList = gameManager.GetSynObj();
         for (int i = 0; i < synObjList.Count; i++)
         {
-            if (synObjList[i].gameObject == this.gameObject)
+            if (synObjList[i].gameObject.name == this.gameObject.name)
             {
                 id = i.ToString(); break;
             }
