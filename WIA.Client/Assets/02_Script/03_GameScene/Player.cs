@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static PlayerAnimation;
 using System;
+using Unity.VisualScripting;
 
 /// <summary>
 /// プレイヤースクリプト
@@ -33,6 +34,9 @@ public class Player : MonoBehaviour
 
     private float moveSpeed;
     public float subMoveSpeed;
+
+    // 1フレーム前の位置
+    private Vector3 _prevPosition;
 
     [Header("フラグ系")]
     public bool isHave = false;     //荷物所持判定
@@ -513,11 +517,12 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(RoomModel.Instance && OnlineGameManager.Player == this.gameObject)
+        if (RoomModel.Instance && OnlineGameManager.Player == this.gameObject)
         {
             Debug.Log("タグ：" + collision.gameObject.tag);
         }
-        if (collision.gameObject.CompareTag("Container"))
+        if (collision.gameObject.CompareTag("Container")
+            && collision.gameObject.GetComponent<container>().nowSpeed >= 1f)
         {
             Debug.Log("コンテナ衝突");
 
@@ -531,8 +536,11 @@ public class Player : MonoBehaviour
                  isLoop: false,                 //ループ再生するか
                  callback: null                 //再生終了後の処理
             );
+
+
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
+
         }
         if (collision.gameObject.CompareTag("Trap"))
         { // 触れたオブジェクトがトラップの場合、死ぬ
