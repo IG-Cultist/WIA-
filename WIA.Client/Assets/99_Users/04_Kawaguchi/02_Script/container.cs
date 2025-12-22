@@ -6,28 +6,64 @@ using KanKikuchi.AudioManager;
 public class container : MonoBehaviour
 {
     //[SerializeField] ParticleSystem m_particle;
-    [SerializeField] float m_force ;
-    [SerializeField] float m_radius ;
-    [SerializeField] float m_upwards ;
+    [SerializeField] float m_force;
+    [SerializeField] float m_radius;
+    [SerializeField] float m_upwards;
     Vector3 m_position;
+    public Vector3 velocity;
+
+    // 1フレーム前の位置
+    private Vector3 _prevPosition;
+
+    public float nowSpeed = 0;
+
+    private void Start()
+    {
+        // 初期位置を保持
+        m_position = transform.position;
+    }
 
     void Update()
     {
 
     }
 
+    void FixedUpdate()
+    {
+        //現在の位置
+        var position = transform.position;
+
+        //現在の速度を計算
+        velocity = (position - _prevPosition) / Time.fixedDeltaTime;
+
+        //微小な誤差は無視
+        if (velocity.sqrMagnitude < 0.0001f)
+            velocity = Vector3.zero;
+
+        //前フレームの位置を更新
+        _prevPosition = position;
+
+        //nowSpeedに速さを代入
+        nowSpeed = velocity.magnitude;
+
+        Debug.Log(nowSpeed);
+    }
     private void OnCollisionEnter(Collision collision)
     {
-       if (collision.gameObject.tag == "Player")
-       {
+        if (collision.gameObject.tag == "Player")
+        {
             Explosion();
-       }
+        }
     }
 
     public void Explosion()
     {
         /*m_particle.Play();
         m_position = m_particle.transform.position;*/
+
+        // deltaTimeが0の場合は何もしない
+        if (Mathf.Approximately(Time.deltaTime, 0))
+            return;
 
         // 範囲内のRigidbodyにAddExplosionForce
         Collider[] hitColliders = Physics.OverlapSphere(m_position, m_radius);
@@ -49,23 +85,20 @@ public class container : MonoBehaviour
                 Debug.Log("Playerにぶつかった！");
 
                 var rb = hitColliders[i].GetComponent<Rigidbody>();
-                if (rb)
+                if (rb && nowSpeed >= 5)
                 {
-
-
                     //吹き飛ばす方向を求める(プレイヤーから触れたものの方向)
-                    Vector3 toVec = GetAngleVec(hitColliders[i].gameObject,this.gameObject);
+                    Vector3 toVec = GetAngleVec(hitColliders[i].gameObject, this.gameObject);
 
                     //Y方向を足す
                     toVec = toVec + new Vector3(0, m_upwards, 0);
 
                     //ふきとべええ
                     rb.AddForce(toVec * m_force, ForceMode.Impulse);
-
                 }
 
             }
-           
+
         }
     }
 
