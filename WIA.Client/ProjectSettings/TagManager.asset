@@ -20,6 +20,7 @@ TagManager:
   - ItemBox
   - LeverButton_R
   - LeverButton_L
+  - ObjectKillZone
   layers:
   - Default
   - TransparentFX
