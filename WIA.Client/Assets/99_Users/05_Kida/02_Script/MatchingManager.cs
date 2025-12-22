@@ -273,15 +273,15 @@ public class MatchingManager : MonoBehaviour
         Initiate.DoneFading();
         if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
         {//ì≠Ç≠êl
-            //Initiate.Fade("Exp_Worker_K01", endColor, 2.0f);
+            Initiate.Fade("Exp_Worker_K01", endColor, 2.0f);
             //Initiate.Fade("Exp_Worker_K02", endColor, 2.0f);
-            Initiate.Fade("Exp_Worker_K03", endColor, 2.0f);
+            //Initiate.Fade("Exp_Worker_K03", endColor, 2.0f);
         }
         else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
         {//òJç–ë§
-            //Initiate.Fade("Exp_Stricker_K01", endColor, 2.0f);
+            Initiate.Fade("Exp_Stricker_K01", endColor, 2.0f);
             //Initiate.Fade("Exp_Stricker_K02", endColor, 2.0f);
-            Initiate.Fade("Exp_Stricker_K03", endColor, 2.0f);
+            //Initiate.Fade("Exp_Stricker_K03", endColor, 2.0f);
         }
 
     }
