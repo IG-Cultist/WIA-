@@ -150,7 +150,7 @@ public class DeliveryManager : MonoBehaviour
     /// <summary>
     /// コーヒー受け渡し処理
     /// </summary>
-    public void ServeCoffee()
+    public async void ServeCoffee()
     {
         if (!isCreated) return; // コーヒーがない場合、処理しない
         isCreated = false;  // 未生成とする
@@ -175,15 +175,22 @@ public class DeliveryManager : MonoBehaviour
         deliveredCount++;
         //if (resultScoreManager) resultScoreManager.carelesslyNum++;
 
-        GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deliveredCount + "/5";
-
-        GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(10);
-
-        if (deliveredCount >= 5)
+        if(RoomModel.Instance)
         {
-            GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().isFinish = true;
-            if (resultScoreManager) resultScoreManager.GetClearTime();
-            GoNextStage(); // 5の場合、次のシーンへ移動
+            await RoomModel.Instance.CountAsync(true);
+        }
+        else
+        {
+            GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + deliveredCount + "/5";
+
+            GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(10);
+
+            if (deliveredCount >= 5)
+            {
+                GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().isFinish = true;
+                if (resultScoreManager) resultScoreManager.GetClearTime();
+                GoNextStage(); // 5の場合、次のシーンへ移動
+            }
         }
     }
 

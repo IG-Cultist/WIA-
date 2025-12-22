@@ -442,7 +442,7 @@ public class OnlineGameManager : MonoBehaviour
                             }
                         }
                         break;
-                    case "Stage_K02":
+                    case "Stage_K02":                   
                         if (TaskCnt >= 1 && isGetKey)
                         {
                             //フェードアウトしてシーン遷移
@@ -455,19 +455,16 @@ public class OnlineGameManager : MonoBehaviour
                                 Initiate.Fade("Exp_Stricker_K03", Color.black, 1.0f);
                             }
                         }
+                        isGetKey = true;
                         break;
                     case "Stage_K03":
+                        // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
+                        GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/5";
                         if (TaskCnt >= 5)
                         {
-                            Initiate.Fade("Result", Color.black, 1.0f);
-                            break;
+                            Initiate.Fade("ResultScene", Color.black, 1.0f);
                         }
-                        // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
-                        GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + "1" + "/1";
-                        isGetKey = true;
-                        TaskCnt++;
                         break;
-                    
                 }
                 break;
             case false:
