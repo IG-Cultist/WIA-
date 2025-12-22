@@ -3,6 +3,7 @@
 //三宅歩人:2025/12/5
 //=============================================
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class VRObjectFindManager : MonoBehaviour
@@ -15,22 +16,22 @@ public class VRObjectFindManager : MonoBehaviour
     private GameObject lastHitObjLeft;
     private GameObject lastHitObjRight;
 
-    // レイキャストのデフォルト最大距離（必要に応じて Inspector から調整できるようにしても良い）
+    // レイキャストのデフォルト最大距離（必要に応じてInspectorから調整できるようにしても良い）
     [SerializeField] float defaultMaxDistance = 10f;
 
-    // 必要ならヒットさせたくないレイヤーがある場合、LayerMask を使って除外できます
+    // 必要ならヒットさせたくないレイヤーがある場合、LayerMaskを使って除外できます
     [SerializeField] LayerMask raycastMask = ~0; // デフォルトは全部（全レイヤー）
 
     void Update()
     {
-        // 左右をチェック（null チェックで安全に）
+        // 左右をチェック（nullチェック）
         CheckHit(nearFarInteractor_L, ref lastHitObjLeft);
         CheckHit(nearFarInteractor_R, ref lastHitObjRight);
     }
 
     /// <summary>
-    /// 指定した NearFarInteractor（または類似の interactor）から起点・方向を取って
-    /// Physics.Raycast を投げて CheckableObject タグが当たった瞬間に OnCheckableHit を呼ぶ
+    /// 指定した NearFarInteracto（または類似のinteractor）から起点・方向を取って
+    /// Physics.Raycastを投げてタグが当たった瞬間にタグに対応した関数を呼ぶ
     /// </summary>
     /// <param name="interactor">NearFarInteractor（Inspector でセット）</param>
     /// <param name="lastHitObj">前回ヒットしていたオブジェクト（ref）</param>
@@ -39,18 +40,18 @@ public class VRObjectFindManager : MonoBehaviour
         if (interactor == null)
             return;
 
-        //    NearFarInteractor は 'curveOrigin' プロパティを持っているため起点と方向は取得可能
+        //NearFarInteractorは'curveOrigin'プロパティを持っているため起点と方向は取得可能
         var originTransform = interactor.curveOrigin;
         if (originTransform == null)
         {
-            // origin が無い場合は interactor の transform を使う
+            // originが無い場合はinteractorのtransformを使う
             originTransform = interactor.transform;
         }
 
         Vector3 origin = originTransform.position;
         Vector3 direction = originTransform.forward;
 
-        // ここでは interactor が持つ最大距離（もし public プロパティがあればそれを使う）の代わりに defaultMaxDistance を使用
+        // ここではinteractorが持つ最大距離（もしpublicプロパティがあればそれを使う）の代わりにdefaultMaxDistanceを使用
         float maxDistance = defaultMaxDistance;
 
         // Raycast 発射
@@ -97,14 +98,28 @@ public class VRObjectFindManager : MonoBehaviour
             if (obj != lastHitObj)
             {
                 lastHitObj = obj;
-                OnLeverButtonHit();
+                OnLeverButtonHit_R(obj,interactor);
+            }
+        }
+        else if (obj.CompareTag("LeverButton_L"))
+        {
+            // 新しく当たった瞬間だけ処理を実行
+            if (obj != lastHitObj)
+            {
+                lastHitObj = obj;
+                OnLeverButtonHit_L(obj, interactor);
             }
         }
         else
         {
             // タグが違う → 以前のヒットはリセット
             lastHitObj = null;
-            OutCheckableHit();
+
+            //ステージ2のみ
+            if(SceneManager.GetActiveScene().name == "Stage_2_Miyake")
+            {
+                OutCheckableHit();
+            }
         }
     }
 
@@ -123,19 +138,24 @@ public class VRObjectFindManager : MonoBehaviour
             return;
         }
 
-        // CheckableObjManager に処理を渡す
+        // CheckableObjManagerに処理を渡す
         CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
         manager.CheckInObject(obj, status);
-
-
     }
 
     /// <summary>
-    /// レバーのボタンが押されたら
+    /// レバーのボタンを押す
     /// </summary>
-    public void OnLeverButtonHit()
+    public void OnLeverButtonHit_R(GameObject obj, NearFarInteractor interactor)
     {
-        GameObject.Find("LeverButton").GetComponent<ButtonManager>().OnButton();
+        Debug.Log("右のボタンだよ");
+        GameObject.Find("LeverButton").GetComponent<ButtonManager>().OnButton_R();
+    }
+
+    public void OnLeverButtonHit_L(GameObject obj, NearFarInteractor interactor)
+    {
+        Debug.Log("左のボタンだよ");
+        GameObject.Find("LeverButton").GetComponent<ButtonManager>().OnButton_L();
     }
 
     //音を止める
@@ -145,6 +165,7 @@ public class VRObjectFindManager : MonoBehaviour
         manager.CheckOutObject();
     }
 
+    //コーヒーを生成
     void OnCoffeeHit(GameObject obj, NearFarInteractor interactor)
     {
         Debug.Log($"CoffeeMachine にヒット: {obj.name} ｜ Interactor: {interactor.gameObject.name}");
