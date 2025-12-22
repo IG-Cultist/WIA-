@@ -132,6 +132,15 @@ public class TaskUIManager : MonoBehaviour
             else limitCount -= Time.deltaTime;  //カウントダウン
             limitTimerText.text = limitCount.ToString("n2");    // 小数第二位真で表示
         }
+
+        // ステージ3(オンライン)の場合かつステージを終了していない場合
+        if (nowSceneName == "Stage_K03" && !isFinish)
+        {
+            if (limitCount <= 0) limitCount = 0; // カウントが0になっている場合、0で固定
+            else limitCount -= Time.deltaTime;  //カウントダウン
+            limitTimerText.text = limitCount.ToString("n2");    // 小数第二位真で表示
+        }
+
     }
 
     /// <summary>
