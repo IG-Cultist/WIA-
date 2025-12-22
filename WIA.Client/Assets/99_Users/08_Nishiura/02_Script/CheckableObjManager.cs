@@ -33,6 +33,7 @@ public class CheckableObjManager : MonoBehaviour
 
     // プレイヤー
     private Player player;
+    private Rigidbody rb;
     //死亡判定
     private bool isDead;
 
@@ -77,6 +78,9 @@ public class CheckableObjManager : MonoBehaviour
 
         if(RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
         else player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+
+        rb = player.GetComponent<Rigidbody>();
+
         isDead = false;
 
 
@@ -138,6 +142,9 @@ public class CheckableObjManager : MonoBehaviour
         //オブジェクト調査中
         if (isCheckNow)
         {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
             if (nowFindStatus.isChecked || !nowFindStatus.canCheckArea) return;  //チェック済みはreturn
 
             if (nowFindObj.name == "Door" && !isGetKey) return; //鍵非所持でドア開錠もreturn
