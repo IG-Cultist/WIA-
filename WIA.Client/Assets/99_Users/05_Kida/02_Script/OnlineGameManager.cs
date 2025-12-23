@@ -127,6 +127,10 @@ public class OnlineGameManager : MonoBehaviour
                 }
                 mainSpawnPoint = player.transform;
                 InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
+                if (SceneManager.GetActiveScene().name == "Stage_K01")
+                    player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+                    player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
             else
             {
