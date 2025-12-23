@@ -109,7 +109,8 @@ public class MenuManager : MonoBehaviour
 
                 //ロビーシーンに遷移
                 //Initiate.Fade("Stage_1", endColor, 1.0f);
-                Initiate.Fade("Exp_Worker_1", endColor, 1.0f);
+                //Initiate.Fade("Exp_Worker_1", endColor, 1.0f);
+                Initiate.Fade("MatchingScene", endColor, 1.0f);
 
                 break;
 

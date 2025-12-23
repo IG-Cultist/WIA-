@@ -320,6 +320,7 @@ public class Player : MonoBehaviour
             //死亡状態
             case PLAYER_STATE.DEATH:
 
+                if (this.gameObject.name == "Stricker") return;
                 Death();
                 break;
 
@@ -507,8 +508,16 @@ public class Player : MonoBehaviour
                 isLoop: false,                 //ループ再生するか
                 callback: null                 //再生終了後の処理
             );
-            //死亡状態
-            player_State = PLAYER_STATE.DEATH;
+
+            if(this.gameObject.name == "Worker")
+            {
+                //死亡状態
+                player_State = PLAYER_STATE.DEATH;
+            }
+            else
+            {
+                this.gameObject.transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
+            }
         }
     }
 
