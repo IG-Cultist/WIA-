@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static PlayerAnimation;
 using System;
+using Unity.VisualScripting;
 
 /// <summary>
 /// プレイヤースクリプト
@@ -33,6 +34,9 @@ public class Player : MonoBehaviour
 
     private float moveSpeed;
     public float subMoveSpeed;
+
+    // 1フレーム前の位置
+    private Vector3 _prevPosition;
 
     [Header("フラグ系")]
     public bool isHave = false;     //荷物所持判定
@@ -254,7 +258,7 @@ public class Player : MonoBehaviour
                 #region オフライン環境
                 else if (!RoomModel.Instance)
                 {//オフライン環境
-                    if(this.name == "Main")
+                    if (this.name == "Main")
                     {//操作しているプレイヤー
                         if (isSearch)
                         {//探している
@@ -385,7 +389,7 @@ public class Player : MonoBehaviour
             // 死亡回数テキストを取得し、死亡回数を反映
             GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
 
-            if(RoomModel.Instance && isMain)
+            if (RoomModel.Instance && isMain)
             {//通信中
                 await RoomModel.Instance.CountAsync(false);
             }
@@ -400,7 +404,7 @@ public class Player : MonoBehaviour
             // まだ3回死んでいない場合
             Invoke("RespawnPlayer", 2);  //2秒後にリスポーン
         }
-        
+
     }
 
     /// <summary>
@@ -438,12 +442,12 @@ public class Player : MonoBehaviour
                     {
                         case true:
                             rb.useGravity = true;       //重力ON
-                     
+
                             break;
 
                         case false:
                             rb.useGravity = false;      //重力OFF
- 
+
                             break;
                     }
                 }
@@ -464,7 +468,7 @@ public class Player : MonoBehaviour
         var results = new List<Transform>();
         if (parent == null) return results;
 
-        // �X�^�b�N���g���������i�[���D��j
+        //  X ^ b N   g         i [   D  j
         var stack = new Stack<Transform>();
         for (int i = 0; i < parent.childCount; i++)
             stack.Push(parent.GetChild(i));
@@ -477,7 +481,7 @@ public class Player : MonoBehaviour
             {
                 results.Add(t);
 
-                // �q���X�^�b�N�ɒǉ��i���ȉ����܂߂�j
+                //  q   X ^ b N ɒǉ  i   ȉ    ܂߂ j
                 for (int i = 0; i < t.childCount; i++)
                     stack.Push(t.GetChild(i));
             }
@@ -497,7 +501,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Abyss"))
         {
-            if(resultScoreManager) resultScoreManager.carelesslyNum++;
+            if (resultScoreManager) resultScoreManager.carelesslyNum++;
 
             SEManager.Instance.Play(
             audioPath: SEPath.FALL, //再生したいオーディオのパス
@@ -514,11 +518,12 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(RoomModel.Instance && OnlineGameManager.Player == this.gameObject)
+        if (RoomModel.Instance && OnlineGameManager.Player == this.gameObject)
         {
             Debug.Log("タグ：" + collision.gameObject.tag);
         }
-        if (collision.gameObject.CompareTag("Container"))
+        if (collision.gameObject.CompareTag("Container")
+            && collision.gameObject.GetComponent<container>().nowSpeed >= 1f)
         {
             Debug.Log("コンテナ衝突");
 
@@ -532,8 +537,11 @@ public class Player : MonoBehaviour
                  isLoop: false,                 //ループ再生するか
                  callback: null                 //再生終了後の処理
             );
+
+
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
+
         }
         if (collision.gameObject.CompareTag("Trap"))
         { // 触れたオブジェクトがトラップの場合、死ぬ
@@ -555,7 +563,7 @@ public class Player : MonoBehaviour
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
         }
-        if (collision.gameObject.name =="knife")
+        if (collision.gameObject.name == "knife")
         { // 触れたオブジェクトがナイフの場合、死ぬ
 
             if (resultScoreManager) resultScoreManager.cruelNum++;
@@ -580,7 +588,7 @@ public class Player : MonoBehaviour
 
             player_State = PLAYER_STATE.DEATH; //死亡状態にする
         }
-        if (collision.gameObject.name =="Injector")
+        if (collision.gameObject.name == "Injector")
         {//触れたオブジェクトが注射器だった場合
 
             if (resultScoreManager) resultScoreManager.notJudgeNum++;
@@ -618,7 +626,7 @@ public class Player : MonoBehaviour
 
     private void ResetAnimation()
     {
-    
+
     }
     void FadeOut()
     {
