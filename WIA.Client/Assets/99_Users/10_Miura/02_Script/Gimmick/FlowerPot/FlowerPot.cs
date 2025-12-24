@@ -76,7 +76,7 @@ public class FlowerPot : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             mouse = Input.mousePosition;
-            target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, 5f));
+            target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x * 2, mouse.y*2, 5f));
 
             this.transform.position = target;
         }
