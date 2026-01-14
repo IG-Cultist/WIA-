@@ -84,8 +84,13 @@ public class FlowerPot : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.name=="Stricker")
+        {
+            return;
+        }
         if (collision.gameObject.tag == "Base" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "CheckableObject")
         {//Baseタグのオブジェクトに触れたら
+
             Debug.Log("当たったもの" + collision.gameObject.tag);
             if (RoomModel.Instance && collision.gameObject == OnlineGameManager.Player) return;
             FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
