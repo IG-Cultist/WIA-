@@ -115,6 +115,7 @@ public class OnlineGameManager : MonoBehaviour
                 {//労災側リスポーン
                     player.name = "Stricker";
                     player.transform.position = spawnPointP2.position;
+                    player.transform.parent = spawnPointP2.transform;
                     switch (SceneManager.GetActiveScene().name)
                     {
                         case "Stage_K01":
@@ -144,6 +145,7 @@ public class OnlineGameManager : MonoBehaviour
                 {//労災側リスポーン
                     subplayer.name = "Stricker";
                     subplayer.transform.position = spawnPointP1.position;
+                    subplayer.transform.parent = spawnPointP1.transform;
                 }
             }
         }
