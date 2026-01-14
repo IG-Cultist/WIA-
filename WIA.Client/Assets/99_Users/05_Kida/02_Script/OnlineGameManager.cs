@@ -473,7 +473,12 @@ public class OnlineGameManager : MonoBehaviour
                                 Initiate.Fade("Exp_Stricker_K03", Color.black, 1.0f);
                             }
                         }
-                        isGetKey = true;
+                        else
+                        {
+                            isGetKey = true;
+                            // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
+                            GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/1";
+                        }
                         break;
                     case "Stage_K03":
                         // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
