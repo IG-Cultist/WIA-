@@ -74,6 +74,12 @@ public class ObjectGrabber : MonoBehaviour
                 // 調査を開始する
                 GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckOutObject();
             }
+            if (SceneManager.GetActiveScene().name == "Stage_K02")
+            {
+                Debug.Log("解除");
+                // 調査を開始する
+                GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckOutObject();
+            }
         }
     }
 

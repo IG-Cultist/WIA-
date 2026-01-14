@@ -96,6 +96,12 @@ public class XRControllerButtonEvents : MonoBehaviour
             CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
             manager.CheckOutObject();
         }
+        if(SceneManager.GetActiveScene().name == "Stage_K02")
+        {
+            //âπÇé~ÇﬂÇÈ
+            CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
+            manager.CheckOutObject();
+        }
 
     }
 
@@ -107,6 +113,12 @@ public class XRControllerButtonEvents : MonoBehaviour
 
         //ÉXÉeÅ[ÉW2ÇÃÇ›
         if (SceneManager.GetActiveScene().name == "Stage_2")
+        {
+            //âπÇé~ÇﬂÇÈ
+            CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();
+            manager.CheckOutObject();
+        }
+        if (SceneManager.GetActiveScene().name == "Stage_K02")
         {
             //âπÇé~ÇﬂÇÈ
             CheckableObjManager manager = GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>();

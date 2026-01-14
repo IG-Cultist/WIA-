@@ -64,7 +64,17 @@ public class FlowerPot : MonoBehaviour
             isGrab = false;
 
             Cursor.visible = false;
-            this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            if(RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
+            {
+            }
+            else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
+            {
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            }
+            else
+            {
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            }
 
             //ê⁄ínÇµÇƒÇ©ÇÁnïbå„Ç…àÍêlèÃÇ…ñﬂÇÈ
             CancelInvoke();
@@ -74,7 +84,17 @@ public class FlowerPot : MonoBehaviour
 
         if (isGrab)
         {
-            this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            if (RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
+            {
+            }
+            else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
+            {
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
+            else
+            {
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
             mouse = Input.mousePosition;
             target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x * 2, mouse.y*2, 5f));
 
