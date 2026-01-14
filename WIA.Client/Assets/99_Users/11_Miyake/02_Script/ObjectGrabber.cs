@@ -151,6 +151,8 @@ public class ObjectGrabber : MonoBehaviour
         {
             if (hit.collider.CompareTag("Item"))
             {
+                // 掴んだものがナイフかつプレイヤーが労働者であった場合、処理しない
+                if (hit.collider.name == "Knife" && player.name == "Worker") return;
                 grabbedRb = hit.collider.attachedRigidbody;
                 if (grabbedRb != null)
                 {
