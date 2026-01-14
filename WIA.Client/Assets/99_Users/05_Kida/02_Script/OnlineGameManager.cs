@@ -2,7 +2,7 @@
 ///        オンライン通信を使ったゲームを動作させるスクリプト
 ///        
 ///　Aughtor：木田晃輔
-///　更新日：１２月５日
+///　更新日：1月14日
 ///　概要：Unityのステージのシーンに配置。！！オンライン環境のみ使用可能！！
 ///　
 ///////////////////////////////////////////////////////////////////////////////
@@ -105,8 +105,13 @@ public class OnlineGameManager : MonoBehaviour
                             Destroy(GameObject.Find("Hook").GetComponent<Rigidbody>());
                             syncObjList.Add(GameObject.Find("Crane"));
                             syncObjList.Add(GameObject.Find("Hook"));
+                            player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                             break;
                         case "Stage_K02":
+                            player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                            break;
+                        case "Stage_K03":
+                            player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
 
                     }
@@ -121,8 +126,13 @@ public class OnlineGameManager : MonoBehaviour
                         case "Stage_K01":
                             syncObjList.Add(GameObject.Find("Crane"));
                             syncObjList.Add(GameObject.Find("Hook"));
+                            player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                         case "Stage_K02":
+                            player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            break;
+                        case "Stage_K03":
+                            player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                     }
                 }
@@ -140,12 +150,14 @@ public class OnlineGameManager : MonoBehaviour
                 {//働く方リスポーン
                     subplayer.name = "Worker";
                     subplayer.transform.position = spawnPointP2.position;
+                    subplayer.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                 }
                 else if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 2)
                 {//労災側リスポーン
                     subplayer.name = "Stricker";
                     subplayer.transform.position = spawnPointP1.position;
                     subplayer.transform.parent = spawnPointP1.transform;
+                    subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
             }
         }
