@@ -100,17 +100,17 @@ public class OnlineGameManager : MonoBehaviour
                     player.transform.position = spawnPointP1.position;
                     switch (SceneManager.GetActiveScene().name)
                     {
-                        case "Stage_K01":
+                        case "Stage_1":
                             Destroy(GameObject.Find("Crane").GetComponent<Rigidbody>());
                             Destroy(GameObject.Find("Hook").GetComponent<Rigidbody>());
                             syncObjList.Add(GameObject.Find("Crane"));
                             syncObjList.Add(GameObject.Find("Hook"));
                             player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                             break;
-                        case "Stage_K02":
+                        case "Stage_2":
                             player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                             break;
-                        case "Stage_K03":
+                        case "Stage_3":
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
 
@@ -123,22 +123,22 @@ public class OnlineGameManager : MonoBehaviour
                     player.transform.parent = spawnPointP2.transform;
                     switch (SceneManager.GetActiveScene().name)
                     {
-                        case "Stage_K01":
+                        case "Stage_1":
                             syncObjList.Add(GameObject.Find("Crane"));
                             syncObjList.Add(GameObject.Find("Hook"));
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
-                        case "Stage_K02":
+                        case "Stage_2":
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
-                        case "Stage_K03":
+                        case "Stage_3":
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                     }
                 }
                 mainSpawnPoint = player.transform;
                 InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
-                if (SceneManager.GetActiveScene().name == "Stage_K01")
+                if (SceneManager.GetActiveScene().name == "Stage_1")
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
@@ -306,7 +306,7 @@ public class OnlineGameManager : MonoBehaviour
         objList.Add(id, gameObject);
         switch (SceneManager.GetActiveScene().name)
         {
-            case "Stage_K02":
+            case "Stage_2":
                 FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
                 flowerPotManager.potList.Add(gameObject);
                 potCount++;
@@ -354,7 +354,7 @@ public class OnlineGameManager : MonoBehaviour
             {
                 if (obj.Value.name != objName) continue;
                 objList.Remove(obj.Key);
-                if(SceneManager.GetActiveScene().name == "Stage_K02")
+                if(SceneManager.GetActiveScene().name == "Stage_2")
                 {
                     FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
                     flowerPotManager.PotLost(GameObject.Find(objName));
@@ -444,7 +444,7 @@ public class OnlineGameManager : MonoBehaviour
                 TaskCnt++;
                 switch (SceneManager.GetActiveScene().name)
                 {
-                    case "Stage_K01":
+                    case "Stage_1":
                         // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
                         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/5";
                         if (TaskCnt >= 5)
@@ -452,25 +452,25 @@ public class OnlineGameManager : MonoBehaviour
                          //フェードアウトしてシーン遷移
                             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
                             {
-                                Initiate.Fade("Exp_Worker_K02", Color.black, 1.0f);
+                                Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
                             }
                             else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
                             {
-                                Initiate.Fade("Exp_Stricker_K02", Color.black, 1.0f);
+                                Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
                             }
                         }
                         break;
-                    case "Stage_K02":                   
+                    case "Stage_2":                   
                         if (TaskCnt >= 1 && isGetKey)
                         {
                             //フェードアウトしてシーン遷移
                             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
                             {
-                                Initiate.Fade("Exp_Worker_K03", Color.black, 1.0f);
+                                Initiate.Fade("01_Exp_Worker_3", Color.black, 1.0f);
                             }
                             else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
                             {
-                                Initiate.Fade("Exp_Stricker_K03", Color.black, 1.0f);
+                                Initiate.Fade("01_Exp_Stricker_3", Color.black, 1.0f);
                             }
                         }
                         else
@@ -480,7 +480,7 @@ public class OnlineGameManager : MonoBehaviour
                             GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/1";
                         }
                         break;
-                    case "Stage_K03":
+                    case "Stage_3":
                         // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
                         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/5";
                         if (TaskCnt >= 5)

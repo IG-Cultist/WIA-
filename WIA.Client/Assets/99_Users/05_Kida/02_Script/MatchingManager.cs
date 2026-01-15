@@ -274,11 +274,11 @@ public class MatchingManager : MonoBehaviour
         Initiate.DoneFading(); 
         if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
         {
-            Initiate.Fade("Exp_Worker_K01", endColor, 2.0f);
+            Initiate.Fade("01_Exp_Worker_1", endColor, 2.0f);
         }
         else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
         {
-            Initiate.Fade("Exp_Stricker_K01", endColor, 2.0f);
+            Initiate.Fade("01_Exp_Stricker_1", endColor, 2.0f);
         }
     }
 

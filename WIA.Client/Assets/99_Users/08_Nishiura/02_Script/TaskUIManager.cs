@@ -51,16 +51,6 @@ public class TaskUIManager : MonoBehaviour
                 // 説明文を変更
                 taskExplanation.text = "任務:指定位置まで箱を運搬";
                 break;
-            case "Stage_K01":  //木田晃輔が変更
-                // リソースからアイコンを取得
-                texture = Resources.Load("Icons/Icon_Box") as Texture2D;
-                taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-
-                // タスクカウントを設定
-                taskCount.text = ": 0/5";
-                // 説明文を変更
-                taskExplanation.text = "任務:指定位置まで箱を運搬";
-                break;
             case "Stage_2":
                 // リソースからアイコンを取得
                 texture = Resources.Load("Icons/Icon_Key") as Texture2D;
@@ -71,27 +61,7 @@ public class TaskUIManager : MonoBehaviour
                 // 説明文を変更
                 taskExplanation.text = "任務:鍵を見つけ、アパートへ帰宅";
                 break;
-            case "Stage_K02":
-                // リソースからアイコンを取得
-                texture = Resources.Load("Icons/Icon_Key") as Texture2D;
-                taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-
-                // タスクカウントを設定
-                taskCount.text = ": 0/1";
-                // 説明文を変更
-                taskExplanation.text = "任務:鍵を見つけ、アパートへ帰宅";
-                break;
             case "Stage_3":
-                // リソースからアイコンを取得
-                texture = Resources.Load("Icons/Icon_Coffee") as Texture2D;
-                taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-
-                // タスクカウントを設定
-                taskCount.text = ": 0/5";
-                // 説明文を変更
-                taskExplanation.text = "任務:コーヒーを配達";
-                break;
-            case "Stage_K03":
                 // リソースからアイコンを取得
                 texture = Resources.Load("Icons/Icon_Coffee") as Texture2D;
                 taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
@@ -132,15 +102,6 @@ public class TaskUIManager : MonoBehaviour
             else limitCount -= Time.deltaTime;  //カウントダウン
             limitTimerText.text = limitCount.ToString("n2");    // 小数第二位真で表示
         }
-
-        // ステージ3(オンライン)の場合かつステージを終了していない場合
-        if (nowSceneName == "Stage_K03" && !isFinish)
-        {
-            if (limitCount <= 0) limitCount = 0; // カウントが0になっている場合、0で固定
-            else limitCount -= Time.deltaTime;  //カウントダウン
-            limitTimerText.text = limitCount.ToString("n2");    // 小数第二位真で表示
-        }
-
     }
 
     /// <summary>

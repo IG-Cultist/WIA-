@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
         {
             //ステージ3のみY座標固定
             if (SceneManager.GetActiveScene().name == "Stage_3") this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
-            else if (SceneManager.GetActiveScene().name == "Stage_K01" && this.gameObject.name == "Stricker") this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            else if (SceneManager.GetActiveScene().name == "Stage_1" && this.gameObject.name == "Stricker") this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
             else this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         }
 

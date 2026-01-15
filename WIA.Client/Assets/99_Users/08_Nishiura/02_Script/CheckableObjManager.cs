@@ -109,9 +109,9 @@ public class CheckableObjManager : MonoBehaviour
                 if (resultScoreManager) resultScoreManager.GetClearTime();
 
                 if (RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
-                    Initiate.Fade("Exp_Worker_K03", Color.black, 1.0f);
+                    Initiate.Fade("01_Exp_Worker_3", Color.black, 1.0f);
                 else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
-                    Initiate.Fade("Exp_Stricker_K03", Color.black, 1.0f);
+                    Initiate.Fade("01_Exp_Stricker_3", Color.black, 1.0f);
                 else
                     Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
             }

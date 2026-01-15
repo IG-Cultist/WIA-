@@ -69,8 +69,8 @@ public class TaskCheck : MonoBehaviour
             {
                 if (resultScoreManager) resultScoreManager.GetClearTime();
 
-                if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1 && !isDead) Initiate.Fade("Exp_Worker_K02", Color.black, 1.0f);
-                else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2 && !isDead) Initiate.Fade("Exp_Stricker_K02", Color.black, 1.0f);
+                if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1 && !isDead) Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
+                else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2 && !isDead) Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
             }
             else if (!RoomModel.Instance && !isDead)
             {
