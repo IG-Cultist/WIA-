@@ -181,6 +181,8 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("CoffeeMachine")) //コーヒーマシンに触れた場合
             {
+                if (player.name != "Worker") return;
+
                 // コーヒーを生成する
                 GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>().RequestCoffee();
             }
