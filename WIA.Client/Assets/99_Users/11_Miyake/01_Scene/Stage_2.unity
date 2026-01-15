@@ -47219,8 +47219,9 @@ MonoBehaviour:
   - {fileID: 79977231}
   - {fileID: 1576759295}
   nowSpawnList: 
+  cameraManager: {fileID: 0}
   isThreePot: 0
-  generatNumber: 0
+  generateNumber: 0
 --- !u!1 &1499078204
 GameObject:
   m_ObjectHideFlags: 0
