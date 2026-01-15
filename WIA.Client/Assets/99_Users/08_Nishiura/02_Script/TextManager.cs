@@ -116,7 +116,14 @@ public class TextManager : MonoBehaviour
     void OnSameStarted()
     {
         Initiate.DoneFading();
-        Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+        if(UnityEngine.XR.XRSettings.isDeviceActive)
+        {//VRの場合
+            Initiate.Fade("Stage_" + nowSceneName[2] + "_VR", Color.black, 1.0f);   // フェード時間1秒
+        }
+        else
+        {//VRでないとき
+            Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+        }
         //Initiate.Fade("Stage_K02", Color.black, 1.0f); //デバッグ用直接ステージに遷移
     }
 }

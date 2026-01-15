@@ -3175,18 +3175,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 651164778}
     m_Modifications:
-    - target: {fileID: 1367927438136968222, guid: e4786bb47daf7a446b4ef01e0a3edb20, type: 3}
-      propertyPath: maxPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1367927438136968222, guid: e4786bb47daf7a446b4ef01e0a3edb20, type: 3}
-      propertyPath: minPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1367927438136968222, guid: e4786bb47daf7a446b4ef01e0a3edb20, type: 3}
-      propertyPath: warpPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 184531201943223713, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       propertyPath: m_Name
       value: Box_5
@@ -3230,6 +3218,18 @@ PrefabInstance:
     - target: {fileID: 5613611799098288263, guid: 6b3d7c834e0ff5540a696f01aece1fca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367927438136968222, guid: e4786bb47daf7a446b4ef01e0a3edb20, type: 3}
+      propertyPath: maxPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367927438136968222, guid: e4786bb47daf7a446b4ef01e0a3edb20, type: 3}
+      propertyPath: minPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367927438136968222, guid: e4786bb47daf7a446b4ef01e0a3edb20, type: 3}
+      propertyPath: warpPoint
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25875,6 +25875,18 @@ MonoBehaviour:
   - {fileID: 1689955422}
   - {fileID: 127333315}
   - {fileID: 1806933970}
+  - {fileID: 8764275130447555760}
+  - {fileID: 851126505}
+  - {fileID: 8436876918638847816}
+  - {fileID: 2022506690}
+  - {fileID: 1215893598}
+  - {fileID: 415906208}
+  - {fileID: 219685040}
+  - {fileID: 6575734828313550955}
+  - {fileID: 801743802}
+  - {fileID: 1172622951}
+  - {fileID: 1394197834}
+  - {fileID: 1652279673}
 --- !u!4 &830370599
 Transform:
   m_ObjectHideFlags: 0
