@@ -98,7 +98,7 @@ public class FlowerPot : MonoBehaviour
             nowSpawnList = flowerPotManager.nowSpawnList;
 
 
-            flowerPotManager.RemoveList(flowerPotManager.generatNumber);
+            flowerPotManager.RemoveList(flowerPotManager.generateNumber);
 
             if(RoomModel.Instance)
             {
@@ -125,7 +125,7 @@ public class FlowerPot : MonoBehaviour
             Destroy(potObj); //A–Ø”«‚ğÁ‚·
 
             //flowerPotManager‚Åg—p‚µ‚Ä‚¢‚½”Ô†‚ğíœ
-            flowerPotManager.RemoveList(flowerPotManager.generatNumber);
+            flowerPotManager.RemoveList(flowerPotManager.generateNumber);
         }
     }
 
