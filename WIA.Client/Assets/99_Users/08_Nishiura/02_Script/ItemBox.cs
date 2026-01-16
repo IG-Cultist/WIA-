@@ -17,10 +17,20 @@ public class ItemBox : MonoBehaviour
     // クールダウン中判定
     bool isCooldown = false;
 
+    /// <summary>
+    /// 通信用
+    /// </summary>
+    
+    OnlineGameManager gameManager;
+
     void Start()
     {
         // クールダウンUIを非表示
         coolDownSlider.SetActive(false);
+
+        if(RoomModel.Instance)
+        //ゲームマネージャー取得
+        gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
     }
     /// <summary>
     /// アイテム獲得処理
@@ -29,6 +39,7 @@ public class ItemBox : MonoBehaviour
     {
         // 生成したオブジェクトがある間、処理しない
         if (createdObj != null || isCooldown) return;
+
 
         // 乱数を生成
         int rnd = Random.Range(0, 2);
@@ -51,6 +62,8 @@ public class ItemBox : MonoBehaviour
         // 読み込まれたプレハブを生成する
         createdObj = Instantiate(prefab, new Vector3(this.gameObject.transform.position.x, -0.36f, this.gameObject.transform.position.y), Quaternion.identity);
         createdObj.name = prefab.name;
+
+        //if(RoomModel.Instance) gameManager.SpawnObj()
 
         isCooldown = true;  // クールダウン中とする
         coolDownSlider.SetActive(true); //クールダウンUIを表示
