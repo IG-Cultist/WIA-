@@ -14,11 +14,6 @@ public class ObjectGrabber : MonoBehaviour
     [SerializeField] float moveForce = 250f;      // 掴んだオブジェクトをHoldPointに引き寄せる力
     [SerializeField] float maxDistance = 4f;      // 掴んだオブジェクトがこの距離より離れたら自動で離す
 
-
-    [Header("UI系")]
-    [SerializeField] Image crosshairImage;         // 通常時のクロスヘア
-    [SerializeField] Image leftClickImage;         // 掴めるときに表示するLeftClick
-
     [Header("調査処理系")]
     FirstPersonMovement playerMove;
     FirstPersonLook playerCamera;
@@ -32,6 +27,8 @@ public class ObjectGrabber : MonoBehaviour
     //通信用
     OnlineGameManager gameManager;
 
+    TaskUIManager taskUIManager;
+
     void Start()
     {
         //メインキャラクターのカメラを取る
@@ -39,9 +36,7 @@ public class ObjectGrabber : MonoBehaviour
 
         playerMove = transform.parent.gameObject.GetComponent<FirstPersonMovement>();
 
-        // LeftClickは初期状態では非表示
-        if (leftClickImage != null)
-            leftClickImage.enabled = false;
+        taskUIManager = GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>();
 
         if (RoomModel.Instance)
             gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
@@ -112,13 +107,13 @@ public class ObjectGrabber : MonoBehaviour
     //====================================================
     void ShowGrabUI()
     {
-        if (grabbedRb != null)
-        {
-            // 掴んでいる間はUIをクロスヘア表示に戻す
-            if (crosshairImage != null) crosshairImage.enabled = true;
-            if (leftClickImage != null) leftClickImage.enabled = false;
-            return;
-        }
+        //if (grabbedRb != null)
+        //{
+        //    // 掴んでいる間はUIをクロスヘア表示に戻す
+        //    taskUIManager.ShowCrossHair();
+
+        //    return;
+        //}
 
         Camera cam = GetComponent<Camera>();
         if (cam == null) return;
@@ -132,15 +127,15 @@ public class ObjectGrabber : MonoBehaviour
             if (hit.collider.CompareTag("Item"))
             {
                 // 掴めるとき → Crosshair非表示、LeftClick表示
-                if (crosshairImage != null) crosshairImage.enabled = false;
-                if (leftClickImage != null) leftClickImage.enabled = true;
-                return;
+                taskUIManager.ShowLeftCrickIcon();
             }
         }
+        else
+        {
+            // 掴めるものがない場合 → Crosshair表示、LeftClick非表示
+            taskUIManager.ShowCrossHair();
+        }
 
-        // 掴めるものがない場合 → Crosshair表示、LeftClick非表示
-        if (crosshairImage != null) crosshairImage.enabled = true;
-        if (leftClickImage != null) leftClickImage.enabled = false;
     }
 
     //==============================================
@@ -169,8 +164,7 @@ public class ObjectGrabber : MonoBehaviour
                     player.isHave = true;
 
                     // 掴んだらCrosshair表示、LeftClick非表示
-                    if (crosshairImage != null) crosshairImage.enabled = true;
-                    if (leftClickImage != null) leftClickImage.enabled = false;
+                    taskUIManager.ShowCrossHair();
                 }
             }
             else if (hit.collider.CompareTag("CheckableObject")) //調査可能オブジェクトに触れた場合

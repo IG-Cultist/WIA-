@@ -23,6 +23,10 @@ public class TaskUIManager : MonoBehaviour
     [SerializeField] Text limitTimerText;
     // 変動数テキスト
     [SerializeField] Text fluctTimeText;
+    //左クリック画像
+    [SerializeField] GameObject leftCrickIcon;
+    //クロスヘアー
+    [SerializeField] GameObject Crosshair;
     // 経過時間カウント変数
     float count = 0;
     // 制限時間カウント変数
@@ -34,6 +38,7 @@ public class TaskUIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        leftCrickIcon.SetActive(false);
         nowSceneName = SceneManager.GetActiveScene().name;
         Texture2D texture;
 
@@ -121,5 +126,23 @@ public class TaskUIManager : MonoBehaviour
         sequence.Append(fluctTimeText.GetComponent<Text>().DOFade(1f, 0.3f))
                 .Append(fluctTimeText.GetComponent<Text>().DOFade(1f, 0.8f))
                 .Append(fluctTimeText.GetComponent<Text>().DOFade(0f, 0.3f));
+    }
+
+    /// <summary>
+    /// クロスヘアーを表示する処理
+    /// </summary>
+    public void ShowCrossHair()
+    {
+        Crosshair.SetActive(true);
+        leftCrickIcon.SetActive(false);
+    }
+
+    /// <summary>
+    /// 左クリックアイコンを表示する処理
+    /// </summary>
+    public void ShowLeftCrickIcon()
+    {
+        Crosshair.SetActive(false);
+        leftCrickIcon.SetActive(true);
     }
 }
