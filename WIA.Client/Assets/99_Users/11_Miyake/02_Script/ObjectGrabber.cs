@@ -52,14 +52,16 @@ public class ObjectGrabber : MonoBehaviour
         {
             if (grabbedRb == null)
                 Grab();
-        }
-
-        // 右クリックで離す
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (grabbedRb != null)
+            else
                 Release();
         }
+
+        //// 右クリックで離す
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    if (grabbedRb != null)
+        //        Release();
+        //}
 
         if (Input.GetMouseButtonUp(0))
         {
