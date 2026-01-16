@@ -23,6 +23,7 @@ using UnityEngine.Scripting;
 using static Shared.Interfaces.StreamingHubs.EnumManager;
 using static UnityEngine.Rendering.DebugUI.Table;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class OnlineGameManager : MonoBehaviour
 {
@@ -312,6 +313,7 @@ public class OnlineGameManager : MonoBehaviour
                 potCount++;
                 if(Player.name == "Worker")
                 {
+                    Destroy(gameObject.GetComponent<XRGrabInteractable>());
                     Destroy(gameObject.GetComponent<Rigidbody>());
                 }
                 break;
