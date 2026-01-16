@@ -24,9 +24,12 @@ public class ButtonManager : MonoBehaviour
         buttonPostion_R = leverButton_R.transform.position;
         buttonPostion_L = leverButton_L.transform.position;
 
-        //VRのスクリプト取得
-        xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
-        vrObjectFindManager = GameObject.Find("VRObjectFindManager").GetComponent<VRObjectFindManager>();
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        {
+            //VRのスクリプト取得
+            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+            vrObjectFindManager = GameObject.Find("VRObjectFindManager").GetComponent<VRObjectFindManager>();
+        }
     }
 
     // Update is called once per frame
