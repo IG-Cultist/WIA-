@@ -296,26 +296,36 @@ public class OnlineGameManager : MonoBehaviour
     /// <param name="id"></param>
     void OnSpawnedObjectSyn(Vector3 pos, string id)
     {
-        spawnObjId = id;
-        GameObject gameObject = Instantiate(objPrefab);
-        gameObject.name = gameObject.name + potCount;
-        gameObject.transform.position = pos;
-        if(gameObject == null)
-        {
-            Debug.Log("Nullオブジェクト");
-        }
-        objList.Add(id, gameObject);
         switch (SceneManager.GetActiveScene().name)
         {
             case "Stage_2":
+                spawnObjId = id;
+                GameObject gameObject = Instantiate(objPrefab);
+                gameObject.name = gameObject.name + potCount;
+                gameObject.transform.position = pos;
+                if (gameObject == null)
+                {
+                    Debug.Log("Nullオブジェクト");
+                }
+                objList.Add(id, gameObject);
                 FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
                 flowerPotManager.potList.Add(gameObject);
                 potCount++;
-                if(Player.name == "Worker")
+                if (Player.name == "Worker")
                 {
                     Destroy(gameObject.GetComponent<XRGrabInteractable>());
                     Destroy(gameObject.GetComponent<Rigidbody>());
                 }
+                break;
+            case "Stage_3":
+                spawnObjId = id;
+                GameObject obj = Instantiate(objPrefab);
+                obj.transform.position = pos;
+                if (obj == null)
+                {
+                    Debug.Log("Nullオブジェクト");
+                }
+                objList.Add(id, obj);
                 break;
         }
         CancelInvoke("UpdateObj");
