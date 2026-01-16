@@ -858,6 +858,7 @@ GameObject:
   - component: {fileID: 35472997}
   - component: {fileID: 35472996}
   - component: {fileID: 35472995}
+  - component: {fileID: 35472999}
   m_Layer: 0
   m_Name: printer
   m_TagString: Untagged
@@ -988,6 +989,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35472993}
   m_Mesh: {fileID: -2152556095677783316, guid: 2f30491044634fa4d8b267131f5216fe, type: 3}
+--- !u!114 &35472999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35472993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &35952394
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,6 +3042,7 @@ GameObject:
   - component: {fileID: 88880151}
   - component: {fileID: 88880150}
   - component: {fileID: 88880149}
+  - component: {fileID: 88880153}
   m_Layer: 0
   m_Name: printer_3
   m_TagString: Untagged
@@ -3159,6 +3173,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88880147}
   m_Mesh: {fileID: -2152556095677783316, guid: 2f30491044634fa4d8b267131f5216fe, type: 3}
+--- !u!114 &88880153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88880147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &89197567
 GameObject:
   m_ObjectHideFlags: 0
@@ -7409,6 +7435,7 @@ GameObject:
   - component: {fileID: 219422137}
   - component: {fileID: 219422136}
   - component: {fileID: 219422135}
+  - component: {fileID: 219422139}
   m_Layer: 0
   m_Name: plant2_1
   m_TagString: Item
@@ -7537,6 +7564,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219422133}
   m_Mesh: {fileID: 3057886230468345009, guid: 53a390c2e7417fc4881f4a9c5cc4078a, type: 3}
+--- !u!114 &219422139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219422133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &223928412
 GameObject:
   m_ObjectHideFlags: 0
@@ -12928,6 +12967,7 @@ GameObject:
   - component: {fileID: 367887093}
   - component: {fileID: 367887092}
   - component: {fileID: 367887091}
+  - component: {fileID: 367887095}
   m_Layer: 0
   m_Name: plant2
   m_TagString: Item
@@ -13056,6 +13096,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367887089}
   m_Mesh: {fileID: 3057886230468345009, guid: 53a390c2e7417fc4881f4a9c5cc4078a, type: 3}
+--- !u!114 &367887095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367887089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1001 &368322014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14854,6 +14906,7 @@ GameObject:
   - component: {fileID: 425300378}
   - component: {fileID: 425300377}
   - component: {fileID: 425300376}
+  - component: {fileID: 425300380}
   m_Layer: 0
   m_Name: plant2_3
   m_TagString: Item
@@ -14982,6 +15035,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425300374}
   m_Mesh: {fileID: 3057886230468345009, guid: 53a390c2e7417fc4881f4a9c5cc4078a, type: 3}
+--- !u!114 &425300380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425300374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &427347911
 GameObject:
   m_ObjectHideFlags: 0
@@ -17470,6 +17535,7 @@ GameObject:
   - component: {fileID: 478744634}
   - component: {fileID: 478744633}
   - component: {fileID: 478744632}
+  - component: {fileID: 478744636}
   m_Layer: 0
   m_Name: plant2
   m_TagString: Item
@@ -17598,6 +17664,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478744630}
   m_Mesh: {fileID: 3057886230468345009, guid: 53a390c2e7417fc4881f4a9c5cc4078a, type: 3}
+--- !u!114 &478744636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478744630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!43 &480960877
 Mesh:
   m_ObjectHideFlags: 0
@@ -18869,6 +18947,7 @@ GameObject:
   - component: {fileID: 522823690}
   - component: {fileID: 522823689}
   - component: {fileID: 522823688}
+  - component: {fileID: 522823692}
   m_Layer: 0
   m_Name: printer
   m_TagString: Untagged
@@ -18999,6 +19078,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522823686}
   m_Mesh: {fileID: -2152556095677783316, guid: 2f30491044634fa4d8b267131f5216fe, type: 3}
+--- !u!114 &522823692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522823686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1001 &526575214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25167,6 +25258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 713951270}
   - component: {fileID: 713951271}
+  - component: {fileID: 713951272}
   m_Layer: 0
   m_Name: trashCan_2
   m_TagString: Untagged
@@ -25219,6 +25311,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &713951272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713951269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &714565000
 GameObject:
   m_ObjectHideFlags: 0
@@ -26770,6 +26874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 771376542}
   - component: {fileID: 771376543}
+  - component: {fileID: 771376544}
   m_Layer: 0
   m_Name: trashCan_1
   m_TagString: Untagged
@@ -26822,6 +26927,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &771376544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771376541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &773093573
 GameObject:
   m_ObjectHideFlags: 0
@@ -27526,6 +27643,7 @@ GameObject:
   - component: {fileID: 801688869}
   - component: {fileID: 801688868}
   - component: {fileID: 801688867}
+  - component: {fileID: 801688871}
   m_Layer: 0
   m_Name: printer_2
   m_TagString: Untagged
@@ -27656,6 +27774,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801688865}
   m_Mesh: {fileID: -2152556095677783316, guid: 2f30491044634fa4d8b267131f5216fe, type: 3}
+--- !u!114 &801688871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801688865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1001 &802155303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28565,6 +28695,7 @@ GameObject:
   - component: {fileID: 827977220}
   - component: {fileID: 827977219}
   - component: {fileID: 827977218}
+  - component: {fileID: 827977222}
   m_Layer: 0
   m_Name: plant2_2
   m_TagString: Item
@@ -28693,6 +28824,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827977216}
   m_Mesh: {fileID: 3057886230468345009, guid: 53a390c2e7417fc4881f4a9c5cc4078a, type: 3}
+--- !u!114 &827977222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827977216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &830352214
 GameObject:
   m_ObjectHideFlags: 0
@@ -30298,6 +30441,7 @@ GameObject:
   - component: {fileID: 882490415}
   - component: {fileID: 882490414}
   - component: {fileID: 882490413}
+  - component: {fileID: 882490417}
   m_Layer: 0
   m_Name: plant2
   m_TagString: Item
@@ -30426,6 +30570,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882490411}
   m_Mesh: {fileID: 3057886230468345009, guid: 53a390c2e7417fc4881f4a9c5cc4078a, type: 3}
+--- !u!114 &882490417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882490411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &885838316
 GameObject:
   m_ObjectHideFlags: 0
@@ -36227,6 +36383,7 @@ GameObject:
   - component: {fileID: 1125561567}
   - component: {fileID: 1125561566}
   - component: {fileID: 1125561565}
+  - component: {fileID: 1125561569}
   m_Layer: 0
   m_Name: printer
   m_TagString: Untagged
@@ -36357,6 +36514,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125561563}
   m_Mesh: {fileID: -2152556095677783316, guid: 2f30491044634fa4d8b267131f5216fe, type: 3}
+--- !u!114 &1125561569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125561563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1127947726
 GameObject:
   m_ObjectHideFlags: 0
@@ -36974,6 +37143,7 @@ GameObject:
   - component: {fileID: 1143981583}
   - component: {fileID: 1143981582}
   - component: {fileID: 1143981581}
+  - component: {fileID: 1143981585}
   m_Layer: 0
   m_Name: plant2_1
   m_TagString: Item
@@ -37102,6 +37272,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143981579}
   m_Mesh: {fileID: 3057886230468345009, guid: 53a390c2e7417fc4881f4a9c5cc4078a, type: 3}
+--- !u!114 &1143981585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143981579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1146245030
 GameObject:
   m_ObjectHideFlags: 0
@@ -37401,6 +37583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151562415}
   - component: {fileID: 1151562416}
+  - component: {fileID: 1151562417}
   m_Layer: 0
   m_Name: trashCan
   m_TagString: Untagged
@@ -37453,6 +37636,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1151562417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151562414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1152985689
 GameObject:
   m_ObjectHideFlags: 0
@@ -41892,6 +42087,7 @@ GameObject:
   - component: {fileID: 1290847336}
   - component: {fileID: 1290847335}
   - component: {fileID: 1290847334}
+  - component: {fileID: 1290847338}
   m_Layer: 0
   m_Name: printer
   m_TagString: Untagged
@@ -42022,6 +42218,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290847332}
   m_Mesh: {fileID: -2152556095677783316, guid: 2f30491044634fa4d8b267131f5216fe, type: 3}
+--- !u!114 &1290847338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290847332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1291613226
 GameObject:
   m_ObjectHideFlags: 0
@@ -42835,6 +43043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1339696251}
   - component: {fileID: 1339696252}
+  - component: {fileID: 1339696253}
   m_Layer: 0
   m_Name: trashCan_1
   m_TagString: Untagged
@@ -42887,6 +43096,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1339696253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339696250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1342352012
 GameObject:
   m_ObjectHideFlags: 0
@@ -50983,6 +51204,7 @@ GameObject:
   - component: {fileID: 1660170978}
   - component: {fileID: 1660170977}
   - component: {fileID: 1660170976}
+  - component: {fileID: 1660170980}
   m_Layer: 0
   m_Name: printer_1
   m_TagString: Untagged
@@ -51113,6 +51335,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660170974}
   m_Mesh: {fileID: -2152556095677783316, guid: 2f30491044634fa4d8b267131f5216fe, type: 3}
+--- !u!114 &1660170980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660170974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1660262423
 GameObject:
   m_ObjectHideFlags: 0
@@ -57011,6 +57245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1856461032}
   - component: {fileID: 1856461033}
+  - component: {fileID: 1856461034}
   m_Layer: 0
   m_Name: trashCan
   m_TagString: Untagged
@@ -57063,6 +57298,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1856461034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856461031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!43 &1860384571
 Mesh:
   m_ObjectHideFlags: 0
@@ -58032,6 +58279,7 @@ GameObject:
   - component: {fileID: 1887867612}
   - component: {fileID: 1887867611}
   - component: {fileID: 1887867610}
+  - component: {fileID: 1887867614}
   m_Layer: 0
   m_Name: printer_1
   m_TagString: Untagged
@@ -58162,6 +58410,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887867608}
   m_Mesh: {fileID: -2152556095677783316, guid: 2f30491044634fa4d8b267131f5216fe, type: 3}
+--- !u!114 &1887867614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887867608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1891820537
 GameObject:
   m_ObjectHideFlags: 0
@@ -59861,6 +60121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1938856350}
   - component: {fileID: 1938856351}
+  - component: {fileID: 1938856352}
   m_Layer: 0
   m_Name: trashCan
   m_TagString: Untagged
@@ -59913,6 +60174,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1938856352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938856349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1947528141
 GameObject:
   m_ObjectHideFlags: 0
@@ -60752,6 +61025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1970645920}
   - component: {fileID: 1970645921}
+  - component: {fileID: 1970645922}
   m_Layer: 0
   m_Name: trashCan
   m_TagString: Untagged
@@ -60804,6 +61078,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1970645922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970645919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &1973764450
 GameObject:
   m_ObjectHideFlags: 0
@@ -66320,6 +66606,21 @@ MonoBehaviour:
   - {fileID: 1873742405}
   - {fileID: 1961286074}
   - {fileID: 1140155277}
+  - {fileID: 425300374}
+  - {fileID: 2132210260}
+  - {fileID: 801688865}
+  - {fileID: 827977216}
+  - {fileID: 713951269}
+  - {fileID: 88880147}
+  - {fileID: 1290847332}
+  - {fileID: 2144027954}
+  - {fileID: 1938856349}
+  - {fileID: 1660170974}
+  - {fileID: 219422133}
+  - {fileID: 1339696250}
+  - {fileID: 1887867608}
+  - {fileID: 1143981579}
+  - {fileID: 771376541}
 --- !u!1 &2132210260
 GameObject:
   m_ObjectHideFlags: 0
@@ -66330,6 +66631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2132210261}
   - component: {fileID: 2132210262}
+  - component: {fileID: 2132210263}
   m_Layer: 0
   m_Name: trashCan_3
   m_TagString: Untagged
@@ -66382,6 +66684,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2132210263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132210260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1 &2139960317
 GameObject:
   m_ObjectHideFlags: 0
@@ -66546,6 +66860,7 @@ GameObject:
   - component: {fileID: 2144027958}
   - component: {fileID: 2144027957}
   - component: {fileID: 2144027956}
+  - component: {fileID: 2144027960}
   m_Layer: 0
   m_Name: plant2
   m_TagString: Item
@@ -66674,6 +66989,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144027954}
   m_Mesh: {fileID: 3057886230468345009, guid: 53a390c2e7417fc4881f4a9c5cc4078a, type: 3}
+--- !u!114 &2144027960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144027954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348a347c93cf6847b9e5b352828af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SynchronizationObject
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
