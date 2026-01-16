@@ -52,7 +52,7 @@ public class ButtonManager : MonoBehaviour
                     armTransform.DORotate(new Vector3(0, 45, 0), 40);
             }
             else
-                armTransform.DORotate(new Vector3(0, 45, 0), 40);
+                armTransform.DORotate(new Vector3(0, 35, 0), 40);
 
             //leverButton_R.transform.position = new Vector3(leverButton_R.transform.position.x, -0.05f, leverButton_R.transform.position.z);
         }
@@ -64,7 +64,7 @@ public class ButtonManager : MonoBehaviour
                     armTransform.DORotate(new Vector3(0, -45, 0), 40);
             }
             else
-                armTransform.DORotate(new Vector3(0, -45, 0), 40);
+                armTransform.DORotate(new Vector3(0, -35, 0), 40);
 
             //leverButton_L.transform.position = new Vector3(leverButton_L.transform.position.x, -0.05f, leverButton_L.transform.position.z);
         }
@@ -77,7 +77,11 @@ public class ButtonManager : MonoBehaviour
 
         if (xrControllerButtonEvents.isTrriger)
         {
-            armTransform.DORotate(new Vector3(0, 45, 0), 40);       //クレーンを右に
+            armTransform.DORotate(new Vector3(0, 35, 0), 40);       //クレーンを右に
+        }
+        else
+        {
+            armTransform.DORotate(new Vector3(0, 35, 0), 40); // クレーンを右に移動
         }
     }
 
@@ -88,7 +92,11 @@ public class ButtonManager : MonoBehaviour
 
         if (xrControllerButtonEvents.isTrriger)
         {
-            armTransform.DORotate(new Vector3(0, -45, 0), 40);       //クレーンを右に
+            armTransform.DORotate(new Vector3(0, -35, 0), 40);       //クレーンを右に
+        }
+        else
+        {
+            armTransform.DORotate(new Vector3(0, -40, 0), 40); // クレーンを 左に移動
         }
     }
 }
