@@ -55,8 +55,6 @@ public class TaskUIManager : MonoBehaviour
             position = RoomModel.Instance.posision;
         }
 
-        if(position == "Worker")
-        {
             // 現在のシーンに応じてテクスチャ、文言を変更
             switch (SceneManager.GetActiveScene().name)
             {
@@ -68,8 +66,9 @@ public class TaskUIManager : MonoBehaviour
                     // タスクカウントを設定
                     taskCount.text = ": 0/5";
                     // 説明文を変更
-                    taskExplanation.text = "任務:指定位置まで箱を運搬";
-                    break;
+                    if(position =="Worker")taskExplanation.text = "任務:指定位置まで箱を運搬";
+                    else taskExplanation.text = "任務:コンテナで労働者を吹き飛ばす";
+                break;
                 case "Stage_2":
                     // リソースからアイコンを取得
                     texture = Resources.Load("Icons/Icon_Key") as Texture2D;
@@ -78,8 +77,9 @@ public class TaskUIManager : MonoBehaviour
                     // タスクカウントを設定
                     taskCount.text = ": 0/1";
                     // 説明文を変更
-                    taskExplanation.text = "任務:鍵を見つけ、アパートへ帰宅";
-                    break;
+                    if (position == "Worker") taskExplanation.text = "任務:鍵を見つけ、アパートへ帰宅";
+                    else taskExplanation.text = "任務:花瓶を下層の人間にぶつける";
+                break;
                 case "Stage_3":
                     // リソースからアイコンを取得
                     texture = Resources.Load("Icons/Icon_Coffee") as Texture2D;
@@ -88,8 +88,9 @@ public class TaskUIManager : MonoBehaviour
                     // タスクカウントを設定
                     taskCount.text = ": 0/5";
                     // 説明文を変更
-                    taskExplanation.text = "任務:コーヒーを配達";
-                    break;
+                    if (position == "Worker") taskExplanation.text = "任務:コーヒーを配達";
+                    else taskExplanation.text = "任務:コーヒー配達を妨害する";
+                break;
                 default:
                     // リソースからアイコンを取得
                     texture = Resources.Load("Icons/Icon_Grave") as Texture2D;
@@ -101,55 +102,6 @@ public class TaskUIManager : MonoBehaviour
                     taskExplanation.text = "Task:missing!";
                     break;
             }
-        }
-        else if(position == "Stricker")
-        {
-            // 現在のシーンに応じてテクスチャ、文言を変更
-            switch (SceneManager.GetActiveScene().name)
-            {
-                case "Stage_1":
-                    // リソースからアイコンを取得
-                    texture = Resources.Load("Icons/Icon_Box") as Texture2D;
-                    taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-
-                    // タスクカウントを設定
-                    taskCount.text = ": 0/5";
-                    // 説明文を変更
-                    taskExplanation.text = "任務:";
-                    break;
-                case "Stage_2":
-                    // リソースからアイコンを取得
-                    texture = Resources.Load("Icons/Icon_Key") as Texture2D;
-                    taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-
-                    // タスクカウントを設定
-                    taskCount.text = ": 0/1";
-                    // 説明文を変更
-                    taskExplanation.text = "任務:";
-                    break;
-                case "Stage_3":
-                    // リソースからアイコンを取得
-                    texture = Resources.Load("Icons/Icon_Coffee") as Texture2D;
-                    taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-
-                    // タスクカウントを設定
-                    taskCount.text = ": 0/5";
-                    // 説明文を変更
-                    taskExplanation.text = "任務:";
-                    break;
-                default:
-                    // リソースからアイコンを取得
-                    texture = Resources.Load("Icons/Icon_Grave") as Texture2D;
-                    taskIcon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-
-                    // タスクカウントを設定
-                    taskCount.text = "0/0";
-                    // 説明文を変更
-                    taskExplanation.text = "Task:missing!";
-                    break;
-            }
-
-        }
     }
 
     void Update()
