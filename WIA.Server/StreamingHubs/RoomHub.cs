@@ -49,6 +49,9 @@ namespace WIA.Server.StreamingHubs
         // レリック関連定数
         private const int MAX_DAMAGE = 99999;
 
+        //役職名
+        private string positionTitle;
+
         #region 接続・切断処理
         //接続した場合
         protected override ValueTask OnConnected()
@@ -78,10 +81,22 @@ namespace WIA.Server.StreamingHubs
             }
         }
 
+        public async Task<string> GetPositionAsync()
+        {
+            lock (roomContextRepository)
+            {
+                return this.positionTitle;
+            }
+        }
+
+        /// <summary>
+        /// 自動マッチング
+        /// </summary>
+        /// <returns></returns>
         public async Task<Dictionary<Guid, JoinedUser>> AutoMatchingAsync()
         {
             Dictionary<Guid, JoinedUser> JoinedUsers = await JoinedAsync("Lobby");
-            if (JoinedUsers.Count == 2)
+            if (JoinedUsers.Count >= 2)
             {
                 this.roomContext.Group.Only([JoinedUsers.Keys.ElementAt(0), JoinedUsers.Keys.ElementAt(1)]).OnMatching(Guid.NewGuid().ToString());            
             }
@@ -139,11 +154,17 @@ namespace WIA.Server.StreamingHubs
 
                     //1人目をマスタークライアントにする
                     joinedUser.IsMaster = true;
+
+                    //役職名、労働者
+                    positionTitle = "Worker";
                 }
                 else
                 {
                     //参加順番の設定
                     joinedUser.JoinOrder = roomContext.JoinedUserList.Count + 1;
+
+                    //役職名、労災側
+                    positionTitle = "Stricker";
                 }
 
                 // ルームコンテキストに参加ユーザーを保存
@@ -411,6 +432,20 @@ namespace WIA.Server.StreamingHubs
                 this.roomContext.Group.All.OnSpawnObject(spawnPos, uniqueId);
             }
         }
+
+        /// <summary>
+        /// アイテム生成処理
+        /// Author:木田晃輔
+        /// </summary>
+        /// <returns></returns>
+        public async Task SpawnItemAsync(int id, Vector3 spawnPos)
+        {
+            lock (roomContextRepository)
+            {
+                this.roomContext.Group.All.OnSpawnItem(id, spawnPos);
+            }
+        }
+
         /// <summary>
         /// オブジェクト更新処理
         /// Author:木田晃輔
@@ -435,6 +470,19 @@ namespace WIA.Server.StreamingHubs
             lock(roomContextRepository) 
             {
                 this.roomContext.Group.All.OnDeliteObject(objName,tag);
+            }
+        }
+
+        /// <summary>
+        /// オブジェクトの削除
+        /// Author:木田晃輔
+        /// </summary>
+        /// <returns></returns>
+        public async Task ActGimicAsync(string parentName)
+        {
+            lock (roomContextRepository)
+            {
+                this.roomContext.Group.All.OnActGimic(parentName);
             }
         }
 

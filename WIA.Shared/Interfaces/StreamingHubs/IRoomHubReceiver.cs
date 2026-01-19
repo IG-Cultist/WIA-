@@ -82,6 +82,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         void OnSameStart();
 
+
         #endregion
 
         #region ゲーム内
@@ -178,12 +179,14 @@ namespace Shared.Interfaces.StreamingHubs
 
         /// <summary>
         /// ゲーム終了通知
+        /// Author:木田晃輔
         /// </summary>
         /// <param name="result"></param>
         void OnGameEnd(ResultData result);
 
         /// <summary>
         /// アイテム獲得通知
+        /// Author:木田晃輔
         /// </summary>
         /// <param name="conId">獲得したユーザーの接続ID</param>
         /// <param name="itemID">アイテムの識別用ID</param>
@@ -192,5 +195,18 @@ namespace Shared.Interfaces.StreamingHubs
         /// <param name="nextLevelExp">レベルアップに必要なEXP</param>
         void OnGetItem(Guid conId, string itemID, int nowLevel, int nowExp, int nextLevelExp);
 
+
+        /// <summary>
+        /// ギミック動作通知
+        /// Author:木田晃輔
+        /// </summary>
+        /// <param name="parentName"></param>
+        void OnActGimic(string parentName);
+
+        /// <summary>
+        /// アイテム生成通知
+        /// Author:木田晃輔
+        /// </summary>
+        void OnSpawnItem(int id, Vector3 spawnPos);
     }
 }

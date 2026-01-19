@@ -188,6 +188,8 @@ public class OnlineGameManager : MonoBehaviour
         RoomModel.Instance.OnOwnershipSwapObjectSyn -= OnOwnershipSwapObjectSyn;
         RoomModel.Instance.OnCounted -= this.OnCounted;
         RoomModel.Instance.OnDeliteObjectSyn -= this.OnDeliteObjectSyn;
+        RoomModel.Instance.OnActGimicSyn -= this.OnActGimicSyn;
+        RoomModel.Instance.OnSpawnItemSyn -= this.OnSpawnItemSyn;
         //RoomModel.Instance.OnPlayerDeadSyn -= this.OnPlayerDeadSyn;
         //RoomModel.Instance.OnPlayerRespownSyn -= this.OnPlayerRespownSyn;
 
@@ -334,6 +336,28 @@ public class OnlineGameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// アイテム生成通知
+    /// </summary>
+    void OnSpawnItemSyn(int id, Vector3 spawnPos)
+    {
+        if(id == 0)
+        {
+
+        }
+        else if(id == 1)
+        {
+
+        }
+        else if(id == 2)
+        {
+
+        }
+        CancelInvoke("UpdateObj");
+        //オブジェクト更新を行う
+        InvokeRepeating("UpdateObj", 0.1f, 0.1f);
+    }
+
+    /// <summary>
     /// オブジェクト更新通知
     /// </summary>
     /// <param name="pos"></param>
@@ -358,6 +382,11 @@ public class OnlineGameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// オブジェクト削除通知
+    /// </summary>
+    /// <param name="objName"></param>
+    /// <param name="tag"></param>
     void OnDeliteObjectSyn(string objName, string tag)
     {
         if(objList != null)
@@ -447,6 +476,10 @@ public class OnlineGameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// カウント通知
+    /// </summary>
+    /// <param name="isTask"></param>
     void OnCounted(bool isTask)
     {
         switch (isTask)
@@ -512,6 +545,16 @@ public class OnlineGameManager : MonoBehaviour
                     "/3";
                 break;
         }
+    }
+
+    /// <summary>
+    /// ギミック動作通知
+    /// </summary>
+    /// <param name="parentName"></param>
+    void OnActGimicSyn(string parentName)
+    {
+        //ウォーターサーバーの場合
+        GameObject.Find(parentName).transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
     }
 
 

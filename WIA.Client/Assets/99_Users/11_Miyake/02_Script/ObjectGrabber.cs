@@ -3,6 +3,7 @@
 // 三宅歩人
 //==============================================
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -143,7 +144,7 @@ public class ObjectGrabber : MonoBehaviour
     //==============================================
     // 掴む処理
     //==============================================
-    void Grab()
+    async void Grab()
     {
         Camera cam = GetComponent<Camera>();
         if (cam == null) return;
@@ -193,8 +194,16 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("WaterCooler"))    // ウォータークーラーに触れた場合
             {
-                // 水を吹き出す
-                hit.transform.GetChild(0).gameObject.SetActive(true);
+                if(RoomModel.Instance)
+                {
+                    // ギミック動作同期
+                    await RoomModel.Instance.ActGimicAsync(hit.transform.parent.parent.name);
+                }
+                else
+                {
+                    // 水を吹き出す
+                    hit.transform.GetChild(0).gameObject.SetActive(true);
+                }
             }
             else if (hit.collider.CompareTag("ItemBox"))    // アイテムボックスの場合
             {

@@ -42,6 +42,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     // 現在の参加者情報
     public Dictionary<Guid, JoinedUser> joinedUserList { get; private set; } = new Dictionary<Guid, JoinedUser>();
 
+    //役職
+    public string posision;
+
 
     //現在のルーム情報
     //public RoomData[] roomDataList { get; set; }
@@ -56,7 +59,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //ルーム生成通知
     public Action OnCreatedRoom { get; set; }
 
-    public Action<string> OnMatched {  get; set; }
+    public Action<string> OnMatched { get; set; }
 
     //ユーザー接続通知
     public Action<JoinedUser> OnJoinedUser { get; set; }
@@ -77,12 +80,13 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action OnStartedGame { get; set; }
 
     //プレイヤー待機通知
-    public Action OnWaitSyn {  get; set; }
+    public Action OnWaitSyn { get; set; }
 
     //同時開始通知
-    public Action OnSameStarted {  get; set; }
+    public Action OnSameStarted { get; set; }
 
-    public Action<bool> OnCounted {  get; set; }
+    //カウント
+    public Action<bool> OnCounted { get; set; }
 
     //難易度上昇通知
     public Action<int> OnAscendDifficultySyn { get; set; }
@@ -107,14 +111,14 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action<MasterClientData> OnUpdateMasterClientSyn { get; set; }
 
     //プレイヤー位置回転通知
-    public Action<Vector3,Quaternion,int,float> OnUpdatePlayerSyn { get; set; }
+    public Action<Vector3, Quaternion, int, float> OnUpdatePlayerSyn { get; set; }
 
 
     //プレイヤーダウン通知
     public Action<Guid> OnPlayerDeadSyn { get; set; }
 
     //プレイヤーリスポーン通知
-    public Action<Guid> OnPlayerRespownSyn {  get; set; }
+    public Action<Guid> OnPlayerRespownSyn { get; set; }
 
     #endregion
 
@@ -147,8 +151,14 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //ギミックの起動通知
     public Action<string, bool> OnBootedGimmick { get; set; }
 
+    //ギミック動作通知
+    public Action<string> OnActGimicSyn { get; set;}
+
     // オブジェクト生成通知
     public Action< Vector3, string> OnSpawnedObjectSyn { get; set; }
+
+    //アイテム生成通知
+    public Action<int, Vector3> OnSpawnItemSyn { get; set; }
 
     // オブジェクト生成通知
     public Action< Vector3,Quaternion, string> OnUpdatedObject { get; set; }
@@ -534,6 +544,16 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     }
 
     /// <summary>
+    /// アイテム生成通知
+    /// Author:木田晃輔
+    /// </summary>
+    public void OnSpawnItem(int id, Vector3 spawnPos)
+    {
+        OnSpawnItemSyn(id, spawnPos);
+    }
+
+
+    /// <summary>
     /// オブジェクト更新通知
     /// Author;木田晃輔
     /// </summary>
@@ -545,7 +565,11 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnUpdatedObject(pos,rot, uniqueId);
     }
 
-
+    /// <summary>
+    /// オブジェクト削除通知
+    /// </summary>
+    /// <param name="objName"></param>
+    /// <param name="tag"></param>
     public void OnDeliteObject(string objName, string tag)
     {
         OnDeliteObjectSyn(objName,tag);
@@ -564,7 +588,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
 
 
     /// <summary>
-    /// オブジェクト所有権変更通知
+    /// カウント通知
     /// Author;木田晃輔
     /// </summary>
     public void OnCount(bool isTask)
@@ -572,11 +596,29 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnCounted(isTask);
     }
 
+    /// <summary>
+    /// ギミック動作
+    /// </summary>
+    /// <param name="parentName"></param>
+    public void OnActGimic(string parentName)
+    {
+        OnActGimicSyn(parentName);
+    }
+
     #endregion
 
     #endregion
 
     #region リクエスト関連
+
+    /// <summary>
+    /// 役職取得
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask GetPositionAsync()
+    {
+       posision =  await roomHub.GetPositionAsync();
+    }
 
     /// <summary>
     /// 自動マッチング
@@ -729,12 +771,23 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     }
 
     /// <summary>
-    /// オブジェクト生成リクエスト
+    /// オブジェクト生成同期
     /// </summary>
     /// <returns></returns>
     public async UniTask SpawnObjectAsync(Vector3 spawnPos)
     {
         await roomHub.SpawnObjectAsync(spawnPos);
+    }
+
+    /// <summary>
+    /// アイテム生成同期
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="spawnPos"></param>
+    /// <returns></returns>
+    public async UniTask SpawnItemAsync(int id,Vector3 spawnPos)
+    {
+        await roomHub.SpawnItemAsync(id,spawnPos);
     }
 
     /// <summary>
@@ -774,6 +827,20 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         await roomHub.CountAsync(isTask);
     }
 
+    /// <summary>
+    /// ギミック動作同期
+    /// </summary>
+    /// <param name="parentName"></param>
+    /// <returns></returns>
+    public async UniTask ActGimicAsync(string parentName)
+    {
+        await roomHub.ActGimicAsync(parentName);
+    }
+
+    /// <summary>
+    /// ゲーム終了
+    /// </summary>
+    /// <returns></returns>
     public async Task GameEndAsync()
     {
         await roomHub.GameEndAsync();

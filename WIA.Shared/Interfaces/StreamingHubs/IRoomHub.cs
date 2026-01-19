@@ -62,6 +62,12 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         Task WaitAsync();
 
+        /// <summary>
+        /// 役職取得
+        /// </summary>
+        /// <returns></returns>
+        Task<string> GetPositionAsync();
+
         #endregion
 
         #region ゲーム内
@@ -118,11 +124,17 @@ namespace Shared.Interfaces.StreamingHubs
         Task AdvancedStageAsync();
 
         /// <summary>
-        /// オブジェクト生成リクエスト
+        /// オブジェクト生成同期
         /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
         Task SpawnObjectAsync(Vector3 spawnPos);
+
+        /// <summary>
+        /// アイテム生成同期
+        /// </summary>
+        /// <returns></returns>
+        Task SpawnItemAsync(int id,Vector3 spawnPos);
 
         /// <summary>
         /// オブジェクト更新
@@ -144,6 +156,13 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         /// <returns></returns>
         Task OwnershipSwapObjectAsync(string uniqueId,int joinOrder);
+
+        /// <summary>
+        /// ギミックの作動同期
+        /// Author:木田晃輔
+        /// </summary>
+        /// <returns></returns>
+        Task ActGimicAsync(string parentName);
 
         /// <summary>
         /// カウント同期
