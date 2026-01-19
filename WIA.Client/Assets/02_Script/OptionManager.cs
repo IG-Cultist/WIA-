@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using KanKikuchi.AudioManager;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+using static UnityEngine.InputSystem.InputSettings;
 
 
 public class OptionManager : MonoBehaviour
@@ -10,11 +12,18 @@ public class OptionManager : MonoBehaviour
     [SerializeField] Slider BGMSlider;
     [SerializeField] Slider SESlider;
 
+    [Header("調査プレイヤー用")]
+    FirstPersonMovement playerMove;    //座標固定用
+    FirstPersonLook playerCamera;      //視点固定用
+                                       //VR
+    private XRControllerButtonEvents xrControllerButtonEvents;
+
     //各音量変数
     private float SEVolume;
     private float BGMVolume;
 
     bool isSetting;
+
 
 
     FirstPersonLook pov;
@@ -35,10 +44,11 @@ public class OptionManager : MonoBehaviour
     void Update()
     {
         /*
-        if(isSetting)
+        if(!isSetting)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;    //カーソルを表示
+
         }
         else
         {
@@ -86,9 +96,35 @@ public class OptionManager : MonoBehaviour
     {
         window.SetActive(true);
 
-        if (pov == null) return;
+        if (SceneManager.GetActiveScene().name == "Stage_1" || SceneManager.GetActiveScene().name == "Stage_2" || SceneManager.GetActiveScene().name == "Stage_3")
+        {
 
-        pov.enabled = false;
+            if (RoomModel.Instance)
+            {
+                //メインキャラクターのカメラを取る
+                playerCamera = GameObject.Find(OnlineGameManager.Player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+                //プレイヤー移動処理スクリプト取得
+                playerMove = GameObject.Find(OnlineGameManager.Player.name).GetComponent<FirstPersonMovement>();
+                //VRのスクリプト取得
+                xrControllerButtonEvents = GameObject.Find(OnlineGameManager.Player.name).GetComponent<XRControllerButtonEvents>();
+            }
+            else
+            {
+                //メインキャラクターのカメラを取る
+                playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+                //プレイヤー移動処理スクリプト取得
+                playerMove = GameObject.Find("Main").GetComponent<FirstPersonMovement>();
+                //VRのスクリプト取得
+                xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+            }
+            
+
+            playerCamera.enabled = false;   //カメラアングル固定化
+            playerMove.enabled = false;     //プレイヤー座標固定化
+        }
+
+        isSetting = true;
+
     }
 
     /// <summary>
@@ -98,8 +134,33 @@ public class OptionManager : MonoBehaviour
     {
         window.SetActive(false);
 
-        if (pov == null) return;
+        if (SceneManager.GetActiveScene().name == "Stage_1" || SceneManager.GetActiveScene().name == "Stage_2" || SceneManager.GetActiveScene().name == "Stage_3")
+        {
 
-        pov.enabled = true;
+            if (RoomModel.Instance)
+            {
+                //メインキャラクターのカメラを取る
+                playerCamera = GameObject.Find(OnlineGameManager.Player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+                //プレイヤー移動処理スクリプト取得
+                playerMove = GameObject.Find(OnlineGameManager.Player.name).GetComponent<FirstPersonMovement>();
+                //VRのスクリプト取得
+                xrControllerButtonEvents = GameObject.Find(OnlineGameManager.Player.name).GetComponent<XRControllerButtonEvents>();
+            }
+            else
+            {
+                //メインキャラクターのカメラを取る
+                playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+                //プレイヤー移動処理スクリプト取得
+                playerMove = GameObject.Find("Main").GetComponent<FirstPersonMovement>();
+                //VRのスクリプト取得
+                xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+            }
+            
+
+            playerCamera.enabled = true;   //カメラアングル固定化
+            playerMove.enabled = true;     //プレイヤー座標固定化
+        }
+
+        isSetting = false;
     }
 }
