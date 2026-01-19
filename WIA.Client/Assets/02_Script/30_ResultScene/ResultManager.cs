@@ -162,6 +162,15 @@ public class ResultManager : MonoBehaviour
         radar.SetRadarChart(radarList);     //変換した数値リストを反映
     }
 
+    public void BackTitle()
+    {
+        // シーン遷移
+        Initiate.DoneFading();
+        //VRかどうかでシーン選別
+        if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_01_TitleScene", endColor, 2.0f);
+        else Initiate.Fade("01_TitleScene", endColor, 2.0f);
+    }
+
 
     public void StartMenu()
     {
