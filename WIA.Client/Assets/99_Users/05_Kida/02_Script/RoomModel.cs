@@ -158,7 +158,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public Action< Vector3, string> OnSpawnedObjectSyn { get; set; }
 
     //アイテム生成通知
-    public Action<int, Vector3> OnSpawnItemSyn { get; set; }
+    public Action<int,string, Vector3> OnSpawnItemSyn { get; set; }
 
     // オブジェクト生成通知
     public Action< Vector3,Quaternion, string> OnUpdatedObject { get; set; }
@@ -547,9 +547,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// アイテム生成通知
     /// Author:木田晃輔
     /// </summary>
-    public void OnSpawnItem(int id, Vector3 spawnPos)
+    public void OnSpawnItem(int itemId,string uniqueId, Vector3 spawnPos)
     {
-        OnSpawnItemSyn(id, spawnPos);
+        OnSpawnItemSyn(itemId,uniqueId, spawnPos);
     }
 
 
@@ -785,9 +785,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     /// <param name="id"></param>
     /// <param name="spawnPos"></param>
     /// <returns></returns>
-    public async UniTask SpawnItemAsync(int id,Vector3 spawnPos)
+    public async UniTask SpawnItemAsync(int itemId,Vector3 spawnPos)
     {
-        await roomHub.SpawnItemAsync(id,spawnPos);
+        await roomHub.SpawnItemAsync(itemId,spawnPos);
     }
 
     /// <summary>

@@ -438,11 +438,12 @@ namespace WIA.Server.StreamingHubs
         /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
-        public async Task SpawnItemAsync(int id, Vector3 spawnPos)
+        public async Task SpawnItemAsync(int itemId, Vector3 spawnPos)
         {
             lock (roomContextRepository)
             {
-                this.roomContext.Group.All.OnSpawnItem(id, spawnPos);
+                string uniqueId = Guid.NewGuid().ToString();
+                this.roomContext.Group.All.OnSpawnItem(itemId,uniqueId, spawnPos);
             }
         }
 

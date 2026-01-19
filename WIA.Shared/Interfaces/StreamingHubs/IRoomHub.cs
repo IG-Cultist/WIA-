@@ -134,7 +134,7 @@ namespace Shared.Interfaces.StreamingHubs
         /// アイテム生成同期
         /// </summary>
         /// <returns></returns>
-        Task SpawnItemAsync(int id,Vector3 spawnPos);
+        Task SpawnItemAsync(int itemId,Vector3 spawnPos);
 
         /// <summary>
         /// オブジェクト更新

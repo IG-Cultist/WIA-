@@ -207,6 +207,6 @@ namespace Shared.Interfaces.StreamingHubs
         /// アイテム生成通知
         /// Author:木田晃輔
         /// </summary>
-        void OnSpawnItem(int id, Vector3 spawnPos);
+        void OnSpawnItem(int itemId,string uniqueId, Vector3 spawnPos);
     }
 }

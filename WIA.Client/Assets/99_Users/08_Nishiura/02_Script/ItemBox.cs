@@ -35,7 +35,7 @@ public class ItemBox : MonoBehaviour
     /// <summary>
     /// アイテム獲得処理
     /// </summary>
-    public void GetItem()
+    public async void GetItem()
     {
         // 生成したオブジェクトがある間、処理しない
         if (createdObj != null || isCooldown) return;
@@ -59,11 +59,21 @@ public class ItemBox : MonoBehaviour
                 prefab = null;
                 break;
         }
-        // 読み込まれたプレハブを生成する
-        createdObj = Instantiate(prefab, new Vector3(this.gameObject.transform.position.x, -0.36f, this.gameObject.transform.position.y), Quaternion.identity);
-        createdObj.name = prefab.name;
 
-        //if(RoomModel.Instance) gameManager.SpawnObj()
+        //通信時のみ
+        if (RoomModel.Instance)
+        {
+            createdObj = prefab;
+            createdObj.transform.position = new Vector3(this.gameObject.transform.position.x, -0.36f, this.gameObject.transform.position.y);
+            createdObj.transform.rotation = Quaternion.identity;
+            await RoomModel.Instance.SpawnItemAsync(rnd, createdObj.transform.position);
+        }
+        else
+        {
+            // 読み込まれたプレハブを生成する
+            createdObj = Instantiate(prefab, new Vector3(this.gameObject.transform.position.x, -0.36f, this.gameObject.transform.position.y), Quaternion.identity);
+            createdObj.name = prefab.name;
+        }
 
         isCooldown = true;  // クールダウン中とする
         coolDownSlider.SetActive(true); //クールダウンUIを表示
