@@ -95,10 +95,8 @@ public class MatchingManager : MonoBehaviour
 
         InvokeRepeating("StartEffect", 0.5f, 0.8f);
         #region RoomModel定義
-        if (SceneManager.GetActiveScene().name == "MatchingScene")
-        {
-            await RoomModel.Instance.ConnectAsync();
-        }
+        await RoomModel.Instance.ConnectAsync();
+
         RoomModel.Instance.OnFailedJoinSyn += this.OnFailedJoinSyn;
         RoomModel.Instance.OnMatched += this.OnMatched;
         //ユーザーが入室した時にOnJoinedUserメソッドを実行するよう、モデルに登録
@@ -108,7 +106,7 @@ public class MatchingManager : MonoBehaviour
         RoomModel.Instance.OnStartedGame += this.OnStartedGame;
         #endregion
 
-        if (SceneManager.GetActiveScene().name == "MatchingScene")
+        //if (SceneManager.GetActiveScene().name == "MatchingScene")
             InvokeRepeating("Matching",0,1f);
     }
 
