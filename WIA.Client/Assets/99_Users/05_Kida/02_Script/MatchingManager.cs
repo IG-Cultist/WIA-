@@ -8,6 +8,8 @@
 
 #region using一覧
 using Cysharp.Net.Http;
+using DG.Tweening;
+
 //using Cysharp.Threading.Tasks.Triggers;
 using Grpc.Net.Client;
 using MagicOnion.Client;
@@ -19,6 +21,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using static Unity.Burst.Intrinsics.X86.Avx;
+using System.Collections;
+
 #endregion
 
 public class MatchingManager : MonoBehaviour
@@ -42,19 +48,26 @@ public class MatchingManager : MonoBehaviour
     [Header("遷移フェードカラー")]
     [SerializeField]
     Color32 endColor = new Color32(29, 29, 29, 255);
+    Color32 backMenuendColor = new Color32(255, 255, 255, 255);
+
     #endregion
     public List<GameObject> createdRoomList; //作られたルーム
     public int userID;
     EventSystem eventSystem;
     JoinedUser joinedUser;                  //このクライアントユーザーの情報
     Text text;
+    [SerializeField] private TMP_Text dotText;
+
     BaseModel model;
     Text roomNameText; //ルームの名前
     Text userNameText; //ユーザーの名前
     Text passText;      //パスワード
+
     string joinRoomName;
     string roomSerchName;
     int errorId;
+
+    int dotCount = 0;
 
     //入室か生成の判別用
     private static string joinMode;
@@ -80,6 +93,7 @@ public class MatchingManager : MonoBehaviour
         ////安全動作のための初回ローディング
         //conducter.Loading();
 
+        InvokeRepeating("StartEffect", 0.5f, 0.8f);
         #region RoomModel定義
         if (SceneManager.GetActiveScene().name == "MatchingScene")
         {
@@ -95,7 +109,7 @@ public class MatchingManager : MonoBehaviour
         #endregion
 
         if (SceneManager.GetActiveScene().name == "MatchingScene")
-            InvokeRepeating("Matching",0,1f);           
+            InvokeRepeating("Matching",0,1f);
     }
 
     private void OnDisable()
@@ -292,4 +306,41 @@ public class MatchingManager : MonoBehaviour
         Initiate.Fade("PreMatchingScene", endColor, 2.0f);
     }
     #endregion
+
+    /// <summary>
+    /// メニュー画面に戻る処理
+    /// </summary>
+    public void BackMenu()
+    {
+        //メニューシーンに遷移する
+        if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_02_MenuScene", backMenuendColor, 2.0f); //VR時
+        else Initiate.Fade("02_MenuScene", backMenuendColor, 2.0f);
+    }
+
+    // 繰り返しのためのメソッド（例：ボタンクリック時など）
+    public void StartEffect()
+    {
+        switch(dotCount)
+        {
+            case 0:
+                dotText.text = ".";
+                dotCount++;
+                    break;
+
+            case 1:
+                dotText.text = "..";
+                dotCount++;
+                break;
+
+            case 2:
+                dotText.text = "...";
+                dotCount++;
+                break;
+
+            case 3:
+                dotText.text = "";
+                dotCount = 0;
+                break;
+        }
+    }
 }
