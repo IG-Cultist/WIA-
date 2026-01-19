@@ -63,7 +63,7 @@ public class DeliveryManager : MonoBehaviour
         }
         else
         {
-            player = GameObject.Find("Main").gameObject.GetComponent<Player>(); // シーン内のプレイヤーからスクリプトを取得
+            player = GameObject.FindWithTag("Player").gameObject.GetComponent<Player>(); // シーン内のプレイヤーからスクリプトを取得
         }
         resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
 
