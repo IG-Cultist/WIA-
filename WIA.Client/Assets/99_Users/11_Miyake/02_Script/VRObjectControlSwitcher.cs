@@ -48,39 +48,7 @@ public class VRObjectControlSwitcher : MonoBehaviour
 
     private void Update()
     {
-        if (xrControllerButtonEvents.isTrriger) EnterObjectControl();
-        else ExitObjectControl();
-
-        // オブジェクト操作モードでなければ処理しない
-        if (!isObjectControlMode) return;
-
-        // スティック入力を取得
-        Vector2 input = moveAction.action.ReadValue<Vector2>();
-
-        // カメラ（HMD）の向きを基準に移動方向を決定
-        Transform cameraTransform = Camera.main.transform;
-
-        // カメラの右方向と前方向を取得
-        Vector3 right = cameraTransform.right;
-        Vector3 forward = cameraTransform.forward;
-
-        // 上下成分を無視（床に沿った移動にするため）
-        right.y = 0f;
-        forward.y = 0f;
-
-        // 念のため正規化
-        right.Normalize();
-        forward.Normalize();
-
-        // 入力値を方向ベクトルに変換
-        Vector3 moveDirection =
-            right * input.x +
-            forward * input.y;
-
-        // オブジェクトを移動
-        // Time.deltaTime を掛けてフレームレート非依存にする
-        targetObject.position +=
-            moveDirection * moveSpeed * Time.deltaTime;
+        MoveObject();
     }
 
     /// <summary>
@@ -109,5 +77,47 @@ public class VRObjectControlSwitcher : MonoBehaviour
         {
             moveLocomotionObject.SetActive(true);
         }
+    }
+
+    //スティックでオブジェクト動かす
+    public void MoveObject()
+    {
+        if (xrControllerButtonEvents.isGrip) EnterObjectControl();
+        else ExitObjectControl();
+
+        // オブジェクト操作モードでなければ処理しない
+        if (!isObjectControlMode) return;
+
+        //FlowerPotスクリプトを取得して関数呼び出し
+        FlowerPot flowerPot = GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>();
+        flowerPot.GrabPot();
+
+        // スティック入力を取得
+        Vector2 input = moveAction.action.ReadValue<Vector2>();
+
+        // カメラ（HMD）の向きを基準に移動方向を決定
+        Transform cameraTransform = Camera.main.transform;
+
+        // カメラの右方向と前方向を取得
+        Vector3 right = cameraTransform.right;
+        Vector3 forward = cameraTransform.forward;
+
+        // 上下成分を無視（床に沿った移動にするため）
+        right.y = 0f;
+        forward.y = 0f;
+
+        // 念のため正規化
+        right.Normalize();
+        forward.Normalize();
+
+        // 入力値を方向ベクトルに変換
+        Vector3 moveDirection =
+            right * input.x +
+            forward * input.y;
+
+        // オブジェクトを移動
+        // Time.deltaTime を掛けてフレームレート非依存にする
+        targetObject.position +=
+            moveDirection * moveSpeed * Time.deltaTime;
     }
 }
