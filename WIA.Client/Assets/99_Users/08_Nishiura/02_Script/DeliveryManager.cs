@@ -115,7 +115,7 @@ public class DeliveryManager : MonoBehaviour
     /// <summary>
     /// コーヒー生成処理
     /// </summary>
-    void DripCoffee()
+    async void DripCoffee()
     {
         GameObject.Find("FadeImage").GetComponent<Image>().DOFade(0f, 1f);
         // デスク番号がユニークなものになるまでループ
@@ -128,9 +128,20 @@ public class DeliveryManager : MonoBehaviour
         }
 
         // コーヒーを生成する
-        coffeeObj = Instantiate(coffeePrefabs);
-        coffeeObj.name = coffeePrefabs.name;
-        coffeeObj.transform.position = new Vector3(-17f, 0.44f, 2.5f);
+
+        if (RoomModel.Instance)
+        {
+            coffeeObj = coffeePrefabs;
+            coffeeObj.name = coffeePrefabs.name;
+            coffeeObj.transform.position = new Vector3(-17f, 0.44f, 2.5f);
+            await RoomModel.Instance.SpawnItemAsync(2, coffeeObj.transform.position);
+        }
+        else
+        {
+            coffeeObj = Instantiate(coffeePrefabs);
+            coffeeObj.name = coffeePrefabs.name;
+            coffeeObj.transform.position = new Vector3(-17f, 0.44f, 2.5f);
+        }
 
         isCooldown = true;
         coolDownSlider.SetActive(true);

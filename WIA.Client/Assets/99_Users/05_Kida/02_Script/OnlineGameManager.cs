@@ -29,23 +29,28 @@ public class OnlineGameManager : MonoBehaviour
 {
     #region 基本
     [Header("基本設定")]
+
     PlayerData playerData;
-    int tasks = 0;      //タスクの数
+
     [SerializeField] Transform spawnPointP1; //プレイヤー1の初期配置場所
     [SerializeField] Transform spawnPointP2; //プレイヤー2の初期配置場所
-    private static Transform mainSpawnPoint; //操作プレイヤーの初期配置
-    public static Transform MainSpawnPoint
-    {
-        get { return mainSpawnPoint; }
-    }
     [SerializeField] GameObject mainPlayerPrefab; //操作プレイヤー
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
+    [SerializeField] GameObject coffyPrefab; //コーヒー
+    [SerializeField] GameObject drugPrefab; //ヤク
+    [SerializeField] GameObject cupPrefab; //水入りコップ
     [SerializeField] List<GameObject> syncObjList;//同期用オブジェクト初期設定
+
     private static GameObject player;//操作プレイヤー
     public static GameObject Player
     {
         get { return player; }
+    }
+    private static Transform mainSpawnPoint; //操作プレイヤーの初期配置
+    public static Transform MainSpawnPoint
+    {
+        get { return mainSpawnPoint; }
     }
     GameObject subplayer; //非操作プレイヤー
     private static Dictionary<string,GameObject> objList = new Dictionary<string, GameObject>(); //生成オブジェクトリスト
@@ -59,6 +64,7 @@ public class OnlineGameManager : MonoBehaviour
         get { return spawnObjId; }
     }
 
+    private int tasks = 0;      //タスクの数
     private int TaskCnt; //タスクカウント
     private int potCount;
     private bool isGetKey = false; //鍵を持っている
@@ -85,6 +91,8 @@ public class OnlineGameManager : MonoBehaviour
         RoomModel.Instance.OnOwnershipSwapObjectSyn += OnOwnershipSwapObjectSyn;
         RoomModel.Instance.OnCounted += this.OnCounted;
         RoomModel.Instance.OnDeliteObjectSyn += this.OnDeliteObjectSyn;
+        RoomModel.Instance.OnSpawnItemSyn += this.OnSpawnItemSyn;
+        RoomModel.Instance.OnActGimicSyn += this.OnActGimicSyn;
         //RoomModel.Instance.OnPlayerDeadSyn += this.OnPlayerDeadSyn;
         //RoomModel.Instance.OnPlayerRespownSyn += this.OnPlayerRespownSyn;
 
@@ -338,19 +346,25 @@ public class OnlineGameManager : MonoBehaviour
     /// <summary>
     /// アイテム生成通知
     /// </summary>
-    void OnSpawnItemSyn(int id, Vector3 spawnPos)
+    void OnSpawnItemSyn(int itemId,string uniqueId, Vector3 spawnPos)
     {
-        if(id == 0)
-        {
-
+        if(itemId == 0)
+        {//ヤク
+            GameObject gameObject = Instantiate(drugPrefab);
+            gameObject.transform.position = spawnPos;
+            objList.Add(uniqueId, gameObject);
         }
-        else if(id == 1)
-        {
-
+        else if(itemId == 1)
+        {//水入りコップ
+            GameObject gameObject = Instantiate(cupPrefab);
+            gameObject.transform.position = spawnPos;
+            objList.Add(uniqueId, gameObject);
         }
-        else if(id == 2)
-        {
-
+        else if(itemId == 2)
+        {//コーヒー
+            GameObject gameObject = Instantiate(coffyPrefab);
+            gameObject.transform.position = spawnPos;
+            objList.Add(uniqueId, gameObject);
         }
         CancelInvoke("UpdateObj");
         //オブジェクト更新を行う
@@ -554,7 +568,7 @@ public class OnlineGameManager : MonoBehaviour
     void OnActGimicSyn(string parentName)
     {
         //ウォーターサーバーの場合
-        GameObject.Find(parentName).transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.Find(parentName).transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
     }
 
 
