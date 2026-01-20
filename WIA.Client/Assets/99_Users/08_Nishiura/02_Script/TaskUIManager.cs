@@ -67,7 +67,7 @@ public class TaskUIManager : MonoBehaviour
                     taskCount.text = ": 0/5";
                     // 説明文を変更
                     if(position =="Worker")taskExplanation.text = "任務:指定位置まで箱を運搬";
-                    else taskExplanation.text = "任務:コンテナで労働者を吹き飛ばす";
+                    else taskExplanation.text = "任務:コンテナで労働者を粉砕";
                 break;
                 case "Stage_2":
                     // リソースからアイコンを取得
@@ -78,7 +78,7 @@ public class TaskUIManager : MonoBehaviour
                     taskCount.text = ": 0/1";
                     // 説明文を変更
                     if (position == "Worker") taskExplanation.text = "任務:鍵を見つけ、アパートへ帰宅";
-                    else taskExplanation.text = "任務:花瓶を下層の人間にぶつける";
+                    else taskExplanation.text = "任務:花瓶を下層の人にぶつける";
                 break;
                 case "Stage_3":
                     // リソースからアイコンを取得
@@ -89,7 +89,7 @@ public class TaskUIManager : MonoBehaviour
                     taskCount.text = ": 0/5";
                     // 説明文を変更
                     if (position == "Worker") taskExplanation.text = "任務:コーヒーを配達";
-                    else taskExplanation.text = "任務:コーヒー配達を妨害する";
+                    else taskExplanation.text = "任務:コーヒー配達を妨害";
                 break;
                 default:
                     // リソースからアイコンを取得
