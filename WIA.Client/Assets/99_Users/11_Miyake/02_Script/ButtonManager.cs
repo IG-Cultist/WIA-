@@ -49,10 +49,10 @@ public class ButtonManager : MonoBehaviour
             if (RoomModel.Instance)
             {
                 if (OnlineGameManager.Player.name == "Stricker")
-                    armTransform.DORotate(new Vector3(0, 45, 0), 40);
+                    armTransform.DORotate(new Vector3(0, 30, 0), 40);
             }
             else
-                armTransform.DORotate(new Vector3(0, 35, 0), 40);
+                armTransform.DORotate(new Vector3(0, 30, 0), 40);
 
             //leverButton_R.transform.position = new Vector3(leverButton_R.transform.position.x, -0.05f, leverButton_R.transform.position.z);
         }
@@ -61,10 +61,10 @@ public class ButtonManager : MonoBehaviour
             if (RoomModel.Instance)
             {
                 if (OnlineGameManager.Player.name == "Stricker")
-                    armTransform.DORotate(new Vector3(0, -45, 0), 40);
+                    armTransform.DORotate(new Vector3(0, -30, 0), 40);
             }
             else
-                armTransform.DORotate(new Vector3(0, -35, 0), 40);
+                armTransform.DORotate(new Vector3(0, -30, 0), 40);
 
             //leverButton_L.transform.position = new Vector3(leverButton_L.transform.position.x, -0.05f, leverButton_L.transform.position.z);
         }
@@ -75,28 +75,43 @@ public class ButtonManager : MonoBehaviour
     {
         Transform armTransform = crane.transform;
 
-        if (xrControllerButtonEvents.isTrriger)
-        {
-            armTransform.DORotate(new Vector3(0, 35, 0), 40);       //クレーンを右に
-        }
-        else
-        {
-            armTransform.DORotate(new Vector3(0, 35, 0), 40); // クレーンを右に移動
-        }
+        float nowDis = 30 - armTransform.rotation.y;
+        float speed = 1.5f;
+
+        armTransform.DORotate(new Vector3(0, 30, 0), nowDis/speed);       //クレーンを右に
+
+    }
+
+    public void OnButton_R_PC()
+    {
+        Transform armTransform = crane.transform;
+
+        float nowDis = 30 - armTransform.rotation.y;
+        float speed = 1.5f;
+
+        armTransform.DORotate(new Vector3(0, 30, 0), nowDis/speed); // クレーンを右に移動
+
     }
 
     //左のボタン
     public void OnButton_L()
     {
         Transform armTransform = crane.transform;
+        Debug.Log(armTransform.rotation.y);
 
-        if (xrControllerButtonEvents.isTrriger)
-        {
-            armTransform.DORotate(new Vector3(0, -35, 0), 40);       //クレーンを右に
-        }
-        else
-        {
-            armTransform.DORotate(new Vector3(0, -40, 0), 40); // クレーンを 左に移動
-        }
+        float nowDis = armTransform.rotation.y - (-30);
+        float speed = 1.5f;
+        
+        armTransform.DORotate(new Vector3(0, -30, 0), nowDis/speed);       //クレーンを左に
+    }
+
+    public void OnButton_L_PC()
+    {
+        Transform armTransform = crane.transform;
+
+        float nowDis = armTransform.rotation.y - (-30);
+        float speed = 1.5f;
+
+        armTransform.DORotate(new Vector3(0, -30, 0), nowDis/speed); // クレーンを 左に移動
     }
 }
