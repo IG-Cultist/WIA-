@@ -20,7 +20,10 @@ public class ObjectGrabber : MonoBehaviour
     FirstPersonLook playerCamera;
 
     [SerializeField] Player player;
+    [SerializeField] ButtonManager buttonManager;
 
+    XRControllerButtonEvents xrControllerButtonEvents;
+    VRObjectFindManager vrObjectFindManager;
 
     // 現在掴んでいるオブジェクトのRigidbody参照
     private Rigidbody grabbedRb = null;
@@ -38,6 +41,15 @@ public class ObjectGrabber : MonoBehaviour
         playerMove = transform.parent.gameObject.GetComponent<FirstPersonMovement>();
 
         taskUIManager = GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>();
+
+        buttonManager=GameObject.Find("LeverButton").gameObject.GetComponent<ButtonManager>();
+
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        {
+            //VRのスクリプト取得
+            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+            vrObjectFindManager = GameObject.Find("VRObjectFindManager").GetComponent<VRObjectFindManager>();
+        }
 
         if (RoomModel.Instance)
             gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
@@ -127,10 +139,16 @@ public class ObjectGrabber : MonoBehaviour
         // Itemタグのオブジェクトが掴める距離にあるか判定
         if (Physics.Raycast(ray, out hit, grabDistance))
         {
-            if (hit.collider.CompareTag("Item"))
+            if (hit.collider.CompareTag("Item") || hit.collider.CompareTag("LeverButton_R")|| hit.collider.CompareTag("LeverButton_L") || hit.collider.CompareTag("CheckableObject") || hit.collider.CompareTag("Pot") || hit.collider.CompareTag("CoffeeMachine") || hit.collider.CompareTag("ItemBox") || hit.collider.CompareTag("WaterCooler")
+)
             {
                 // 掴めるとき → Crosshair非表示、LeftClick表示
                 taskUIManager.ShowLeftCrickIcon();
+            }
+            else
+            {
+                // 掴めるものがない場合 → Crosshair表示、LeftClick非表示
+                taskUIManager.ShowCrossHair();
             }
         }
         else
@@ -185,16 +203,16 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Pot")) //植木鉢に触れた場合
             {
-                if(RoomModel.Instance)
+                if (RoomModel.Instance)
                 {
                     GameObject.Find(hit.collider.name).GetComponent<FlowerPot>().GrabPot();
                 }
                 else
-                GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
+                    GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>().GrabPot();
             }
             else if (hit.collider.CompareTag("WaterCooler"))    // ウォータークーラーに触れた場合
             {
-                if(RoomModel.Instance)
+                if (RoomModel.Instance)
                 {
                     // ギミック動作同期
                     await RoomModel.Instance.ActGimicAsync(hit.transform.parent.parent.name);
@@ -209,6 +227,15 @@ public class ObjectGrabber : MonoBehaviour
             {
                 GameObject.Find("ItemBox").GetComponent<ItemBox>().GetItem();
             }
+            else if (hit.collider.CompareTag("LeverButton_R")) // レバーの右ボタンの場合
+            {
+                buttonManager.OnButton_R_PC();
+            }
+            else if (hit.collider.CompareTag("LeverButton_L")) // レバーの左ボタンの場合
+            {
+                buttonManager.OnButton_L_PC();
+            }
+
         }
     }
 
@@ -225,5 +252,4 @@ public class ObjectGrabber : MonoBehaviour
         grabbedRb.constraints = RigidbodyConstraints.None;
         grabbedRb = null;
     }
-
 }
