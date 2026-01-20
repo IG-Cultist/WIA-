@@ -56,7 +56,9 @@ public class MatchingManager : MonoBehaviour
     EventSystem eventSystem;
     JoinedUser joinedUser;                  //このクライアントユーザーの情報
     Text text;
-    [SerializeField] private TMP_Text dotText;
+    [SerializeField] private TMP_Text dotText; // マッチング中のドット
+    [SerializeField] private TMP_Text matchingText; // マッチング中/マッチング完了テキスト
+    [SerializeField] private TMP_Text guideText; // ガイドテキスト
 
     BaseModel model;
     Text roomNameText; //ルームの名前
@@ -300,8 +302,20 @@ public class MatchingManager : MonoBehaviour
         LeaveRoom();
         CancelInvoke("Matching");
         await RoomModel.Instance.JoinedAsync(roomName);
-        Initiate.DoneFading();
-        Initiate.Fade("PreMatchingScene", endColor, 2.0f);
+
+        // テキストの内容を変更する
+        matchingText.text = "マッチング完了";
+        guideText.text = "マッチングしました。まもなく開始します。";
+
+        // dotTextを削除する
+        Destroy(dotText);
+
+        //OnStartedGameを呼び出す
+        //OnStartedGame();
+        Invoke("OnStartedGame", 2); // 2秒後にゲーム開始
+
+        //Initiate.DoneFading();
+        //Initiate.Fade("PreMatchingScene", endColor, 2.0f);
     }
     #endregion
 
