@@ -88,10 +88,6 @@ public class VRObjectControlSwitcher : MonoBehaviour
         // オブジェクト操作モードでなければ処理しない
         if (!isObjectControlMode) return;
 
-        //FlowerPotスクリプトを取得して関数呼び出し
-        FlowerPot flowerPot = GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>();
-        flowerPot.GrabPot();
-
         // スティック入力を取得
         Vector2 input = moveAction.action.ReadValue<Vector2>();
 
@@ -119,5 +115,9 @@ public class VRObjectControlSwitcher : MonoBehaviour
         // Time.deltaTime を掛けてフレームレート非依存にする
         targetObject.position +=
             moveDirection * moveSpeed * Time.deltaTime;
+
+        //FlowerPotスクリプトを取得して関数呼び出し
+        FlowerPot flowerPot = GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>();
+        flowerPot.GrabPot();
     }
 }

@@ -59,6 +59,9 @@ public class FlowerPot : MonoBehaviour
 
         if (isGrab) 
         {
+            //VR‚È‚ç‚±‚Ìˆ—‚ğ”²‚¯‚é
+            if (UnityEngine.XR.XRSettings.isDeviceActive) return;
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
           
