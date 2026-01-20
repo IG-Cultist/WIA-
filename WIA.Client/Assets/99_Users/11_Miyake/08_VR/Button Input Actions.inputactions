@@ -41,6 +41,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "L_Press_Grip",
+                    "type": "Button",
+                    "id": "ba2eb264-03d4-47b1-8c5a-c19ed919eee6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "L_Release_Grip",
+                    "type": "Button",
+                    "id": "4557f4bd-8a52-4f5b-8dcf-26fe465ebd22",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "R_Press_Grip",
+                    "type": "Button",
+                    "id": "1610075f-977f-480b-a37b-45a7ece72ddc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "R_Release_Grip",
+                    "type": "Button",
+                    "id": "4e69b4e0-2463-49b0-a043-d07828ad037b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -85,6 +121,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "R_Release_Trriger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a710945-8c3b-4e7d-877a-003b0add8ee7",
+                    "path": "<XRController>{LeftHand}/{GripButton}",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L_Press_Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7757ff6-a59b-4e75-8382-d2ebd574ed2e",
+                    "path": "<XRController>{RightHand}/{GripButton}",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R_Press_Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4fdccfdc-ba20-44fa-9cc6-981779b18afb",
+                    "path": "<XRController>{RightHand}/{GripButton}",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R_Release_Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d34650f7-17cd-482b-a514-2d3eaccc5251",
+                    "path": "<XRController>{LeftHand}/{GripButton}",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L_Release_Grip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

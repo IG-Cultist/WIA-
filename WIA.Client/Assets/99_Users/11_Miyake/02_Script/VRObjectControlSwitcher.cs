@@ -48,7 +48,41 @@ public class VRObjectControlSwitcher : MonoBehaviour
 
     private void Update()
     {
-        if (xrControllerButtonEvents.isTrriger) EnterObjectControl();
+        MoveObject();
+    }
+
+    /// <summary>
+    /// 外部から呼び出す：オブジェクト操作モード開始
+    /// </summary>
+    public void EnterObjectControl()
+    {
+        isObjectControlMode = true;
+
+        // プレイヤー移動を完全に停止
+        if (moveLocomotionObject != null)
+        {
+            moveLocomotionObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// 外部から呼び出す：オブジェクト操作モード終了
+    /// </summary>
+    public void ExitObjectControl()
+    {
+        isObjectControlMode = false;
+
+        // プレイヤー移動を復帰
+        if (moveLocomotionObject != null)
+        {
+            moveLocomotionObject.SetActive(true);
+        }
+    }
+
+    //スティックでオブジェクト動かす
+    public void MoveObject()
+    {
+        if (xrControllerButtonEvents.isGrip) EnterObjectControl();
         else ExitObjectControl();
 
         // オブジェクト操作モードでなければ処理しない
@@ -81,33 +115,9 @@ public class VRObjectControlSwitcher : MonoBehaviour
         // Time.deltaTime を掛けてフレームレート非依存にする
         targetObject.position +=
             moveDirection * moveSpeed * Time.deltaTime;
-    }
 
-    /// <summary>
-    /// 外部から呼び出す：オブジェクト操作モード開始
-    /// </summary>
-    public void EnterObjectControl()
-    {
-        isObjectControlMode = true;
-
-        // プレイヤー移動を完全に停止
-        if (moveLocomotionObject != null)
-        {
-            moveLocomotionObject.SetActive(false);
-        }
-    }
-
-    /// <summary>
-    /// 外部から呼び出す：オブジェクト操作モード終了
-    /// </summary>
-    public void ExitObjectControl()
-    {
-        isObjectControlMode = false;
-
-        // プレイヤー移動を復帰
-        if (moveLocomotionObject != null)
-        {
-            moveLocomotionObject.SetActive(true);
-        }
+        //FlowerPotスクリプトを取得して関数呼び出し
+        FlowerPot flowerPot = GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>();
+        flowerPot.GrabPot();
     }
 }

@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 8048401233455859278}
   - component: {fileID: 7015399233313650830}
   - component: {fileID: 5416571714921319591}
+  - component: {fileID: 1806986698066219965}
   m_Layer: 2
   m_Name: Main
   m_TagString: Player
@@ -611,6 +612,7 @@ MonoBehaviour:
   isDebug: 1
   isTrip: 0
   isSliped: 0
+  isMain: 0
   player_State: 1
   deathCnt: 0
 --- !u!114 &8048401233455859278
@@ -625,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64fa5d47a0ffb0a4bbbed31e085ba437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
-  player: {fileID: 0}
+  player: {fileID: 2061954454014762031}
   animator: {fileID: 1045166891680421451}
   anim_State: 0
 --- !u!54 &7015399233313650830
@@ -787,6 +789,126 @@ MonoBehaviour:
     m_ManualQueueWasCompletedThisFrame: 0
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
+  rGrip_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: R_Press_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 7533edfe-1879-44b2-8c74-530eca454839
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: R_Press_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: b3623f67-1e9b-4679-9f49-52c380ab0688
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: -7147929728964007693, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_InputActionReferenceValue: {fileID: -7147929728964007693, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  rGrip_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: R_Release_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 494ad8a4-e3f8-44d4-b1ca-a44376b0d201
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: R_Release_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: daf75534-c251-47c0-8b9e-80d72200343a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 1930258658162645370, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_InputActionReferenceValue: {fileID: 1930258658162645370, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  lGrip_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: L_Press_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 592b7f15-7116-4bd0-a980-def18def1f60
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: L_Press_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: f219bce9-7ed3-4c62-a5fb-c7cb1062bac2
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 1298815016703123534, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_InputActionReferenceValue: {fileID: 1298815016703123534, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  lGrip_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: L_Release_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 993e087f-d90e-4972-94d5-e6affc01775a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: L_Release_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: de542a51-eb86-4be1-ae14-02a5c1cbc9a1
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: -3332849627626279547, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_InputActionReferenceValue: {fileID: -3332849627626279547, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
   OnRTrrigerPressed:
     m_PersistentCalls:
       m_Calls:
@@ -847,7 +969,84 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  isFind: 0
+  OnRGripPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5416571714921319591}
+        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
+        m_MethodName: PressGrip_R
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLGripPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5416571714921319591}
+        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
+        m_MethodName: PressGrip_L
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRGripReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5416571714921319591}
+        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
+        m_MethodName: ReleaseGrip_R
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLGripReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5416571714921319591}
+        m_TargetAssemblyTypeName: XRControllerButtonEvents, Assembly-CSharp
+        m_MethodName: ReleaseGrip_L
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isTrriger: 0
+  isGrip: 0
+--- !u!114 &1806986698066219965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705278478036046589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ebdfe933f98e9428dea35886cecb61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRObjectControlSwitcher
+  targetObject: {fileID: 5882469227660493175, guid: 6de5d010d13ed2a498a1d4008c402722, type: 3}
+  moveLocomotionObject: {fileID: 7904548033858898292}
+  moveAction: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  moveSpeed: 1.5
 --- !u!1 &905584196274556360
 GameObject:
   m_ObjectHideFlags: 0

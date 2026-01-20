@@ -31,9 +31,18 @@ public class FlowerPot : MonoBehaviour
     //通信用
     OnlineGameManager gameManager;
 
+    //VRのボタン
+    XRControllerButtonEvents xrControllerButtonEvents;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        {
+            //VRのスクリプト取得
+            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+        }
+
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
         if (RoomModel.Instance)
             gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
@@ -50,6 +59,9 @@ public class FlowerPot : MonoBehaviour
 
         if (isGrab) 
         {
+            //VRならこの処理を抜ける
+            if (UnityEngine.XR.XRSettings.isDeviceActive) return;
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
           
