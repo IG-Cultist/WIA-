@@ -33,12 +33,12 @@ public class Cup : MonoBehaviour
     /// </summary>
     public void KillMyself()
     {
-        GameObject gameObject = waterPrefab;
+        GameObject waterObj = waterPrefab;
 
         if (RoomModel.Instance)
         {
-            gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, -0.47f, this.gameObject.transform.position.z);
-            gameObject.transform.rotation = waterPrefab.transform.rotation;
+            waterObj.transform.position = new Vector3(this.gameObject.transform.position.x, -0.47f, this.gameObject.transform.position.z);
+            waterObj.transform.rotation = waterPrefab.transform.rotation;
         }
         else
         {
@@ -55,7 +55,7 @@ public class Cup : MonoBehaviour
 
         if (RoomModel.Instance)
         {
-            gameManager.SpawnObj(gameObject.transform.position);
+            gameManager.SpawnObj(waterObj.transform.position);
             gameManager.DeliteSynObj(this.gameObject, this.gameObject.tag);
         }
         else

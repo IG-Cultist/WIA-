@@ -21,7 +21,7 @@ public class Desk : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Item" && other.transform.name =="Coffee")
+        if(other.transform.tag == "Item" && other.transform.name.Contains("Coffee"))
         {
             if(resultScoreManager) resultScoreManager.successNum++;
 

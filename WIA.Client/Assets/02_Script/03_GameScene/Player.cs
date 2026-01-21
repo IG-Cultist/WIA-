@@ -138,10 +138,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //デバッグ用
-        if (Input.GetKeyDown(KeyCode.K)) player_State = PLAYER_STATE.DEATH;
-        if (Input.GetKeyDown(KeyCode.I)) player_State = PLAYER_STATE.ALIVE;
-
         moveSpeed = rigidbody.linearVelocity.magnitude * 3.0f;   //オブジェクト速度を元にアニメーションの速度を決定
         if (moveSpeed < 0) moveSpeed = 0;
         //else if(moveSpeed >= 7) moveSpeed = 7;      //再生最大速度を設定
@@ -525,7 +521,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private async void OnCollisionEnter(Collision collision)
     {
         if (RoomModel.Instance && OnlineGameManager.Player == this.gameObject)
         {
@@ -597,7 +593,7 @@ public class Player : MonoBehaviour
 
             player_State = PLAYER_STATE.DEATH; //死亡状態にする
         }
-        if (collision.gameObject.name == "Injector")
+        if (collision.gameObject.name.Contains("Injector"))
         {//触れたオブジェクトが注射器だった場合
 
             if (resultScoreManager) resultScoreManager.notJudgeNum++;
@@ -611,8 +607,15 @@ public class Player : MonoBehaviour
                  callback: null                 //再生終了後の処理
                 );
             CancelInvoke("ResetTrip");
-            // 注射器を破壊する
-            Destroy(collision.gameObject);
+            if(RoomModel.Instance)
+            {
+                await RoomModel.Instance.DeliteObjectAsync(collision.gameObject.name, collision.gameObject.tag);
+            }
+            else
+            {
+                // 注射器を破壊する
+                Destroy(collision.gameObject);
+            }
             isTrip = true;
             isHave = false;
             Invoke("ResetTrip", 10f);
