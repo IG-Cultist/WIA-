@@ -37,8 +37,8 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] GameObject mainPlayerPrefab; //操作プレイヤー
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
-    [SerializeField] GameObject coffyPrefab; //コーヒー
-    [SerializeField] GameObject drugPrefab; //ヤク
+    [SerializeField] GameObject coffeePrefab; //コーヒー
+    [SerializeField] GameObject InjectorPrefab; //注射器
     [SerializeField] GameObject cupPrefab; //水入りコップ
     [SerializeField] List<GameObject> syncObjList;//同期用オブジェクト初期設定
 
@@ -67,6 +67,9 @@ public class OnlineGameManager : MonoBehaviour
     private int tasks = 0;      //タスクの数
     private int TaskCnt; //タスクカウント
     private int potCount;
+    private int cupCount;
+    private int injecterCount;
+    private int coffeeCount;
     private bool isGetKey = false; //鍵を持っている
     #endregion
 
@@ -74,11 +77,20 @@ public class OnlineGameManager : MonoBehaviour
     {
         objList = new Dictionary<string, GameObject>();
 
-        if (RoomModel.Instance.IsMaster == false)
+        if (RoomModel.Instance.IsMaster == true)
         {
-            //すべてのオブジェクトからRigidbodyを外す
+            //アイテムからRigidbodyを外す
             foreach (var obj in syncObjList)
             {
+                if (obj.tag == "Item") Destroy(obj.GetComponent<Rigidbody>());
+            }
+        }
+        if (RoomModel.Instance.IsMaster == false)
+        {
+            //アイテム以外からRigidbodyを外す
+            foreach (var obj in syncObjList)
+            {
+                if (obj.tag == "Item") continue;
                 Destroy(obj.GetComponent<Rigidbody>());
             }
         }
@@ -120,6 +132,11 @@ public class OnlineGameManager : MonoBehaviour
                             player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                             break;
                         case "Stage_3":
+                            GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
+                            foreach(var obj in gameObject)
+                            {
+                                obj.GetComponent<BoxCollider>().enabled = false;
+                            }
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
 
@@ -141,6 +158,11 @@ public class OnlineGameManager : MonoBehaviour
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                         case "Stage_3":
+                            GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
+                            foreach (var obj in gameObject)
+                            {
+                                
+                            }
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                     }
@@ -335,7 +357,7 @@ public class OnlineGameManager : MonoBehaviour
                 {
                     Debug.Log("Nullオブジェクト");
                 }
-                objList.Add(id, obj);
+                //objList.Add(id, obj);
                 break;
         }
         CancelInvoke("UpdateObj");
@@ -349,22 +371,41 @@ public class OnlineGameManager : MonoBehaviour
     void OnSpawnItemSyn(int itemId,string uniqueId, Vector3 spawnPos)
     {
         if(itemId == 0)
-        {//ヤク
-            GameObject gameObject = Instantiate(drugPrefab);
+        {//注射器
+            injecterCount++;
+            GameObject gameObject = Instantiate(InjectorPrefab);
             gameObject.transform.position = spawnPos;
+            gameObject.name = "Injector" + injecterCount;
             objList.Add(uniqueId, gameObject);
+            if (Player.name == "Worker")
+            {
+                Destroy(gameObject.GetComponent<Rigidbody>());
+            }
         }
         else if(itemId == 1)
         {//水入りコップ
+            cupCount++;
             GameObject gameObject = Instantiate(cupPrefab);
             gameObject.transform.position = spawnPos;
+            gameObject.name = "Cup" + cupCount;
             objList.Add(uniqueId, gameObject);
+            if (Player.name == "Worker")
+            {
+                Destroy(gameObject.GetComponent<Rigidbody>());
+            }
         }
         else if(itemId == 2)
         {//コーヒー
-            GameObject gameObject = Instantiate(coffyPrefab);
+            coffeeCount++;
+            GameObject gameObject = Instantiate(coffeePrefab);
             gameObject.transform.position = spawnPos;
+            gameObject.name = "Coffee" + coffeeCount;
             objList.Add(uniqueId, gameObject);
+            if (Player.name == "Stricker")
+            {
+                Destroy(gameObject.GetComponent<XRGrabInteractable>());
+                Destroy(gameObject.GetComponent<Rigidbody>());
+            }
         }
         CancelInvoke("UpdateObj");
         //オブジェクト更新を行う
@@ -454,11 +495,12 @@ public class OnlineGameManager : MonoBehaviour
             {
                 if (joinOrder == RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
-                    syncObjList[i].AddComponent<Rigidbody>();
-                    Debug.Log("オブジェクトの権限を得ました");
-                    if (syncObjList[i].name == "MovablePartition")
+                    Rigidbody rigidbody = syncObjList[i].AddComponent<Rigidbody>();
+                    Debug.Log(i.ToString()+"番のオブジェクトの権限を得ました");
+                    if (syncObjList[i].tag == "MovablePartition")
                     {
-                        syncObjList[i].GetComponent<Collider>().enabled = false;
+                        syncObjList[i].gameObject.GetComponent<BoxCollider>().enabled = false;
+                        rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
                     }
                     return;
                 }
@@ -466,9 +508,9 @@ public class OnlineGameManager : MonoBehaviour
                 {
                     Destroy(syncObjList[i].GetComponent<Rigidbody>());
                     Debug.Log("オブジェクトの権限を失いました");
-                    if (syncObjList[i].name == "MovablePartition")
+                    if (syncObjList[i].tag == "MovablePartition")
                     {
-                        syncObjList[i].GetComponent<Collider>().enabled = true;
+                        syncObjList[i].GetComponent<BoxCollider>().enabled = true;
                     }
                     return;
                 }

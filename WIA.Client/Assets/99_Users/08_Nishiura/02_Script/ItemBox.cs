@@ -63,10 +63,8 @@ public class ItemBox : MonoBehaviour
         //í êMéûÇÃÇ›
         if (RoomModel.Instance)
         {
-            createdObj = prefab;
-            createdObj.transform.position = new Vector3(this.gameObject.transform.position.x, -0.36f, this.gameObject.transform.position.y);
-            createdObj.transform.rotation = Quaternion.identity;
-            await RoomModel.Instance.SpawnItemAsync(rnd, createdObj.transform.position);
+            Debug.Log("rndÇÕ" + rnd);
+            await RoomModel.Instance.SpawnItemAsync(rnd, new Vector3(this.gameObject.transform.position.x, -0.36f, this.gameObject.transform.position.y));
         }
         else
         {
@@ -89,6 +87,7 @@ public class ItemBox : MonoBehaviour
     void ResetCooldown()
     {
         isCooldown = false;
+        createdObj = null;
         coolDownSlider.SetActive(false);
     }
 }

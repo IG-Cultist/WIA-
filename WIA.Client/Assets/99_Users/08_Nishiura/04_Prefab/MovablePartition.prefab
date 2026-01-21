@@ -19085,9 +19085,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1676615315657633564}
   - component: {fileID: 3113307586071335792}
+  - component: {fileID: 2839204438965137781}
   m_Layer: 0
   m_Name: MovablePartition
-  m_TagString: Untagged
+  m_TagString: MovablePartition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19144,6 +19145,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 0
+--- !u!65 &2839204438965137781
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821549535687607833}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.3526497, y: 1.9521189, z: 0.28680515}
+  m_Center: {x: 1.2321157, y: 0.109491825, z: 0.0010466576}
 --- !u!1 &8609256827418000643
 GameObject:
   m_ObjectHideFlags: 0

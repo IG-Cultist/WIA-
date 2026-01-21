@@ -8,16 +8,23 @@ public class ObjectKillZone : MonoBehaviour
 {
     // プレイヤースクリプト
     Player player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
-    private void OnTriggerEnter(Collider other)
+    private async void OnTriggerEnter(Collider other)
     {
-        if((other.gameObject.name =="Cup" && other.gameObject.tag == "Item")
-            || (other.gameObject.name == "Injector" && other.gameObject.tag == "Item"))
+        if((other.gameObject.name.Contains("Cup")   && other.gameObject.tag == "Item")
+            || (other.gameObject.name.Contains("Injector") && other.gameObject.tag == "Item"))
         {
             if (player && player.isHave)
             {
                 player.isHave = false;
             }
-            Destroy(other.gameObject);
+            if(RoomModel.Instance)
+            {
+                await RoomModel.Instance.DeliteObjectAsync(other.name,other.tag);
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 }

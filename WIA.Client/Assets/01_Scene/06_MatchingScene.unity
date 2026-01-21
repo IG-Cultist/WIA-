@@ -1588,6 +1588,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5941313171362754483, guid: 70219406e0a6196449e278f47b910909, type: 3}
   m_PrefabInstance: {fileID: 996485660}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &996485662 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2442498561159122104, guid: 70219406e0a6196449e278f47b910909, type: 3}
+  m_PrefabInstance: {fileID: 996485660}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1013728047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,6 +2091,8 @@ MonoBehaviour:
   createdRoomList: []
   userID: 0
   dotText: {fileID: 1443769682}
+  matchingText: {fileID: 248909891}
+  guideText: {fileID: 996485662}
 --- !u!4 &1725357366
 Transform:
   m_ObjectHideFlags: 0

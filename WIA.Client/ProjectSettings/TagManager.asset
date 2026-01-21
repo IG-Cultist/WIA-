@@ -21,6 +21,7 @@ TagManager:
   - LeverButton_R
   - LeverButton_L
   - ObjectKillZone
+  - MovablePartition
   layers:
   - Default
   - TransparentFX

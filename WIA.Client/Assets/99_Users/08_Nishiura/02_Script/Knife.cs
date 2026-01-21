@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private async void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.tag == "Player")
         {
-            Destroy(this.gameObject);
+            if(RoomModel.Instance)
+            {
+                await RoomModel.Instance.DeliteObjectAsync(this.name, this.tag);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
             //collision.transform.GetComponent<Player>().Death();
         }
     }
