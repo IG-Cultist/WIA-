@@ -32,7 +32,7 @@ public class DeliveryManager : MonoBehaviour
     List<int> servedDeskList = new List<int>();
 
     // コーヒーのゲームオブジェクト
-    GameObject coffeeObj;
+    public  GameObject coffeeObj;
 
     // 配達完了カウント
     int deliveredCount = 0;
@@ -180,7 +180,14 @@ public class DeliveryManager : MonoBehaviour
         deskList[deskNum].transform.GetComponent<BoxCollider>().enabled = false;
 
         // 手元のコーヒーオブジェクトを破棄
-        Destroy(coffeeObj);
+        if (RoomModel.Instance)
+        {
+            await RoomModel.Instance.DeliteObjectAsync(coffeeObj.name, coffeeObj.tag);
+        }
+        else
+        {
+            Destroy(coffeeObj);
+        }
 
         // 配達完了数を加算
         deliveredCount++;
@@ -208,11 +215,18 @@ public class DeliveryManager : MonoBehaviour
     /// <summary>
     /// コーヒー紛失処理
     /// </summary>
-    public void LostCoffee()
+    public async void LostCoffee()
     {
         // 手元のコーヒーオブジェクトを破棄
-        Destroy(coffeeObj);
-        GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(-5);
+        if(RoomModel.Instance)
+        {
+            await RoomModel.Instance.DeliteObjectAsync(coffeeObj.name,coffeeObj.tag);
+        }
+        else
+        {
+            Destroy(coffeeObj);
+            GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(-5);
+        }
 
         if (resultScoreManager) resultScoreManager.carelesslyNum++;
 

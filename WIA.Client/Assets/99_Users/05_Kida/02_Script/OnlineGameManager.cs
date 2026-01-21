@@ -400,6 +400,8 @@ public class OnlineGameManager : MonoBehaviour
             GameObject gameObject = Instantiate(coffeePrefab);
             gameObject.transform.position = spawnPos;
             gameObject.name = "Coffee" + coffeeCount;
+            DeliveryManager deliveryManager = GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>();
+            deliveryManager.coffeeObj = gameObject;
             objList.Add(uniqueId, gameObject);
             if (Player.name == "Stricker")
             {
@@ -458,6 +460,11 @@ public class OnlineGameManager : MonoBehaviour
                     {
                         player.GetComponent<Player>().OnlineDeath();
                     }
+                }
+                else if(SceneManager.GetActiveScene().name == "Stage_3")
+                {
+                    GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(-5);
+                    Destroy(GameObject.Find(objName));
                 }
                 else
                 {
@@ -584,9 +591,10 @@ public class OnlineGameManager : MonoBehaviour
                     case "Stage_3":
                         // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
                         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/5";
+                        GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(10);
                         if (TaskCnt >= 5)
                         {
-                            Initiate.Fade("ResultScene", Color.black, 1.0f);
+                            Initiate.Fade("30_ResultScene", Color.black, 1.0f);
                         }
                         break;
                 }
