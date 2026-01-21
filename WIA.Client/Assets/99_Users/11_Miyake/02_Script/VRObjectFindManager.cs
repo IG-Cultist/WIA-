@@ -22,6 +22,14 @@ public class VRObjectFindManager : MonoBehaviour
     // 必要ならヒットさせたくないレイヤーがある場合、LayerMaskを使って除外できます
     [SerializeField] LayerMask raycastMask = ~0; // デフォルトは全部（全レイヤー）
 
+    //ボタン入力取得
+    XRControllerButtonEvents xrControllerButtonEvents;
+
+    private void Start()
+    {
+        xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+    }
+
     void Update()
     {
         // 左右をチェック（nullチェック）
@@ -80,8 +88,6 @@ public class VRObjectFindManager : MonoBehaviour
                 lastHitObj = obj;
                 OnCheckableHit(obj, interactor);
             }
-            // 当たり続ける（Stay）状態の処理を入れたい場合はここで実行
-            // e.g. OnCheckableStay(obj, interactor);
         }
         else if (obj.CompareTag("CoffeeMachine"))
         {
@@ -116,7 +122,7 @@ public class VRObjectFindManager : MonoBehaviour
             lastHitObj = null;
 
             //ステージ2のみ
-            if(SceneManager.GetActiveScene().name == "Stage_2_Miyake")
+            if (SceneManager.GetActiveScene().name == "Stage_2_Miyake")
             {
                 OutCheckableHit();
             }

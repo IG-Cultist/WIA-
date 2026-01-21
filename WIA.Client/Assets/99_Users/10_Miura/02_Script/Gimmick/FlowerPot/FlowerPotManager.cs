@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class FlowerPotManager : MonoBehaviour
 {
     [SerializeField] public GameObject potObj; //植木鉢オブジェクト
+    [SerializeField] public GameObject vr_potObj; //VR専用植木鉢オブジェクト
     [SerializeField] public GameObject potFragmentObj; //植木鉢の破片オブジェクト
 
     public List<GameObject> potList = new List<GameObject>(); //植木鉢の生成個数を格納するリスト
@@ -104,11 +105,19 @@ public class FlowerPotManager : MonoBehaviour
         }
         else
         {
-            Instantiate(potObj, randomSpawnPoint[generateNumber].transform.position, randomSpawnPoint[generateNumber].transform.rotation); // randomSpawnPointに格納されたgameObjectのgenerateNumberの場所に生成
-                                                                                                                                                  //potListに要素を追加する
-            potList.Add(potObj);
+            if (UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                //VRの場合はVR専用花瓶を生成
+                Instantiate(vr_potObj, randomSpawnPoint[generateNumber].transform.position, randomSpawnPoint[generateNumber].transform.rotation); 
+                potList.Add(vr_potObj);
+            }
+            else
+            {
+                Instantiate(potObj, randomSpawnPoint[generateNumber].transform.position, randomSpawnPoint[generateNumber].transform.rotation); // randomSpawnPointに格納されたgameObjectのgenerateNumberの場所に生成
+                                                                                                                                               //potListに要素を追加する
+                potList.Add(potObj);
+            }
         }
-
         potCount++;
     }
 
