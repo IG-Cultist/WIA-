@@ -35,6 +35,7 @@ public class FlowerPot : MonoBehaviour
     void Start()
     {
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
+
         if (RoomModel.Instance)
             gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
         else
@@ -57,14 +58,13 @@ public class FlowerPot : MonoBehaviour
         else 
         {
             Cursor.visible = false;
-        } 
+        }
 
         if (Input.GetMouseButtonDown(1))
         {
             isGrab = false;
-
             Cursor.visible = false;
-            if(RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
+            if (RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
             {
             }
             else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
@@ -75,11 +75,9 @@ public class FlowerPot : MonoBehaviour
             {
                 this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             }
-
             //ê⁄ínÇµÇƒÇ©ÇÁnïbå„Ç…àÍêlèÃÇ…ñﬂÇÈ
             CancelInvoke();
             Invoke("ChangeFirstCamera", 1.5f);
-
         }
 
         if (isGrab)
@@ -199,8 +197,7 @@ public class FlowerPot : MonoBehaviour
         Destroy(fragment.gameObject);Å@//îjï–Çè¡Ç∑
     }
 
-
-    private void ChangeFirstCamera()
+    public void ChangeFirstCamera()
     {
         Debug.Log("Invokeí Ç¡ÇƒÇ´ÇΩy");
         cameraManager.TurnOnPlayerCam();
