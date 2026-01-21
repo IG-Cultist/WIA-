@@ -4,7 +4,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
 /// VR用：プレイヤー移動 ⇔ オブジェクト操作 を切り替える制御クラス
-/// XR Interaction Toolkit (3.2.2) 対応
 /// 三宅歩人    2026/1/16
 /// </summary>
 public class VRObjectControlSwitcher : MonoBehaviour
@@ -29,6 +28,9 @@ public class VRObjectControlSwitcher : MonoBehaviour
 
     XRControllerButtonEvents xrControllerButtonEvents;
 
+    // 見下ろし視点カメラ
+    [SerializeField] Camera lookDownCamera;
+
     private void Start()
     {
         isObjectControlMode = true;
@@ -48,11 +50,12 @@ public class VRObjectControlSwitcher : MonoBehaviour
 
     private void Update()
     {
-        MoveObject();
+        if (xrControllerButtonEvents.isGrip) EnterObjectControl();
+        else ExitObjectControl();
     }
 
     /// <summary>
-    /// 外部から呼び出す：オブジェクト操作モード開始
+    /// オブジェクト操作開始
     /// </summary>
     public void EnterObjectControl()
     {
@@ -66,7 +69,7 @@ public class VRObjectControlSwitcher : MonoBehaviour
     }
 
     /// <summary>
-    /// 外部から呼び出す：オブジェクト操作モード終了
+    /// オブジェクト操作終了
     /// </summary>
     public void ExitObjectControl()
     {
@@ -82,9 +85,6 @@ public class VRObjectControlSwitcher : MonoBehaviour
     //スティックでオブジェクト動かす
     public void MoveObject()
     {
-        if (xrControllerButtonEvents.isGrip) EnterObjectControl();
-        else ExitObjectControl();
-
         // オブジェクト操作モードでなければ処理しない
         if (!isObjectControlMode) return;
 
@@ -92,7 +92,8 @@ public class VRObjectControlSwitcher : MonoBehaviour
         Vector2 input = moveAction.action.ReadValue<Vector2>();
 
         // カメラ（HMD）の向きを基準に移動方向を決定
-        Transform cameraTransform = Camera.main.transform;
+        Transform cameraTransform = lookDownCamera.transform;
+        //Transform cameraTransform = Camera.main.transform;
 
         // カメラの右方向と前方向を取得
         Vector3 right = cameraTransform.right;
@@ -115,9 +116,5 @@ public class VRObjectControlSwitcher : MonoBehaviour
         // Time.deltaTime を掛けてフレームレート非依存にする
         targetObject.position +=
             moveDirection * moveSpeed * Time.deltaTime;
-
-        //FlowerPotスクリプトを取得して関数呼び出し
-        FlowerPot flowerPot = GameObject.Find("FlowerPot_obj").GetComponent<FlowerPot>();
-        flowerPot.GrabPot();
     }
 }
