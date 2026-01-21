@@ -4668,6 +4668,7 @@ MonoBehaviour:
   - {fileID: 608433281}
   checkNowText: {fileID: 27090878}
   chackableTimer: 0
+  isCheckNow: 0
   isGetKey: 0
   nowFindObj: {fileID: 0}
 --- !u!1 &235374114
@@ -6996,7 +6997,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 4.3, y: 18, z: 0}
+  m_LocalPosition: {x: 3, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34231,7 +34232,7 @@ Transform:
   m_GameObject: {fileID: 1074032073}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 4.3, y: 18, z: 0}
+  m_LocalPosition: {x: 3, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46699,8 +46700,9 @@ MonoBehaviour:
   - {fileID: 79977231}
   - {fileID: 1576759295}
   nowSpawnList: 
+  cameraManager: {fileID: 0}
   isThreePot: 0
-  generatNumber: 0
+  generateNumber: 0
 --- !u!1 &1497480201
 GameObject:
   m_ObjectHideFlags: 0
@@ -48408,6 +48410,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2380555317666283579, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+      propertyPath: flowerPot
+      value: 
+      objectReference: {fileID: 1157470971476084920, guid: 6de5d010d13ed2a498a1d4008c402722, type: 3}
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.26
@@ -48418,7 +48424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.96
+      value: -5.63
       objectReference: {fileID: 0}
     - target: {fileID: 2466425465446766625, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67144,9 +67150,9 @@ MonoBehaviour:
   grabDistance: 4
   moveForce: 250
   maxDistance: 4
-  crosshairImage: {fileID: 0}
-  leftClickImage: {fileID: 0}
   player: {fileID: 0}
+  buttonManager: {fileID: 0}
+  flowerPot: {fileID: 0}
 --- !u!114 &1879078679
 MonoBehaviour:
   m_ObjectHideFlags: 0

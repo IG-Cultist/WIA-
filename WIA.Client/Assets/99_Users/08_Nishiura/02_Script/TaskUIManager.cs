@@ -26,6 +26,8 @@ public class TaskUIManager : MonoBehaviour
     [SerializeField] Text fluctTimeText;
     //左クリック画像
     [SerializeField] GameObject leftCrickIcon;
+    //右クリック画像
+    [SerializeField] GameObject rightCrickIcon;
     //クロスヘアー
     [SerializeField] GameObject Crosshair;
     // 経過時間カウント変数
@@ -144,6 +146,7 @@ public class TaskUIManager : MonoBehaviour
     {
         Crosshair.SetActive(true);
         leftCrickIcon.SetActive(false);
+        rightCrickIcon.SetActive(false);
     }
 
     /// <summary>
@@ -153,5 +156,16 @@ public class TaskUIManager : MonoBehaviour
     {
         Crosshair.SetActive(false);
         leftCrickIcon.SetActive(true);
+        rightCrickIcon.SetActive(false);
+    }
+
+    /// <summary>
+    /// 右クリックアイコンを表示する処理
+    /// </summary>
+    public void ShowRightCrickIcon()
+    {
+        Crosshair.SetActive(false);
+        leftCrickIcon.SetActive(false);
+        rightCrickIcon.SetActive(true);
     }
 }
