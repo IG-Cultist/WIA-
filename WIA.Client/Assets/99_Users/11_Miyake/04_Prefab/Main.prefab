@@ -420,7 +420,6 @@ GameObject:
   - component: {fileID: 8048401233455859278}
   - component: {fileID: 7015399233313650830}
   - component: {fileID: 5416571714921319591}
-  - component: {fileID: 1806986698066219965}
   m_Layer: 2
   m_Name: Main
   m_TagString: Player
@@ -1031,22 +1030,6 @@ MonoBehaviour:
         m_CallState: 2
   isTrriger: 0
   isGrip: 0
---- !u!114 &1806986698066219965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705278478036046589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ebdfe933f98e9428dea35886cecb61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VRObjectControlSwitcher
-  targetObject: {fileID: 5882469227660493175, guid: 6de5d010d13ed2a498a1d4008c402722, type: 3}
-  moveLocomotionObject: {fileID: 7904548033858898292}
-  moveAction: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  moveSpeed: 1.5
 --- !u!1 &905584196274556360
 GameObject:
   m_ObjectHideFlags: 0
