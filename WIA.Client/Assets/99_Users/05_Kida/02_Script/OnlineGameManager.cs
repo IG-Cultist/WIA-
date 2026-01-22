@@ -543,7 +543,7 @@ public class OnlineGameManager : MonoBehaviour
     /// カウント通知
     /// </summary>
     /// <param name="isTask"></param>
-    void OnCounted(bool isTask)
+    async void OnCounted(bool isTask)
     {
         switch (isTask)
         {
@@ -594,6 +594,7 @@ public class OnlineGameManager : MonoBehaviour
                         GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(10);
                         if (TaskCnt >= 5)
                         {
+                            await RoomModel.Instance. LeavedAsync();
                             Initiate.Fade("30_ResultScene", Color.black, 1.0f);
                         }
                         break;
