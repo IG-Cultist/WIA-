@@ -26,6 +26,7 @@ using static Shared.Interfaces.StreamingHubs.IRoomHubReceiver;
 using Vector2 = UnityEngine.Vector2;
 using NUnit.Framework;
 using static Player;
+using UnityEngine.SceneManagement;
 #endregion
 
 public class RoomModel : BaseModel, IRoomHubReceiver
@@ -216,22 +217,17 @@ public class RoomModel : BaseModel, IRoomHubReceiver
             Destroy(gameObject);
         }
     }
-
-    //public static RoomModel Instance
-    //{
-    //    get
-    //    {
-    //        // GETプロパティを呼ばれたときにインスタンスを作成する(初回のみ)
-    //        if (instance == null)
-    //        {
-    //            GameObject gameObj = new GameObject("RoomModel"+DateTime.Now.ToString());
-    //            instance = gameObj.AddComponent<RoomModel>();
-    //            DontDestroyOnLoad(gameObj);
-    //        }
-    //        return instance;
-    //    }
-    //}
     #endregion
+
+    void Update()
+    {
+        // "02_MenuScene" に戻ったら自身を破壊する
+        if (SceneManager.GetActiveScene().name == "02_MenuScene")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 
     #region MagicOnion接続・切断処理
     /// <summary>

@@ -97,6 +97,7 @@ public class MatchingManager : MonoBehaviour
 
         InvokeRepeating("StartEffect", 0.5f, 0.8f);
         #region RoomModel’è‹`
+        Instantiate(roomModelPrefab).name = "RoomModel";
         await RoomModel.Instance.ConnectAsync();
 
         RoomModel.Instance.OnFailedJoinSyn += this.OnFailedJoinSyn;
