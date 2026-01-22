@@ -46,11 +46,11 @@ public class FindKeyStatus : MonoBehaviour
     {
         if(isLook1 != isLook2)
         {
-            outline.enabled = true;
+            if(outline!=null)outline.enabled = true;
         }
         else
         {
-            outline.enabled = false;       //‚±‚±‘O‰ñ
+            if (outline != null) outline.enabled = false;       //‚±‚±‘O‰ñ
 
         }
         isLook2 = isLook1;

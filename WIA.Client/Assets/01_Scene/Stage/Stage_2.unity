@@ -153,6 +153,9 @@ MonoBehaviour:
   mainPlayerPrefab: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
   subPlayerPrefab: {fileID: 5255917015044651565, guid: 9e9499c5d1e1afd4fac28edd9f9bc081, type: 3}
   objPrefab: {fileID: 1454636699154065244, guid: 6de5d010d13ed2a498a1d4008c402722, type: 3}
+  coffeePrefab: {fileID: 0}
+  InjectorPrefab: {fileID: 0}
+  cupPrefab: {fileID: 0}
   syncObjList:
   - {fileID: 1351814568}
   - {fileID: 1895356603}
@@ -13173,7 +13176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546345479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -13202,7 +13205,7 @@ MonoBehaviour:
   canCheckArea: 0
   checkSlider: {fileID: 0}
   player: {x: 0, y: 0, z: 0}
-  outline: {fileID: 546345481}
+  outline: {fileID: 0}
 --- !u!65 &546345483
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44442,6 +44445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlowerPotManager
   potObj: {fileID: 1454636699154065244, guid: 6de5d010d13ed2a498a1d4008c402722, type: 3}
+  vr_potObj: {fileID: 0}
   potFragmentObj: {fileID: 635231456264371297, guid: a01becb58960ef1438167fa2931b13a9, type: 3}
   potList: []
   randomSpawnPoint:
