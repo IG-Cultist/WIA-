@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
 
         if (!isMain) return;
 
-        resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
+        //resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
 
         deathCnt = 0; //死亡回数
         //VR時は無視

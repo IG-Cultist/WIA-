@@ -98,7 +98,7 @@ public class OptionManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Stage_1" || SceneManager.GetActiveScene().name == "Stage_2" || SceneManager.GetActiveScene().name == "Stage_3")
         {
-            
+
             if (RoomModel.Instance)
             {
                 //メインキャラクターのカメラを取る

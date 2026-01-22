@@ -191,7 +191,7 @@ public class DeliveryManager : MonoBehaviour
 
         // ”z’BŠ®—¹”‚ğ‰ÁZ
         deliveredCount++;
-        if (resultScoreManager) resultScoreManager.carelesslyNum++;
+        //if (resultScoreManager) resultScoreManager.carelesslyNum++;
 
         if(RoomModel.Instance)
         {
