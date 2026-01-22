@@ -173,6 +173,13 @@ namespace Shared.Interfaces.StreamingHubs
         Task CountAsync(bool isTask);
 
         /// <summary>
+        /// タイム同期
+        /// Author:木田晃輔
+        /// </summary>
+        /// <returns></returns>
+        Task TimeAsync(float time);
+
+        /// <summary>
         /// ゲーム終了同期
         /// Author:木田晃輔
         /// </summary>

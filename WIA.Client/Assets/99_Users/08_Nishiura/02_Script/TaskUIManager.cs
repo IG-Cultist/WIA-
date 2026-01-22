@@ -92,6 +92,11 @@ public class TaskUIManager : MonoBehaviour
                     // 説明文を変更
                     if (position == "Worker") taskExplanation.text = "任務:コーヒーを配達";
                     else taskExplanation.text = "任務:コーヒー配達を妨害";
+
+                //ホストがタイムを同期
+                RoomModel.Instance.OnTimeSyn += OnTimeSyn;
+                    if (RoomModel.Instance.IsMaster == true) InvokeRepeating("TimeAsync", 0.01f, 0.01f);
+
                 break;
                 default:
                     // リソースからアイコンを取得
@@ -114,10 +119,22 @@ public class TaskUIManager : MonoBehaviour
         // ステージ3の場合かつステージを終了していない場合
         if (nowSceneName == "Stage_3" && !isFinish)
         {
-            if(limitCount <= 0) limitCount = 0; // カウントが0になっている場合、0で固定
-            else limitCount -= Time.deltaTime;  //カウントダウン
+            if (limitCount <= 0) limitCount = 0; // カウントが0になっている場合、0で固定
+
+            if (RoomModel.Instance.IsMaster == true)
+            {
+                limitCount -= Time.deltaTime;  //カウントダウン
+            }
+
             limitTimerText.text = limitCount.ToString("n2");    // 小数第二位真で表示
         }
+    }
+
+
+    private void OnDisable()
+    {
+        if(RoomModel.Instance)
+        RoomModel.Instance.OnTimeSyn -= OnTimeSyn;
     }
 
     /// <summary>
@@ -167,5 +184,22 @@ public class TaskUIManager : MonoBehaviour
         Crosshair.SetActive(false);
         leftCrickIcon.SetActive(false);
         rightCrickIcon.SetActive(true);
+    }
+
+    /// <summary>
+    /// タイム同期
+    /// </summary>
+    public async void TimeAsync()
+    {
+        await RoomModel.Instance.TimeAsync(limitCount);
+    }
+
+    /// <summary>
+    /// タイム通知
+    /// </summary>
+    /// <param name="time"></param>
+    void OnTimeSyn(float time)
+    {
+        limitCount = time;
     }
 }

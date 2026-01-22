@@ -614,6 +614,14 @@ namespace WIA.Server.StreamingHubs
             }
         }
 
+
+        public async Task TimeAsync(float time)
+        {
+            lock (roomContextRepository) 
+            {
+                this.roomContext.Group.Except([this.ConnectionId]).OnTime(time);
+            }
+        }
         #endregion
 
         /// <summary>

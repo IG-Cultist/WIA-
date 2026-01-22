@@ -174,6 +174,11 @@ namespace Shared.Interfaces.StreamingHubs
         /// </summary>
         void OnCount(bool isTask);
 
+        /// <summary>
+        /// タイム通知
+        /// </summary>
+        void OnTime(float time);
+
         #endregion
         #endregion
 
