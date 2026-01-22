@@ -92,6 +92,9 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //難易度上昇通知
     public Action<int> OnAscendDifficultySyn { get; set; }
 
+    //タイム
+    public Action<float> OnTimeSyn { get; set; }
+
     //次ステージ進行通知
     public Action<STAGE_TYPE> OnAdanceNextStageSyn { get; set; }
 
@@ -601,6 +604,12 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         OnActGimicSyn(parentName);
     }
 
+
+    public void OnTime(float time)
+    {
+        OnTimeSyn(time);
+    }
+
     #endregion
 
     #endregion
@@ -831,6 +840,12 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     public async UniTask ActGimicAsync(string parentName)
     {
         await roomHub.ActGimicAsync(parentName);
+    }
+
+
+    public async UniTask TimeAsync(float time)
+    {
+        await roomHub.TimeAsync(time);
     }
 
     /// <summary>

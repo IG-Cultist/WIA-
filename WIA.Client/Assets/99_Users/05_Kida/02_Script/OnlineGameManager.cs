@@ -64,6 +64,8 @@ public class OnlineGameManager : MonoBehaviour
         get { return spawnObjId; }
     }
 
+    public bool isDelivery = false;
+
     private int tasks = 0;      //タスクの数
     private int TaskCnt; //タスクカウント
     private int potCount;
@@ -463,8 +465,11 @@ public class OnlineGameManager : MonoBehaviour
                 }
                 else if(SceneManager.GetActiveScene().name == "Stage_3")
                 {
-                    GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(-5);
                     Destroy(GameObject.Find(objName));
+                    if (objName.Contains("Coffee") && isDelivery == false)
+                    {
+                        GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(-5);
+                    }
                 }
                 else
                 {
@@ -592,6 +597,7 @@ public class OnlineGameManager : MonoBehaviour
                         // タスク完了回数テキストを取得し。現在のシーンに応じて回数を反映
                         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/5";
                         GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(10);
+                        isDelivery = false;
                         if (TaskCnt >= 5)
                         {
                             await RoomModel.Instance. LeavedAsync();

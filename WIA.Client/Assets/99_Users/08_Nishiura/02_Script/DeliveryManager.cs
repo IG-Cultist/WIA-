@@ -182,6 +182,7 @@ public class DeliveryManager : MonoBehaviour
         // 手元のコーヒーオブジェクトを破棄
         if (RoomModel.Instance)
         {
+            GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>().isDelivery = true;
             await RoomModel.Instance.DeliteObjectAsync(coffeeObj.name, coffeeObj.tag);
         }
         else
