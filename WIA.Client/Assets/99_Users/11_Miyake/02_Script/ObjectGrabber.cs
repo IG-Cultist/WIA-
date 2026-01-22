@@ -88,7 +88,7 @@ public class ObjectGrabber : MonoBehaviour
         //        Release();
         //}
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(0))
         {
             if (SceneManager.GetActiveScene().name == "Stage_2")
             {

@@ -65,10 +65,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/99_Users/05_Kida/01_Scene/PreGameScene.unity
     guid: 0550deca19749524d8946c53a1e004cd
-  - enabled: 1
+  - enabled: 0
     path: Assets/99_Users/11_Miyake/01_Scene/Stage_1_Miyake.unity
     guid: df4689ec28df7da469aeb2452f7fe6ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/99_Users/04_Kawaguchi/01_Scene/Stage_1_M.unity
     guid: f1a8b6c9e72632347ada8efd326437aa
   - enabled: 1
@@ -77,7 +77,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Worker_1.unity
     guid: 5f518ddbb46747d4f852cccb64e5af63
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scene/Stage/Legacy/Stage_1_Legacy.unity
     guid: c323e2b1d3270a249901d9ccd7208fa4
   - enabled: 1
@@ -86,7 +86,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Worker_2.unity
     guid: ec71f6fc69deee1459a5324f4d14c262
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scene/Stage/Legacy/Stage_2_Legacy.unity
     guid: a13e3fb7857751242ac30338264698e3
   - enabled: 1
@@ -95,7 +95,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/08_Nishiura/01_Scene/Stage_Explanation/Exp_Worker_3.unity
     guid: 19f0bf6e4d7b93d469af189c50b447b9
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scene/Stage/Legacy/Stage_3_Legacy.unity
     guid: 1a2133c3e3231534abd40d2525fbbaf6
   - enabled: 1
