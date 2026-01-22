@@ -46731,6 +46731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlowerPotManager
   potObj: {fileID: 1454636699154065244, guid: 6de5d010d13ed2a498a1d4008c402722, type: 3}
+  vr_potObj: {fileID: 0}
   potFragmentObj: {fileID: 635231456264371297, guid: a01becb58960ef1438167fa2931b13a9, type: 3}
   potList: []
   randomSpawnPoint:
@@ -46744,7 +46745,7 @@ MonoBehaviour:
   - {fileID: 79977231}
   - {fileID: 1576759295}
   nowSpawnList: 
-  cameraManager: {fileID: 0}
+  cameraManager: {fileID: 1430970130}
   isThreePot: 0
   generateNumber: 0
 --- !u!1 &1499078204
@@ -71527,7 +71528,6 @@ MonoBehaviour:
   maxDistance: 4
   player: {fileID: 0}
   buttonManager: {fileID: 0}
-  flowerPot: {fileID: 0}
 --- !u!114 &1879078679
 MonoBehaviour:
   m_ObjectHideFlags: 0

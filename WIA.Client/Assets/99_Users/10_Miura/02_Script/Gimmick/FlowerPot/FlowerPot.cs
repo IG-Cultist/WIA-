@@ -74,7 +74,7 @@ public class FlowerPot : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (Input.GetMouseButtonDown(1) || !xrControllerButtonEvents.isGrip)
+        if (Input.GetMouseButtonDown(1))
         {
             isGrab = false;
             Cursor.visible = false;
@@ -156,11 +156,18 @@ public class FlowerPot : MonoBehaviour
 
             Destroy(potObj); //A–Ø”«‚ğÁ‚·
 
+            // Œx‰~‚ğ”j‰ó‚·‚é
+            Destroy(dangerZoneObj);
+
             //flowerPotManager‚Åg—p‚µ‚Ä‚¢‚½”Ô†‚ğíœ
             flowerPotManager.RemoveList(flowerPotManager.generateNumber);
         }
     }
 
+    /// <summary>
+    /// A–Ø”«‚Ì”j•Ğ‚ğ¶¬‚·‚éˆ—
+    /// </summary>
+    /// <param name="fragment"></param>
     public void SpawnFragment(GameObject fragment)
     {
         FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
