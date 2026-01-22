@@ -74,7 +74,7 @@ public class FlowerPot : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (Input.GetMouseButtonDown(1) || !xrControllerButtonEvents.isGrip)
+        if (Input.GetMouseButtonDown(1))
         {
             isGrab = false;
             Cursor.visible = false;
