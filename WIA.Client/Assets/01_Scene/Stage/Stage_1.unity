@@ -26143,13 +26143,6 @@ MonoBehaviour:
   InjectorPrefab: {fileID: 0}
   cupPrefab: {fileID: 0}
   syncObjList:
-  - {fileID: 1875699420}
-  - {fileID: 2038889091}
-  - {fileID: 99091446}
-  - {fileID: 716133418}
-  - {fileID: 967180086}
-  - {fileID: 118453157}
-  - {fileID: 1115529909}
   - {fileID: 548558376}
   - {fileID: 1493722931}
   - {fileID: 2016570607}
@@ -26162,6 +26155,17 @@ MonoBehaviour:
   - {fileID: 3816727}
   - {fileID: 2133940235}
   - {fileID: 1774962785}
+  - {fileID: 1875699420}
+  - {fileID: 2038889091}
+  - {fileID: 99091446}
+  - {fileID: 716133418}
+  - {fileID: 967180086}
+  - {fileID: 118453157}
+  - {fileID: 1115529909}
+  syncCraneList:
+  - {fileID: 1384314531}
+  - {fileID: 1728702630}
+  isDelivery: 0
 --- !u!4 &748928700
 Transform:
   m_ObjectHideFlags: 0
@@ -56754,6 +56758,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727199959}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1728702630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1016890155676164576, guid: 6ef03477e110ffa4bbc9a3dcc54d9e6c, type: 3}
+  m_PrefabInstance: {fileID: 1384314529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1729011114
 Mesh:
   m_ObjectHideFlags: 0

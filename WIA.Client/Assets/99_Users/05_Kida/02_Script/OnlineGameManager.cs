@@ -24,6 +24,7 @@ using static Shared.Interfaces.StreamingHubs.EnumManager;
 using static UnityEngine.Rendering.DebugUI.Table;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using Unity.Loading;
 
 public class OnlineGameManager : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] GameObject InjectorPrefab; //注射器
     [SerializeField] GameObject cupPrefab; //水入りコップ
     [SerializeField] List<GameObject> syncObjList;//同期用オブジェクト初期設定
+    [SerializeField] List<GameObject> syncCraneList;//クレーン用同期リスト
 
     private static GameObject player;//操作プレイヤー
     public static GameObject Player
@@ -64,6 +66,7 @@ public class OnlineGameManager : MonoBehaviour
         get { return spawnObjId; }
     }
 
+
     public bool isDelivery = false;
 
     private int tasks = 0;      //タスクの数
@@ -73,6 +76,8 @@ public class OnlineGameManager : MonoBehaviour
     private int injecterCount;
     private int coffeeCount;
     private bool isGetKey = false; //鍵を持っている
+    private string craneid = "shfkuiuiasf";
+    private string hookid = "loogaklghhsdhgoas";
     #endregion
 
     private void Awake()
@@ -81,10 +86,10 @@ public class OnlineGameManager : MonoBehaviour
 
         if (RoomModel.Instance.IsMaster == true)
         {
-            //アイテムからRigidbodyを外す
+            //Stage3限定アイテムからRigidbodyを外す
             foreach (var obj in syncObjList)
             {
-                if (obj.tag == "Item") Destroy(obj.GetComponent<Rigidbody>());
+                if (obj.tag == "Item" && SceneManager.GetActiveScene().name == "Stage3") Destroy(obj.GetComponent<Rigidbody>());
             }
         }
         if (RoomModel.Instance.IsMaster == false)
@@ -92,7 +97,8 @@ public class OnlineGameManager : MonoBehaviour
             //アイテム以外からRigidbodyを外す
             foreach (var obj in syncObjList)
             {
-                if (obj.tag == "Item") continue;
+                if (obj.tag == "Item" && SceneManager.GetActiveScene().name == "Stage3") continue;
+                if (obj.name.Contains("coffeTable")) continue;
                 Destroy(obj.GetComponent<Rigidbody>());
             }
         }
@@ -124,10 +130,10 @@ public class OnlineGameManager : MonoBehaviour
                     switch (SceneManager.GetActiveScene().name)
                     {
                         case "Stage_1":
-                            Destroy(GameObject.Find("Crane").GetComponent<Rigidbody>());
-                            Destroy(GameObject.Find("Hook").GetComponent<Rigidbody>());
-                            syncObjList.Add(GameObject.Find("Crane"));
-                            syncObjList.Add(GameObject.Find("Hook"));
+                            foreach(var crane in syncCraneList)
+                            {
+                                Destroy(crane.GetComponent<Rigidbody>());
+                            }
                             player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                             break;
                         case "Stage_2":
@@ -152,8 +158,6 @@ public class OnlineGameManager : MonoBehaviour
                     switch (SceneManager.GetActiveScene().name)
                     {
                         case "Stage_1":
-                            syncObjList.Add(GameObject.Find("Crane"));
-                            syncObjList.Add(GameObject.Find("Hook"));
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                         case "Stage_2":
@@ -206,6 +210,7 @@ public class OnlineGameManager : MonoBehaviour
 
             //オブジェクト更新を行う
             InvokeRepeating("UpdateObj", 0.1f, 0.1f);
+
 
         }
     }
@@ -273,12 +278,22 @@ public class OnlineGameManager : MonoBehaviour
                 if (obj.Value.GetComponent<Rigidbody>() == null) continue;
                 await RoomModel.Instance.UpdateObjectAsync(obj.Value.transform.position, obj.Value.transform.rotation, obj.Key);
             }
+        }        
+        if (syncCraneList != null)
+        {
+            foreach(var crane in syncCraneList)
+            {
+                if (crane.GetComponent<Rigidbody>() == null) continue;
+                await RoomModel.Instance.UpdateObjectAsync(crane.transform.localPosition,
+                    crane.transform.rotation, crane.name);            }
+
         }
         if(syncObjList != null)
         {
             for (int i = 0; i < syncObjList.Count; i++)
             {
                 if (syncObjList[i].GetComponent<Rigidbody>() == null) continue;
+                if (Player.name == "Stricker") continue;
                 await RoomModel.Instance.UpdateObjectAsync(syncObjList[i].transform.localPosition,
                     syncObjList[i].transform.rotation, i.ToString());
             }
@@ -439,6 +454,15 @@ public class OnlineGameManager : MonoBehaviour
                 syncObjList[i].transform.DORotate(rot.eulerAngles, 0.1f);
             }
         }
+        foreach (var obj in syncCraneList)
+        {
+            if(obj.name == id)
+            {
+                obj.transform.DOLocalMove(pos, 0.1f).SetEase(Ease.Linear);
+                obj.transform.DORotate(rot.eulerAngles, 0.1f);
+            }
+        }
+
     }
 
     /// <summary>
@@ -475,9 +499,12 @@ public class OnlineGameManager : MonoBehaviour
                 {
                     Destroy(GameObject.Find(objName));
                 }
-                CancelInvoke("UpdateObj");
-                //オブジェクト更新を行う
-                InvokeRepeating("UpdateObj", 0.1f, 0.1f);
+                if (SceneManager.GetActiveScene().name != "Stage_1")
+                {
+                    CancelInvoke("UpdateObj");
+                    //オブジェクト更新を行う
+                    InvokeRepeating("UpdateObj", 0.1f, 0.1f);
+                }
                 break;
             }
         }
