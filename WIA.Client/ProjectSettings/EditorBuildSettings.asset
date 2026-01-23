@@ -59,6 +59,54 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/99_Users/10_Miura/01_Scene/UIScene.unity
     guid: baea5ee5378ded148853eb38aecb4981
+  - enabled: 1
+    path: Assets/01_Scene/VR/VR_00_AttentionScene.unity
+    guid: 1af04b6402057b24dac1015ee221ce93
+  - enabled: 1
+    path: Assets/01_Scene/VR/VR_01_TitleScene.unity
+    guid: 4a8ba12ee89ab36469ec31b52de04940
+  - enabled: 1
+    path: Assets/01_Scene/VR/VR_02_MenuScene.unity
+    guid: 8abbedd9c28100d418932e7aa2b76d8c
+  - enabled: 1
+    path: Assets/01_Scene/VR/VR_04_DictionaryScene.unity
+    guid: 3dc6e9cb5e646d249b37a3282d7998d1
+  - enabled: 1
+    path: Assets/01_Scene/VR/VR_05_ProfileScene.unity
+    guid: 7eb7a2e501e2d8a4cb2f1d6fee4527a0
+  - enabled: 1
+    path: Assets/01_Scene/VR/VR_06_MatchingScene.unity
+    guid: 4e8e9066702da5b4aa4f2f8f4082274e
+  - enabled: 1
+    path: Assets/01_Scene/VR/VR_30_ResultScene.unity
+    guid: 411248486a6dfb14f8d30d50c7422f80
+  - enabled: 1
+    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_VR1.unity
+    guid: 3c6158ce7f338e24db968b34d45a8ff6
+  - enabled: 1
+    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_VR2.unity
+    guid: d51c33b93c151f54b9dafc4342b794b8
+  - enabled: 1
+    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_VR3.unity
+    guid: 26357956107eac0459936f0047fa7a78
+  - enabled: 1
+    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_VR1.unity
+    guid: 761e5127b92316a4d9476708d168b72e
+  - enabled: 1
+    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_VR2.unity
+    guid: c4edaf5c409ac5341b8511a6931774bb
+  - enabled: 1
+    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_VR3.unity
+    guid: 791573ba7282f954884d35eb72d3c4cc
+  - enabled: 1
+    path: Assets/01_Scene/Stage/VR/Stage_VR1.unity
+    guid: 7a9b45ffc89119c409de16f16bbf6404
+  - enabled: 1
+    path: Assets/01_Scene/Stage/VR/Stage_VR2.unity
+    guid: e1d7b26bf5522fb4e91cca0c6e4b5d0e
+  - enabled: 1
+    path: Assets/01_Scene/Stage/VR/Stage_VR3.unity
+    guid: 32f9aacb0bfadfc4097fa97c405ab76f
   - enabled: 0
     path: Assets/99_Users/11_Miyake/01_Scene/VRUIScene.unity
     guid: 0560c4cfe7f9b0d42abf309645d5644b
