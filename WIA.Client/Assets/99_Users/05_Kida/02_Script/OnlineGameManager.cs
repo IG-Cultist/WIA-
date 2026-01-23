@@ -589,14 +589,16 @@ public class OnlineGameManager : MonoBehaviour
                         GameObject.Find("TaskCount").GetComponent<Text>().text = ": " + TaskCnt + "/5";
                         if (TaskCnt >= 5)
                         {//要素数が目標数と同じになったら
-                         //フェードアウトしてシーン遷移
+                            //フェードアウトしてシーン遷移
                             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
                             {
-                                Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
+                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_VR2", Color.black, 2.0f);
+                                else Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
                             }
                             else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
                             {
-                                Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
+                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_VR2", Color.black, 2.0f);
+                                else Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
                             }
                         }
                         break;
@@ -606,11 +608,13 @@ public class OnlineGameManager : MonoBehaviour
                             //フェードアウトしてシーン遷移
                             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
                             {
-                                Initiate.Fade("01_Exp_Worker_3", Color.black, 1.0f);
+                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_VR3", Color.black, 2.0f);
+                                else Initiate.Fade("01_Exp_Worker_VR3", Color.black, 1.0f);
                             }
                             else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
                             {
-                                Initiate.Fade("01_Exp_Stricker_3", Color.black, 1.0f);
+                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_VR3", Color.black, 2.0f);
+                                else Initiate.Fade("01_Exp_Stricker_VR3", Color.black, 1.0f);
                             }
                         }
                         else

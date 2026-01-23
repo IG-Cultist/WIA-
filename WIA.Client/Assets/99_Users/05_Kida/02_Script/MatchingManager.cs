@@ -289,11 +289,13 @@ public class MatchingManager : MonoBehaviour
         Initiate.DoneFading(); 
         if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
         {
-            Initiate.Fade("01_Exp_Worker_1", endColor, 2.0f);
+            if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_VR1", endColor, 2.0f);
+            else   Initiate.Fade("01_Exp_Worker_1", endColor, 2.0f);
         }
         else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
         {
-            Initiate.Fade("01_Exp_Stricker_1", endColor, 2.0f);
+            if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_VR1", endColor, 2.0f);
+            else Initiate.Fade("01_Exp_Stricker_1", endColor, 2.0f);
         }
     }
 

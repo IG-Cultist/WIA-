@@ -109,9 +109,15 @@ public class CheckableObjManager : MonoBehaviour
                 if (resultScoreManager) resultScoreManager.GetClearTime();
 
                 if (RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
-                    Initiate.Fade("01_Exp_Worker_3", Color.black, 1.0f);
+                {
+                    if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_VR3", Color.black, 1.0f);
+                    else Initiate.Fade("01_Exp_Worker_3", Color.black, 1.0f);
+                }
                 else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
-                    Initiate.Fade("01_Exp_Stricker_3", Color.black, 1.0f);
+                {
+                    if(UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_VR3", Color.black, 1.0f);
+                    else Initiate.Fade("01_Exp_Stricker_3", Color.black, 1.0f);
+                }
                 else
                     Initiate.Fade("Exp_Worker_3", Color.black, 1.0f);
             }
