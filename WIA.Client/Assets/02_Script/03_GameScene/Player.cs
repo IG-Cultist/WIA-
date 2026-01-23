@@ -581,6 +581,11 @@ public class Player : MonoBehaviour
                  isLoop: false,                 //ループ再生するか
                  callback: null                 //再生終了後の処理
                 );
+
+            if(this.name == "Worker")
+            {
+                await RoomModel.Instance.ActGimicAsync(collision.gameObject.name);
+            }
             //死亡状態に変更
             player_State = PLAYER_STATE.DEATH;
         }

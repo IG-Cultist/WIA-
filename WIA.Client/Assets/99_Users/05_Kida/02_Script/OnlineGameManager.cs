@@ -41,7 +41,7 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] GameObject coffeePrefab; //コーヒー
     [SerializeField] GameObject InjectorPrefab; //注射器
     [SerializeField] GameObject cupPrefab; //水入りコップ
-    [SerializeField] List<GameObject> syncObjList;//同期用オブジェクト初期設定
+    [SerializeField] public List<GameObject> syncObjList;//同期用オブジェクト初期設定
     [SerializeField] List<GameObject> syncCraneList;//クレーン用同期リスト
 
     private static GameObject player;//操作プレイヤー
@@ -293,7 +293,7 @@ public class OnlineGameManager : MonoBehaviour
             for (int i = 0; i < syncObjList.Count; i++)
             {
                 if (syncObjList[i].GetComponent<Rigidbody>() == null) continue;
-                if (Player.name == "Stricker") continue;
+                //if (Player.name == "Stricker") continue;
                 await RoomModel.Instance.UpdateObjectAsync(syncObjList[i].transform.localPosition,
                     syncObjList[i].transform.rotation, i.ToString());
             }
@@ -651,8 +651,13 @@ public class OnlineGameManager : MonoBehaviour
     /// <param name="parentName"></param>
     void OnActGimicSyn(string parentName)
     {
-        //ウォーターサーバーの場合
-        GameObject.Find(parentName).transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
+        //オブジェクトに応じて対応
+        if (parentName.Contains("WaterCooler")) GameObject.Find(parentName).transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
+        else if (parentName.Contains("knife")) 
+        {
+            player.GetComponent<Player>().OnlineDeath(); 
+            GameObject.Find("ObjectGrabber").GetComponent<ObjectGrabber>().Release();
+        }
     }
 
 

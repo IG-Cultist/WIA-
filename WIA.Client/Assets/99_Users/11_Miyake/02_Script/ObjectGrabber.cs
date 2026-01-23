@@ -151,9 +151,17 @@ public class ObjectGrabber : MonoBehaviour
         // Itemタグのオブジェクトが掴める距離にあるか判定
         if (Physics.Raycast(ray, out hit, grabDistance))
         {
-            if (hit.collider.CompareTag("Item") || hit.collider.CompareTag("LeverButton_R")|| hit.collider.CompareTag("LeverButton_L") || hit.collider.CompareTag("CheckableObject") || hit.collider.CompareTag("CoffeeMachine") || hit.collider.CompareTag("ItemBox") || hit.collider.CompareTag("WaterCooler")
-)
+            if (hit.collider.CompareTag("Item") || hit.collider.CompareTag("LeverButton_R")|| hit.collider.CompareTag("LeverButton_L") || hit.collider.CompareTag("CheckableObject") || hit.collider.CompareTag("CoffeeMachine") || hit.collider.CompareTag("ItemBox") || hit.collider.CompareTag("WaterCooler"))
             {
+                if (RoomModel.Instance && SceneManager.GetActiveScene().name == "Stage_3")
+                {//ステージ3のみ
+                    for (int i = 0; i < gameManager.syncObjList.Count; i++)
+                    {
+                        if (hit.collider.name == gameManager.syncObjList[i].name)
+                            gameManager.ObjectOwnershipSwap(i.ToString(),
+                            RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
+                    }
+                }
                 // 掴めるとき → Crosshair非表示、LeftClick表示
                 taskUIManager.ShowLeftCrickIcon();
             }
@@ -243,6 +251,7 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("ItemBox"))    // アイテムボックスの場合
             {
+                if (player.name != "Worker") return;
                 GameObject.Find("ItemBox").GetComponent<ItemBox>().GetItem();
             }
             else if (hit.collider.CompareTag("LeverButton_R")) // レバーの右ボタンの場合

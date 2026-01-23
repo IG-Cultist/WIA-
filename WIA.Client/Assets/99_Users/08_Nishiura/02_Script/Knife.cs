@@ -4,7 +4,7 @@ public class Knife : MonoBehaviour
 {
     private async void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Player")
+        if(collision.transform.tag == "Player" && collision.gameObject.name == "Worker")
         {
             if(RoomModel.Instance)
             {

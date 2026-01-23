@@ -64,6 +64,7 @@ public class ItemBox : MonoBehaviour
         if (RoomModel.Instance)
         {
             Debug.Log("rnd‚Í" + rnd);
+            createdObj = prefab;
             await RoomModel.Instance.SpawnItemAsync(rnd, new Vector3(this.gameObject.transform.position.x, -0.36f, this.gameObject.transform.position.y));
         }
         else

@@ -475,7 +475,7 @@ namespace WIA.Server.StreamingHubs
         }
 
         /// <summary>
-        /// オブジェクトの削除
+        /// ギミックの動作
         /// Author:木田晃輔
         /// </summary>
         /// <returns></returns>
