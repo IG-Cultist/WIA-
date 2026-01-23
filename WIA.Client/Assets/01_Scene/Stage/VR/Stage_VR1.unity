@@ -20112,7 +20112,6 @@ Transform:
   - {fileID: 459570427}
   - {fileID: 1689955421}
   - {fileID: 127333314}
-  - {fileID: 2094990146}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653061861
@@ -25863,10 +25862,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnlineGameManager
   spawnPointP1: {fileID: 1557371691}
-  spawnPointP2: {fileID: 0}
+  spawnPointP2: {fileID: 693472713}
   mainPlayerPrefab: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
   subPlayerPrefab: {fileID: 5255917015044651565, guid: 9e9499c5d1e1afd4fac28edd9f9bc081, type: 3}
   objPrefab: {fileID: 0}
+  coffeePrefab: {fileID: 0}
+  InjectorPrefab: {fileID: 0}
+  cupPrefab: {fileID: 0}
   syncObjList:
   - {fileID: 510972147}
   - {fileID: 790450436}
@@ -25874,7 +25876,6 @@ MonoBehaviour:
   - {fileID: 459570428}
   - {fileID: 1689955422}
   - {fileID: 127333315}
-  - {fileID: 1806933970}
   - {fileID: 8764275130447555760}
   - {fileID: 851126505}
   - {fileID: 8436876918638847816}
@@ -25887,6 +25888,10 @@ MonoBehaviour:
   - {fileID: 1172622951}
   - {fileID: 1394197834}
   - {fileID: 1652279673}
+  syncCraneList:
+  - {fileID: 5490161136033233448}
+  - {fileID: 2012717709440821231}
+  isDelivery: 0
 --- !u!4 &830370599
 Transform:
   m_ObjectHideFlags: 0
@@ -32550,6 +32555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskCheck
   boxCnt: 0
   cubeList: 
+  puffPrefab: {fileID: 0}
 --- !u!1 &1076832742
 GameObject:
   m_ObjectHideFlags: 0
@@ -50629,11 +50635,6 @@ Transform:
   - {fileID: 1889160936}
   m_Father: {fileID: 475940285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1806933970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7594537265788474993, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-  m_PrefabInstance: {fileID: 2094990145}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1807253326
 GameObject:
   m_ObjectHideFlags: 0
@@ -60959,207 +60960,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089786442}
   m_Mesh: {fileID: 4300002, guid: 9eb38b671670bea43bc6da6fff1569f5, type: 3}
---- !u!1001 &2094990145
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 651164778}
-    m_Modifications:
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.87929
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.30299997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.58500004
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7594537265788474993, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      propertyPath: m_Name
-      value: Box_2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7594537265788474993, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2094990151}
-  m_SourcePrefab: {fileID: 100100000, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
---- !u!4 &2094990146 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3272809845499496155, guid: a6d98c87e6d852047b01ca09c8f7dc36, type: 3}
-  m_PrefabInstance: {fileID: 2094990145}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2094990151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806933970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
-  m_InteractionLayers:
-    m_Bits: 1
-  m_DistanceCalculationMode: 1
-  m_SelectMode: 1
-  m_FocusMode: 1
-  m_CustomReticle: {fileID: 0}
-  m_AllowGazeInteraction: 0
-  m_AllowGazeSelect: 0
-  m_OverrideGazeTimeToSelect: 0
-  m_GazeTimeToSelect: 0.5
-  m_OverrideTimeToAutoDeselectGaze: 0
-  m_TimeToAutoDeselectGaze: 3
-  m_AllowGazeAssistance: 0
-  m_FirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstFocusEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastFocusExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FocusEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FocusExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Activated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
-  m_StartingInteractionStrengthFilters: []
-  m_AttachTransform: {fileID: 0}
-  m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 1
-  m_MatchAttachPosition: 1
-  m_MatchAttachRotation: 1
-  m_SnapToColliderVolume: 1
-  m_ReinitializeDynamicAttachEverySingleGrab: 1
-  m_AttachEaseInTime: 0.15
-  m_MovementType: 2
-  m_PredictedVisualsTransform: {fileID: 0}
-  m_VelocityDamping: 1
-  m_VelocityScale: 1
-  m_AngularVelocityDamping: 1
-  m_AngularVelocityScale: 1
-  m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
-  m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
-  m_TrackScale: 1
-  m_SmoothScale: 0
-  m_SmoothScaleAmount: 8
-  m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.25
-  m_ThrowSmoothingCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ThrowVelocityScale: 1
-  m_ThrowAngularVelocityScale: 1
-  m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 1
-  m_StartingSingleGrabTransformers: []
-  m_StartingMultipleGrabTransformers: []
-  m_AddDefaultGrabTransformers: 1
-  m_FarAttachMode: 1
-  m_LimitLinearVelocity: 0
-  m_LimitAngularVelocity: 0
-  m_MaxLinearVelocityDelta: 10
-  m_MaxAngularVelocityDelta: 20
 --- !u!1 &2096882524
 GameObject:
   m_ObjectHideFlags: 0
@@ -76375,6 +76175,126 @@ MonoBehaviour:
     m_ManualQueueWasCompletedThisFrame: 0
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
+  rGrip_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: R_Press_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: edba7f1b-7182-4873-9148-ad2ea03fac98
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: R_Press_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: d4a1c5b0-150a-4b2a-aadf-97799efd5097
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  rGrip_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: R_Release_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 9b7c1e6c-3575-4bf1-a15b-1d45b50bd143
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: R_Release_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 309a23f2-fbf0-4068-a416-72e6c8b097fb
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  lGrip_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: L_Press_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 248487bb-bde0-46da-867c-99d429891cbb
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: L_Press_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: ab9214da-fe79-4ac7-ba83-25e2c05ae6da
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  lGrip_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: L_Release_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: ba6838b0-1e27-4692-922b-1c988c7d7a3f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: L_Release_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: a645d271-6c5f-49dc-8d5b-1a95b70f71bd
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
   OnRTrrigerPressed:
     m_PersistentCalls:
       m_Calls:
@@ -76435,7 +76355,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnRGripPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLGripPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRGripReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLGripReleased:
+    m_PersistentCalls:
+      m_Calls: []
   isTrriger: 0
+  isGrip: 0
 --- !u!4 &1475928136510278518
 Transform:
   m_ObjectHideFlags: 0
@@ -112605,6 +112538,9 @@ MonoBehaviour:
   timerText: {fileID: 7640623300118744067}
   limitTimerText: {fileID: 482773484076199008}
   fluctTimeText: {fileID: 5799818796274148672}
+  leftCrickIcon: {fileID: 0}
+  rightCrickIcon: {fileID: 0}
+  Crosshair: {fileID: 0}
   limitCount: 180
   isFinish: 0
 --- !u!1 &7269056010274846999
