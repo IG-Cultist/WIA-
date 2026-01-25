@@ -251,7 +251,7 @@ public class ObjectGrabber : MonoBehaviour
             }
             else if (hit.collider.CompareTag("ItemBox"))    // アイテムボックスの場合
             {
-                if (player.name != "Worker") return;
+                if (player.name == "Worker") return;
                 GameObject.Find("ItemBox").GetComponent<ItemBox>().GetItem();
             }
             else if (hit.collider.CompareTag("LeverButton_R")) // レバーの右ボタンの場合
