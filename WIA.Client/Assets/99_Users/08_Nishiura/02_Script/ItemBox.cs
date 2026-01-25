@@ -13,7 +13,7 @@ public class ItemBox : MonoBehaviour
     [SerializeField] GameObject coolDownSlider;
  
     // 生成オブジェクト
-    GameObject createdObj;
+    public GameObject createdObj;
     // クールダウン中判定
     bool isCooldown = false;
 
@@ -64,7 +64,6 @@ public class ItemBox : MonoBehaviour
         if (RoomModel.Instance)
         {
             Debug.Log("rndは" + rnd);
-            createdObj = prefab;
             await RoomModel.Instance.SpawnItemAsync(rnd, new Vector3(this.gameObject.transform.position.x, -0.36f, this.gameObject.transform.position.y));
         }
         else
@@ -88,7 +87,6 @@ public class ItemBox : MonoBehaviour
     void ResetCooldown()
     {
         isCooldown = false;
-        createdObj = null;
         coolDownSlider.SetActive(false);
     }
 }

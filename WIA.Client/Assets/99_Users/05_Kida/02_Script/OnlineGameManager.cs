@@ -69,6 +69,7 @@ public class OnlineGameManager : MonoBehaviour
 
     public bool isDelivery = false;
 
+    ItemBox itemBox; //アイテムボックス
     private int tasks = 0;      //タスクの数
     private int TaskCnt; //タスクカウント
     private int potCount;
@@ -145,6 +146,7 @@ public class OnlineGameManager : MonoBehaviour
                             {
                                 obj.GetComponent<BoxCollider>().enabled = false;
                             }
+                            itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
 
@@ -165,10 +167,7 @@ public class OnlineGameManager : MonoBehaviour
                             break;
                         case "Stage_3":
                             GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
-                            foreach (var obj in gameObject)
-                            {
-                                
-                            }
+                            itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                     }
@@ -398,6 +397,10 @@ public class OnlineGameManager : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Rigidbody>());
             }
+            else
+            {
+                itemBox.createdObj = gameObject;
+            }
         }
         else if(itemId == 1)
         {//水入りコップ
@@ -409,6 +412,10 @@ public class OnlineGameManager : MonoBehaviour
             if (Player.name == "Worker")
             {
                 Destroy(gameObject.GetComponent<Rigidbody>());
+            }
+            else
+            {
+                itemBox.createdObj = gameObject;
             }
         }
         else if(itemId == 2)
@@ -489,7 +496,16 @@ public class OnlineGameManager : MonoBehaviour
                 }
                 else if(SceneManager.GetActiveScene().name == "Stage_3")
                 {
+                    if(player.name == "Stricker")
+                    {
+                        if (itemBox.createdObj.name == objName)
+                        {
+                            itemBox.createdObj = null;
+                        }
+                    }
+
                     Destroy(GameObject.Find(objName));
+
                     if (objName.Contains("Coffee") && isDelivery == false)
                     {
                         GameObject.Find("TaskUIManager").GetComponent<TaskUIManager>().FluctNowTime(-5);
@@ -656,7 +672,7 @@ public class OnlineGameManager : MonoBehaviour
     void OnActGimicSyn(string parentName)
     {
         //オブジェクトに応じて対応
-        if (parentName.Contains("WaterCooler")) GameObject.Find(parentName).transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
+        if (parentName.Contains("Group")) GameObject.Find(parentName).transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
         else if (parentName.Contains("knife")) 
         {
             player.GetComponent<Player>().OnlineDeath(); 
