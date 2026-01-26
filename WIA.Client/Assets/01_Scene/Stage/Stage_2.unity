@@ -44459,7 +44459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlowerPotManager
   potObj: {fileID: 1454636699154065244, guid: 6de5d010d13ed2a498a1d4008c402722, type: 3}
-  vr_potObj: {fileID: 0}
+  vr_potObj: {fileID: 7140624601928622962, guid: e857442d24571b14f8f2d17882fc8b72, type: 3}
   potFragmentObj: {fileID: 635231456264371297, guid: a01becb58960ef1438167fa2931b13a9, type: 3}
   potList: []
   randomSpawnPoint:

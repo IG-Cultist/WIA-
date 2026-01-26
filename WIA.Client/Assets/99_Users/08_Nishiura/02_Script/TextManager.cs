@@ -29,6 +29,11 @@ public class TextManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        {
+            xrControllerButtonEvents = GameObject.Find("Player_VR").transform.GetChild(0).GetComponent<XRControllerButtonEvents>();
+        }
+
         // 現在のシーン名を_で分割する
         nowSceneName = SceneManager.GetActiveScene().name.Split("_");
         // 文字生成を開始
