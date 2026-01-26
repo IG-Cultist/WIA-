@@ -23,6 +23,9 @@ public class TextManager : MonoBehaviour
     // 現在のシーン名
     string[] nowSceneName;
 
+    //VR用
+    XRControllerButtonEvents xrControllerButtonEvents;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,32 +43,72 @@ public class TextManager : MonoBehaviour
         {
 
         }
+
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        {
+            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+        }
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && isFinish)
+        //VRかどうか
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
-            if (RoomModel.Instance)
+            if (xrControllerButtonEvents.isAButton && isFinish)
             {
-                Ready();
+                if (RoomModel.Instance)
+                {
+                    Ready();
+                }
+                else
+                {
+                    Initiate.DoneFading();
+                    Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+                }
+
+                xrControllerButtonEvents.isAButton = false;
             }
-            else
+            if (xrControllerButtonEvents.isAButton && !isFinish)
             {
-                Initiate.DoneFading();
-                Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+                CancelInvoke();
+                isFinish = true;
+
+                clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+
+                foreach (Text text in textList)
+                {
+                    text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+                }
+
+                xrControllerButtonEvents.isAButton = false;
             }
         }
-        if (Input.GetMouseButtonDown(0) && !isFinish)
+        else
         {
-            CancelInvoke();
-            isFinish = true;
-
-            clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
-
-            foreach (Text text in textList)
+            if (Input.GetMouseButtonDown(0) && isFinish)
             {
-                text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+                if (RoomModel.Instance)
+                {
+                    Ready();
+                }
+                else
+                {
+                    Initiate.DoneFading();
+                    Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+                }
+            }
+            if (Input.GetMouseButtonDown(0) && !isFinish)
+            {
+                CancelInvoke();
+                isFinish = true;
+
+                clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+
+                foreach (Text text in textList)
+                {
+                    text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+                }
             }
         }
     }

@@ -77,6 +77,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "A_Button_Press",
+                    "type": "Button",
+                    "id": "5f9dd30d-adaf-4bac-8989-c98307dc1c6e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "A_Button_Release",
+                    "type": "Button",
+                    "id": "cf6f0074-0d31-4e57-9947-bd10f8fbcf34",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -165,6 +183,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "L_Release_Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0dba1dca-dcd9-423b-9e8a-f070132a1576",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A_Button_Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08415db0-fc92-4152-b8a7-dba607db43fd",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A_Button_Release",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

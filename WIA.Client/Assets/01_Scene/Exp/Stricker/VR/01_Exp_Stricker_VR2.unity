@@ -333,6 +333,78 @@ PrefabInstance:
       propertyPath: player_State
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: aButton_PressInput.m_InputActionReferenceValue
+      value: 
+      objectReference: {fileID: 5234052803615804523, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: aButton_ReleaseInput.m_InputActionReferenceValue
+      value: 
+      objectReference: {fileID: -8447269591296709281, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: aButton_PressInput.m_InputActionReferencePerformed
+      value: 
+      objectReference: {fileID: 5234052803615804523, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: aButton_ReleaseInput.m_InputActionReferencePerformed
+      value: 
+      objectReference: {fileID: -8447269591296709281, guid: 09ec0c8b5280b7d458b92ffcd5aa0dc7, type: 3}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonReleased.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 888741173}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 888741173}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PressButton_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReleaseButton_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: XRControllerButtonEvents, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: XRControllerButtonEvents, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+      propertyPath: OnAButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6921029891462803266, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -391,6 +463,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3242328317418053789, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
   m_PrefabInstance: {fileID: 888741171}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &888741173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5229285553321561705, guid: 5842b0145f23f8745be598e626ffb1c4, type: 3}
+  m_PrefabInstance: {fileID: 888741171}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f6ae8cebec6a84da5a7f05f48a28b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XRControllerButtonEvents
 --- !u!1 &1328529693
 GameObject:
   m_ObjectHideFlags: 0
