@@ -37,6 +37,8 @@ public class ObjectGrabber : MonoBehaviour
 
     void Start()
     {
+        if (RoomModel.Instance) gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
+
         //メインキャラクターのカメラを取る
         playerCamera = GameObject.Find(player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
 
@@ -54,12 +56,10 @@ public class ObjectGrabber : MonoBehaviour
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
             //VRのスクリプト取得
-            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+            xrControllerButtonEvents = OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>();
             vrObjectFindManager = GameObject.Find("VRObjectFindManager").GetComponent<VRObjectFindManager>();
         }
 
-        if (RoomModel.Instance)
-            gameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
     }
 
     void Update()
