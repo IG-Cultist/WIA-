@@ -189,14 +189,14 @@ public class OnlineGameManager : MonoBehaviour
                 if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 1)
                 {//働く方リスポーン
                     subplayer.name = "Worker";
-                    subplayer.transform.position = spawnPointP2.position;
+                    subplayer.transform.position = spawnPointP1.position;
                     subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
                 else if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 2)
                 {//労災側リスポーン
                     subplayer.name = "Stricker";
-                    subplayer.transform.position = spawnPointP1.position;
-                    subplayer.transform.parent = spawnPointP1.transform;
+                    subplayer.transform.position = spawnPointP2.position;
+                    subplayer.transform.parent = spawnPointP2.transform;
                     subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
             }
