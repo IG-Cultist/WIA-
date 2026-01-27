@@ -243,7 +243,8 @@ public class DeliveryManager : MonoBehaviour
     void GoNextStage()
     {
         Initiate.DoneFading();
-        Initiate.Fade("30_ResultScene", Color.black, 1.0f);   // フェード時間1秒
+        if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);   // フェード時間1秒
+        else Initiate.Fade("30_ResultScene", Color.black, 1.0f);
     }
 
     /// <summary>

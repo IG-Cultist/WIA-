@@ -629,12 +629,12 @@ public class OnlineGameManager : MonoBehaviour
                             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
                             {
                                 if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_3_VR", Color.black, 2.0f);
-                                else Initiate.Fade("01_Exp_Worker_VR3", Color.black, 1.0f);
+                                else Initiate.Fade("01_Exp_Worker_3", Color.black, 1.0f);
                             }
                             else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
                             {
                                 if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_3_VR", Color.black, 2.0f);
-                                else Initiate.Fade("01_Exp_Stricker_VR3", Color.black, 1.0f);
+                                else Initiate.Fade("01_Exp_Stricker_3", Color.black, 1.0f);
                             }
                         }
                         else
