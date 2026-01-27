@@ -36,6 +36,7 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] Transform spawnPointP1; //プレイヤー1の初期配置場所
     [SerializeField] Transform spawnPointP2; //プレイヤー2の初期配置場所
     [SerializeField] GameObject mainPlayerPrefab; //操作プレイヤー
+    [SerializeField] GameObject mainPlayerVRPrefab; //VR操作プレイヤー
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
     [SerializeField] GameObject coffeePrefab; //コーヒー
@@ -123,7 +124,10 @@ public class OnlineGameManager : MonoBehaviour
         {
             if (user.Key == RoomModel.Instance.ConnectionId)
             {
-                player = Instantiate(mainPlayerPrefab);
+                //プレイヤーを生成
+                if (UnityEngine.XR.XRSettings.isDeviceActive) player = Instantiate(mainPlayerVRPrefab);
+                else player = Instantiate(mainPlayerPrefab);
+
                 if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 1)
                 {//働く方リスポーン
                     player.name = "Worker";
@@ -608,12 +612,12 @@ public class OnlineGameManager : MonoBehaviour
                             //フェードアウトしてシーン遷移
                             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
                             {
-                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_VR2", Color.black, 2.0f);
+                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 2.0f);
                                 else Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
                             }
                             else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
                             {
-                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_VR2", Color.black, 2.0f);
+                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_2_VR", Color.black, 2.0f);
                                 else Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
                             }
                         }
@@ -624,12 +628,12 @@ public class OnlineGameManager : MonoBehaviour
                             //フェードアウトしてシーン遷移
                             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
                             {
-                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_VR3", Color.black, 2.0f);
+                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_3_VR", Color.black, 2.0f);
                                 else Initiate.Fade("01_Exp_Worker_VR3", Color.black, 1.0f);
                             }
                             else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2)
                             {
-                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_VR3", Color.black, 2.0f);
+                                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_3_VR", Color.black, 2.0f);
                                 else Initiate.Fade("01_Exp_Stricker_VR3", Color.black, 1.0f);
                             }
                         }
@@ -648,7 +652,8 @@ public class OnlineGameManager : MonoBehaviour
                         if (TaskCnt >= 5)
                         {
                             await RoomModel.Instance. LeavedAsync();
-                            Initiate.Fade("30_ResultScene", Color.black, 1.0f);
+                            if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_30_ResultScene", Color.black, 2.0f);
+                            else Initiate.Fade("30_ResultScene", Color.black, 1.0f);
                         }
                         break;
                 }
