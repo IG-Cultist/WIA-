@@ -554,6 +554,7 @@ public class OnlineGameManager : MonoBehaviour
             {
                 if (joinOrder == RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
+                    if (UnityEngine.XR.XRSettings.isDeviceActive) syncObjList[i].AddComponent<XRGrabInteractable>();
                     Rigidbody rigidbody = syncObjList[i].AddComponent<Rigidbody>();
                     Debug.Log(i.ToString()+"番のオブジェクトの権限を得ました");
                     if (syncObjList[i].tag == "MovablePartition")
@@ -565,6 +566,7 @@ public class OnlineGameManager : MonoBehaviour
                 }
                 else if(joinOrder != RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
+                    if (UnityEngine.XR.XRSettings.isDeviceActive)  Destroy(syncObjList[i].GetComponent<XRGrabInteractable> ());
                     Destroy(syncObjList[i].GetComponent<Rigidbody>());
                     Debug.Log("オブジェクトの権限を失いました");
                     if (syncObjList[i].tag == "MovablePartition")
