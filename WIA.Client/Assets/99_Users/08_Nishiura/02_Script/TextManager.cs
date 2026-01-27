@@ -57,65 +57,30 @@ public class TextManager : MonoBehaviour
 
     void Update()
     {
-        //VRかどうか
-        /*if (UnityEngine.XR.XRSettings.isDeviceActive)
+        if (Input.GetMouseButtonDown(0) && isFinish)
         {
-            if (xrControllerButtonEvents.isAButton && isFinish)
+            if (RoomModel.Instance)
             {
-                if (RoomModel.Instance)
-                {
-                    Ready();
-                }
-                else
-                {
-                    Initiate.DoneFading();
-                    Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
-                }
-
-                xrControllerButtonEvents.isAButton = false;
+                Ready();
             }
-            if (xrControllerButtonEvents.isAButton && !isFinish)
+            else
             {
-                CancelInvoke();
-                isFinish = true;
-
-                clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
-
-                foreach (Text text in textList)
-                {
-                    text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
-                }
-
-                xrControllerButtonEvents.isAButton = false;
+                Initiate.DoneFading();
+                Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
             }
         }
-        else
-        {*/
-            if (Input.GetMouseButtonDown(0) && isFinish)
-            {
-                if (RoomModel.Instance)
-                {
-                    Ready();
-                }
-                else
-                {
-                    Initiate.DoneFading();
-                    Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
-                }
-            }
-            if (Input.GetMouseButtonDown(0) && !isFinish)
-            {
-                CancelInvoke();
-                isFinish = true;
+        if (Input.GetMouseButtonDown(0) && !isFinish)
+        {
+            CancelInvoke();
+            isFinish = true;
 
-                clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+            clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
 
-                foreach (Text text in textList)
-                {
-                    text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
-                }
+            foreach (Text text in textList)
+            {
+                text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
             }
-        //}
+        }
     }
 
     private void OnDisable()
@@ -164,13 +129,42 @@ public class TextManager : MonoBehaviour
     void OnSameStarted()
     {
         Initiate.DoneFading();
-        if(UnityEngine.XR.XRSettings.isDeviceActive)
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
         {//VRの場合
             Initiate.Fade("Stage_" + nowSceneName[3], Color.black, 1.0f);   // フェード時間1秒
         }
         else
         {//VRでないとき
             Initiate.Fade("Stage_" + nowSceneName[3] + "", Color.black, 1.0f);   // フェード時間1秒
+        }
+    }
+
+    //VRで次のシーンに行けるようにボタンの処理
+    public void OnNext()
+    {
+        if (isFinish)
+        {
+            if (RoomModel.Instance)
+            {
+                Ready();
+            }
+            else
+            {
+                Initiate.DoneFading();
+                Initiate.Fade("Stage_" + nowSceneName[2] + "", Color.black, 1.0f);   // フェード時間1秒
+            }
+        }
+        if (!isFinish)
+        {
+            CancelInvoke();
+            isFinish = true;
+
+            clickToNext.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+
+            foreach (Text text in textList)
+            {
+                text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+            }
         }
     }
 }
