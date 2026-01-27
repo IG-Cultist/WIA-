@@ -908,6 +908,66 @@ MonoBehaviour:
     m_ManualQueueWasCompletedThisFrame: 0
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
+  aButton_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: A_Button_Press
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 966b51f1-e505-45da-a622-3829b97bcdb5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: A_Button_Press Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 0cfa76f0-530c-4d88-8c24-5b3ffa9ab6ce
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  aButton_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: A_Button_Release
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: ceab7f83-548e-4b6c-b75d-90eced3a940f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: A_Button_Release Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: e1d5c00f-2016-4895-aecd-684060ef7974
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
   OnRTrrigerPressed:
     m_PersistentCalls:
       m_Calls:
@@ -1028,8 +1088,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnAButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAButtonReleased:
+    m_PersistentCalls:
+      m_Calls: []
   isTrriger: 0
   isGrip: 0
+  isButton: 0
+  isAButton: 0
 --- !u!1 &905584196274556360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,7 +1938,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 100
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 951
