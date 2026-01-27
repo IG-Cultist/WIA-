@@ -31,7 +31,7 @@ public class TextManager : MonoBehaviour
     {
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
-            xrControllerButtonEvents = GameObject.Find("Player_VR").transform.GetChild(0).GetComponent<XRControllerButtonEvents>();
+            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
         }
 
         // åªç›ÇÃÉVÅ[ÉìñºÇ_Ç≈ï™äÑÇ∑ÇÈ
@@ -58,7 +58,7 @@ public class TextManager : MonoBehaviour
     void Update()
     {
         //VRÇ©Ç«Ç§Ç©
-        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        /*if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
             if (xrControllerButtonEvents.isAButton && isFinish)
             {
@@ -90,7 +90,7 @@ public class TextManager : MonoBehaviour
             }
         }
         else
-        {
+        {*/
             if (Input.GetMouseButtonDown(0) && isFinish)
             {
                 if (RoomModel.Instance)
@@ -115,7 +115,7 @@ public class TextManager : MonoBehaviour
                     text.GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
                 }
             }
-        }
+        //}
     }
 
     private void OnDisable()

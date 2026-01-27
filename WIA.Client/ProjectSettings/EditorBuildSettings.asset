@@ -81,22 +81,22 @@ EditorBuildSettings:
     path: Assets/01_Scene/VR/VR_30_ResultScene.unity
     guid: 411248486a6dfb14f8d30d50c7422f80
   - enabled: 1
-    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_VR1.unity
+    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_1_VR.unity
     guid: 3c6158ce7f338e24db968b34d45a8ff6
   - enabled: 1
-    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_VR2.unity
+    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_2_VR.unity
     guid: d51c33b93c151f54b9dafc4342b794b8
   - enabled: 1
-    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_VR3.unity
+    path: Assets/01_Scene/Exp/Worker/VR/01_Exp_Worker_3_VR.unity
     guid: 26357956107eac0459936f0047fa7a78
   - enabled: 1
-    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_VR1.unity
+    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_1_VR.unity
     guid: 761e5127b92316a4d9476708d168b72e
   - enabled: 1
-    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_VR2.unity
+    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_2_VR.unity
     guid: c4edaf5c409ac5341b8511a6931774bb
   - enabled: 1
-    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_VR3.unity
+    path: Assets/01_Scene/Exp/Stricker/VR/01_Exp_Stricker_3_VR.unity
     guid: 791573ba7282f954884d35eb72d3c4cc
   - enabled: 1
     path: Assets/01_Scene/Stage/VR/Stage_VR1.unity
