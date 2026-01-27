@@ -27,7 +27,7 @@ public class VRObjectFindManager : MonoBehaviour
 
     private void Start()
     {
-        xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+        xrControllerButtonEvents = OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>();
     }
 
     void Update()

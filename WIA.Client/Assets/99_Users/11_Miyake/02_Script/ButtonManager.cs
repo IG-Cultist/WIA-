@@ -27,7 +27,7 @@ public class ButtonManager : MonoBehaviour
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
             //VRのスクリプト取得
-            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+            xrControllerButtonEvents = OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>();
             vrObjectFindManager = GameObject.Find("VRObjectFindManager").GetComponent<VRObjectFindManager>();
         }
     }
