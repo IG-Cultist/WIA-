@@ -5917,12 +5917,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128092460}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.205, y: -1.037, z: 1.553}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.10500018, y: 25.5, z: 0.18433332}
+  m_LocalScale: {x: 0.33333334, y: 50, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 196291108}
+  m_Father: {fileID: 985485218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &128092462
 MonoBehaviour:
@@ -5938,7 +5938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskCheck
   boxCnt: 0
   cubeList: 
-  puffPrefab: {fileID: 0}
+  puffPrefab: {fileID: 1834524616554358733, guid: 4d7783d32e6c4ef41911ef6e1c94f659, type: 3}
 --- !u!65 &128092463
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8273,7 +8273,6 @@ Transform:
   - {fileID: 439182296}
   - {fileID: 497290632}
   - {fileID: 438071155}
-  - {fileID: 128092461}
   - {fileID: 366107528}
   - {fileID: 1665965673}
   - {fileID: 1548234112}
@@ -34593,13 +34592,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985485214}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 16.52, y: -1.5469999, z: 1}
   m_LocalScale: {x: 3, y: 0.02, z: 3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 128092461}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &986421302
 GameObject:
   m_ObjectHideFlags: 0
@@ -46143,10 +46143,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 09a80ad54bd17974ca44c084fa2c32d0, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -3,6 +3,7 @@
 //三宅歩人：2025/12/19
 //==============================================
 using DG.Tweening;
+using KanKikuchi.AudioManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,8 @@ public class ButtonManager : MonoBehaviour
     XRControllerButtonEvents xrControllerButtonEvents;
     Vector3 buttonPostion_R;
     Vector3 buttonPostion_L;
+
+    bool isPlay = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -78,7 +81,27 @@ public class ButtonManager : MonoBehaviour
         float nowDis = 30 - armTransform.rotation.y;
         float speed = 1.5f;
 
+        //すでにクレーン移動SEが再生されていたら
+        if (isPlay == true)
+        {
+            SEManager.Instance.Stop();
+            isPlay = false;
+        }
+
         armTransform.DORotate(new Vector3(0, 30, 0), nowDis/speed);       //クレーンを右に
+
+        //クレーン移動SE
+        SEManager.Instance.Play(
+            audioPath: SEPath.CONTAINER_SOUND,   //再生したいオーディオのパス
+            volumeRate: 1,                 //音量の倍率
+            delay: 0,                      //再生されるまでの遅延時間
+            pitch: 1,                      //ピッチ
+            isLoop: false,                 //ループ再生するか
+            callback: null                 //再生終了後の処理
+        );
+
+        //SEが再生されていることにする
+        isPlay = true;
 
     }
 
@@ -89,7 +112,27 @@ public class ButtonManager : MonoBehaviour
         float nowDis = 30 - armTransform.rotation.y;
         float speed = 1.5f;
 
+        //すでにクレーン移動SEが再生されていたら
+        if (isPlay == true)
+        {
+            SEManager.Instance.Stop();
+            isPlay = false;
+        }
+
         armTransform.DORotate(new Vector3(0, 30, 0), nowDis/speed); // クレーンを右に移動
+
+        //クレーン移動SE
+        SEManager.Instance.Play(
+            audioPath: SEPath.CONTAINER_SOUND,   //再生したいオーディオのパス
+            volumeRate: 1,                 //音量の倍率
+            delay: 0,                      //再生されるまでの遅延時間
+            pitch: 1,                      //ピッチ
+            isLoop: false,                 //ループ再生するか
+            callback: null                 //再生終了後の処理
+        );
+
+        //SEが再生されていることにする
+        isPlay = true;
 
     }
 
@@ -101,8 +144,29 @@ public class ButtonManager : MonoBehaviour
 
         float nowDis = armTransform.rotation.y - (-30);
         float speed = 1.5f;
-        
+
+        //すでにクレーン移動SEが再生されていたら
+        if (isPlay == true)
+        {
+            SEManager.Instance.Stop();
+            isPlay = false;
+        }
+
         armTransform.DORotate(new Vector3(0, -30, 0), nowDis/speed);       //クレーンを左に
+
+        //クレーン移動SE
+        SEManager.Instance.Play(
+            audioPath: SEPath.CONTAINER_SOUND,   //再生したいオーディオのパス
+            volumeRate: 1,                 //音量の倍率
+            delay: 0,                      //再生されるまでの遅延時間
+            pitch: 1,                      //ピッチ
+            isLoop: false,                 //ループ再生するか
+            callback: null                 //再生終了後の処理
+        );
+
+        //SEが再生されていることにする
+        isPlay = true;
+
     }
 
     public void OnButton_L_PC()
@@ -112,6 +176,26 @@ public class ButtonManager : MonoBehaviour
         float nowDis = armTransform.rotation.y - (-30);
         float speed = 1.5f;
 
+        //すでにクレーン移動SEが再生されていたら
+        if (isPlay == true)
+        {
+            SEManager.Instance.Stop();
+            isPlay = false;
+        }
+
         armTransform.DORotate(new Vector3(0, -30, 0), nowDis/speed); // クレーンを 左に移動
+
+        //クレーン移動SE
+        SEManager.Instance.Play(
+            audioPath: SEPath.CONTAINER_SOUND,   //再生したいオーディオのパス
+            volumeRate: 1,                 //音量の倍率
+            delay: 0,                      //再生されるまでの遅延時間
+            pitch: 1,                      //ピッチ
+            isLoop: false,                 //ループ再生するか
+            callback: null                 //再生終了後の処理
+        );
+
+        //SEが再生されていることにする
+        isPlay = true;
     }
 }

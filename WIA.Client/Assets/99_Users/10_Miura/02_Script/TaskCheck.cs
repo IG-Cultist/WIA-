@@ -122,14 +122,19 @@ public class TaskCheck : MonoBehaviour
 
 
             //箱を消す
-            if (RoomModel.Instance) GameObject.Find("OnlineGameManager").
+            if (RoomModel.Instance)
+            {
+                GameObject.Find("OnlineGameManager").
                 GetComponent<OnlineGameManager>().DeliteSynObj(other.gameObject, other.gameObject.tag); //木田晃輔が変更
+                                                                                                        //箱消去エフェクトを生成
+                Instantiate(puffPrefab, new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z), this.transform.rotation);
+            }
             else
             {
                 Destroy(other.gameObject);
 
                 //箱消去エフェクトを生成
-                Instantiate(puffPrefab, new Vector3(this.transform.position.x, this.transform.position.y+1, this.transform.position.z), this.transform.rotation);
+                Instantiate(puffPrefab, new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z), this.transform.rotation);
             } 
 
 
