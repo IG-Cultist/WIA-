@@ -21,10 +21,11 @@ public class AnimationController : MonoBehaviour
     }
 
     /// <summary>
-    /// アニメーション再生が終わったら
+    /// アニメーション再生が終わったあとの処理
     /// </summary>
     public void OnFinishAnimation()
     {
+        //アニメーションを消す
         Destroy(this.gameObject);
     }
 }
