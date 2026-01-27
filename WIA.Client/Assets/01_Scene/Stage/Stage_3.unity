@@ -50904,6 +50904,7 @@ MonoBehaviour:
   coolDownSlider: {fileID: 1902876176}
   brewCoffee: {fileID: 8300000, guid: a22d5606d369b2c4886cf1df80c5fd6f, type: 3}
   PutCoffee: {fileID: 8300000, guid: b671d356191a12d45ad995740ad5c85a, type: 3}
+  coffeeObj: {fileID: 0}
   isCreated: 0
 --- !u!1 &1572583975
 GameObject:
@@ -70816,6 +70817,7 @@ MonoBehaviour:
   spawnPointP1: {fileID: 678897937}
   spawnPointP2: {fileID: 926503679}
   mainPlayerPrefab: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+  mainPlayerVRPrefab: {fileID: 705278478036046589, guid: 5c2f500b4fce76e4e9d78f3dd4b5f01f, type: 3}
   subPlayerPrefab: {fileID: 5255917015044651565, guid: 9e9499c5d1e1afd4fac28edd9f9bc081, type: 3}
   objPrefab: {fileID: 354273508913060562, guid: 6e0b21b89cc00074cba293c32e0b0ca8, type: 3}
   coffeePrefab: {fileID: 9112057679510237814, guid: 6d35fe0061c03ba47a639c1fa82b29f8, type: 3}
@@ -70863,6 +70865,8 @@ MonoBehaviour:
   - {fileID: 771376541}
   - {fileID: 1445034610}
   - {fileID: 367887089}
+  syncCraneList: []
+  isDelivery: 0
 --- !u!1 &2132210260
 GameObject:
   m_ObjectHideFlags: 0

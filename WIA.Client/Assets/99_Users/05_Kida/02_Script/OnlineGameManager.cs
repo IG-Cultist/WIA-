@@ -190,7 +190,7 @@ public class OnlineGameManager : MonoBehaviour
                 {//働く方リスポーン
                     subplayer.name = "Worker";
                     subplayer.transform.position = spawnPointP2.position;
-                    subplayer.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                    subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
                 else if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 2)
                 {//労災側リスポーン

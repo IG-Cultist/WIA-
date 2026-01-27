@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
     {
         if (RoomModel.Instance)
         {
-            if (this.name == "Player_1(Clone)")
+            if (this.name == "Player_1(Clone)" || this.name == "Main_VR(Clone)")
             {
                 //操作キャラクター分のUIを表示
                 SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
