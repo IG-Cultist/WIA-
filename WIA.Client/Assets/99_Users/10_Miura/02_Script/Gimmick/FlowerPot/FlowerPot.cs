@@ -41,8 +41,8 @@ public class FlowerPot : MonoBehaviour
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
             //VRのスクリプト取得
-            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
-            vrObjectControlSwitcher = GameObject.Find("Main").GetComponent<VRObjectControlSwitcher>();
+            xrControllerButtonEvents = OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>();
+            vrObjectControlSwitcher = OnlineGameManager.Player.GetComponent<VRObjectControlSwitcher>();
         }
 
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
