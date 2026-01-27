@@ -151,6 +151,7 @@ MonoBehaviour:
   spawnPointP1: {fileID: 108569770}
   spawnPointP2: {fileID: 1278644318}
   mainPlayerPrefab: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+  mainPlayerVRPrefab: {fileID: 0}
   subPlayerPrefab: {fileID: 5255917015044651565, guid: 9e9499c5d1e1afd4fac28edd9f9bc081, type: 3}
   objPrefab: {fileID: 1454636699154065244, guid: 6de5d010d13ed2a498a1d4008c402722, type: 3}
   coffeePrefab: {fileID: 0}
@@ -13076,7 +13077,7 @@ Transform:
   m_GameObject: {fileID: 533552884}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15, z: -0.4}
+  m_LocalPosition: {x: 0, y: -0.15, z: -0.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -72813,7 +72814,7 @@ Transform:
   m_GameObject: {fileID: 1918155545}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.05, y: -0.15, z: -0.40000004}
+  m_LocalPosition: {x: 6.05, y: -0.15, z: -0.14000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -75884,7 +75885,7 @@ Transform:
   m_GameObject: {fileID: 2049932931}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.48, y: -0.15, z: -0.40000004}
+  m_LocalPosition: {x: -5.48, y: -0.15, z: -0.14000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
