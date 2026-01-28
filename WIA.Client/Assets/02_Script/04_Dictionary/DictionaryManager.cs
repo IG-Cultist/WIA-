@@ -35,7 +35,7 @@ namespace FancyScrollView.Example09
                 "20XX年XX月XX日",
                 "高所での作業にて、建築に必要な資材を運搬中に足元不注意が原因で高さ15mのプラットフォームから落下。被災者の命に別状はなかったものの、全治7ヵ月もの重傷を負ってしまった。その後の聞き込みにて、命綱無しでの作業や、落下防止網の設置等、義務付けられている労災防止策を一切施していないことが判明した。",
                 "労働災害啓発協会",
-                "https://setchi.jp/FancyScrollView/09_LoadTexture/Images/fall.png"
+                "https://github.com/IG-Cultist/WIA-/blob/feature/k-nishiura/image/fall.png?raw=true"
             ),
             new ItemData(
                  "業務外での労働災害",
@@ -43,7 +43,7 @@ namespace FancyScrollView.Example09
                 "20XX年XX月XX日",
                 "業務を終え、帰宅中の労働者が頭部粉砕で死亡。原因はアパートからの落下物が頭部に直撃したものと見られる。労働者の勤務先である○○○○グループは当事故を労災と判断し、遺族に必要な処置を施した。",
                 "労働災害啓発協会",
-                "https://setchi.jp/FancyScrollView/09_LoadTexture/Images/headCrush.png"
+                "https://github.com/IG-Cultist/WIA-/blob/feature/k-nishiura/image/headCrush.png?raw=true"
             ),
             new ItemData(
                "オフィス内での転倒事故",
@@ -51,7 +51,7 @@ namespace FancyScrollView.Example09
                 "20XX年XX月XX日",
                 "オフィス内にて、物資運搬中に足元不注意で転倒。転倒の際に運搬していたものが他者のPCにぶつかり、業務に多大な影響を及ぼした。事故発生時、オフィスは清掃中であり足元が滑りやすかった。",
                 "労働災害啓発協会",
-                "https://setchi.jp/FancyScrollView/09_LoadTexture/Images/office.png"
+                "https://github.com/IG-Cultist/WIA-/blob/feature/k-nishiura/image/office.png?raw=true"
             )
             //),
             //new ItemData(
