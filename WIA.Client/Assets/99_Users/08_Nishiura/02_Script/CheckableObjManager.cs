@@ -50,10 +50,20 @@ public class CheckableObjManager : MonoBehaviour
     {
         if(RoomModel.Instance)
         {
-            //メインキャラクターのカメラを取る
-            playerCamera = GameObject.Find(OnlineGameManager.Player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
-            //プレイヤー移動処理スクリプト取得
-            playerMove = GameObject.Find(OnlineGameManager.Player.name).GetComponent<FirstPersonMovement>();
+            if (UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                //メインキャラクターのカメラを取る
+                playerCamera = GameObject.Find(OnlineGameManager.Player.name).transform.GetChild(1).Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+                //プレイヤー移動処理スクリプト取得
+                //playerMove = GameObject.Find(OnlineGameManager.Player.name).GetComponent<FirstPersonMovement>();
+            }
+            else
+            {
+                //メインキャラクターのカメラを取る
+                playerCamera = GameObject.Find(OnlineGameManager.Player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+                //プレイヤー移動処理スクリプト取得
+                playerMove = GameObject.Find(OnlineGameManager.Player.name).GetComponent<FirstPersonMovement>();
+            }
             //VRのスクリプト取得
             xrControllerButtonEvents = GameObject.Find(OnlineGameManager.Player.name).GetComponent<XRControllerButtonEvents>();
         }
@@ -79,7 +89,8 @@ public class CheckableObjManager : MonoBehaviour
         if(RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
         else player = GameObject.Find("Main").gameObject.GetComponent<Player>();
 
-        rb = player.GetComponent<Rigidbody>();
+        if (UnityEngine.XR.XRSettings.isDeviceActive) rb = player.transform.GetChild(1).GetComponent<Rigidbody>();
+        else rb = player.GetComponent<Rigidbody>();
 
         isDead = false;
 

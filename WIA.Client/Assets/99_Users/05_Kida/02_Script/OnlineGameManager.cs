@@ -185,6 +185,7 @@ public class OnlineGameManager : MonoBehaviour
                 InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
                 if (SceneManager.GetActiveScene().name == "Stage_1")
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                if (UnityEngine.XR.XRSettings.isDeviceActive) continue;
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
@@ -202,6 +203,7 @@ public class OnlineGameManager : MonoBehaviour
                     subplayer.name = "Stricker";
                     subplayer.transform.position = spawnPointP2.position;
                     subplayer.transform.parent = spawnPointP2.transform;
+                    Debug.Log("労災側の相手プレイヤー生成成功");
                     //subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
             }
