@@ -26261,6 +26261,7 @@ MonoBehaviour:
   spawnPointP1: {fileID: 1892412401}
   spawnPointP2: {fileID: 646735724}
   mainPlayerPrefab: {fileID: 5255917015044651565, guid: 03418ce31287fbd428c2c830711ee97f, type: 3}
+  mainPlayerVRPrefab: {fileID: 0}
   subPlayerPrefab: {fileID: 5255917015044651565, guid: 9e9499c5d1e1afd4fac28edd9f9bc081, type: 3}
   objPrefab: {fileID: 0}
   coffeePrefab: {fileID: 0}
