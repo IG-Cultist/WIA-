@@ -40,16 +40,16 @@ public class ResultManager : MonoBehaviour
         "あなたには次の数値を基準に対象作業員を評価していただきます。評価項目は、労災回避成功数,労災回避失敗数,残酷だった回数,正常に判断出来なかった回数,うっかりしてしまった回数,計画性がなかった回数,ダサかった回数です。" +
         "労災回避成功数は高ければ高いほど優秀、他の項目は高ければ高いほど無能と判断されます。プレイヤーのゲーム内での動きや行動を解析して、労働災害に対する意識や良かったところを総評シミュレートしてください。" +
         "評価の後、できるのであれば一言メッセージを添えてください。" +
-        "尚、評価をする際は、200文字以上にならないよう提示してください。これは絶対厳守です。要所要所でブラックジョークも挟めると良いです。また、改行コード('\n')は入れないでください。)" +
+        "尚、評価をする際は、200文字以下で提示してください。これは絶対厳守です。要所要所でブラックジョークも挟めると良いです。また、改行コード('\n')は入れないでください。)" +
         "以下が、対象の数値です。";
     
 
-    [Header("レーダーグラフ変数(回数加算)")]
-    [SerializeField] public int cruelNum;       //残酷だった回数
-    [SerializeField] public int notJudgeNum;       //判断ミス回数
-    [SerializeField] public int carelesslyNum;  //うっかりした回数
-    [SerializeField] public int notPlanNum;        //計画性がなかった回数
-    [SerializeField] public int notCoolNum;        //かっこよくなかった回数
+    [Header("レーダーグラフ変数(インゲーム内の要所要所で加算)")]
+    [SerializeField] public int cruelNum;          //残酷だった回数(クレーン・ナイフ・花瓶など)
+    [SerializeField] public int notJudgeNum;       //判断ミス回数(薬物など)
+    [SerializeField] public int carelesslyNum;     //うっかりした回数(奈落落下・水たまり・マンホール・コーヒー落下など)
+    [SerializeField] public int notPlanNum;        //計画性がなかった回数(経過時間・鍵の発見スピードなど)
+    [SerializeField] public int notCoolNum;        //ダサかった回数(水たまり・奈落落下など)
 
     [Header("減点倍率")]
     [SerializeField] public float radarMagnification;
