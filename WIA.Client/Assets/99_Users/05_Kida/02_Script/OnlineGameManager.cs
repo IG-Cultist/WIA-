@@ -139,10 +139,10 @@ public class OnlineGameManager : MonoBehaviour
                             {
                                 Destroy(crane.GetComponent<Rigidbody>());
                             }
-                            player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                            //player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                             break;
                         case "Stage_2":
-                            player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                            //player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                             break;
                         case "Stage_3":
                             GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
@@ -151,7 +151,7 @@ public class OnlineGameManager : MonoBehaviour
                                 obj.GetComponent<BoxCollider>().enabled = false;
                             }
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
-                            player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
 
                     }
@@ -169,15 +169,15 @@ public class OnlineGameManager : MonoBehaviour
                                 Destroy (obj.GetComponent<XRGrabInteractable>());
                                 Destroy (obj.GetComponent<Rigidbody>());
                             }
-                            player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                         case "Stage_2":
-                            player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                         case "Stage_3":
                             GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
-                            player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                     }
                 }
@@ -195,14 +195,14 @@ public class OnlineGameManager : MonoBehaviour
                 {//働く方リスポーン
                     subplayer.name = "Worker";
                     subplayer.transform.position = spawnPointP1.position;
-                    subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                    //subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
                 else if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 2)
                 {//労災側リスポーン
                     subplayer.name = "Stricker";
                     subplayer.transform.position = spawnPointP2.position;
                     subplayer.transform.parent = spawnPointP2.transform;
-                    subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                    //subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
             }
         }
