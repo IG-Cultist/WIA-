@@ -164,6 +164,11 @@ public class OnlineGameManager : MonoBehaviour
                     switch (SceneManager.GetActiveScene().name)
                     {
                         case "Stage_1":
+                            foreach (var obj in syncObjList)
+                            {
+                                Destroy (obj.GetComponent<XRGrabInteractable>());
+                                Destroy (obj.GetComponent<Rigidbody>());
+                            }
                             player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                         case "Stage_2":
