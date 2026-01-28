@@ -264,7 +264,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383231059}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df66f5057291d5940a97c203c1bdef09, type: 3}
   m_Name: 
@@ -2477,6 +2477,186 @@ MonoBehaviour:
     m_ManualQueueWasCompletedThisFrame: 0
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
+  rGrip_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: R_Press_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 3f91db9c-87f2-4fd5-825c-a01589fc18ac
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: R_Press_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 2fe00d47-7906-4b5b-8363-2a7a12585ec5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  rGrip_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: R_Release_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: f7da6d5e-2da5-4f8c-a548-1c615d3a03e0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: R_Release_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 337b2740-7c67-4bb4-8863-ca2fc6333fce
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  lGrip_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: L_Press_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: cefae575-f112-4976-9b6b-11b7d2db42b8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: L_Press_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 417984c4-df02-410b-9be6-d11ac4208f07
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  lGrip_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: L_Release_Grip
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 26523c7b-f89e-43cb-a19b-fb9ab1552ae5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: L_Release_Grip Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: d4794696-23b7-48e3-9ffa-08f488978754
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  aButton_PressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: A_Button_Press
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 994a53ba-11ff-4244-bd30-051bcd9871e0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: A_Button_Press Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: f741f44d-d476-42e3-aa3e-07056d8f34c0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  aButton_ReleaseInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: A_Button_Release
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 664d0894-b524-4f13-abe7-d398a96c3adc
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: A_Button_Release Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 31191c56-c409-4bfe-8496-14bbdbfeb627
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
   OnRTrrigerPressed:
     m_PersistentCalls:
       m_Calls:
@@ -2537,7 +2717,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnRGripPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLGripPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRGripReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLGripReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAButtonReleased:
+    m_PersistentCalls:
+      m_Calls: []
   isTrriger: 0
+  isGrip: 0
+  isButton: 0
+  isAButton: 0
 --- !u!4 &3875030719032535302
 Transform:
   m_ObjectHideFlags: 0
