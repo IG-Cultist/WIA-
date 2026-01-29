@@ -225,7 +225,7 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     void Update()
     {
         // "02_MenuScene" ‚É–ß‚Á‚½‚ç©g‚ğ”j‰ó‚·‚é
-        if (SceneManager.GetActiveScene().name == "02_MenuScene")
+        if (SceneManager.GetActiveScene().name == "02_MenuScene" || SceneManager.GetActiveScene().name == "VR_02_MenuScene")
         {
             Destroy(this.gameObject);
         }
