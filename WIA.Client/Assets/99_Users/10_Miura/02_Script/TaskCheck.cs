@@ -71,12 +71,14 @@ public class TaskCheck : MonoBehaviour
 
                 if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1 && !isDead)
                 {
-                    if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 1.0f);
+                    if (UnityEngine.XR.XRSettings.isDeviceActive) //Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 1.0f);
+                        Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
                     else Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
                 }
                 else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2 && !isDead) 
                 {
-                    if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_2_VR", Color.black, 1.0f);
+                    if (UnityEngine.XR.XRSettings.isDeviceActive) //Initiate.Fade("01_Exp_Stricker_2_VR", Color.black, 1.0f);
+                        Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
                     else Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
                 } 
             }
