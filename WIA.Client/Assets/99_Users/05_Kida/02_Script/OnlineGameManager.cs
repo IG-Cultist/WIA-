@@ -183,9 +183,8 @@ public class OnlineGameManager : MonoBehaviour
                 }
                 mainSpawnPoint = player.transform;
                 InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
-                if (SceneManager.GetActiveScene().name == "Stage_1")
-                    player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                if (UnityEngine.XR.XRSettings.isDeviceActive) continue;
+                //if (SceneManager.GetActiveScene().name == "Stage_1")
+                //    player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
