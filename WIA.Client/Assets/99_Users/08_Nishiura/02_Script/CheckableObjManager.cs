@@ -77,7 +77,7 @@ public class CheckableObjManager : MonoBehaviour
             xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
         }
 
-        //resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
+        resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
 
         // 0‚©‚çƒŠƒXƒg‚Ì’·‚³•ª‚Ü‚Å‚Ì—”‚ğİ’è
         keyObjectNum = Random.Range(0, checkableObjList.Count);
