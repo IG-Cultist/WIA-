@@ -48,8 +48,10 @@ public class TaskUIManager : MonoBehaviour
         leftCrickIcon.SetActive(false);
         nowSceneName = SceneManager.GetActiveScene().name;
         Texture2D texture;
-
-        deathCount.text = ": 0/3";
+        if(SceneManager.GetActiveScene().name == "Stage_1")
+        deathCount.text = ": 0";
+        else if (SceneManager.GetActiveScene().name != "Stage_1")
+        deathCount.text = ": 0/5";
 
         if (RoomModel.Instance)
         {

@@ -103,7 +103,7 @@ public class CheckableObjManager : MonoBehaviour
 
     private async void Update()
     {
-        if (player.deathCnt >= 3)
+        if (player.deathCnt >= 5)
         {
             if (playSE) return;
             SEManager.Instance.Play(

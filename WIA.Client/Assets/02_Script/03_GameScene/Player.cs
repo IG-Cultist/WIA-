@@ -383,8 +383,16 @@ public class Player : MonoBehaviour
             if (!isDebug) deathCnt++;
             if (resultScoreManager) resultScoreManager.failureNum++;
 
-            // 死亡回数テキストを取得し、死亡回数を反映
-            GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/3";
+            if(SceneManager.GetActiveScene().name == "Stage_1")
+            {
+                // 死亡回数テキストを取得し、死亡回数を反映
+                GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt;
+            }
+            else
+            {
+                // 死亡回数テキストを取得し、死亡回数を反映
+                GameObject.Find("DeathCount").GetComponent<Text>().text = ": " + deathCnt + "/5";
+            }
 
             if (RoomModel.Instance && isMain)
             {//通信中
@@ -396,9 +404,16 @@ public class Player : MonoBehaviour
             isTrip = false;
         }
 
-        if (deathCnt <= 3)
+        if (SceneManager.GetActiveScene().name == "Stage_1")
         {
-            // まだ3回死んでいない場合
+            Invoke("RespawnPlayer", 2);  //2秒後にリスポーン
+            return;
+        }
+
+
+        if (deathCnt <= 5)
+        {
+            // まだ5回死んでいない場合
             Invoke("RespawnPlayer", 2);  //2秒後にリスポーン
         }
 

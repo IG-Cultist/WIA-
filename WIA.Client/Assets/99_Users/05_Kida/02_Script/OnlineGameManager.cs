@@ -680,11 +680,21 @@ public class OnlineGameManager : MonoBehaviour
             case false:
                 // 死亡回数を加算
                 GameObject.Find(player.name).GetComponent<Player>().deathCnt++;
-                // 死亡回数テキストを取得し、死亡回数を反映
-                GameObject.Find("DeathCount").GetComponent<Text>().text = 
-                    ": " +
-                    GameObject.Find(player.name).GetComponent<Player>().deathCnt +
-                    "/3";
+                if(SceneManager.GetActiveScene().name == "Stage_1")
+                {
+                    // 死亡回数テキストを取得し、死亡回数を反映
+                    GameObject.Find("DeathCount").GetComponent<Text>().text =
+                        ": " +
+                        GameObject.Find(player.name).GetComponent<Player>().deathCnt;
+                }
+                else
+                {
+                    // 死亡回数テキストを取得し、死亡回数を反映
+                    GameObject.Find("DeathCount").GetComponent<Text>().text =
+                        ": " +
+                        GameObject.Find(player.name).GetComponent<Player>().deathCnt +
+                        "/5";
+                }
                 break;
         }
     }

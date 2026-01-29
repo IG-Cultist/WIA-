@@ -71,6 +71,8 @@ public class MatchingManager : MonoBehaviour
 
     int dotCount = 0;
 
+    bool ismatched = false;
+
     //入室か生成の判別用
     private static string joinMode;
 
@@ -94,6 +96,8 @@ public class MatchingManager : MonoBehaviour
 
         ////安全動作のための初回ローディング
         //conducter.Loading();
+
+        ismatched = false;
 
         InvokeRepeating("StartEffect", 0.5f, 0.8f);
         #region RoomModel定義
@@ -302,6 +306,7 @@ public class MatchingManager : MonoBehaviour
     public async void OnMatched(string roomName)
     {
         Debug.Log("マッチングしました");
+        ismatched = true;
         LeaveRoom();
         CancelInvoke("Matching");
         await RoomModel.Instance.JoinedAsync(roomName);
@@ -327,6 +332,7 @@ public class MatchingManager : MonoBehaviour
     /// </summary>
     public void BackMenu()
     {
+        if(ismatched) return; 
         //メニューシーンに遷移する
         if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_02_MenuScene", backMenuendColor, 2.0f); //VR時
         else Initiate.Fade("02_MenuScene", backMenuendColor, 2.0f);

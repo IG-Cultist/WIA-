@@ -49,48 +49,48 @@ public class TaskCheck : MonoBehaviour
     private void Update()
     {
         //Debug.Log(player.deathCnt);
-        if (player.deathCnt >= 3)
-        {
-            if (playSE) return;
+        //if (player.deathCnt >= 5)
+        //{
+        //    if (playSE) return;
 
-            SEManager.Instance.Play(
-                audioPath: SEPath.TASK_FAILURE, //再生したいオーディオのパス
-                volumeRate: 1,                //音量の倍率
-                delay: 1,                //再生されるまでの遅延時間
-                pitch: 1,                //ピッチ
-                isLoop: false,             //ループ再生するか
-                callback: null              //再生終了後の処理
-            );
-            playSE = true;
+        //    SEManager.Instance.Play(
+        //        audioPath: SEPath.TASK_FAILURE, //再生したいオーディオのパス
+        //        volumeRate: 1,                //音量の倍率
+        //        delay: 1,                //再生されるまでの遅延時間
+        //        pitch: 1,                //ピッチ
+        //        isLoop: false,             //ループ再生するか
+        //        callback: null              //再生終了後の処理
+        //    );
+        //    playSE = true;
 
-            if (resultScoreManager) resultScoreManager.GetClearTime();
+        //    if (resultScoreManager) resultScoreManager.GetClearTime();
             
-            if (RoomModel.Instance)
-            {
-                if (resultScoreManager) resultScoreManager.GetClearTime();
+        //    if (RoomModel.Instance)
+        //    {
+        //        if (resultScoreManager) resultScoreManager.GetClearTime();
 
-                if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1 && !isDead)
-                {
-                    if (UnityEngine.XR.XRSettings.isDeviceActive) //Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 1.0f);
-                        Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
-                    else Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
-                }
-                else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2 && !isDead) 
-                {
-                    if (UnityEngine.XR.XRSettings.isDeviceActive) //Initiate.Fade("01_Exp_Stricker_2_VR", Color.black, 1.0f);
-                        Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
-                    else Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
-                } 
-            }
-            else if (!RoomModel.Instance && !isDead)
-            {
+        //        if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1 && !isDead)
+        //        {
+        //            if (UnityEngine.XR.XRSettings.isDeviceActive) //Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 1.0f);
+        //                Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
+        //            else Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
+        //        }
+        //        else if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 2 && !isDead) 
+        //        {
+        //            if (UnityEngine.XR.XRSettings.isDeviceActive) //Initiate.Fade("01_Exp_Stricker_2_VR", Color.black, 1.0f);
+        //                Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
+        //            else Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
+        //        } 
+        //    }
+        //    else if (!RoomModel.Instance && !isDead)
+        //    {
 
 
-                Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
+        //        Initiate.Fade("Exp_Worker_2", Color.black, 1.0f);
 
-            }
-            isDead = true;
-        }
+        //    }
+        //    isDead = true;
+        //}
     }
 
     /// <summary>

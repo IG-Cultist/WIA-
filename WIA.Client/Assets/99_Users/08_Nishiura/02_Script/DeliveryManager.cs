@@ -74,7 +74,7 @@ public class DeliveryManager : MonoBehaviour
 
     private void Update()
     {
-        if (player.deathCnt >= 3)
+        if (player.deathCnt >= 5)
         {
             if (!isDead)
             {
