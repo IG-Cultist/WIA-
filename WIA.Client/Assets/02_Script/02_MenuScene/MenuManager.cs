@@ -110,8 +110,8 @@ public class MenuManager : MonoBehaviour
                 //ロビーシーンに遷移
                 //Initiate.Fade("Stage_1", endColor, 1.0f);
                 //Initiate.Fade("Exp_Worker_1", endColor, 1.0f);
-                Initiate.Fade("06_MatchingScene", endColor, 1.0f);
-
+                if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("VR_06_MatchingScene", endColor, 2.0f);
+                else Initiate.Fade("06_MatchingScene", endColor, 1.0f);
                 break;
 
             case NEXTSCENE_STATE.DICTIONARY:   //名鑑選択状態

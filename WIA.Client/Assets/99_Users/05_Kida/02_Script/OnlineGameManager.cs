@@ -185,8 +185,11 @@ public class OnlineGameManager : MonoBehaviour
                 InvokeRepeating("UpDatePlayer", 0.1f, 0.1f);
                 //if (SceneManager.GetActiveScene().name == "Stage_1")
                 //    player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                if (player.transform.GetComponent<Rigidbody>() != null)
+                {
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
                     player.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                }
             }
             else
             {
