@@ -381,7 +381,7 @@ public class Player : MonoBehaviour
         {
             // 死亡回数を加算
             if (!isDebug) deathCnt++;
-            if (resultScoreManager) resultScoreManager.failureNum++;
+            resultScoreManager.failureNum++;
 
             if(SceneManager.GetActiveScene().name == "Stage_1")
             {

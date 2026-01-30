@@ -46,6 +46,9 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] List<GameObject> syncCraneList;//クレーン用同期リスト
 
     private static GameObject player;//操作プレイヤー
+
+    private ResultScoreManager resultScoreManager;
+
     public static GameObject Player
     {
         get { return player; }
@@ -209,6 +212,9 @@ public class OnlineGameManager : MonoBehaviour
                     //subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
             }
+
+            resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
+
         }
 
     }
@@ -613,6 +619,8 @@ public class OnlineGameManager : MonoBehaviour
             case true:
                 // タスク回数を加算
                 TaskCnt++;
+                resultScoreManager.successNum++;
+
                 switch (SceneManager.GetActiveScene().name)
                 {
                     case "Stage_1":
@@ -680,7 +688,9 @@ public class OnlineGameManager : MonoBehaviour
             case false:
                 // 死亡回数を加算
                 GameObject.Find(player.name).GetComponent<Player>().deathCnt++;
-                if(SceneManager.GetActiveScene().name == "Stage_1")
+
+                resultScoreManager.failureNum++;
+                if (SceneManager.GetActiveScene().name == "Stage_1")
                 {
                     // 死亡回数テキストを取得し、死亡回数を反映
                     GameObject.Find("DeathCount").GetComponent<Text>().text =
