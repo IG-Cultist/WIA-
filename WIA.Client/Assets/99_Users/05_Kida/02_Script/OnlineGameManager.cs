@@ -619,7 +619,7 @@ public class OnlineGameManager : MonoBehaviour
             case true:
                 // タスク回数を加算
                 TaskCnt++;
-                resultScoreManager.successNum++;
+                //resultScoreManager.successNum++;
 
                 switch (SceneManager.GetActiveScene().name)
                 {
