@@ -53,9 +53,9 @@ public class CheckableObjManager : MonoBehaviour
             if (UnityEngine.XR.XRSettings.isDeviceActive)
             {
                 //メインキャラクターのカメラを取る
-                playerCamera = GameObject.Find(OnlineGameManager.Player.name).transform.GetChild(1).Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+                playerCamera = GameObject.Find(OnlineGameManager.Player.name).transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
                 //プレイヤー移動処理スクリプト取得
-                //playerMove = GameObject.Find(OnlineGameManager.Player.name).GetComponent<FirstPersonMovement>();
+                playerMove = GameObject.Find(OnlineGameManager.Player.name).GetComponent<FirstPersonMovement>();
             }
             else
             {

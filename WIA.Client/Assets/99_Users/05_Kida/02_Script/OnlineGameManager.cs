@@ -39,6 +39,7 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] GameObject mainPlayerVRPrefab; //VR操作プレイヤー
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
+    [SerializeField] GameObject vrObjPrefab; //VRオブジェクト
     [SerializeField] GameObject coffeePrefab; //コーヒー
     [SerializeField] GameObject coffeeLostPrefab; //こぼれたコーヒー
     [SerializeField] GameObject InjectorPrefab; //注射器
@@ -47,6 +48,7 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] List<GameObject> syncCraneList;//クレーン用同期リスト
 
     private static GameObject player;//操作プレイヤー
+    GameObject pot;
 
     private ResultScoreManager resultScoreManager;
 
@@ -108,6 +110,7 @@ public class OnlineGameManager : MonoBehaviour
                 Destroy(obj.GetComponent<Rigidbody>());
             }
         }
+
 
         //通知の設定
         RoomModel.Instance.OnUpdatePlayerSyn += OnUpdatePlayerSyn;
@@ -373,21 +376,22 @@ public class OnlineGameManager : MonoBehaviour
         {
             case "Stage_2":
                 spawnObjId = id;
-                GameObject gameObject = Instantiate(objPrefab);
-                gameObject.name = gameObject.name + potCount;
-                gameObject.transform.position = pos;
-                if (gameObject == null)
+                if (UnityEngine.XR.XRSettings.isDeviceActive) pot = Instantiate(vrObjPrefab);
+                else pot = Instantiate(objPrefab);
+                pot.name = pot.name + potCount;
+                pot.transform.position = pos;
+                if (pot == null)
                 {
                     Debug.Log("Nullオブジェクト");
                 }
-                objList.Add(id, gameObject);
+                objList.Add(id, pot);
                 FlowerPotManager flowerPotManager = GameObject.Find("FlowerPotManager").GetComponent<FlowerPotManager>();
-                flowerPotManager.potList.Add(gameObject);
+                flowerPotManager.potList.Add(pot);
                 potCount++;
                 if (Player.name == "Worker")
                 {
-                    Destroy(gameObject.GetComponent<XRGrabInteractable>());
-                    Destroy(gameObject.GetComponent<Rigidbody>());
+                    Destroy(pot.GetComponent<XRGrabInteractable>());
+                    Destroy(pot.GetComponent<Rigidbody>());
                 }
                 break;
             case "Stage_3":
