@@ -134,7 +134,15 @@ public class Player : MonoBehaviour
         tripPanel.SetActive(false);
 
         isHave = false;
+
+        RoomModel.Instance.OnActGimicSyn += this.OnActGimicSyn;
     }
+
+    private void OnDisable()
+    {
+        RoomModel.Instance.OnActGimicSyn -= this.OnActGimicSyn;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -630,17 +638,31 @@ public class Player : MonoBehaviour
             if(RoomModel.Instance)
             {
                 await RoomModel.Instance.DeliteObjectAsync(collision.gameObject.name, collision.gameObject.tag);
+                if(this.gameObject != OnlineGameManager.Player)
+                {
+                    isHave = false;
+                    if (OnlineGameManager.Player.name == "Worker") await RoomModel.Instance.ActGimicAsync("Stricker");
+                    else if(OnlineGameManager.Player.name == "Stricker") await RoomModel.Instance.ActGimicAsync("Worker");
+                }
+                else
+                {
+                    isTrip = true;
+                    isHave = false;
+                    Invoke("ResetTrip", 10f);
+                    // 画面を毒々しくする
+                    tripPanel.SetActive(true);
+                }
             }
             else
             {
                 // 注射器を破壊する
                 Destroy(collision.gameObject);
+                isTrip = true;
+                isHave = false;
+                Invoke("ResetTrip", 10f);
+                // 画面を毒々しくする
+                tripPanel.SetActive(true);
             }
-            isTrip = true;
-            isHave = false;
-            Invoke("ResetTrip", 10f);
-            // 画面を毒々しくする
-            tripPanel.SetActive(true);
         }
     }
 
@@ -682,5 +704,21 @@ public class Player : MonoBehaviour
     {
         //死亡状態に変更
         player_State = PLAYER_STATE.DEATH;
+    }
+
+    /// <summary>
+    /// ギミック動作通知
+    /// </summary>
+    /// <param name="parentName"></param>
+    void OnActGimicSyn(string parentName)
+    {
+        //注射器の効果を発生させる
+        if (parentName == this.name)
+        {
+            isTrip = true;
+            Invoke("ResetTrip", 10f);
+            // 画面を毒々しくする
+            tripPanel.SetActive(true);
+        }
     }
 }

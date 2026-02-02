@@ -19,12 +19,19 @@ public class Coffee : MonoBehaviour
         deliveryManager = GameObject.Find("DeliveryManager").GetComponent<DeliveryManager>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private async void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Ground" || collision.transform.tag == "Trap")
         {
-            GameObject spilledCoffee = Instantiate(sadCoffeePrefab, new Vector3(this.gameObject.transform.position.x, -0.485f, this.gameObject.transform.position.z), sadCoffeePrefab.transform.rotation);
-            spilledCoffee.name = "SadCoffee";
+            if(RoomModel.Instance)
+            {
+                await RoomModel.Instance.SpawnItemAsync(3, new Vector3(this.gameObject.transform.position.x, -0.485f, this.gameObject.transform.position.z));
+            }
+            else
+            {
+                GameObject spilledCoffee = Instantiate(sadCoffeePrefab, new Vector3(this.gameObject.transform.position.x, -0.485f, this.gameObject.transform.position.z), sadCoffeePrefab.transform.rotation);
+                spilledCoffee.name = "SadCoffee";
+            }
 
             SEManager.Instance.Play(
                 audioPath: SEPath.GLASS_CRASH_2, //再生したいオーディオのパス
