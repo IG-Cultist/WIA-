@@ -28,6 +28,9 @@ public class FlowerPot : MonoBehaviour
     // 植木鉢がスポーンした場所のリスト
     List<int> nowSpawnList = new List<int>();
 
+    //StrickerのRigidBody
+    Rigidbody strickerRB;
+
     //通信用
     OnlineGameManager gameManager;
 
@@ -38,6 +41,9 @@ public class FlowerPot : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //StrickerのRigidBodyを取得
+        strickerRB = GameObject.Find("Stricker").GetComponent<Rigidbody>();
+
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
             //VRのスクリプト取得
@@ -196,6 +202,9 @@ public class FlowerPot : MonoBehaviour
         // カメラを切り替える
         cameraManager.TurnOffPlayerCam();
         cameraManager.TurnOnLookDownCam();
+
+        //Strickerをキネマティックにする
+        strickerRB.isKinematic = true;
     }
 
     /// <summary>
@@ -223,5 +232,6 @@ public class FlowerPot : MonoBehaviour
         Debug.Log("Invoke通ってきたy");
         cameraManager.TurnOnPlayerCam();
         cameraManager.TurnOffLookDownCam();
+        strickerRB.isKinematic = false;
     }
 }
