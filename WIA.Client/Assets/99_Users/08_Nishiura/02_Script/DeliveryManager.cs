@@ -60,6 +60,7 @@ public class DeliveryManager : MonoBehaviour
         if(RoomModel.Instance)
         {
             player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>(); // シーン内のプレイヤーからスクリプトを取得
+            RoomModel.Instance.OnActGimicSyn += this.OnActGimicSyn;
         }
         else
         {
@@ -70,6 +71,11 @@ public class DeliveryManager : MonoBehaviour
         isDead = false; //死んでいない状態にする
         coolDownSlider.SetActive(false);    //クールダウンスライダーを非表示にする
         source = this.GetComponent<AudioSource>();
+    }
+
+    private void OnDisable()
+    {
+        RoomModel.Instance.OnActGimicSyn -= this.OnActGimicSyn;
     }
 
     private void Update()
@@ -179,6 +185,12 @@ public class DeliveryManager : MonoBehaviour
         deskList[deskNum].transform.GetChild(1).gameObject.SetActive(false);
         deskList[deskNum].transform.GetComponent<BoxCollider>().enabled = false;
 
+        // デスクにコーヒーを表示し、コーヒー要求アイコンを消去する状態を同期
+        if (RoomModel.Instance)
+        {
+            await RoomModel.Instance.ActGimicAsync(deskList[deskNum].name);
+        }
+
         // 手元のコーヒーオブジェクトを破棄
         if (RoomModel.Instance)
         {
@@ -255,4 +267,20 @@ public class DeliveryManager : MonoBehaviour
         isCooldown = false;
         coolDownSlider.SetActive(false);
     }
+
+    /// <summary>
+    /// ギミック動作通知
+    /// </summary>
+    /// <param name="parentName"></param>
+    void OnActGimicSyn(string parentName)
+    {
+        if(parentName.Contains("Desk_"))
+        {
+            // デスクにコーヒーを表示し、コーヒー要求アイコンを消去
+            GameObject.Find(parentName).transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find(parentName).transform.GetChild(1).gameObject.SetActive(false);
+            GameObject.Find(parentName).transform.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+
 }

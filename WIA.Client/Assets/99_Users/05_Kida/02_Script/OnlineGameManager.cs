@@ -40,6 +40,7 @@ public class OnlineGameManager : MonoBehaviour
     [SerializeField] GameObject subPlayerPrefab; //非操作プレイヤー
     [SerializeField] GameObject objPrefab; //オブジェクト
     [SerializeField] GameObject coffeePrefab; //コーヒー
+    [SerializeField] GameObject coffeeLostPrefab; //こぼれたコーヒー
     [SerializeField] GameObject InjectorPrefab; //注射器
     [SerializeField] GameObject cupPrefab; //水入りコップ
     [SerializeField] public List<GameObject> syncObjList;//同期用オブジェクト初期設定
@@ -181,6 +182,11 @@ public class OnlineGameManager : MonoBehaviour
                             GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
                             //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            foreach (var obj in syncObjList)
+                            {
+                                if(obj.GetComponent<XRGrabInteractable>()) Destroy(obj.GetComponent<XRGrabInteractable>());
+                                Destroy(obj.GetComponent<Rigidbody>());
+                            }
                             break;
                     }
                 }
@@ -452,6 +458,13 @@ public class OnlineGameManager : MonoBehaviour
                 Destroy(gameObject.GetComponent<Rigidbody>());
             }
         }
+        else if(itemId == 3)
+        {//コーヒーの破損
+            coffeeCount++;
+            GameObject gameObject = Instantiate(coffeeLostPrefab);
+            gameObject.transform.position = spawnPos;
+            gameObject.name = "SadCoffee";
+        }
         CancelInvoke("UpdateObj");
         //オブジェクト更新を行う
         InvokeRepeating("UpdateObj", 0.1f, 0.1f);
@@ -515,7 +528,7 @@ public class OnlineGameManager : MonoBehaviour
                 }
                 else if(SceneManager.GetActiveScene().name == "Stage_3")
                 {
-                    if(player.name == "Stricker")
+                    if(player.name == "Stricker" && itemBox.createdObj != null)
                     {
                         if (itemBox.createdObj.name == objName)
                         {
@@ -569,7 +582,7 @@ public class OnlineGameManager : MonoBehaviour
             {
                 if (joinOrder == RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
-                    if (UnityEngine.XR.XRSettings.isDeviceActive) syncObjList[i].AddComponent<XRGrabInteractable>();
+                    if (syncObjList[i].tag == "Item") syncObjList[i].AddComponent<XRGrabInteractable>();
                     Rigidbody rigidbody = syncObjList[i].AddComponent<Rigidbody>();
                     Debug.Log(i.ToString()+"番のオブジェクトの権限を得ました");
                     if (syncObjList[i].tag == "MovablePartition")
@@ -581,7 +594,7 @@ public class OnlineGameManager : MonoBehaviour
                 }
                 else if(joinOrder != RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder)
                 {
-                    if (UnityEngine.XR.XRSettings.isDeviceActive)  Destroy(syncObjList[i].GetComponent<XRGrabInteractable> ());
+                    if (syncObjList[i].tag == "Item") Destroy(syncObjList[i].GetComponent<XRGrabInteractable> ());
                     Destroy(syncObjList[i].GetComponent<Rigidbody>());
                     Debug.Log("オブジェクトの権限を失いました");
                     if (syncObjList[i].tag == "MovablePartition")
@@ -633,8 +646,8 @@ public class OnlineGameManager : MonoBehaviour
                             {
                                 if (UnityEngine.XR.XRSettings.isDeviceActive)
                                 {
-                                    //Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 2.0f);
-                                    Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
+                                    Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 2.0f);
+                                    //Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
                                 }
                                 else Initiate.Fade("01_Exp_Worker_2", Color.black, 1.0f);
                             }
@@ -642,8 +655,8 @@ public class OnlineGameManager : MonoBehaviour
                             {
                                 if (UnityEngine.XR.XRSettings.isDeviceActive)
                                 {
-                                    //Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 2.0f);
-                                    Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
+                                    Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 2.0f);
+                                    //Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
                                 }
                                 else Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
                             }
