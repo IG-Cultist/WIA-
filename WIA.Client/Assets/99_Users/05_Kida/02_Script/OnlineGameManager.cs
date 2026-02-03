@@ -158,7 +158,7 @@ public class OnlineGameManager : MonoBehaviour
                                 obj.GetComponent<BoxCollider>().enabled = false;
                             }
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
-                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(1f, 1f, 1f);
+                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
 
                     }
@@ -179,12 +179,12 @@ public class OnlineGameManager : MonoBehaviour
                             //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                         case "Stage_2":
-                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(1f, 1f, 1f);
+                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                             break;
                         case "Stage_3":
                             GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
-                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(1f, 1f, 1f);
+                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             foreach (var obj in syncObjList)
                             {
                                 if(obj.GetComponent<XRGrabInteractable>()) Destroy(obj.GetComponent<XRGrabInteractable>());
@@ -210,7 +210,7 @@ public class OnlineGameManager : MonoBehaviour
                 {//働く方リスポーン
                     subplayer.name = "Worker";
                     subplayer.transform.position = spawnPointP1.position;
-                    if (UnityEngine.XR.XRSettings.isDeviceActive) subplayer.transform.localScale = new Vector3(1f, 1f, 1f);
+                    if (UnityEngine.XR.XRSettings.isDeviceActive) subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
                 else if (RoomModel.Instance.joinedUserList[user.Key].JoinOrder == 2)
                 {//労災側リスポーン
@@ -218,7 +218,7 @@ public class OnlineGameManager : MonoBehaviour
                     subplayer.transform.position = spawnPointP2.position;
                     subplayer.transform.parent = spawnPointP2.transform;
                     Debug.Log("労災側の相手プレイヤー生成成功");
-                    if (UnityEngine.XR.XRSettings.isDeviceActive) subplayer.transform.localScale = new Vector3(1f, 1f, 1f);
+                    if (UnityEngine.XR.XRSettings.isDeviceActive) subplayer.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                 }
             }
 
