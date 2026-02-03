@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2223956799287480637}
   - component: {fileID: 986120594299090284}
   - component: {fileID: 5073557737136358824}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: VR_FlowerPot_obj
   m_TagString: Pot
   m_Icon: {fileID: 0}

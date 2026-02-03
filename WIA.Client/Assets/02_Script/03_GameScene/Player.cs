@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     public bool isTrip = false;     //転倒判定
     public bool isSliped = false;   //転倒後判定
     public bool isMain = false;    //操作本人か
+
+    int spawnRnd;
     //private static bool isMain = false;//操作本人か(初期は本人ではないと判断)
     //public static bool IsMain
     //{
@@ -106,7 +108,13 @@ public class Player : MonoBehaviour
             //ワープ地点設定通信中のみ処理する
             if (RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder == 1)
             {
-                warpPoint = GameObject.Find("PlayerSpawnPoint_1").transform;
+                if (SceneManager.GetActiveScene().name == "Stage_2")
+                {
+                    System.Random rnd = new System.Random();
+                    spawnRnd = rnd.Next(1,5);
+                    warpPoint = GameObject.Find("WorkerSpawnPoint_" + spawnRnd.ToString()).transform;
+                }
+                else warpPoint = GameObject.Find("PlayerSpawnPoint_1").transform;
             }
             else
             {
@@ -668,6 +676,12 @@ public class Player : MonoBehaviour
 
     void RespawnPlayer()
     {
+        if (SceneManager.GetActiveScene().name == "Stage_2")
+        {
+            System.Random rnd = new System.Random();
+            spawnRnd = rnd.Next(1, 5);
+            warpPoint = GameObject.Find("WorkerSpawnPoint_" + spawnRnd.ToString()).transform;
+        }
 
         this.gameObject.transform.position = new Vector3(warpPoint.position.x, warpPoint.position.y, warpPoint.position.z);
 

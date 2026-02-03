@@ -149,7 +149,7 @@ public class OnlineGameManager : MonoBehaviour
                             //player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                             break;
                         case "Stage_2":
-                            //player.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                            player.transform.localScale = new Vector3(1f, 1f, 1f);
                             break;
                         case "Stage_3":
                             GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
@@ -158,7 +158,7 @@ public class OnlineGameManager : MonoBehaviour
                                 obj.GetComponent<BoxCollider>().enabled = false;
                             }
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
-                            //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            player.transform.localScale = new Vector3(1f, 1f, 1f);
                             break;
 
                     }
@@ -179,12 +179,12 @@ public class OnlineGameManager : MonoBehaviour
                             //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             break;
                         case "Stage_2":
-                            //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            player.transform.localScale = new Vector3(1f, 1f, 1f);
                             break;
                         case "Stage_3":
                             GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
-                            //player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            player.transform.localScale = new Vector3(1f, 1f, 1f);
                             foreach (var obj in syncObjList)
                             {
                                 if(obj.GetComponent<XRGrabInteractable>()) Destroy(obj.GetComponent<XRGrabInteractable>());
