@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 2654412785050512136}
   m_Layer: 0
   m_Name: Poll
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5691,7 +5691,7 @@ GameObject:
   - component: {fileID: 2194543389712487316}
   m_Layer: 0
   m_Name: Foundation
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51806,7 +51806,7 @@ GameObject:
   - component: {fileID: 1482083400804964904}
   m_Layer: 0
   m_Name: Splite
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51900,7 +51900,7 @@ GameObject:
   - component: {fileID: 6155197632867625549}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
