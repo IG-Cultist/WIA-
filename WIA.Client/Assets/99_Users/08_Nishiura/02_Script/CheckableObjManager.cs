@@ -121,12 +121,12 @@ public class CheckableObjManager : MonoBehaviour
 
                 if (RoomModel.Instance && OnlineGameManager.Player.name == "Worker")
                 {
-                    if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_VR3", Color.black, 1.0f);
+                    if (UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Worker_3_VR", Color.black, 1.0f);
                     else Initiate.Fade("01_Exp_Worker_3", Color.black, 1.0f);
                 }
                 else if (RoomModel.Instance && OnlineGameManager.Player.name == "Stricker")
                 {
-                    if(UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_VR3", Color.black, 1.0f);
+                    if(UnityEngine.XR.XRSettings.isDeviceActive) Initiate.Fade("01_Exp_Stricker_3_VR", Color.black, 1.0f);
                     else Initiate.Fade("01_Exp_Stricker_3", Color.black, 1.0f);
                 }
                 else
