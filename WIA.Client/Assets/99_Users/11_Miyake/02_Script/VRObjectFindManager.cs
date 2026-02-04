@@ -149,7 +149,10 @@ public class VRObjectFindManager : MonoBehaviour
             if (obj != lastHitObj)
             {
                 lastHitObj = obj;
-                OnCheckableHit(obj, interactor);
+                OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().nowObj = obj;
+                OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isCheck = true;
+
+                //OnCheckableHit(obj, interactor);
             }
         }
         else if (obj.CompareTag("CoffeeMachine"))

@@ -41,11 +41,16 @@ public class XRControllerButtonEvents : MonoBehaviour
     public GameObject nowObj;
     public bool isWater = false;
     public bool isItemBox = false;
+    public bool isCheck = false;
 
     ObjectGrabber grabber;
 
     void Start()
     {
+        nowObj = null;
+        isWater = false;
+        isItemBox = false;
+        isCheck = false;
         isTrriger = false;
         isGrip = false;
 
@@ -122,7 +127,13 @@ public class XRControllerButtonEvents : MonoBehaviour
         Debug.Log("右のトリガーが押されたよん");
         isTrriger = true;
 
-        if(SceneManager.GetActiveScene().name == "Stage_3" && isWater)
+        if(SceneManager.GetActiveScene().name == "Stage_2" && isCheck)
+        {
+            // 調査を開始する
+            GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckInObject(nowObj.transform.gameObject, nowObj.transform.GetComponent<FindKeyStatus>());        
+        }
+
+        if (SceneManager.GetActiveScene().name == "Stage_3" && isWater)
         {
             await RoomModel.Instance.ActGimicAsync(nowObj.transform.parent.parent.name);
         }
@@ -138,6 +149,12 @@ public class XRControllerButtonEvents : MonoBehaviour
     {
         Debug.Log("左のトリガーが押されたよん");
         isTrriger = true;
+
+        if (SceneManager.GetActiveScene().name == "Stage_2" && isCheck)
+        {
+            // 調査を開始する
+            GameObject.Find("CheckableObjManager").GetComponent<CheckableObjManager>().CheckInObject(nowObj.transform.gameObject, nowObj.transform.GetComponent<FindKeyStatus>());
+        }
 
         if (SceneManager.GetActiveScene().name == "Stage_3" && isWater)
         {
