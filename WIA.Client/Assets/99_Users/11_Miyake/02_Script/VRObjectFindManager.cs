@@ -25,16 +25,16 @@ public class VRObjectFindManager : MonoBehaviour
     //ボタン入力取得
     XRControllerButtonEvents xrControllerButtonEvents;
 
-    OnlineGameManager onlineGameManager;
-    ItemBox itemBox;
-
     private void Start()
     {
-        xrControllerButtonEvents = OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>();
-
-        if(RoomModel.Instance) onlineGameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
-
-        if(SceneManager.GetActiveScene().name == "Stage_3") itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
+        if (RoomModel.Instance)
+        {
+            xrControllerButtonEvents = OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>();
+        }
+        else
+        {
+            xrControllerButtonEvents = GameObject.Find("Main_VR").gameObject.GetComponent<XRControllerButtonEvents>();
+        }
     }
 
     void Update()
@@ -87,55 +87,6 @@ public class VRObjectFindManager : MonoBehaviour
     /// </summary>
     void HandleHitObject(GameObject obj, ref GameObject lastHitObj, NearFarInteractor interactor)
     {
-        if(obj.CompareTag("Item") && SceneManager.GetActiveScene().name == "Stage_3")
-        {
-            // 新しく当たった瞬間だけ処理を実行
-            if (obj != lastHitObj)
-            {
-
-                lastHitObj = obj;
-                for (int i = 0; i < onlineGameManager.syncObjList.Count; i++)
-                {
-                    if (onlineGameManager.syncObjList[i] == obj)
-                    {
-                        onlineGameManager.ObjectOwnershipSwap(i.ToString(),
-                        RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
-                        return;
-                    }
-                }
-                for (int i = 0; i < OnlineGameManager.ObjList.Count; i++)
-                {
-                    if (OnlineGameManager.ObjList[i.ToString()] == obj)
-                    {
-                        onlineGameManager.ObjectOwnershipSwap(i.ToString(),
-                        RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
-                        return;
-                    }
-                }
-            }
-        }
-
-        if (obj.CompareTag("ItemBox") && SceneManager.GetActiveScene().name == "Stage_3")
-        {
-            OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isWater = false;
-            OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isItemBox = true;
-        }
-
-
-        if (obj.CompareTag("WaterCooler"))
-        {
-            // 新しく当たった瞬間だけ処理を実行
-            if (obj != lastHitObj)
-            {
-
-                lastHitObj = obj;
-
-                OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isWater = true;
-                OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isItemBox = false;
-                OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().nowObj = obj;
-            }
-        }
-
         if (obj.CompareTag("CheckableObject"))
         {
             // 新しく当たった瞬間だけ処理を実行
@@ -181,12 +132,6 @@ public class VRObjectFindManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Stage_2_Miyake")
             {
                 OutCheckableHit();
-            }
-            //ステージ3のみ
-            if (SceneManager.GetActiveScene().name == "Stage_3")
-            {
-                //OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isWater = false;
-                //OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isItemBox = false;
             }
         }
     }
