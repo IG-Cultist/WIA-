@@ -434,6 +434,10 @@ public class OnlineGameManager : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Rigidbody>());
             }
+            else if(Player.name == "Stricker" && UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                gameObject.AddComponent<XRGrabInteractable>();
+            }
             else
             {
                 itemBox.createdObj = gameObject;
@@ -449,6 +453,10 @@ public class OnlineGameManager : MonoBehaviour
             if (Player.name == "Worker")
             {
                 Destroy(gameObject.GetComponent<Rigidbody>());
+            }
+            else if (Player.name == "Stricker" && UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                gameObject.AddComponent<XRGrabInteractable>();
             }
             else
             {

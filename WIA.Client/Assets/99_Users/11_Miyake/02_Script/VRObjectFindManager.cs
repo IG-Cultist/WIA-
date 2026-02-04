@@ -96,15 +96,29 @@ public class VRObjectFindManager : MonoBehaviour
                 lastHitObj = obj;
                 for (int i = 0; i < onlineGameManager.syncObjList.Count; i++)
                 {
-                    if (onlineGameManager.syncObjList[i] == obj) onlineGameManager.ObjectOwnershipSwap(i.ToString(),
+                    if (onlineGameManager.syncObjList[i] == obj)
+                    {
+                        onlineGameManager.ObjectOwnershipSwap(i.ToString(),
                         RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
+                        return;
+                    }
+                }
+                for (int i = 0; i < OnlineGameManager.ObjList.Count; i++)
+                {
+                    if (OnlineGameManager.ObjList[i.ToString()] == obj)
+                    {
+                        onlineGameManager.ObjectOwnershipSwap(i.ToString(),
+                        RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
+                        return;
+                    }
                 }
             }
         }
 
         if (obj.CompareTag("ItemBox") && SceneManager.GetActiveScene().name == "Stage_3")
         {
-            itemBox.GetItem();
+            OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isWater = false;
+            OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isItemBox = true;
         }
 
 
@@ -115,8 +129,10 @@ public class VRObjectFindManager : MonoBehaviour
             {
 
                 lastHitObj = obj;
-                // ギミック動作同期
-                onlineGameManager.ActGimic(obj.transform.parent.parent.name);
+
+                OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isWater = true;
+                OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isItemBox = false;
+                OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().nowObj = obj;
             }
         }
 
@@ -165,6 +181,12 @@ public class VRObjectFindManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Stage_2_Miyake")
             {
                 OutCheckableHit();
+            }
+            //ステージ3のみ
+            if (SceneManager.GetActiveScene().name == "Stage_3")
+            {
+                //OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isWater = false;
+                //OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>().isItemBox = false;
             }
         }
     }

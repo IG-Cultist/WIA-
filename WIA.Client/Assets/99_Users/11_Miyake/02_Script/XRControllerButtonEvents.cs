@@ -36,6 +36,12 @@ public class XRControllerButtonEvents : MonoBehaviour
     //探しているか
     public bool isTrriger;      //トリガーを押したか
     public bool isGrip;         //グリップを押したか
+
+    //フラグ
+    public GameObject nowObj;
+    public bool isWater = false;
+    public bool isItemBox = false;
+
     ObjectGrabber grabber;
 
     void Start()
@@ -111,17 +117,38 @@ public class XRControllerButtonEvents : MonoBehaviour
     }
 
     //右トリガーが押されたとき
-    public void PressTrriger_R()
+    public async void PressTrriger_R()
     {
         Debug.Log("右のトリガーが押されたよん");
         isTrriger = true;
+
+        if(SceneManager.GetActiveScene().name == "Stage_3" && isWater)
+        {
+            await RoomModel.Instance.ActGimicAsync(nowObj.transform.parent.parent.name);
+        }
+        else if(SceneManager.GetActiveScene().name == "Stage_3" && isItemBox)
+        {
+            ItemBox itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
+            itemBox.GetItem();
+        }
     }
 
     //左トリガーを押したとき
-    public void PressTrriger_L()
+    public async void PressTrriger_L()
     {
         Debug.Log("左のトリガーが押されたよん");
         isTrriger = true;
+
+        if (SceneManager.GetActiveScene().name == "Stage_3" && isWater)
+        {
+            await RoomModel.Instance.ActGimicAsync(nowObj.transform.parent.parent.name);
+        }
+        else if (SceneManager.GetActiveScene().name == "Stage_3" && isItemBox)
+        {
+            ItemBox itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
+            itemBox.GetItem();
+        }
+
     }
 
     //右トリガーを離したとき
