@@ -289,6 +289,14 @@ public class OnlineGameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// ギミック動作
+    /// </summary>
+    public async void ActGimic(string parentName)
+    {
+        await RoomModel.Instance.ActGimicAsync(parentName);
+    }
+
+    /// <summary>
     /// オブジェクト更新
     /// </summary>
     public async void UpdateObj()

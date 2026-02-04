@@ -25,9 +25,16 @@ public class VRObjectFindManager : MonoBehaviour
     //ボタン入力取得
     XRControllerButtonEvents xrControllerButtonEvents;
 
+    OnlineGameManager onlineGameManager;
+    ItemBox itemBox;
+
     private void Start()
     {
         xrControllerButtonEvents = OnlineGameManager.Player.GetComponent<XRControllerButtonEvents>();
+
+        if(RoomModel.Instance) onlineGameManager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
+
+        if(SceneManager.GetActiveScene().name == "Stage_3") itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
     }
 
     void Update()
@@ -80,6 +87,39 @@ public class VRObjectFindManager : MonoBehaviour
     /// </summary>
     void HandleHitObject(GameObject obj, ref GameObject lastHitObj, NearFarInteractor interactor)
     {
+        if(obj.CompareTag("Item") && SceneManager.GetActiveScene().name == "Stage_3")
+        {
+            // 新しく当たった瞬間だけ処理を実行
+            if (obj != lastHitObj)
+            {
+
+                lastHitObj = obj;
+                for (int i = 0; i < onlineGameManager.syncObjList.Count; i++)
+                {
+                    if (onlineGameManager.syncObjList[i] == obj) onlineGameManager.ObjectOwnershipSwap(i.ToString(),
+                        RoomModel.Instance.joinedUserList[RoomModel.Instance.ConnectionId].JoinOrder);
+                }
+            }
+        }
+
+        if (obj.CompareTag("ItemBox") && SceneManager.GetActiveScene().name == "Stage_3")
+        {
+            itemBox.GetItem();
+        }
+
+
+        if (obj.CompareTag("WaterCooler"))
+        {
+            // 新しく当たった瞬間だけ処理を実行
+            if (obj != lastHitObj)
+            {
+
+                lastHitObj = obj;
+                // ギミック動作同期
+                onlineGameManager.ActGimic(obj.transform.parent.parent.name);
+            }
+        }
+
         if (obj.CompareTag("CheckableObject"))
         {
             // 新しく当たった瞬間だけ処理を実行
