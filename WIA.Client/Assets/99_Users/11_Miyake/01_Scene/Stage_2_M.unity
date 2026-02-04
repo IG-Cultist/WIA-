@@ -8958,6 +8958,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main
       objectReference: {fileID: 0}
+    - target: {fileID: 705278478036046589, guid: 7857b9a6420761043a129858830c776d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1806986698066219965, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -24934,7 +24938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 705278478036046589, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2061954454014762031, guid: 7857b9a6420761043a129858830c776d, type: 3}
       propertyPath: warpPoint
