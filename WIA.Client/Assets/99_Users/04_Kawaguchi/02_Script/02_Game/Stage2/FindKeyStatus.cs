@@ -55,8 +55,16 @@ public class FindKeyStatus : MonoBehaviour
         }
         isLook2 = isLook1;
 
-        if(RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.transform.position;   //調査プレイヤーの現在地取得(通信中)
-        else player = GameObject.Find("Main").gameObject.transform.position;   //調査プレイヤーの現在地取得
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        {
+            if (RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.transform.position;   //調査プレイヤーの現在地取得(通信中)
+            else player = GameObject.Find("Main_VR").gameObject.transform.position;   //調査プレイヤーの現在地取得
+        }
+        else
+        {
+            if (RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.transform.position;   //調査プレイヤーの現在地取得(通信中)
+            else player = GameObject.Find("Main").gameObject.transform.position;   //調査プレイヤーの現在地取得
+        }
 
         float distance = Vector3.Distance(transform.position, player);    //距離計算
 

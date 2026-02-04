@@ -143,12 +143,12 @@ public class Player : MonoBehaviour
 
         isHave = false;
 
-        RoomModel.Instance.OnActGimicSyn += this.OnActGimicSyn;
+        if(RoomModel.Instance)RoomModel.Instance.OnActGimicSyn += this.OnActGimicSyn;
     }
 
     private void OnDisable()
     {
-        RoomModel.Instance.OnActGimicSyn -= this.OnActGimicSyn;
+        if (RoomModel.Instance) RoomModel.Instance.OnActGimicSyn -= this.OnActGimicSyn;
     }
 
     // Update is called once per frame

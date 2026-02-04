@@ -69,12 +69,18 @@ public class CheckableObjManager : MonoBehaviour
         }
         else
         {
-            //メインキャラクターのカメラを取る
-            playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
-            //プレイヤー移動処理スクリプト取得
-            playerMove = GameObject.Find("Main").GetComponent<FirstPersonMovement>();
-            //VRのスクリプト取得
-            xrControllerButtonEvents = GameObject.Find("Main").GetComponent<XRControllerButtonEvents>();
+            if (UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                //VRのスクリプト取得
+                xrControllerButtonEvents = GameObject.Find("Main_VR").GetComponent<XRControllerButtonEvents>();
+            }
+            else
+            {
+                //メインキャラクターのカメラを取る
+                playerCamera = GameObject.Find("Main").transform.Find("First Person Camera").gameObject.GetComponent<FirstPersonLook>();
+                //プレイヤー移動処理スクリプト取得
+                playerMove = GameObject.Find("Main").GetComponent<FirstPersonMovement>();
+            }
         }
 
         resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
@@ -85,9 +91,16 @@ public class CheckableObjManager : MonoBehaviour
 
         checkNowText.SetActive(false);
 
-
-        if(RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
-        else player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        {
+            if (RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
+            else player = GameObject.Find("Main_VR").gameObject.GetComponent<Player>();
+        }
+        else
+        {
+            if (RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
+            else player = GameObject.Find("Main").gameObject.GetComponent<Player>();
+        }
 
         if (UnityEngine.XR.XRSettings.isDeviceActive) rb = player.transform.GetChild(1).GetComponent<Rigidbody>();
         else rb = player.GetComponent<Rigidbody>();
