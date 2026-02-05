@@ -158,7 +158,7 @@ public class OnlineGameManager : MonoBehaviour
                                 obj.GetComponent<BoxCollider>().enabled = false;
                             }
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
-                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(1f, 1f, 1f);
                             break;
 
                     }
@@ -184,7 +184,7 @@ public class OnlineGameManager : MonoBehaviour
                         case "Stage_3":
                             GameObject[] gameObject = GameObject.FindGameObjectsWithTag("MovablePartition");
                             itemBox = GameObject.Find("ItemBox").GetComponent<ItemBox>();
-                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                            if (UnityEngine.XR.XRSettings.isDeviceActive) player.transform.localScale = new Vector3(1f, 1f, 1f);
                             foreach (var obj in syncObjList)
                             {
                                 if(obj.GetComponent<XRGrabInteractable>()) Destroy(obj.GetComponent<XRGrabInteractable>());
@@ -675,7 +675,7 @@ public class OnlineGameManager : MonoBehaviour
                             {
                                 if (UnityEngine.XR.XRSettings.isDeviceActive)
                                 {
-                                    Initiate.Fade("01_Exp_Worker_2_VR", Color.black, 2.0f);
+                                    Initiate.Fade("01_Exp_Stricker_2_VR", Color.black, 2.0f);
                                     //Initiate.Fade("VR_30_ResultScene", Color.black, 1.0f);
                                 }
                                 else Initiate.Fade("01_Exp_Stricker_2", Color.black, 1.0f);
