@@ -102,7 +102,7 @@ public class CheckableObjManager : MonoBehaviour
             else player = GameObject.Find("Main").gameObject.GetComponent<Player>();
         }
 
-        if (UnityEngine.XR.XRSettings.isDeviceActive) rb = player.transform.GetChild(1).GetComponent<Rigidbody>();
+        if (UnityEngine.XR.XRSettings.isDeviceActive) rb = player.GetComponent<Rigidbody>();
         else rb = player.GetComponent<Rigidbody>();
 
         isDead = false;
