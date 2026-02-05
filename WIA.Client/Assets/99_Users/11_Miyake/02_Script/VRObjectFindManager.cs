@@ -129,7 +129,7 @@ public class VRObjectFindManager : MonoBehaviour
             lastHitObj = null;
 
             //ステージ2のみ
-            if (SceneManager.GetActiveScene().name == "Stage_2_Miyake")
+            if (SceneManager.GetActiveScene().name == "Stage_2")
             {
                 OutCheckableHit();
             }

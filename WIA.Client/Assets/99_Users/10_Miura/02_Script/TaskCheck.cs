@@ -31,14 +31,30 @@ public class TaskCheck : MonoBehaviour
 
     private void Start()
     {
-        if (RoomModel.Instance)
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
-            player = OnlineGameManager.Player.gameObject.GetComponent<Player>();
+            if (RoomModel.Instance)
+            {
+                player = OnlineGameManager.Player.gameObject.GetComponent<Player>();
+            }
+            else
+            {
+                player = GameObject.Find("Main_VR").GetComponent<Player>();
+            }
         }
         else
         {
-            player = GameObject.Find("Main").GetComponent<Player>();
+            if (RoomModel.Instance)
+            {
+                player = OnlineGameManager.Player.gameObject.GetComponent<Player>();
+            }
+            else
+            {
+                player = GameObject.Find("Main").GetComponent<Player>();
+            }
         }
+
+
         resultScoreManager = GameObject.Find("ResultScoreManager").GetComponent<ResultScoreManager>();
         resultScoreManager.ResetData();
 
