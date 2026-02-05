@@ -51679,8 +51679,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572583975}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -19.154999, y: -2.2399998, z: 1.2299995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.84, y: -1.3569399, z: -1.0555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72007,6 +72007,7 @@ MonoBehaviour:
   mainPlayerVRPrefab: {fileID: 705278478036046589, guid: 5c2f500b4fce76e4e9d78f3dd4b5f01f, type: 3}
   subPlayerPrefab: {fileID: 5255917015044651565, guid: 9e9499c5d1e1afd4fac28edd9f9bc081, type: 3}
   objPrefab: {fileID: 354273508913060562, guid: 6e0b21b89cc00074cba293c32e0b0ca8, type: 3}
+  vrObjPrefab: {fileID: 0}
   coffeePrefab: {fileID: 9112057679510237814, guid: 6d35fe0061c03ba47a639c1fa82b29f8, type: 3}
   coffeeLostPrefab: {fileID: 3155805051288402306, guid: 39b553ef9ca22c240b356ace28385b50, type: 3}
   InjectorPrefab: {fileID: 3883707514275313264, guid: 70166cd41f9ef734caeac91776beb081, type: 3}

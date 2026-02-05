@@ -8,6 +8,8 @@ using UnityEngine.UI;
 using static PlayerAnimation;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 /// <summary>
 /// プレイヤースクリプト
@@ -79,6 +81,8 @@ public class Player : MonoBehaviour
 
     private ResultScoreManager resultScoreManager;
 
+    GameObject playerMoveObj;
+
     private void Awake()
     {
         if (RoomModel.Instance)
@@ -137,13 +141,23 @@ public class Player : MonoBehaviour
         }
 
         cameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
-        fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
-        tripPanel = GameObject.Find("TripPanel");
+        if (UnityEngine.XR.XRSettings.isDeviceActive && isMain)
+        {
+            fadeImageScript = this.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<FadeImage>();
+            tripPanel = this.transform.GetChild(0).transform.GetChild(0).transform.GetChild(9).gameObject;
+        }
+        else
+        {
+            fadeImageScript = GameObject.Find("FadeImage").GetComponent<FadeImage>();
+            tripPanel = GameObject.Find("TripPanel");
+        }
         tripPanel.SetActive(false);
 
         isHave = false;
 
         if(RoomModel.Instance)RoomModel.Instance.OnActGimicSyn += this.OnActGimicSyn;
+
+        if (UnityEngine.XR.XRSettings.isDeviceActive && SceneManager.GetActiveScene().name != "Stage_2" && isMain) this.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -659,6 +673,13 @@ public class Player : MonoBehaviour
                     Invoke("ResetTrip", 10f);
                     // 画面を毒々しくする
                     tripPanel.SetActive(true);
+
+                    if (UnityEngine.XR.XRSettings.isDeviceActive)
+                    {
+                        playerMoveObj = this.transform.GetChild(2).transform.GetChild(1).gameObject;
+                        playerMoveObj.GetComponent<DynamicMoveProvider>().moveSpeed = -1.5f;
+                    }
+
                 }
             }
             else
@@ -670,6 +691,12 @@ public class Player : MonoBehaviour
                 Invoke("ResetTrip", 10f);
                 // 画面を毒々しくする
                 tripPanel.SetActive(true);
+
+                if (UnityEngine.XR.XRSettings.isDeviceActive)
+                {
+                    playerMoveObj = this.transform.GetChild(2).transform.GetChild(1).gameObject;
+                    playerMoveObj.GetComponent<DynamicMoveProvider>().moveSpeed = -1.5f;
+                }
             }
         }
     }
@@ -709,6 +736,13 @@ public class Player : MonoBehaviour
         isTrip = false;
         // 画面の毒々しさを解除する
         tripPanel.SetActive(false);
+
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+        {
+            playerMoveObj = this.transform.GetChild(2).transform.GetChild(1).gameObject;
+            playerMoveObj.GetComponent<DynamicMoveProvider>().moveSpeed = 2.5f;
+        }
+
     }
 
     /// <summary>
@@ -733,6 +767,13 @@ public class Player : MonoBehaviour
             Invoke("ResetTrip", 10f);
             // 画面を毒々しくする
             tripPanel.SetActive(true);
+
+            if (UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                playerMoveObj = this.transform.GetChild(2).transform.GetChild(1).gameObject;
+                playerMoveObj.GetComponent<DynamicMoveProvider>().moveSpeed = -1.5f;
+                Debug.Log("");
+            }
         }
     }
 }

@@ -93,7 +93,11 @@ public class CheckableObjManager : MonoBehaviour
 
         if (UnityEngine.XR.XRSettings.isDeviceActive)
         {
-            if (RoomModel.Instance) player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
+            if (RoomModel.Instance)
+            {
+                player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
+                GameObject.Find(OnlineGameManager.Player.name).transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(false);
+            }
             else player = GameObject.Find("Main_VR").gameObject.GetComponent<Player>();
         }
         else
@@ -215,6 +219,7 @@ public class CheckableObjManager : MonoBehaviour
                 playerCamera.enabled = false;   //カメラアングル固定化
                 playerMove.enabled = false;     //プレイヤー座標固定化
             }
+            else GameObject.Find(OnlineGameManager.Player.name).transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(true);
 
             nowFindStatus.checkedTime += Time.deltaTime;   //調査時間加算
 
@@ -233,6 +238,7 @@ public class CheckableObjManager : MonoBehaviour
                 playerCamera.enabled = true;   //アングル固定解除
                 playerMove.enabled = true;     //座標固定解除
             }
+            else GameObject.Find(OnlineGameManager.Player.name).transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(false);
             player.isSearch = isCheckNow;
 
         }
@@ -359,8 +365,9 @@ public class CheckableObjManager : MonoBehaviour
             SEManager.Instance.Stop(SEPath.DIFFUSE);
             searchingSE = false;
         }
+        if (UnityEngine.XR.XRSettings.isDeviceActive)
+            GameObject.Find(OnlineGameManager.Player.name).transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(false);
 
-        
 
     }
 }
