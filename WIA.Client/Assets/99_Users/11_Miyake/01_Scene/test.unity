@@ -6994,66 +6994,6 @@ MonoBehaviour:
     m_ManualQueueWasCompletedThisFrame: 0
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
-  aButton_PressInput:
-    m_InputSourceMode: 2
-    m_InputActionPerformed:
-      m_Name: A_Button_Press
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 16cad39e-52c5-4a5e-a385-017278ae66a5
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionValue:
-      m_Name: A_Button_Press Value
-      m_Type: 0
-      m_ExpectedControlType: Axis
-      m_Id: e1ee80f1-e926-40c6-8c41-e4c8da456ac8
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: 0}
-    m_InputActionReferenceValue: {fileID: 0}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualPerformed: 0
-    m_ManualValue: 0
-    m_ManualQueuePerformed: 0
-    m_ManualQueueWasPerformedThisFrame: 0
-    m_ManualQueueWasCompletedThisFrame: 0
-    m_ManualQueueValue: 0
-    m_ManualQueueTargetFrame: 0
-  aButton_ReleaseInput:
-    m_InputSourceMode: 2
-    m_InputActionPerformed:
-      m_Name: A_Button_Release
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: 0771a4b0-155f-4e72-90a7-96593c72e900
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionValue:
-      m_Name: A_Button_Release Value
-      m_Type: 0
-      m_ExpectedControlType: Axis
-      m_Id: 53b092c0-4e79-465d-9eae-4e13fd319a7c
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: 0}
-    m_InputActionReferenceValue: {fileID: 0}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualPerformed: 0
-    m_ManualValue: 0
-    m_ManualQueuePerformed: 0
-    m_ManualQueueWasPerformedThisFrame: 0
-    m_ManualQueueWasCompletedThisFrame: 0
-    m_ManualQueueValue: 0
-    m_ManualQueueTargetFrame: 0
   OnRTrrigerPressed:
     m_PersistentCalls:
       m_Calls:
@@ -7174,16 +7114,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnAButtonPressed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAButtonReleased:
-    m_PersistentCalls:
-      m_Calls: []
   isTrriger: 0
   isGrip: 0
-  isButton: 0
-  isAButton: 0
+  nowObj: {fileID: 0}
+  isWater: 0
+  isItemBox: 0
+  isCheck: 0
 --- !u!114 &7526624977281080245
 MonoBehaviour:
   m_ObjectHideFlags: 0
