@@ -6,8 +6,20 @@ using UnityEngine;
 
 public class ObjectKillZone : MonoBehaviour
 {
-    // プレイヤースクリプト
-    Player player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
+    Player player;
+    private void Start()
+    {
+        if (RoomModel.Instance)
+        {
+            // プレイヤースクリプト
+            player = GameObject.Find(OnlineGameManager.Player.name).gameObject.GetComponent<Player>();
+        }
+        else
+        {
+            player = GameObject.Find("Main").GetComponent<Player>();
+        }
+    }
+
     private async void OnTriggerEnter(Collider other)
     {
         if((other.gameObject.name.Contains("Cup")   && other.gameObject.tag == "Item")

@@ -1111,36 +1111,6 @@ MonoBehaviour:
     m_ManualQueueWasCompletedThisFrame: 0
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
-  lStickInput:
-    m_InputSourceMode: 2
-    m_InputActionPerformed:
-      m_Name: L_Stick
-      m_Type: 1
-      m_ExpectedControlType: 
-      m_Id: cfbdf0a8-d4db-49cc-b3e1-3e37dd437e92
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionValue:
-      m_Name: L_Stick Value
-      m_Type: 0
-      m_ExpectedControlType: Axis
-      m_Id: c976ea7d-1cfa-4757-b98c-225b03c44173
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: 0}
-    m_InputActionReferenceValue: {fileID: 0}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualPerformed: 0
-    m_ManualValue: 0
-    m_ManualQueuePerformed: 0
-    m_ManualQueueWasPerformedThisFrame: 0
-    m_ManualQueueWasCompletedThisFrame: 0
-    m_ManualQueueValue: 0
-    m_ManualQueueTargetFrame: 0
   OnRTrrigerPressed:
     m_PersistentCalls:
       m_Calls:
@@ -1261,9 +1231,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnLStickPressed:
-    m_PersistentCalls:
-      m_Calls: []
   isTrriger: 0
   isGrip: 0
   nowObj: {fileID: 0}
